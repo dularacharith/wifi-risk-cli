@@ -1,0 +1,16 @@
+[
+  {
+    "id": "WR-001",
+    "display_name": "Generic/Urant Wi-Fi Repeater",
+    "brand": "Unknown / Urant clue",
+    "model": "Unknown",
+    "firmware_version": "1.0.1.2-urant-p1R-auto",
+    "mac_vendor": "C&S Technology",
+    "price_lkr": 2500,
+    "purchase_source": "To be added",
+    "security_score": 35,
+    "risk_level": "High",
+    "recommendation": "Avoid for sensitive networks",
+    "summary": "Low-cost Wi-Fi repeater with weak authentication, exposed Telnet, insecure cookie handling, and poor session management."
+  }
+]

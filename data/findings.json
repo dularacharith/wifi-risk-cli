@@ -1,0 +1,72 @@
+[
+  {
+    "id": "WR-001-F01",
+    "device_id": "WR-001",
+    "title": "Telnet service exposed on local and upstream interfaces",
+    "category": "Network-Level Exposure / Insecure Defaults",
+    "severity": "High",
+    "status": "Confirmed",
+    "impact": "A local network attacker may reach the Telnet-like login service. If weak or hardcoded credentials exist, this may allow remote administrative or shell access.",
+    "recommendation": "Disable Telnet by default and replace it with SSH only if remote administration is required."
+  },
+  {
+    "id": "WR-001-F02",
+    "device_id": "WR-001",
+    "title": "Web interface allows login without user-supplied credentials",
+    "category": "Authentication Security",
+    "severity": "High",
+    "status": "Confirmed",
+    "impact": "Any user connected to the repeater management network can click Login and access the admin interface.",
+    "recommendation": "Require users to create a unique admin password during first setup."
+  },
+  {
+    "id": "WR-001-F03",
+    "device_id": "WR-001",
+    "title": "Default admin credentials exposed in login page HTML",
+    "category": "Authentication Security / Insecure Defaults",
+    "severity": "High",
+    "status": "Confirmed",
+    "impact": "The login page reveals hidden username and default password values.",
+    "recommendation": "Remove hardcoded credentials from client-side HTML."
+  },
+  {
+    "id": "WR-001-F04",
+    "device_id": "WR-001",
+    "title": "Admin credentials stored in Base64 Authorization cookie",
+    "category": "Session Management",
+    "severity": "High",
+    "status": "Confirmed",
+    "impact": "The cookie can expose admin credentials because Base64 is not encryption and the cookie is not HttpOnly or Secure.",
+    "recommendation": "Use secure server-side session tokens with HttpOnly, Secure, and SameSite attributes."
+  },
+  {
+    "id": "WR-001-F05",
+    "device_id": "WR-001",
+    "title": "DNS resolver exposed upstream with setup-domain redirection",
+    "category": "Network-Level Exposure / DNS Behavior",
+    "severity": "Low-Medium",
+    "status": "Confirmed",
+    "impact": "The repeater exposes DNS behavior and resolves zrlogin.cn to its internal management IP.",
+    "recommendation": "Restrict DNS exposure to required interfaces only."
+  },
+  {
+    "id": "WR-001-F06",
+    "device_id": "WR-001",
+    "title": "No logout option to terminate admin session",
+    "category": "Session Management",
+    "severity": "Medium",
+    "status": "Confirmed",
+    "impact": "Users cannot explicitly terminate the admin session from the interface.",
+    "recommendation": "Add a logout function that clears and invalidates the session."
+  },
+  {
+    "id": "WR-001-F07",
+    "device_id": "WR-001",
+    "title": "Admin credentials exposed in URL query parameters during login",
+    "category": "Sensitive Data Exposure",
+    "severity": "High",
+    "status": "Confirmed",
+    "impact": "Credentials may be stored in browser history, logs, screenshots, and network captures.",
+    "recommendation": "Submit credentials using POST over HTTPS and never place passwords in URLs."
+  }
+]
