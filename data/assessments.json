@@ -83,5 +83,49 @@
       "interface": "wlp0s20f3"
     },
     "checks": []
+  },
+  {
+    "id": "ASM-006",
+    "device_id": "Target-192.168.11.1",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2500,
+    "status": "Completed",
+    "created_at": "2026-08-29T02:06:33",
+    "updated_at": "2026-08-29T02:08:05",
+    "notes": "Session via wlp0s20f3",
+    "metadata": {
+      "setup_domain": ""
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-29T02:07:04",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 2,
+        "open_ports": [
+          23,
+          80
+        ],
+        "findings_count": 2,
+        "evidence_file": "data/evidence/ASM-006_network.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-29T02:07:05",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-006_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-29T02:08:05",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-006_firmware_discovery.json"
+      }
+    ]
   }
 ]

@@ -255,6 +255,7 @@ def run_full_safe_assessment(
         "firmware_discovery_result": fw_discovery_result,
         "firmware_static_result": fw_static_result,
         "all_findings": all_findings,
+        "findings": all_findings,
         "evaluation": evaluation,
         "full_evidence_file": full_evidence_file,
     }

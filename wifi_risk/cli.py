@@ -610,24 +610,25 @@ def run_full_assessment_screen() -> None:
             )
             progress.update(task, completed=100, description="[bold green]Assessment Pipeline Completed!")
 
-        eval_data = results["evaluation"]
-        score = eval_data["final_score"]
-        risk = eval_data["risk_level"]
-        psr = eval_data["psr"]
-        rec = eval_data["recommendation"]
-        findings = results["findings"]
+        eval_data = results.get("evaluation", {})
+        score = eval_data.get("final_score", 100)
+        risk = eval_data.get("risk_level", "Low")
+        psr = eval_data.get("psr", 0.0)
+        rec = eval_data.get("recommendation", {})
+        findings = results.get("findings") or results.get("all_findings") or []
+        severity_counts = eval_data.get("severity_counts", {})
 
         status_color = "red" if risk in ["Critical", "High"] else "yellow" if risk == "Medium" else "green"
 
         summary_box = f"""
-[bold]Assessment Session ID:[/bold]  {results['assessment_id']}
+[bold]Assessment Session ID:[/bold]  {results.get('assessment_id', '')}
 [bold]Device Identifier:[/bold]      {device_id}
 [bold]Target Gateway:[/bold]          {target_ip} ({iface_name})
-[bold]Purchase Price:[/bold]          LKR {eval_data['price_lkr']}
-[bold]Total Findings:[/bold]          {len(findings)} ({eval_data['severity_counts'].get('High', 0)} High, {eval_data['severity_counts'].get('Medium', 0)} Medium, {eval_data['severity_counts'].get('Low-Medium', 0)} Low-Med)
+[bold]Purchase Price:[/bold]          LKR {eval_data.get('price_lkr', price_lkr)}
+[bold]Total Findings:[/bold]          {len(findings)} ({severity_counts.get('High', 0)} High, {severity_counts.get('Medium', 0)} Medium, {severity_counts.get('Low-Medium', 0)} Low-Med)
 
-[bold]Base Security Score:[/bold]     {eval_data['base_score']}/100
-[bold]Deductions Applied:[/bold]      -{eval_data['total_deductions']} points
+[bold]Base Security Score:[/bold]     {eval_data.get('base_score', 100)}/100
+[bold]Deductions Applied:[/bold]      -{eval_data.get('total_deductions', 0)} points
 [bold]Final Security Score:[/bold]    [{status_color}]{score}/100[/{status_color}]
 [bold]Overall Risk Level:[/bold]      [{status_color}]{risk}[/{status_color}]
 [bold]Price-to-Security (PSR):[/bold] {psr} (Baseline: LKR 15,000)
