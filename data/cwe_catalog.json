@@ -1,0 +1,370 @@
+{
+  "CWE-319": {
+    "id": "CWE-319",
+    "name": "Cleartext Transmission of Sensitive Information",
+    "abstraction": "Base Weakness",
+    "status": "Active (MITRE Standard)",
+    "description": "The product transmits sensitive or security-critical data in cleartext across physical or network communication channels, allowing any unauthorized actor with channel access to sniff, intercept, or modify the data.",
+    "threat_scenarios": [
+      "Eavesdropping and packet sniffing on local Wi-Fi or upstream networks via Wireshark or tcpdump.",
+      "Cleartext extraction of administrative credentials and Wi-Fi WPA2 pre-shared keys.",
+      "Man-in-the-Middle (MitM) session injection and unauthorized router reconfiguration."
+    ],
+    "affected_components": [
+      "Telnet Daemon (Port 23)",
+      "Unencrypted HTTP Web Admin (Port 80 / 8080)",
+      "Cleartext GET Query Authentication Strings"
+    ],
+    "mitigation": "Enforce cryptographic transport protocols (TLS 1.2/1.3, SSHv2) for all administrative and management data. Disable unencrypted Telnet and HTTP services.",
+    "related_cves": [
+      "CVE-2021-36260",
+      "CVE-2020-8597"
+    ],
+    "mitre_url": "https://cwe.mitre.org/data/definitions/319.html"
+  },
+  "CWE-345": {
+    "id": "CWE-345",
+    "name": "Insufficient Verification of Data Authenticity",
+    "abstraction": "Class Weakness",
+    "status": "Active (Live MITRE Feed)",
+    "description": "Official description available at MITRE.",
+    "threat_scenarios": [
+      "DNS Cache Poisoning and DNS Spoofing attacks targeting weak Transaction ID (TXID) entropy in embedded forwarders.",
+      "DNSpooq vulnerability exploitation redirecting victim traffic to malicious phishing portals.",
+      "Acceptance of forged upstream router advertisements or configuration payloads."
+    ],
+    "affected_components": [
+      "Embedded DNS Resolver / Forwarder (dnsmasq / Port 53)",
+      "Setup Domain Interception Routines",
+      "Dynamic Configuration Daemons"
+    ],
+    "mitigation": "Enable DNSSEC validation, implement cryptographically random query source ports and transaction IDs, and verify message integrity signatures before accepting data.",
+    "related_cves": [
+      "CVE-2020-25681",
+      "CVE-2020-25682",
+      "CVE-2020-25683",
+      "CVE-2020-25687"
+    ],
+    "mitre_url": "https://cwe.mitre.org/data/definitions/345.html",
+    "fetched_at": "2026-08-28T18:51:49"
+  },
+  "CWE-400": {
+    "id": "CWE-400",
+    "name": "Uncontrolled Resource Consumption (Amplification Abuse)",
+    "abstraction": "Class Weakness",
+    "status": "Active (MITRE Standard)",
+    "description": "The product does not properly control the allocation or consumption of a limited resource (such as CPU, bandwidth, or network socket handles), enabling attackers to exhaust system capacity or leverage the device for DDoS amplification.",
+    "threat_scenarios": [
+      "Open DNS resolver abuse where spoofed UDP queries trigger high-bandwidth responses directed at external victim targets.",
+      "Resource exhaustion on lightweight embedded MIPS/ARM CPUs causing device lockup or denial of service.",
+      "Connection table saturation disabling legitimate client connectivity."
+    ],
+    "affected_components": [
+      "DNS Forwarder Listening on External Interfaces (0.0.0.0:53)",
+      "Embedded Web Server Connection Sockets",
+      "ICMP / UDP Service Handlers"
+    ],
+    "mitigation": "Bind DNS services strictly to internal LAN interfaces (bind-interfaces), implement query rate-limiting, and drop inbound WAN requests using iptables firewall rules.",
+    "related_cves": [
+      "CVE-2020-25684",
+      "CVE-2020-25685"
+    ],
+    "mitre_url": "https://cwe.mitre.org/data/definitions/400.html"
+  },
+  "CWE-798": {
+    "id": "CWE-798",
+    "name": "Use of Hardcoded Credentials",
+    "abstraction": "Base Weakness",
+    "status": "Active (MITRE Standard)",
+    "description": "The product contains hardcoded credentials, such as a default username and password, embedded in source code, client-side scripts, or compiled firmware binaries for inbound authentication.",
+    "threat_scenarios": [
+      "Automated Mirai-style dictionary botnet attacks harvesting factory-default credentials.",
+      "Extraction of static credentials from client HTML source code or strings in firmware images.",
+      "Global administrative takeover across all deployed units sharing the identical firmware build."
+    ],
+    "affected_components": [
+      "Client-Side Web Login HTML / JavaScript",
+      "Embedded Root Accounts in /etc/passwd and /etc/shadow",
+      "Default Factory Management Credentials (admin:admin)"
+    ],
+    "mitigation": "Never embed static default passwords in firmware. Force the user to create a unique password upon first boot, or generate unique randomized factory keys per physical unit.",
+    "related_cves": [
+      "CVE-2016-10372",
+      "CVE-2017-17215"
+    ],
+    "mitre_url": "https://cwe.mitre.org/data/definitions/798.html"
+  },
+  "CWE-259": {
+    "id": "CWE-259",
+    "name": "Use of Hardcoded Password",
+    "abstraction": "Base Weakness",
+    "status": "Active (MITRE Standard)",
+    "description": "The product uses a hardcoded password for inbound authentication or communication with external services, rendering security dependent on secrecy of static data.",
+    "threat_scenarios": [
+      "Telnet/SSH automated brute-forcing using vendor default password lists.",
+      "Firmware reverse engineering revealing undocumented diagnostic passwords."
+    ],
+    "affected_components": [
+      "Embedded Telnet Daemon",
+      "Factory Diagnostic Shells"
+    ],
+    "mitigation": "Disable default shared passwords. Implement cryptographically generated unique credentials per device label.",
+    "related_cves": [
+      "CVE-2019-12255"
+    ],
+    "mitre_url": "https://cwe.mitre.org/data/definitions/259.html"
+  },
+  "CWE-352": {
+    "id": "CWE-352",
+    "name": "Cross-Site Request Forgery (CSRF)",
+    "abstraction": "Base Weakness",
+    "status": "Active (MITRE Standard)",
+    "description": "The web application does not verify whether a received HTTP request was intentionally submitted by the authenticated user, allowing malicious external websites to forge administrative state changes.",
+    "threat_scenarios": [
+      "A logged-in administrator visits a malicious web page which silently sends an HTTP POST/GET request changing the repeater's DNS servers or Wi-Fi password.",
+      "Remote execution of configuration commands without the user's knowledge."
+    ],
+    "affected_components": [
+      "Web Management Interface Forms",
+      "CGI Configuration Handlers (/goform/, /cgi-bin/)"
+    ],
+    "mitigation": "Implement unique cryptographic anti-CSRF tokens for all state-changing operations and configure SameSite=Strict cookies.",
+    "related_cves": [
+      "CVE-2022-26186",
+      "CVE-2021-35327"
+    ],
+    "mitre_url": "https://cwe.mitre.org/data/definitions/352.html"
+  },
+  "CWE-306": {
+    "id": "CWE-306",
+    "name": "Missing Authentication for Critical Function",
+    "abstraction": "Base Weakness",
+    "status": "Active (MITRE Standard)",
+    "description": "The product does not perform any authentication for functionality that requires a provable user identity or administrative authority.",
+    "threat_scenarios": [
+      "Any unauthenticated user on the local Wi-Fi clicks login and gains direct access to router settings without password prompt.",
+      "Direct invocation of administrative CGI URLs without prior authentication."
+    ],
+    "affected_components": [
+      "Web Management Portal Login Logic",
+      "Direct CGI / API Endpoints"
+    ],
+    "mitigation": "Enforce strict session and credential authentication on all administrative endpoints and dashboard pages.",
+    "related_cves": [
+      "CVE-2020-10987",
+      "CVE-2021-20090"
+    ],
+    "mitre_url": "https://cwe.mitre.org/data/definitions/306.html"
+  },
+  "CWE-312": {
+    "id": "CWE-312",
+    "name": "Cleartext Storage of Sensitive Information",
+    "abstraction": "Base Weakness",
+    "status": "Active (MITRE Standard)",
+    "description": "The product stores sensitive information in cleartext without applying appropriate encryption or reversible encoding safeguards.",
+    "threat_scenarios": [
+      "Storing Base64-encoded administrative passwords in client browser cookies.",
+      "Cleartext password storage in NVRAM or unencrypted configuration backup files."
+    ],
+    "affected_components": [
+      "Authorization Cookies",
+      "NVRAM Settings / Flash Partitions"
+    ],
+    "mitigation": "Store opaque, cryptographically random session tokens instead of user credentials in browser cookies. Use salted hash algorithms (Argon2 / PBKDF2) for stored passwords.",
+    "related_cves": [
+      "CVE-2021-28144"
+    ],
+    "mitre_url": "https://cwe.mitre.org/data/definitions/312.html"
+  },
+  "CWE-1004": {
+    "id": "CWE-1004",
+    "name": "Sensitive Cookie Without 'HttpOnly' Flag",
+    "abstraction": "Base Weakness",
+    "status": "Active (MITRE Standard)",
+    "description": "The product sets a sensitive cookie without the HttpOnly attribute, allowing client-side scripts to access the cookie content.",
+    "threat_scenarios": [
+      "Cross-Site Scripting (XSS) payload reads the session cookie and transmits it to an attacker-controlled server."
+    ],
+    "affected_components": [
+      "Web Management Session Cookies"
+    ],
+    "mitigation": "Always append '; HttpOnly; Secure; SameSite=Strict' to all authentication and session Set-Cookie HTTP headers.",
+    "related_cves": [
+      "CVE-2021-36177"
+    ],
+    "mitre_url": "https://cwe.mitre.org/data/definitions/1004.html"
+  },
+  "CWE-598": {
+    "id": "CWE-598",
+    "name": "Use of GET Request Method with Sensitive Query Strings",
+    "abstraction": "Base Weakness",
+    "status": "Active (MITRE Standard)",
+    "description": "The web application transmits sensitive parameters (such as passwords or session tokens) within the query string of an HTTP GET request.",
+    "threat_scenarios": [
+      "Passphrases logged in plaintext across browser history, web proxy logs, and server access logs.",
+      "Credentials leaked via HTTP Referer headers when navigating to external links."
+    ],
+    "affected_components": [
+      "Login Form Action (GET instead of POST)",
+      "Web Management CGI Scripts"
+    ],
+    "mitigation": "Submit authentication credentials strictly via HTTP POST request bodies over HTTPS TLS connections.",
+    "related_cves": [
+      "CVE-2018-18069"
+    ],
+    "mitre_url": "https://cwe.mitre.org/data/definitions/598.html"
+  },
+  "CWE-613": {
+    "id": "CWE-613",
+    "name": "Insufficient Session Expiration",
+    "abstraction": "Base Weakness",
+    "status": "Active (MITRE Standard)",
+    "description": "The product does not sufficiently expire active sessions after a period of inactivity or provide a mechanism for explicit session termination.",
+    "threat_scenarios": [
+      "Shared or public workstation retains administrative access indefinitely after configuration.",
+      "Session fixation and persistent replay of unexpired administrative tokens."
+    ],
+    "affected_components": [
+      "Web Administration Session Management",
+      "Dashboard Navigation Bars"
+    ],
+    "mitigation": "Provide a prominent 'Logout' button that destroys server-side session state and invalidate sessions after a configurable inactivity timeout.",
+    "related_cves": [
+      "CVE-2019-18337"
+    ],
+    "mitre_url": "https://cwe.mitre.org/data/definitions/613.html"
+  },
+  "CWE-1277": {
+    "id": "CWE-1277",
+    "name": "Firmware Not Updateable",
+    "abstraction": "Base Weakness",
+    "status": "Active (MITRE Standard)",
+    "description": "The hardware product or firmware does not provide a secure, reliable mechanism to update its firmware or receive vendor security patches.",
+    "threat_scenarios": [
+      "Permanent exposure to known vulnerabilities (e.g. DNSpooq, Mirai exploits) with zero patching capability.",
+      "Abandoned white-label IoT devices leaving consumer networks perpetually compromised."
+    ],
+    "affected_components": [
+      "Vendor Support Infrastructure",
+      "Firmware Flashing Architecture"
+    ],
+    "mitigation": "Establish an official vendor support repository, provide cryptographically verified OTA update mechanisms, and publish vulnerability advisories.",
+    "related_cves": [
+      "CVE-2020-25681"
+    ],
+    "mitre_url": "https://cwe.mitre.org/data/definitions/1277.html"
+  },
+  "CWE-1059": {
+    "id": "CWE-1059",
+    "name": "Incomplete Documentation and Support",
+    "abstraction": "Class Weakness",
+    "status": "Active (MITRE Standard)",
+    "description": "The vendor does not provide adequate documentation, security contact details, or support infrastructure for the software or hardware product.",
+    "threat_scenarios": [
+      "Inability for consumers to identify genuine firmware builds or report newly discovered security flaws to the manufacturer."
+    ],
+    "affected_components": [
+      "Vendor Transparency & Support Channels"
+    ],
+    "mitigation": "Publish transparent vendor security policies, CVE tracking, and verified firmware download portals.",
+    "related_cves": [],
+    "mitre_url": "https://cwe.mitre.org/data/definitions/1059.html"
+  },
+  "CWE-321": {
+    "id": "CWE-321",
+    "name": "Use of Hardcoded Cryptographic Key",
+    "abstraction": "Base Weakness",
+    "status": "Active (MITRE Standard)",
+    "description": "The product uses a hardcoded cryptographic key, which is shared across all instances of the product or embedded in binary images.",
+    "threat_scenarios": [
+      "Attackers extract private TLS or SSH keys from firmware images to decrypt network traffic or impersonate devices in MitM attacks."
+    ],
+    "affected_components": [
+      "Embedded Private Keys (id_rsa, server.key)",
+      "TLS Certificate Stores"
+    ],
+    "mitigation": "Generate unique cryptographic keys and certificates during first boot or per-device factory provisioning. Never embed shared private keys in firmware binaries.",
+    "related_cves": [
+      "CVE-2015-8277"
+    ],
+    "mitre_url": "https://cwe.mitre.org/data/definitions/321.html"
+  },
+  "CWE-347": {
+    "id": "CWE-347",
+    "name": "Improper Verification of Cryptographic Signature",
+    "abstraction": "Base Weakness",
+    "status": "Active (MITRE Standard)",
+    "description": "The product does not verify or incorrectly verifies the cryptographic signature of data, files, or firmware updates before execution or flashing.",
+    "threat_scenarios": [
+      "Flashing unauthorized, malicious firmware images containing backdoors, keyloggers, or persistent rootkits.",
+      "Tampering with update binaries during transit over unencrypted connections."
+    ],
+    "affected_components": [
+      "Bootloader (U-Boot) Verification Logic",
+      "Web Firmware Upgrade Upload Handlers"
+    ],
+    "mitigation": "Enforce asymmetric digital signature verification (e.g. RSA-PSS or Ed25519) on all firmware packages before writing to flash memory.",
+    "related_cves": [
+      "CVE-2021-35327",
+      "CVE-2020-8597"
+    ],
+    "mitre_url": "https://cwe.mitre.org/data/definitions/347.html"
+  },
+  "CWE-287": {
+    "id": "CWE-287",
+    "name": "Improper Authentication",
+    "abstraction": "Class Weakness",
+    "status": "Active (Live MITRE Feed)",
+    "description": "Official description available at MITRE.",
+    "threat_scenarios": [
+      "Observed technical exposure matching MITRE CWE-287 standards.",
+      "Potential vulnerability exploitation in IoT and embedded network routers."
+    ],
+    "affected_components": [
+      "Embedded Network Services",
+      "Web & Firmware Interfaces"
+    ],
+    "mitigation": "Follow standard MITRE remediation guidelines and vendor security best practices.",
+    "related_cves": [],
+    "mitre_url": "https://cwe.mitre.org/data/definitions/287.html",
+    "fetched_at": "2026-08-28T18:25:23"
+  },
+  "CWE-200": {
+    "id": "CWE-200",
+    "name": "Exposure of Sensitive Information to an Unauthorized Actor",
+    "abstraction": "Class Weakness",
+    "status": "Active (Live MITRE Feed)",
+    "description": "Official description available at MITRE.",
+    "threat_scenarios": [
+      "Observed technical exposure matching MITRE CWE-200 standards.",
+      "Potential vulnerability exploitation in IoT and embedded network routers."
+    ],
+    "affected_components": [
+      "Embedded Network Services",
+      "Web & Firmware Interfaces"
+    ],
+    "mitigation": "Follow standard MITRE remediation guidelines and vendor security best practices.",
+    "related_cves": [],
+    "mitre_url": "https://cwe.mitre.org/data/definitions/200.html",
+    "fetched_at": "2026-08-28T23:25:51"
+  },
+  "CWE-494": {
+    "id": "CWE-494",
+    "name": "Download of Code Without Integrity Check",
+    "abstraction": "Class Weakness",
+    "status": "Active (Live MITRE Feed)",
+    "description": "Official description available at MITRE.",
+    "threat_scenarios": [
+      "Observed technical exposure matching MITRE CWE-494 standards.",
+      "Potential vulnerability exploitation in IoT and embedded network routers."
+    ],
+    "affected_components": [
+      "Embedded Network Services",
+      "Web & Firmware Interfaces"
+    ],
+    "mitigation": "Follow standard MITRE remediation guidelines and vendor security best practices.",
+    "related_cves": [],
+    "mitre_url": "https://cwe.mitre.org/data/definitions/494.html",
+    "fetched_at": "2026-08-28T23:30:27"
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "assessment_id": "ASM-004",
+  "device_id": "WR-001",
+  "file_name": "wr001_sample_firmware.bin",
+  "file_path": "/home/dularacharith/Documents/wifi-risk-cli/firmware_samples/wr001_sample_firmware.bin",
+  "timestamp": "2026-08-22T19:38:32",
+  "hashes": {
+    "sha256": "e198957ee5af693167fd14da11bc7f8ffa292b208737778fd74631f4a1ce6d79",
+    "md5": "4175d8d8b2df0ca68c763e0dc4f0e5a5",
+    "size_bytes": 898,
+    "size_kb": 0.88
+  },
+  "file_type_info": {
+    "detected_type": "TRX Firmware Image",
+    "system_file_info": "firmware_samples/wr001_sample_firmware.bin: data"
+  },
+  "indicators_summary": {
+    "embedded_services": [
+      "telnetd (Telnet Server)",
+      "httpd/boa (Embedded Web Server)",
+      "dnsmasq (DNS & DHCP Server)"
+    ],
+    "hardcoded_creds_count": 1,
+    "private_keys_count": 0,
+    "certificates_count": 0,
+    "startup_scripts_count": 1,
+    "is_unsigned": true
+  },
+  "findings": [
+    {
+      "id": "WR-001-FW_HARDCODED_CREDS",
+      "device_id": "WR-001",
+      "assessment_id": "ASM-004",
+      "title": "Hardcoded default administrator credentials in firmware image",
+      "category": "Firmware Static Analysis / Hardcoded Credentials",
+      "severity": "High",
+      "status": "Confirmed",
+      "evidence": "Found credential strings in firmware binary wr001_sample_firmware.bin: Default configuration: username=admin password=admin pcPassword=admin",
+      "impact": "Static strings embedded inside firmware binaries expose default credentials, facilitating unauthorized administrative access across all identical devices.",
+      "recommendation": "Remove all embedded plaintext default credentials and enforce unique per-device initialization keys.",
+      "module": "Firmware Static Analysis",
+      "date_observed": "2026-08-22T19:38:32"
+    },
+    {
+      "id": "WR-001-FW_TELNETD",
+      "device_id": "WR-001",
+      "assessment_id": "ASM-004",
+      "title": "Embedded Telnet daemon (telnetd) present in firmware",
+      "category": "Firmware Static Analysis / Insecure Services",
+      "severity": "High",
+      "status": "Confirmed",
+      "evidence": "Found telnetd references and binaries embedded inside firmware wr001_sample_firmware.bin.",
+      "impact": "The inclusion of telnetd enables unencrypted command-line management on exposed network ports.",
+      "recommendation": "Remove telnetd from production firmware builds or disable its daemon startup by default.",
+      "module": "Firmware Static Analysis",
+      "date_observed": "2026-08-22T19:38:32"
+    },
+    {
+      "id": "WR-001-FW_UNSIGNED",
+      "device_id": "WR-001",
+      "assessment_id": "ASM-004",
+      "title": "Firmware package lacks cryptographic signature verification",
+      "category": "Firmware Static Analysis / Integrity Validation",
+      "severity": "Medium",
+      "status": "Confirmed",
+      "evidence": "Firmware image wr001_sample_firmware.bin lacks cryptographic signature headers or verification manifests.",
+      "impact": "Without cryptographic signatures, devices cannot verify the authenticity of firmware updates, leaving them susceptible to malicious firmware modification.",
+      "recommendation": "Implement cryptographic signing (e.g. RSA-PSS or Ed25519) on all firmware upgrade packages and verify signatures before flashing.",
+      "module": "Firmware Static Analysis",
+      "date_observed": "2026-08-22T19:38:32"
+    }
+  ]
+}

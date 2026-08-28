@@ -3,14 +3,42 @@
     "id": "WR-001",
     "display_name": "Generic/Urant Wi-Fi Repeater",
     "brand": "Unknown / Urant clue",
-    "model": "Unknown",
+    "model": "Generic N300 Repeater",
     "firmware_version": "1.0.1.2-urant-p1R-auto",
     "mac_vendor": "C&S Technology",
     "price_lkr": 2500,
-    "purchase_source": "To be added",
-    "security_score": 35,
-    "risk_level": "High",
+    "purchase_source": "Local Market / Daraz Sri Lanka",
+    "security_score": 39,
+    "risk_level": "Critical",
     "recommendation": "Avoid for sensitive networks",
-    "summary": "Low-cost Wi-Fi repeater with weak authentication, exposed Telnet, insecure cookie handling, and poor session management."
+    "summary": "Low-cost white-label Wi-Fi repeater with exposed Telnet, passwordless web login, hardcoded credentials in HTML, Base64 auth cookie and unmaintained vendor firmware."
+  },
+  {
+    "id": "WR-002",
+    "display_name": "TP-Link TL-WA850RE Range Extender",
+    "brand": "TP-Link",
+    "model": "TL-WA850RE",
+    "firmware_version": "1.0.0 Build 20230510",
+    "mac_vendor": "TP-Link Corporation",
+    "price_lkr": 12500,
+    "purchase_source": "Authorized Retailer",
+    "security_score": 85,
+    "risk_level": "Low",
+    "recommendation": "Recommended",
+    "summary": "Commercial brand range extender with mandatory password setup on first boot, HTTPS support, encrypted session tokens and regular vendor firmware updates."
+  },
+  {
+    "id": "WR-003",
+    "display_name": "D-Link DAP-1325 N300 Extender",
+    "brand": "D-Link",
+    "model": "DAP-1325",
+    "firmware_version": "1.10B01",
+    "mac_vendor": "D-Link International",
+    "price_lkr": 7800,
+    "purchase_source": "Local IT Store",
+    "security_score": 72,
+    "risk_level": "Medium",
+    "recommendation": "Acceptable with precautions",
+    "summary": "Mid-tier consumer Wi-Fi extender with decent default credentials handling, isolated guest mode and signed firmware update capabilities."
   }
 ]

@@ -1,0 +1,181 @@
+{
+  "assessment_id": "ASM-001",
+  "device_id": "D1",
+  "target_ip": "192.168.11.1",
+  "price_lkr": 2500,
+  "timestamp": "2026-08-24T19:05:10",
+  "modules_run": [
+    "Network Discovery",
+    "DNS Checks",
+    "Web Interface Checks",
+    "Firmware Discovery"
+  ],
+  "network_summary": {
+    "open_ports": 2,
+    "findings_count": 2,
+    "evidence_file": "data/evidence/ASM-001_network.json"
+  },
+  "dns_summary": {
+    "setup_domain_ips": [],
+    "control_domain_ips": [],
+    "findings_count": 0,
+    "evidence_file": "data/evidence/ASM-001_dns.json"
+  },
+  "web_summary": {
+    "target_url": "http://192.168.11.1/",
+    "findings_count": 3,
+    "evidence_file": "data/evidence/ASM-001_web.json"
+  },
+  "firmware_discovery_summary": {
+    "performed": true,
+    "found": false,
+    "findings_count": 1,
+    "evidence_file": "data/evidence/ASM-001_firmware_discovery.json"
+  },
+  "firmware_static_summary": {
+    "performed": false,
+    "findings_count": 0,
+    "evidence_file": ""
+  },
+  "evaluation": {
+    "device_or_assessment": "D1",
+    "price_lkr": 2500,
+    "findings_count": 18,
+    "severity_counts": {
+      "High": 10,
+      "Medium": 7,
+      "Low-Medium": 1,
+      "Low": 0,
+      "Informational": 0
+    },
+    "base_score": 100,
+    "total_deductions": 100,
+    "final_score": 0,
+    "risk_level": "Critical",
+    "psr": 0.0,
+    "recommendation": {
+      "category": "Avoid for sensitive networks",
+      "risk_level": "Critical",
+      "guidance": "Multiple severe vulnerabilities identified (such as hardcoded credentials or exposed services). Do not connect to banking, work or sensitive corporate networks.",
+      "price_verdict": "At LKR 2500 (PSR: 0.0), the device appears affordable, but its low security score (0/100) presents significant risk.",
+      "high_findings_count": 10,
+      "mitigations": [
+        "Change default administrator passwords immediately upon deployment.",
+        "Disable unencrypted services such as Telnet and HTTP where possible.",
+        "Isolate repeater devices on a dedicated guest or test VLAN.",
+        "Verify firmware update availability from verified vendor sources."
+      ]
+    },
+    "deductions_detail": [
+      {
+        "finding_id": "WR-001-F01",
+        "title": "Telnet service exposed on local and upstream interfaces",
+        "severity": "High",
+        "deduction": 12
+      },
+      {
+        "finding_id": "WR-001-F02",
+        "title": "Web interface allows login without user-supplied credentials",
+        "severity": "High",
+        "deduction": 12
+      },
+      {
+        "finding_id": "WR-001-F03",
+        "title": "Default admin credentials exposed in login page HTML",
+        "severity": "High",
+        "deduction": 12
+      },
+      {
+        "finding_id": "WR-001-F04",
+        "title": "Admin credentials stored in Base64 Authorization cookie",
+        "severity": "High",
+        "deduction": 12
+      },
+      {
+        "finding_id": "WR-001-F05",
+        "title": "DNS resolver exposed on management interface",
+        "severity": "Low-Medium",
+        "deduction": 5
+      },
+      {
+        "finding_id": "WR-001-F06",
+        "title": "No logout option to terminate admin session",
+        "severity": "Medium",
+        "deduction": 8
+      },
+      {
+        "finding_id": "WR-001-F07",
+        "title": "Admin credentials exposed in URL query parameters during login",
+        "severity": "High",
+        "deduction": 12
+      },
+      {
+        "finding_id": "WR-001-F_HTTP_ADMIN",
+        "title": "Web management interface served over unencrypted HTTP",
+        "severity": "Medium",
+        "deduction": 8
+      },
+      {
+        "finding_id": "WR-001-F_FW_UNAVAILABLE",
+        "title": "Public firmware updates and vendor support unavailable",
+        "severity": "Medium",
+        "deduction": 8
+      },
+      {
+        "finding_id": "WR-001-FW_HARDCODED_CREDS",
+        "title": "Hardcoded default administrator credentials in firmware image",
+        "severity": "High",
+        "deduction": 12
+      },
+      {
+        "finding_id": "WR-001-FW_TELNETD",
+        "title": "Embedded Telnet daemon (telnetd) present in firmware",
+        "severity": "High",
+        "deduction": 12
+      },
+      {
+        "finding_id": "WR-001-FW_UNSIGNED",
+        "title": "Firmware package lacks cryptographic signature verification",
+        "severity": "Medium",
+        "deduction": 8
+      },
+      {
+        "finding_id": "D1-F01",
+        "title": "Telnet service exposed on local and upstream interfaces",
+        "severity": "High",
+        "deduction": 12
+      },
+      {
+        "finding_id": "D1-F_HTTP",
+        "title": "Unencrypted HTTP management interface exposed",
+        "severity": "Medium",
+        "deduction": 8
+      },
+      {
+        "finding_id": "D1-F_HTTP_ADMIN",
+        "title": "Web management interface served over unencrypted HTTP",
+        "severity": "Medium",
+        "deduction": 8
+      },
+      {
+        "finding_id": "D1-F03",
+        "title": "Default admin credentials exposed in login page HTML",
+        "severity": "High",
+        "deduction": 12
+      },
+      {
+        "finding_id": "D1-F04",
+        "title": "Admin credentials stored in Base64 Authorization cookie",
+        "severity": "High",
+        "deduction": 12
+      },
+      {
+        "finding_id": "D1-F_FW_UNAVAILABLE",
+        "title": "Public firmware updates and vendor support unavailable",
+        "severity": "Medium",
+        "deduction": 8
+      }
+    ]
+  },
+  "total_findings": 6
+}

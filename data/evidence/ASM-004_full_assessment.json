@@ -1,0 +1,84 @@
+{
+  "assessment_id": "ASM-004",
+  "device_id": "Target-10.11.159.7",
+  "target_ip": "10.11.159.7",
+  "price_lkr": 2500,
+  "timestamp": "2026-08-24T18:29:14",
+  "modules_run": [
+    "Network Discovery",
+    "DNS Checks"
+  ],
+  "network_summary": {
+    "open_ports": 1,
+    "findings_count": 1,
+    "evidence_file": "data/evidence/ASM-004_network.json"
+  },
+  "dns_summary": {
+    "setup_domain_ips": [],
+    "control_domain_ips": [
+      "142.250.143.138",
+      "142.250.143.102",
+      "142.250.143.101",
+      "142.250.143.139",
+      "142.250.143.100",
+      "142.250.143.113"
+    ],
+    "findings_count": 0,
+    "evidence_file": "data/evidence/ASM-004_dns.json"
+  },
+  "web_summary": {
+    "target_url": "http://10.11.159.7/",
+    "findings_count": 0,
+    "evidence_file": ""
+  },
+  "firmware_discovery_summary": {
+    "performed": false,
+    "found": false,
+    "findings_count": 0,
+    "evidence_file": ""
+  },
+  "firmware_static_summary": {
+    "performed": false,
+    "findings_count": 0,
+    "evidence_file": ""
+  },
+  "evaluation": {
+    "device_or_assessment": "Target-10.11.159.7",
+    "price_lkr": 2500,
+    "findings_count": 1,
+    "severity_counts": {
+      "High": 0,
+      "Medium": 0,
+      "Low-Medium": 1,
+      "Low": 0,
+      "Informational": 0
+    },
+    "base_score": 100,
+    "total_deductions": 5,
+    "final_score": 95,
+    "risk_level": "Low",
+    "psr": 5.7,
+    "recommendation": {
+      "category": "Recommended",
+      "risk_level": "Low",
+      "guidance": "The device demonstrates acceptable baseline security with low observed risk.",
+      "price_verdict": "Price: LKR 2500 with PSR score 5.7.",
+      "high_findings_count": 0,
+      "mitigations": [
+        "Change default administrator passwords immediately upon deployment.",
+        "Disable unencrypted services such as Telnet and HTTP where possible.",
+        "Isolate repeater devices on a dedicated guest or test VLAN.",
+        "Verify firmware update availability from verified vendor sources."
+      ]
+    },
+    "deductions_detail": [
+      {
+        "finding_id": "Target-10.11.159.7-F05",
+        "title": "DNS resolver exposed on management interface",
+        "severity": "Low-Medium",
+        "deduction": 5
+      }
+    ]
+  },
+  "total_findings": 1
+}

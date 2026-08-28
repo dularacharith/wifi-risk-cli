@@ -1,0 +1,87 @@
+[
+  {
+    "id": "ASM-001",
+    "device_id": "Target-10.11.159.7",
+    "target_ip": "10.11.159.7",
+    "price_lkr": 20000,
+    "status": "Created",
+    "created_at": "2026-08-28T19:08:23",
+    "updated_at": "2026-08-28T19:08:23",
+    "notes": "Session via wlp0s20f3",
+    "metadata": {
+      "setup_domain": "",
+      "interface": "wlp0s20f3"
+    },
+    "checks": []
+  },
+  {
+    "id": "ASM-002",
+    "device_id": "Target-192.168.26.1",
+    "target_ip": "192.168.26.1",
+    "price_lkr": 2500,
+    "status": "In Progress",
+    "created_at": "2026-08-28T19:32:52",
+    "updated_at": "2026-08-28T20:41:56",
+    "notes": "Session via vmnet1",
+    "metadata": {
+      "setup_domain": "",
+      "interface": "vmnet1"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-28T20:41:56",
+        "scan_method": "nmap_live",
+        "open_ports_count": 0,
+        "open_ports": [],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-002_network.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-003",
+    "device_id": "Target-10.11.159.7",
+    "target_ip": "10.11.159.7",
+    "price_lkr": 0,
+    "status": "Created",
+    "created_at": "2026-08-28T20:43:19",
+    "updated_at": "2026-08-28T20:43:19",
+    "notes": "Session via wlp0s20f3",
+    "metadata": {
+      "setup_domain": "",
+      "interface": "wlp0s20f3"
+    },
+    "checks": []
+  },
+  {
+    "id": "ASM-004",
+    "device_id": "Target-10.11.159.7",
+    "target_ip": "10.11.159.7",
+    "price_lkr": 0,
+    "status": "Created",
+    "created_at": "2026-08-28T20:54:27",
+    "updated_at": "2026-08-28T20:54:27",
+    "notes": "Session via wlp0s20f3",
+    "metadata": {
+      "setup_domain": "",
+      "interface": "wlp0s20f3"
+    },
+    "checks": []
+  },
+  {
+    "id": "ASM-005",
+    "device_id": "Target-10.11.159.7",
+    "target_ip": "10.11.159.7",
+    "price_lkr": 0,
+    "status": "Created",
+    "created_at": "2026-08-28T21:19:54",
+    "updated_at": "2026-08-28T21:19:54",
+    "notes": "Session via wlp0s20f3",
+    "metadata": {
+      "setup_domain": "",
+      "interface": "wlp0s20f3"
+    },
+    "checks": []
+  }
+]
