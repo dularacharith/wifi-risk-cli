@@ -14,11 +14,14 @@ from rich.prompt import Confirm, Prompt
 from rich.table import Table
 
 from wifi_risk.services.assessment_service import (
+    classify_assessment_type,
     clear_all_assessments,
     create_assessment,
     delete_assessment_by_id,
+    delete_assessments_by_ids,
     get_all_assessments,
     get_assessment_by_id,
+    get_assessments_by_category,
     update_assessment,
 )
 from wifi_risk.services.cwe_intelligence_service import (
@@ -175,7 +178,7 @@ def show_main_menu() -> None:
     table.add_row("1", "Quick Vulnerability Check (Live Target / Minimal Prompts)")
     table.add_row("2", "Full In-Depth Assessment (Custom Firmware & Price Analysis)")
     table.add_row("3", "Create New Assessment Session")
-    table.add_row("4", "List & Manage Assessments (View / Update / Delete / Clear)")
+    table.add_row("4", "View & Manage Assessments (All / Quick Scans / Full / Created / Export & Clear)")
     table.add_row("5", "Run Network Discovery (Port Scan)")
     table.add_row("6", "Run DNS Checks")
     table.add_row("7", "Run Web Interface Checks")
@@ -183,15 +186,14 @@ def show_main_menu() -> None:
     table.add_row("9", "Firmware Static Analysis (Path B)")
     table.add_row("10", "Show Findings")
     table.add_row("11", "Calculate Score & Recommendation")
-    table.add_row("12", "Export Assessment Report (Markdown, TXT, DOCX)")
-    table.add_row("13", "Select & View Network Interfaces")
-    table.add_row("14", "List Devices")
-    table.add_row("15", "Search Device")
-    table.add_row("16", "Show Device Details")
-    table.add_row("17", "Compare Devices")
-    table.add_row("18", "Recommend Device by Budget")
-    table.add_row("19", "Help & Reference")
-    table.add_row("20", "Query Online CWE & Threat Intelligence (Live MITRE / NVD Internet Lookup)")
+    table.add_row("12", "Select & View Network Interfaces")
+    table.add_row("13", "List Devices")
+    table.add_row("14", "Search Device")
+    table.add_row("15", "Show Device Details")
+    table.add_row("16", "Compare Devices")
+    table.add_row("17", "Recommend Device by Budget")
+    table.add_row("18", "Help & Reference")
+    table.add_row("19", "Query Online CWE & Threat Intelligence (Live MITRE / NVD Internet Lookup)")
     table.add_row("0", "Exit")
 
     console.print(table)
@@ -813,146 +815,457 @@ def list_assessments_screen() -> None:
     while True:
         clear_screen()
         show_banner()
+        console.print("[bold cyan]--- View & Manage Assessments ---[/bold cyan]\n")
 
-        assessments = get_all_assessments()
+        all_asms = get_all_assessments()
+        quick_asms = get_assessments_by_category("quick_scan")
+        full_asms = get_assessments_by_category("full_assessment")
+        created_asms = get_assessments_by_category("created")
 
-        if not assessments:
-            console.print("[yellow]No assessments recorded. Create one using option 1, 2 or 3.[/yellow]")
-            Prompt.ask("\n[bold cyan]Press Enter to return[/bold cyan]", default="")
-            return
-
-        table = Table(title=f"Security Assessments ({len(assessments)} recorded)", show_header=True, header_style="bold cyan")
-        table.add_column("Assessment ID", style="cyan", no_wrap=True)
-        table.add_column("Device ID")
-        table.add_column("Target IP")
-        table.add_column("Price (LKR)", justify="right")
-        table.add_column("Status", justify="center")
-        table.add_column("Created At")
-        table.add_column("Notes")
-
-        for asm in assessments:
-            table.add_row(
-                asm.get("id", ""),
-                asm.get("device_id", ""),
-                asm.get("target_ip", ""),
-                str(asm.get("price_lkr", 0)),
-                asm.get("status", "Created"),
-                asm.get("created_at", ""),
-                asm.get("notes", ""),
-            )
-
-        console.print(table)
-
-        console.print("\n[bold cyan]Assessment Actions:[/bold cyan]")
-        console.print("1. View Full Assessment Details / Breakdowns")
-        console.print("2. Update an Existing Assessment Session")
-        console.print("3. Delete a Single Assessment")
-        console.print("4. Clear All Assessments")
+        console.print("[bold]Select Assessment Category to View:[/bold]\n")
+        console.print(f"1. All Assessments (Created & Tested Sessions - {len(all_asms)} total)")
+        console.print(f"2. Quick Scans Only ({len(quick_asms)} total)")
+        console.print(f"3. Full In-Depth Assessments ({len(full_asms)} total)")
+        console.print(f"4. Created / Pending Assessments ({len(created_asms)} total)")
+        console.print("5. Export Complete Research Test Dataset & Audit Log (.txt / .log / .json)")
+        console.print("6. Clear / Delete All Assessments & Findings (Global Reset)")
         console.print("0. Back to Main Menu")
 
-        action_choice = Prompt.ask(
+        cat_choice = Prompt.ask(
             "\n[bold green]Select an option[/bold green]",
-            choices=["0", "1", "2", "3", "4", "b", "B", ""],
-            default="0",
+            choices=["0", "1", "2", "3", "4", "5", "6", "b", "B", ""],
+            default="1",
             show_default=False,
             show_choices=False,
         ).strip()
 
-        if action_choice in ["0", "b", "B", ""]:
+        if cat_choice in ["0", "b", "B", ""]:
             return
 
-        if action_choice == "1":
+        if cat_choice == "5":
             clear_screen()
             show_banner()
-            console.print("[bold cyan]--- All Assessment Sessions Detailed Breakdown ---[/bold cyan]\n")
-            for idx, asm in enumerate(assessments, start=1):
-                checks_count = len(asm.get("checks", []))
-                card = f"""
-[bold]Session Number:[/bold]    #{idx}
-[bold]Assessment ID:[/bold]     {asm.get('id')}
-[bold]Device Identifier:[/bold] {asm.get('device_id')}
-[bold]Target Gateway:[/bold]    {asm.get('target_ip')}
-[bold]Device Price:[/bold]      LKR {asm.get('price_lkr', 0)}
-[bold]Status:[/bold]            {asm.get('status', 'Created')}
-[bold]Created At:[/bold]        {asm.get('created_at')}
-[bold]Executed Checks:[/bold]   {checks_count} check(s) recorded
-[bold]Setup Domain:[/bold]      {asm.get('metadata', {}).get('setup_domain', 'None')}
-[bold]Notes:[/bold]             {asm.get('notes', 'None')}
-"""
-                console.print(Panel(card.strip(), title=f"Assessment: {asm.get('id')}", border_style="cyan"))
-            Prompt.ask("\n[bold cyan]Press Enter to return to Assessment Actions[/bold cyan]", default="")
+            console.print("[bold cyan]--- Export Complete Research Test Dataset & Audit Log ---[/bold cyan]\n")
+            console.print("This feature compiles all tested repeaters, assessment sessions, confirmed vulnerabilities,")
+            console.print("scores and raw technical evidence logs into a master research dataset for supervisors.\n")
+            console.print("Select Export Format:")
+            console.print("1. All Formats (Master Plain Text Dataset .txt, Audit Log .log, Machine JSON .json)")
+            console.print("2. Plain Text Dataset (.txt) only")
+            console.print("3. Audit Log (.log) only")
+            console.print("4. JSON Dataset (.json) only")
+            console.print("0. Back")
 
-        elif action_choice == "2":
-            target_id, target_asm = prompt_select_assessment_id("Select Assessment to Update", allow_manual_input=False)
-            if not target_id:
-                continue
-            if not target_asm:
-                target_asm = get_assessment_by_id(target_id)
-            if not target_asm:
-                console.print(f"\n[red]Assessment not found:[/red] {target_id}")
-                Prompt.ask("\n[bold cyan]Press Enter to return to Assessment Actions[/bold cyan]", default="")
-                continue
-
-            clear_screen()
-            show_banner()
-            console.print(f"[bold cyan]--- Update Assessment Session: {target_asm['id']} ---[/bold cyan]\n")
-            console.print("[dim]Press Enter to keep current values, or enter updated information ('b' to cancel).[/dim]\n")
-
-            curr_dev = target_asm.get("device_id", "Target-Device")
-            new_dev = Prompt.ask(f"[bold]Device ID / Name[/bold]", default=curr_dev).strip()
-            if is_back(new_dev):
-                continue
-
-            curr_ip = target_asm.get("target_ip", "192.168.11.1")
-            new_ip = Prompt.ask(f"[bold]Target Gateway IP[/bold]", default=curr_ip).strip()
-            if is_back(new_ip):
-                continue
-
-            curr_price = str(target_asm.get("price_lkr", 0))
-            new_price_str = Prompt.ask(f"[bold]Purchase Price in LKR[/bold]", default=curr_price).strip()
-            if is_back(new_price_str):
-                continue
-            try:
-                new_price = int(new_price_str)
-            except ValueError:
-                new_price = target_asm.get("price_lkr", 0)
-
-            curr_status = target_asm.get("status", "Created")
-            new_status = Prompt.ask(
-                f"[bold]Assessment Status[/bold]",
-                choices=["Created", "In Progress", "Completed", "b", "B"],
-                default=curr_status,
+            ds_fmt_choice = Prompt.ask(
+                "\n[bold green]Select an option[/bold green]",
+                choices=["0", "1", "2", "3", "4", "b", "B"],
+                default="1",
                 show_default=False,
                 show_choices=False,
-            ).strip()
-            if is_back(new_status):
+            )
+            if is_back(ds_fmt_choice) or ds_fmt_choice == "0":
                 continue
 
-            meta = target_asm.get("metadata", {})
-            curr_domain = meta.get("setup_domain", "")
-            new_domain = Prompt.ask(f"[bold]Setup Domain Clue (Optional)[/bold]", default=curr_domain).strip()
-            if is_back(new_domain):
-                continue
-            meta["setup_domain"] = new_domain
+            ds_map = {"1": "all", "2": "txt", "3": "log", "4": "json"}
+            chosen_ds_fmt = ds_map[ds_fmt_choice]
 
-            curr_notes = target_asm.get("notes", "")
-            new_notes = Prompt.ask(f"[bold]Assessment Notes (Optional)[/bold]", default=curr_notes).strip()
-            if is_back(new_notes):
+            console.print(f"\n[bold cyan]Generating research test dataset in format: {chosen_ds_fmt}...[/bold cyan]")
+            generated = export_research_test_dataset(format_type=chosen_ds_fmt)
+
+            console.print("\n[bold green]Research dataset export complete![/bold green]\n")
+            for fmt_name, fpath in generated.items():
+                console.print(f"  - [bold cyan]{fmt_name.upper()}:[/bold cyan] {fpath}")
+
+            pause()
+            continue
+
+        if cat_choice == "6":
+            if not all_asms:
+                console.print("\n[yellow]No assessment records to clear.[/yellow]")
+                pause()
                 continue
 
-            updated_record = update_assessment(
-                assessment_id=target_id,
-                device_id=new_dev,
-                target_ip=new_ip,
-                price_lkr=new_price,
-                status=new_status,
-                metadata=meta,
-                notes=new_notes,
+            confirmed = Confirm.ask(
+                f"\n[bold red]Are you sure you want to permanently delete ALL {len(all_asms)} recorded assessment sessions and associated findings?[/bold red]",
+                default=False,
+            )
+            if confirmed:
+                deleted_cnt = clear_all_assessments()
+                console.print(f"\n[bold green]Successfully cleared {deleted_cnt} assessment session(s) and reset findings globally.[/bold green]")
+            else:
+                console.print("\n[yellow]Global clear operation cancelled.[/yellow]")
+            pause()
+            continue
+
+        cat_map = {
+            "1": ("all", "All Security Assessments (Created & Tested)"),
+            "2": ("quick_scan", "Quick Scan Assessments"),
+            "3": ("full_assessment", "Full In-Depth Assessments"),
+            "4": ("created", "Created / Pending Assessments"),
+        }
+        category_key, category_title = cat_map[cat_choice]
+        render_assessment_category_view(category_key, category_title)
+
+
+def render_assessment_category_view(category_key: str, category_title: str) -> None:
+    while True:
+        clear_screen()
+        show_banner()
+        asms = get_assessments_by_category(category_key)
+
+        table = Table(title=f"{category_title} ({len(asms)} recorded)", show_header=True, header_style="bold cyan")
+        table.add_column("#", justify="center", style="cyan", no_wrap=True)
+        table.add_column("Assessment ID", style="bold cyan", no_wrap=True)
+        table.add_column("Device ID")
+        table.add_column("Target IP")
+        table.add_column("Price (LKR)", justify="right")
+        table.add_column("Status", justify="center")
+        table.add_column("Category", justify="center")
+        table.add_column("Findings", justify="center")
+        table.add_column("Created At")
+
+        for idx, asm in enumerate(asms, start=1):
+            asm_id = asm.get("id", "")
+            asm_dev = asm.get("device_id", "")
+            asm_findings = get_findings_by_assessment_id(asm_id)
+            if not asm_findings and asm_dev:
+                asm_findings = get_findings_by_device_id(asm_dev)
+            findings_cnt = len(asm_findings)
+
+            asm_type = classify_assessment_type(asm)
+            type_label = "Quick Scan" if asm_type == "quick_scan" else "Full Audit" if asm_type == "full_assessment" else "Pending"
+            status_style = "green" if asm.get("status") == "Completed" else "yellow" if asm.get("status") == "In Progress" else "white"
+
+            table.add_row(
+                str(idx),
+                asm_id,
+                asm_dev,
+                asm.get("target_ip", ""),
+                str(asm.get("price_lkr", 0)),
+                f"[{status_style}]{asm.get('status', 'Created')}[/{status_style}]",
+                type_label,
+                str(findings_cnt),
+                asm.get("created_at", ""),
             )
 
-            if updated_record:
-                summary = f"""
-[bold green]Assessment {target_id} Updated Successfully![/bold green]
+        console.print(table)
+
+        if not asms:
+            console.print(f"\n[yellow]No assessment sessions found in '{category_title}'.[/yellow]")
+            Prompt.ask("\n[bold cyan]Press Enter to return to Assessment Categories[/bold cyan]", default="")
+            return
+
+        console.print("\n[bold cyan]Category Actions:[/bold cyan]")
+        console.print("1. Select an Assessment (View Details, Export Report, Clear / Delete)")
+        console.print("2. Export Reports for All Listed Assessments in this Category")
+        console.print("3. Clear / Delete All Listed Assessments in this Category")
+        console.print("0. Back to Assessment Categories")
+
+        sub_choice = Prompt.ask(
+            "\n[bold green]Select an option[/bold green]",
+            choices=["0", "1", "2", "3", "b", "B", ""],
+            default="1",
+            show_default=False,
+            show_choices=False,
+        ).strip()
+
+        if sub_choice in ["0", "b", "B", ""]:
+            return
+
+        if sub_choice == "1":
+            chosen_id = Prompt.ask(
+                f"\n[bold cyan]Enter Assessment ID (e.g. {asms[0].get('id')}) or '#' (1..{len(asms)}) to manage ('b' to cancel)[/bold cyan]"
+            ).strip()
+            if is_back(chosen_id) or not chosen_id:
+                continue
+
+            target_asm = None
+            if chosen_id.isdigit():
+                idx_num = int(chosen_id)
+                if 1 <= idx_num <= len(asms):
+                    target_asm = asms[idx_num - 1]
+            if not target_asm:
+                for a in asms:
+                    if a.get("id", "").lower() == chosen_id.lower():
+                        target_asm = a
+                        break
+
+            if not target_asm:
+                console.print(f"\n[red]Assessment not found in this list:[/red] {chosen_id}")
+                pause()
+                continue
+
+            manage_single_assessment_session(target_asm["id"])
+
+        elif sub_choice == "2":
+            clear_screen()
+            show_banner()
+            console.print(f"[bold cyan]--- Bulk Export Reports for {len(asms)} Listed Assessments ---[/bold cyan]\n")
+            console.print("Select Output Format:")
+            console.print("1. All Formats (Markdown, Plain Text, Word DOCX)")
+            console.print("2. Markdown (.md) only")
+            console.print("3. Plain Text (.txt) only")
+            console.print("4. Microsoft Word (.docx) only")
+            console.print("0. Cancel")
+
+            bulk_fmt_choice = Prompt.ask(
+                "\n[bold green]Select an option[/bold green]",
+                choices=["0", "1", "2", "3", "4", "b", "B"],
+                default="1",
+                show_default=False,
+                show_choices=False,
+            )
+            if is_back(bulk_fmt_choice) or bulk_fmt_choice == "0":
+                continue
+
+            fmt_map = {"1": "all", "2": "md", "3": "txt", "4": "docx"}
+            chosen_fmt = fmt_map[bulk_fmt_choice]
+
+            console.print(f"\n[bold cyan]Exporting reports for {len(asms)} assessment(s)...[/bold cyan]\n")
+            for a in asms:
+                aid = a.get("id")
+                try:
+                    exp_files = export_assessment_report(assessment_id=aid, format_type=chosen_fmt)
+                    console.print(f"[bold green]✓ {aid}:[/bold green] {list(exp_files.values())}")
+                except Exception as err:
+                    console.print(f"[red]✗ {aid}: {err}[/red]")
+
+            console.print(f"\n[bold green]Bulk export completed! Reports saved in 'reports/' directory.[/bold green]")
+            pause()
+
+        elif sub_choice == "3":
+            confirmed = Confirm.ask(
+                f"\n[bold red]Are you sure you want to permanently delete ALL {len(asms)} assessment(s) in '{category_title}' and their findings?[/bold red]",
+                default=False,
+            )
+            if confirmed:
+                deleted_ids = [a.get("id") for a in asms if a.get("id")]
+                cnt = delete_assessments_by_ids(deleted_ids)
+                console.print(f"\n[bold green]Successfully deleted {cnt} assessment(s) and cleared findings globally.[/bold green]")
+                pause()
+                return
+            else:
+                console.print("\n[yellow]Clear operation cancelled.[/yellow]")
+                pause()
+
+
+def manage_single_assessment_session(assessment_id: str) -> None:
+    while True:
+        clear_screen()
+        show_banner()
+        asm = get_assessment_by_id(assessment_id)
+        if not asm:
+            console.print(f"[yellow]Assessment {assessment_id} is no longer available (it may have been deleted).[/yellow]")
+            pause()
+            return
+
+        device_id = asm.get("device_id", "Target-Device")
+        target_ip = asm.get("target_ip", "192.168.11.1")
+        price_lkr = asm.get("price_lkr", 0)
+        status = asm.get("status", "Created")
+        created_at = asm.get("created_at", "")
+        checks = asm.get("checks", [])
+
+        eval_res = evaluate_device_security(
+            device_id=device_id if not assessment_id else None,
+            assessment_id=assessment_id,
+            custom_price=price_lkr,
+        )
+        findings = get_findings_by_assessment_id(assessment_id)
+        if not findings and device_id:
+            findings = get_findings_by_device_id(device_id)
+
+        risk = eval_res.get("risk_level", "Low")
+        score = eval_res.get("final_score", 100)
+        psr = eval_res.get("psr", 0.0)
+        rec = eval_res.get("recommendation", {})
+        status_color = "red" if risk in ["Critical", "High"] else "yellow" if risk == "Medium" else "green"
+
+        summary_box = f"""
+[bold]Assessment ID:[/bold]       {asm.get('id')}
+[bold]Device Identifier:[/bold]   {device_id}
+[bold]Target Gateway IP:[/bold]   {target_ip}
+[bold]Purchase Price:[/bold]       LKR {price_lkr}
+[bold]Status:[/bold]               {status}
+[bold]Created At:[/bold]           {created_at}
+[bold]Executed Checks:[/bold]      {len(checks)} module(s) executed
+[bold]Confirmed Findings:[/bold]   {len(findings)} discovered
+
+[bold]Base Security Score:[/bold]  {eval_res.get('base_score', 100)}/100
+[bold]Total Deductions:[/bold]     -{eval_res.get('total_deductions', 0)} points
+[bold]Final Security Score:[/bold] [{status_color}]{score}/100[/{status_color}]
+[bold]Risk Classification:[/bold]  [{status_color}]{risk}[/{status_color}]
+[bold]Price-to-Security (PSR):[/bold] {psr} (Baseline: LKR 15,000)
+
+[bold]Recommendation Category:[/bold]
+[bold {status_color}]{rec.get('category', 'N/A')}[/bold {status_color}]
+
+[bold]Guidance:[/bold]
+{rec.get('guidance', '')}
+"""
+        console.print(Panel(summary_box.strip(), title=f"Assessment Details: {assessment_id}", border_style=status_color))
+
+        if findings:
+            f_table = Table(title=f"Discovered Findings for {assessment_id} ({len(findings)} total)", show_header=True, header_style="bold cyan")
+            f_table.add_column("Finding ID", style="cyan", no_wrap=True)
+            f_table.add_column("Severity", justify="center")
+            f_table.add_column("Module")
+            f_table.add_column("Title")
+            f_table.add_column("CWE")
+
+            for f in findings:
+                f_sev = f.get("severity", "")
+                sev_style = "bold red" if f_sev.lower() in ["high", "critical"] else "bold yellow" if "medium" in f_sev.lower() else "bold green"
+                f_table.add_row(
+                    f.get("id", ""),
+                    f"[{sev_style}]{f_sev}[/{sev_style}]",
+                    f.get("module", "General"),
+                    f.get("title", ""),
+                    f.get("cwe", "CWE-General"),
+                )
+            console.print(f_table)
+
+        console.print("\n[bold cyan]Assessment Actions:[/bold cyan]")
+        console.print("1. Export Security Report for this Assessment (Markdown, Plain Text, Word DOCX)")
+        console.print("2. Explore Discovered Findings in Technical Detail")
+        console.print("3. Update Assessment Metadata (Device ID, IP, Price, Status, Notes)")
+        console.print("4. Clear / Delete this Assessment & its Findings (Permanent)")
+        console.print("0. Back to Assessment List")
+
+        act = Prompt.ask(
+            "\n[bold green]Select an option[/bold green]",
+            choices=["0", "1", "2", "3", "4", "b", "B", ""],
+            default="1",
+            show_default=False,
+            show_choices=False,
+        ).strip()
+
+        if act in ["0", "b", "B", ""]:
+            return
+
+        if act == "1":
+            console.print("\n[bold]Select Export Format:[/bold]")
+            console.print("1. All Formats (Markdown, Plain Text, DOCX Word Document)")
+            console.print("2. Markdown (.md) only")
+            console.print("3. Plain Text (.txt) only")
+            console.print("4. Microsoft Word (.docx) only")
+            console.print("0. Cancel")
+
+            exp_fmt_choice = Prompt.ask(
+                "[bold green]Select an option[/bold green]",
+                choices=["0", "1", "2", "3", "4", "b", "B"],
+                default="1",
+                show_default=False,
+                show_choices=False,
+            )
+            if is_back(exp_fmt_choice) or exp_fmt_choice == "0":
+                continue
+
+            fmt_map = {"1": "all", "2": "md", "3": "txt", "4": "docx"}
+            chosen_fmt = fmt_map[exp_fmt_choice]
+
+            console.print(f"\n[bold cyan]Generating security report for {assessment_id}...[/bold cyan]")
+            generated_files = export_assessment_report(assessment_id=assessment_id, format_type=chosen_fmt)
+
+            console.print(f"\n[bold green]Report generation complete![/bold green]\n")
+            for fmt, fpath in generated_files.items():
+                console.print(f"  - [bold cyan]{fmt.upper()}:[/bold cyan] {fpath}")
+            pause()
+
+        elif act == "2":
+            if not findings:
+                console.print("\n[yellow]No findings recorded for this assessment.[/yellow]")
+                pause()
+                continue
+            explore_quick_scan_alerts(findings)
+
+        elif act == "3":
+            update_single_assessment_flow(assessment_id)
+
+        elif act == "4":
+            confirmed = Confirm.ask(
+                f"\n[bold red]Are you sure you want to permanently delete assessment {assessment_id} ({device_id}) and all its findings?[/bold red]",
+                default=False,
+            )
+            if confirmed:
+                deleted = delete_assessment_by_id(assessment_id)
+                if deleted:
+                    console.print(f"\n[bold green]Assessment {assessment_id} and its findings deleted successfully![/bold green]")
+                else:
+                    console.print(f"\n[red]Failed to delete assessment {assessment_id}.[/red]")
+                pause()
+                return
+            else:
+                console.print("\n[yellow]Delete operation cancelled.[/yellow]")
+                pause()
+
+
+def update_single_assessment_flow(assessment_id: str) -> None:
+    target_asm = get_assessment_by_id(assessment_id)
+    if not target_asm:
+        console.print(f"\n[red]Assessment not found:[/red] {assessment_id}")
+        pause()
+        return
+
+    clear_screen()
+    show_banner()
+    console.print(f"[bold cyan]--- Update Assessment Session: {target_asm['id']} ---[/bold cyan]\n")
+    console.print("[dim]Press Enter to keep current values, or enter updated information ('b' to cancel).[/dim]\n")
+
+    curr_dev = target_asm.get("device_id", "Target-Device")
+    new_dev = Prompt.ask(f"[bold]Device ID / Name[/bold]", default=curr_dev).strip()
+    if is_back(new_dev):
+        return
+
+    curr_ip = target_asm.get("target_ip", "192.168.11.1")
+    new_ip = Prompt.ask(f"[bold]Target Gateway IP[/bold]", default=curr_ip).strip()
+    if is_back(new_ip):
+        return
+
+    curr_price = str(target_asm.get("price_lkr", 0))
+    new_price_str = Prompt.ask(f"[bold]Purchase Price in LKR[/bold]", default=curr_price).strip()
+    if is_back(new_price_str):
+        return
+    try:
+        new_price = int(new_price_str)
+    except ValueError:
+        new_price = target_asm.get("price_lkr", 0)
+
+    curr_status = target_asm.get("status", "Created")
+    new_status = Prompt.ask(
+        f"[bold]Assessment Status[/bold]",
+        choices=["Created", "In Progress", "Completed", "b", "B"],
+        default=curr_status,
+        show_default=False,
+        show_choices=False,
+    ).strip()
+    if is_back(new_status):
+        return
+
+    meta = target_asm.get("metadata", {})
+    curr_domain = meta.get("setup_domain", "")
+    new_domain = Prompt.ask(f"[bold]Setup Domain Clue (Optional)[/bold]", default=curr_domain).strip()
+    if is_back(new_domain):
+        return
+    meta["setup_domain"] = new_domain
+
+    curr_notes = target_asm.get("notes", "")
+    new_notes = Prompt.ask(f"[bold]Assessment Notes (Optional)[/bold]", default=curr_notes).strip()
+    if is_back(new_notes):
+        return
+
+    updated_record = update_assessment(
+        assessment_id=assessment_id,
+        device_id=new_dev,
+        target_ip=new_ip,
+        price_lkr=new_price,
+        status=new_status,
+        metadata=meta,
+        notes=new_notes,
+    )
+
+    if updated_record:
+        summary = f"""
+[bold green]Assessment {assessment_id} Updated Successfully![/bold green]
 
 [bold]Device ID:[/bold]     {updated_record.get('device_id')}
 [bold]Target Gateway:[/bold] {updated_record.get('target_ip')}
@@ -962,47 +1275,10 @@ def list_assessments_screen() -> None:
 [bold]Notes:[/bold]          {updated_record.get('notes', 'None')}
 [bold]Updated At:[/bold]     {updated_record.get('updated_at')}
 """
-                console.print(Panel(summary.strip(), title=f"Updated: {target_id}", border_style="green"))
-            else:
-                console.print(f"[red]Failed to update assessment {target_id}.[/red]")
-            Prompt.ask("\n[bold cyan]Press Enter to return to Assessment Actions[/bold cyan]", default="")
-
-        elif action_choice == "3":
-            target_id = Prompt.ask("\n[bold cyan]Enter Assessment ID to delete (or 'b' to cancel)[/bold cyan]").strip()
-            if is_back(target_id) or not target_id:
-                continue
-
-            target_asm = get_assessment_by_id(target_id)
-            if not target_asm:
-                console.print(f"\n[red]Assessment not found:[/red] {target_id}")
-                Prompt.ask("\n[bold cyan]Press Enter to return to Assessment Actions[/bold cyan]", default="")
-                continue
-
-            confirmed = Confirm.ask(
-                f"\n[bold red]Are you sure you want to permanently delete assessment {target_asm['id']} ({target_asm['device_id']})?[/bold red]",
-                default=False,
-            )
-            if confirmed:
-                deleted = delete_assessment_by_id(target_id)
-                if deleted:
-                    console.print(f"\n[bold green]Assessment {target_id} deleted successfully![/bold green]")
-                else:
-                    console.print(f"\n[red]Failed to delete assessment {target_id}.[/red]")
-            else:
-                console.print("\n[yellow]Delete operation cancelled.[/yellow]")
-            Prompt.ask("\n[bold cyan]Press Enter to return to Assessment Actions[/bold cyan]", default="")
-
-        elif action_choice == "4":
-            confirmed = Confirm.ask(
-                f"\n[bold red]Are you sure you want to permanently delete ALL {len(assessments)} recorded assessment sessions?[/bold red]",
-                default=False,
-            )
-            if confirmed:
-                cleared_count = clear_all_assessments()
-                console.print(f"\n[bold green]Successfully cleared {cleared_count} assessment session(s)![/bold green]")
-            else:
-                console.print("\n[yellow]Clear operation cancelled.[/yellow]")
-            Prompt.ask("\n[bold cyan]Press Enter to return to Assessment Actions[/bold cyan]", default="")
+        console.print(Panel(summary.strip(), title=f"Updated: {assessment_id}", border_style="green"))
+    else:
+        console.print(f"[red]Failed to update assessment {assessment_id}.[/red]")
+    pause()
 
 
 def prompt_select_assessment_id(
@@ -1877,87 +2153,10 @@ def run_firmware_static_analysis_screen() -> None:
 
 
 def export_report_screen() -> None:
-    while True:
-        clear_screen()
-        show_banner()
-        console.print("[bold cyan]--- Export Assessment Reports & Research Dataset ---[/bold cyan]\n")
-        console.print("1. Export Specific Assessment Report (Markdown, Plain Text, Word DOCX)")
-        console.print("2. Export Complete Research Test Dataset & Audit Log (.txt / .log / .json)")
-        console.print("0. Back to Main Menu")
-
-        mode_choice = Prompt.ask("\n[bold green]Select an option[/bold green]", choices=["0", "1", "2", "b", "B"], default="1", show_default=False, show_choices=False)
-        if is_back(mode_choice) or mode_choice == "0":
-            return
-
-        if mode_choice == "2":
-            clear_screen()
-            show_banner()
-            console.print("[bold cyan]--- Export Complete Research Test Dataset & Audit Log ---[/bold cyan]\n")
-            console.print("This feature compiles all tested repeaters, assessment sessions, confirmed vulnerabilities,")
-            console.print("scores and raw technical evidence logs into a master research dataset for supervisors.\n")
-            console.print("Select Export Format:")
-            console.print("1. All Formats (Master Plain Text Dataset .txt, Audit Log .log, Machine JSON .json)")
-            console.print("2. Plain Text Dataset (.txt) only (Supervisor Summary Table & Session Logs)")
-            console.print("3. Audit Log (.log) only (Timestamped Syslog-Style Audit Trail)")
-            console.print("4. JSON Dataset (.json) only (Structured Dataset for Statistical Analysis)")
-            console.print("0. Back")
-
-            ds_fmt_choice = Prompt.ask("\n[bold green]Select an option[/bold green]", choices=["0", "1", "2", "3", "4", "b", "B"], default="1", show_default=False, show_choices=False)
-            if is_back(ds_fmt_choice) or ds_fmt_choice == "0":
-                continue
-
-            ds_map = {"1": "all", "2": "txt", "3": "log", "4": "json"}
-            chosen_ds_fmt = ds_map[ds_fmt_choice]
-
-            console.print(f"\n[bold cyan]Generating research test dataset in format: {chosen_ds_fmt}...[/bold cyan]")
-            generated = export_research_test_dataset(format_type=chosen_ds_fmt)
-
-            console.print("\n[bold green]Research dataset export complete![/bold green]\n")
-            for fmt_name, fpath in generated.items():
-                console.print(f"  - [bold cyan]{fmt_name.upper()}:[/bold cyan] {fpath}")
-
-            pause()
-            continue
-
-        assessment_id, asm = prompt_select_assessment_id("Select Assessment to Export Report", allow_manual_input=False)
-        if not assessment_id:
-            return
-
-        if not asm:
-            asm = get_assessment_by_id(assessment_id)
-        if not asm:
-            console.print(f"[red]Assessment not found:[/red] {assessment_id}")
-            pause()
-            return
-
-        console.print("\n[bold]Select Export Format:[/bold]")
-        console.print("1. All Formats (Markdown, Plain Text, DOCX Word Document)")
-        console.print("2. Markdown (.md) only")
-        console.print("3. Plain Text (.txt) only")
-        console.print("4. Microsoft Word (.docx) only")
-        console.print("0. Back to Main Menu")
-
-        fmt_choice = Prompt.ask("[bold green]Select an option[/bold green]", choices=["0", "1", "2", "3", "4", "b", "B"], default="1", show_default=False, show_choices=False)
-        if is_back(fmt_choice) or fmt_choice == "0":
-            continue
-
-        fmt_map = {"1": "all", "2": "md", "3": "txt", "4": "docx"}
-        chosen_fmt = fmt_map[fmt_choice]
-
-        console.print(f"\n[bold cyan]Generating security report for {assessment_id}...[/bold cyan]")
-        generated_files = export_assessment_report(assessment_id=assessment_id, format_type=chosen_fmt)
-
-        console.print(f"\n[bold green]Report generation complete![/bold green]\n")
-        for fmt, fpath in generated_files.items():
-            console.print(f"  - [bold cyan]{fmt.upper()}:[/bold cyan] {fpath}")
-
-        console.print("\n[bold cyan]Post-Export Actions:[/bold cyan]")
-        console.print("1. Export Another Report / Dataset")
-        console.print("0. Return to Main Menu")
-
-        next_act = Prompt.ask("\n[bold green]Select an option[/bold green]", choices=["0", "1", "b", "B", ""], default="0", show_default=False, show_choices=False).strip()
-        if next_act != "1":
-            break
+    """
+    Redirects to the unified assessment management and report export interface.
+    """
+    list_assessments_screen()
 
 
 def detect_network_screen() -> None:
@@ -3313,7 +3512,7 @@ def main(ctx: typer.Context) -> None:
 
             choice = Prompt.ask(
                 "\n[bold green]wifi-risk >[/bold green]",
-                choices=["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "0"],
+                choices=["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "0"],
                 show_choices=False,
             )
 
@@ -3340,22 +3539,20 @@ def main(ctx: typer.Context) -> None:
             elif choice == "11":
                 calculate_score_screen()
             elif choice == "12":
-                export_report_screen()
-            elif choice == "13":
                 detect_network_screen()
-            elif choice == "14":
+            elif choice == "13":
                 list_devices_screen()
-            elif choice == "15":
+            elif choice == "14":
                 search_device_screen()
-            elif choice == "16":
+            elif choice == "15":
                 show_device_details_screen()
-            elif choice == "17":
+            elif choice == "16":
                 compare_devices_screen()
-            elif choice == "18":
+            elif choice == "17":
                 recommend_device_screen()
-            elif choice == "19":
+            elif choice == "18":
                 help_screen()
-            elif choice == "20":
+            elif choice == "19":
                 run_cwe_intelligence_screen()
             elif choice == "0":
                 console.print("[bold green]Exiting WiFiRisk. Goodbye![/bold green]")

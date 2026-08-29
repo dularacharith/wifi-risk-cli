@@ -6,13 +6,13 @@ ACADEMIC PROJECT METADATA:
   • Degree / Faculty : Faculty of Computer Science and Engineering, KIU
   • Research Module  : COM4901 (Final Year Individual Research Project)
   • Research Title   : Security Assessment of Low-Cost Wi-Fi Repeaters: A Study of Consumer Devices
-  • Export Date/Time : 2026-08-29 13:08:47
-  • Total Scope      : 8 Assessment Sessions | 3 Cataloged Devices | 23 Security Findings
+  • Export Date/Time : 2026-08-29 14:23:05
+  • Total Scope      : 10 Assessment Sessions | 3 Cataloged Devices | 23 Security Findings
 ===================================================================================================================
 
 SECTION 1: DATASET AGGREGATE SUMMARY & SEVERITY DISTRIBUTION
 -------------------------------------------------------------------------------------------------------------------
-Total Assessment Sessions Logged : 8
+Total Assessment Sessions Logged : 10
 Total Tested Repeaters / Devices : 3
 Total Confirmed Vulnerabilities  : 23
   ├── High / Critical Severity   : 13 finding(s)
@@ -242,6 +242,36 @@ SECTION 3: DETAILED ASSESSMENT SESSIONS & TEST EXECUTION LOGS
        • Observed Evidence : Authorization cookie or script stores Base64 encoded credentials without HttpOnly/Secure flags.
        • Threat Impact     : The cookie can expose admin credentials because Base64 is reversible and the cookie lacks HttpOnly/Secure flags.
        • Remediation Plan  : Use secure server-side session tokens with HttpOnly, Secure and SameSite attributes.
+...........................................................................
+
+[ASSESSMENT SESSION: ASM-009]
+---------------------------------------------------------------------------
+  • Device Identifier  : WR-002
+  • Target Gateway IP  : 192.168.11.1
+  • Purchase Price     : LKR 2
+  • Assessment Status  : Created
+  • Session Timestamp  : 2026-08-29T13:09:41
+  • Session Notes      : Direct CLI safe assessment execution
+  • Final Score & Tier : 100/100 (Low Risk)
+  • Price-to-Security  : PSR 7500.0 (Baseline: LKR 15,000)
+  • Verdict Guidance   : The device demonstrates acceptable baseline security with low observed risk.
+
+  No security findings recorded for this session (Clean baseline or pending tests).
+...........................................................................
+
+[ASSESSMENT SESSION: ASM-010]
+---------------------------------------------------------------------------
+  • Device Identifier  : Target-Device
+  • Target Gateway IP  : 10.11.159.7
+  • Purchase Price     : LKR 0
+  • Assessment Status  : Created
+  • Session Timestamp  : 2026-08-29T13:10:30
+  • Session Notes      : Direct CLI safe assessment execution
+  • Final Score & Tier : 100/100 (Low Risk)
+  • Price-to-Security  : PSR 0.0 (Baseline: LKR 15,000)
+  • Verdict Guidance   : The device demonstrates acceptable baseline security with low observed risk.
+
+  No security findings recorded for this session (Clean baseline or pending tests).
 ...........................................................................
 
 ===================================================================================================================

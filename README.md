@@ -145,7 +145,7 @@ python -m wifi_risk
 | **1** | **Quick Vulnerability Check** | Fast standalone network scan of gateway IP with real-time progress and vulnerability exploration. |
 | **2** | **Full In-Depth Assessment** | Comprehensive multi-layer evaluation, 100-point scoring, PSR calculation and report generation. |
 | **3** | **Create Assessment Session** | Manually initialize an assessment record with custom Device ID, price and target IP. |
-| **4** | **List & Manage Assessments** | View assessment history, review session details, update metadata, delete or clear sessions. |
+| **4** | **View & Manage Assessments** | Categorized assessment viewer (All, Quick Scans, Full Audits, Created), in-place report exporting and synchronized clearing. |
 | **5** | **Run Network Discovery** | Standalone TCP port probe (Ports 21, 22, 23, 53, 80, 443, 554, 1900, 5000, 5555, 8080, 8443, 49152). |
 | **6** | **Run DNS Checks** | Test setup-domain resolution, evaluate DNS resolver responses and check for query leakage. |
 | **7** | **Run Web Interface Checks** | Inspect HTML DOM for hidden credentials, analyze cookie security flags and test login behavior. |
@@ -153,15 +153,14 @@ python -m wifi_risk
 | **9** | **Firmware Static Analysis** | Inspect binary firmware files for cryptographic hashes, embedded daemons and hardcoded keys. |
 | **10** | **Show Findings** | Display all confirmed vulnerabilities in a structured Knowledge Grid Matrix grouped by device. |
 | **11** | **Calculate Score & PSR** | Compute 100-point security deduction score, risk tier and Price-to-Security Ratio (PSR). |
-| **12** | **Export Assessment Report** | Export comprehensive research reports in Microsoft Word (`.docx`), Markdown (`.md`) and Plain Text (`.txt`). |
-| **13** | **Network Interfaces** | List active network adapters, IP subnets and auto-detected default gateways. |
-| **14** | **List Devices** | View cataloged repeater models and baseline comparison devices in the database. |
-| **15** | **Search Device** | Search the device catalog by brand, model, MAC vendor or keyword. |
-| **16** | **Show Device Details** | View technical specifications, purchase price and recorded vulnerabilities for a device. |
-| **17** | **Compare Devices** | Side-by-side comparative analysis of two repeaters across price, score and vulnerabilities. |
-| **18** | **Recommend by Budget** | Filter and rank repeaters based on maximum budget (LKR) sorted by security score. |
-| **19** | **Help & Reference** | In-system user guide explaining testing workflows, formulas and troubleshooting. |
-| **20** | **MITRE CWE Intelligence** | Query official MITRE taxonomy definitions, search vulnerabilities by keyword and sync live updates. |
+| **12** | **Network Interfaces** | List active network adapters, IP subnets and auto-detected default gateways. |
+| **13** | **List Devices** | View cataloged repeater models and baseline comparison devices in the database. |
+| **14** | **Search Device** | Search the device catalog by brand, model, MAC vendor or keyword. |
+| **15** | **Show Device Details** | View technical specifications, purchase price and recorded vulnerabilities for a device. |
+| **16** | **Compare Devices** | Side-by-side comparative analysis of two repeaters across price, score and vulnerabilities. |
+| **17** | **Recommend by Budget** | Filter and rank repeaters based on maximum budget (LKR) sorted by security score. |
+| **18** | **Help & Reference** | In-system user guide explaining testing workflows, formulas and troubleshooting. |
+| **19** | **MITRE CWE Intelligence** | Query official MITRE taxonomy definitions, search vulnerabilities by keyword and sync live updates. |
 | **0** | **Exit** | Terminate the application cleanly. |
 
 ---
