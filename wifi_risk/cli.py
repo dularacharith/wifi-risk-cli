@@ -2734,13 +2734,13 @@ def help_screen() -> None:
 
         console.print("  [bold cyan]1.[/bold cyan] Quick Start Guide (Assess your repeater in 2 minutes)")
         console.print("  [bold cyan]2.[/bold cyan] Scanning Workflows (Quick Live Scan vs Full Assessment)")
-        console.print("  [bold cyan]3.[/bold cyan] Individual Testing Modules Guide (Network, DNS, Web, Firmware)")
+        console.print("  [bold cyan]3.[/bold cyan] Standalone Assessment Modules Guide (Option 3)")
         console.print("  [bold cyan]4.[/bold cyan] 100-Point Scoring Engine & Price-to-Security Ratio (PSR)")
         console.print("  [bold cyan]5.[/bold cyan] Threat Modeling & Vulnerability Matrix (HTTP, DNS, Telnet)")
         console.print("  [bold cyan]6.[/bold cyan] Academic Report Generation (Markdown, TXT, DOCX)")
         console.print("  [bold cyan]7.[/bold cyan] Safe Lab Setup, Ethics & Target Interface Selection")
         console.print("  [bold cyan]8.[/bold cyan] Headless CLI Commands & Automation Reference")
-        console.print("  [bold cyan]A.[/bold cyan] Read Complete User Manual")
+        console.print("  [bold cyan]A.[/bold cyan] Read Complete User Manual (All Options & Parameters Explained)")
         console.print("  [bold cyan]0.[/bold cyan] Return to Main Menu")
 
         choice = Prompt.ask("\n[bold green]Select an option[/bold green]", default="0", show_default=False).strip()
@@ -2763,13 +2763,13 @@ In PowerShell or Terminal, run:
 [green]python -m wifi_risk[/green]
 
 [bold]Step 3: Run Option 1 (Quick Vulnerability Check)[/bold]
-- The tool automatically detects your active network adapter and gateway IP.
+- The tool automatically detects your active network adapter and gateway IP (e.g. 192.168.11.1).
 - Press [bold]Enter[/bold] to confirm the gateway IP.
 - Watch the live progress bar probe management ports, DNS and web interfaces.
 
 [bold]Step 4: Explore Discovered Exposures[/bold]
 - Review the summary scorecard and open ports table.
-- Type [bold]1..N[/bold] or [bold]A[/bold] on the final screen to explore vulnerability details, threat vectors and remediation steps.
+- Select [bold]2[/bold] on the post-scan menu to explore vulnerability details, threat vectors and remediation steps.
 """
             console.print(Panel(guide_content.strip(), title="Topic 1: Quick Start Guide", border_style="cyan"))
 
@@ -2783,7 +2783,7 @@ In PowerShell or Terminal, run:
 - [bold]Best For:[/bold] Initial triage, verifying open ports (FTP, SSH, Telnet, HTTP, DNS) and checking if web management is exposed.
 
 [bold]Option 2: Full In-Depth Security Assessment[/bold]
-- [bold]Purpose:[/bold] Analyze the price-to-value ratio and Price-to-Security Ratio (PSR), conduct comprehensive multi-layer vulnerability auditing and generate academic research documentation.
+- [bold]Purpose:[/bold] Analyze price-to-security value, conduct comprehensive multi-layer vulnerability auditing and generate academic research documentation.
 - [bold]Pipeline Stages:[/bold]
   1. Target IP and Interface Resolution
   2. Network Discovery (TCP port audit and banner capture)
@@ -2798,29 +2798,39 @@ In PowerShell or Terminal, run:
 
         elif choice == "3":
             guide_content = """
-[bold cyan]3. Individual Testing Modules Guide (Options 5 - 9)[/bold cyan]
+[bold cyan]3. Standalone Assessment Modules Guide (Option 3)[/bold cyan]
 
-[bold]Option 5: Network Discovery[/bold]
-- Probes management ports using Python sockets or Nmap.
-- Supports pasting raw Nmap text or importing scan files from other tools.
+Option 3 provides modular, isolated security tests for granular analysis:
 
-[bold]Option 6: DNS Behavior Checks[/bold]
-- Tests setup domain resolution and captive redirection.
-- Compares responses against control domains (google.com) to detect captive redirection and upstream DNS leakage.
+[bold]1. Create New Assessment Session:[/bold]
+- [bold]Purpose:[/bold] Initializes a test record in the database before executing modular scans.
+- [bold]Parameters Asked & Why:[/bold]
+  • [bold]Device ID:[/bold] Maps test sessions to specific hardware units in the research database.
+  • [bold]Target IP:[/bold] Network address of the repeater under test.
+  • [bold]Price (LKR):[/bold] Stored for subsequent PSR metric calculations.
+  • [bold]Setup Domain:[/bold] Domain clue used during DNS behavior checks.
 
-[bold]Option 7: Web Interface Checks[/bold]
-- Fetches router login HTML and parses form elements.
-- Checks for hardcoded credentials, unencrypted cookies (missing HttpOnly/Secure) and missing logout mechanisms.
-- Supports guided manual observation confirmation.
+[bold]2. Network Discovery (Port Scan):[/bold]
+- [bold]Purpose:[/bold] Scans 13 common management TCP ports (21, 22, 23, 53, 80, 443, 554, 1900, 5000, 5555, 8080, 8443, 49152).
+- [bold]Parameters Asked & Why:[/bold] Target IP and optional raw Nmap text to detect listening daemons and capture service banners.
 
-[bold]Option 8: Online Firmware Discovery (Path A)[/bold]
-- Queries vendor support repositories to verify if firmware update packages are publicly accessible.
+[bold]3. DNS Behavior Checks:[/bold]
+- [bold]Purpose:[/bold] Evaluates port 53 resolver response, domain interception and captive redirection.
+- [bold]Parameters Asked & Why:[/bold] Target IP and setup domain clue to measure whether lookups are resolved locally or leaked upstream.
 
-[bold]Option 9: Firmware Safe Static Analysis (Path B)[/bold]
-- Inspects uploaded firmware binaries (.bin, .trx, .img).
-- Computes SHA-256/MD5 hashes, detects embedded services and extracts hardcoded credentials without executing untrusted code.
+[bold]4. Web Interface Checks:[/bold]
+- [bold]Purpose:[/bold] Audits router web management portals on ports 80/8080.
+- [bold]Parameters Asked & Why:[/bold] Target IP to inspect HTML DOM for hardcoded credentials (CWE-798), unencrypted cookies and missing CSRF tokens.
+
+[bold]5. Online Firmware Discovery (Path A):[/bold]
+- [bold]Purpose:[/bold] Scrapes open-source mirrors and vendor support portals.
+- [bold]Parameters Asked & Why:[/bold] Brand/Model clues to assess vendor update transparency.
+
+[bold]6. Firmware Static Analysis (Path B):[/bold]
+- [bold]Purpose:[/bold] Safe offline inspection of user-supplied firmware binary images (.bin, .trx, .img).
+- [bold]Parameters Asked & Why:[/bold] Firmware binary file path to compute SHA-256 hashes and extract hardcoded secrets.
 """
-            console.print(Panel(guide_content.strip(), title="Topic 3: Individual Testing Modules", border_style="cyan"))
+            console.print(Panel(guide_content.strip(), title="Topic 3: Standalone Assessment Modules", border_style="cyan"))
 
         elif choice == "4":
             guide_content = """
@@ -2887,7 +2897,7 @@ Evaluates economic security quality against a premium baseline device (LKR 15,00
 
 WiFiRisk automatically formats audit reports for direct inclusion in research papers and academic dissertations:
 
-[bold]Exporting Reports (Option 12 or Post-Assessment):[/bold]
+[bold]Exporting Reports (Option 4 or Post-Assessment):[/bold]
 - [bold]Markdown (.md):[/bold] GitHub Flavored Markdown with scorecard tables and vulnerability checklists.
 - [bold]Plain Text (.txt):[/bold] Clean, aligned ASCII tables suitable for text editors and terminal viewing.
 - [bold]Microsoft Word (.docx):[/bold] Professionally styled document with headings, metadata tables, color-coded scorecards and academic attribution (COM4901, KIU).
@@ -2907,7 +2917,7 @@ Reports are saved to the [bold cyan]reports/[/bold cyan] directory.
 [bold]Recommended Lab Setup:[/bold]
 1. Isolate the target Wi-Fi repeater on a dedicated test network.
 2. Connect your testing laptop directly to the repeater's wireless SSID or LAN Ethernet port.
-3. Use Option 13 (Select & View Network Interfaces) to verify that your active interface points to the repeater's gateway IP before initiating scans.
+3. Use Option 8 (Network Tools & Interface Inspector) to verify that your active interface points to the repeater's gateway IP before initiating scans.
 """
             console.print(Panel(guide_content.strip(), title="Topic 7: Safe Lab Setup & Ethics", border_style="cyan"))
 
@@ -2923,41 +2933,132 @@ Run WiFiRisk directly from command-line scripts or CI pipelines without the inte
 [bold]2. Export Reports:[/bold]
 [green]python -m wifi_risk export --assessment-id ASM-001 --format all[/green]
 
-[bold]3. Score a Device:[/bold]
+[bold]3. Export Master Dataset & Audit Log:[/bold]
+[green]python -m wifi_risk export-dataset --format all[/green]
+
+[bold]4. Score a Device:[/bold]
 [green]python -m wifi_risk score --device-id WR-001 --price 2500[/green]
 
-[bold]4. List Detected Interfaces:[/bold]
+[bold]5. List Detected Interfaces:[/bold]
 [green]python -m wifi_risk interfaces[/green]
 
-[bold]5. List Cataloged Devices:[/bold]
+[bold]6. List Cataloged Devices:[/bold]
 [green]python -m wifi_risk devices[/green]
 
-[bold]6. Query Live MITRE CWE Intelligence:[/bold]
+[bold]7. Query Live MITRE CWE Intelligence:[/bold]
 [green]python -m wifi_risk cwe 345[/green]
 [green]python -m wifi_risk cwe 319 --online[/green]
+
+[bold]8. View Interactive User Guide:[/bold]
+[green]python -m wifi_risk guide[/green]
 """
             console.print(Panel(guide_content.strip(), title="Topic 8: Headless CLI Commands", border_style="cyan"))
 
         elif choice.upper() == "A":
             full_manual = """
-[bold cyan]WiFiRisk Complete User Manual[/bold cyan]
+[bold cyan]WiFiRisk Complete User Manual: All Options & Parameters Reference[/bold cyan]
 
-[bold]Academic Context:[/bold]
-COM4901 Final Year Individual Research Project at KIU
-Student: W.M.D.C.D.S Weerakoon (ID: 11161)
+[bold]Academic Research Context:[/bold]
+• [bold]Project:[/bold] COM4901 Final Year Individual Research Project at KIU
+• [bold]Student:[/bold] W.M.D.C.D.S Weerakoon (ID: 11161)
+• [bold]Faculty:[/bold] Faculty of Computer Science and Engineering, KIU
+• [bold]Title:[/bold] Security Assessment of Low-Cost Wi-Fi Repeaters in Sri Lanka
 
 [bold]Navigation Tip:[/bold]
-Type 'b', 'back' or '0' at any prompt to cancel an operation and return to the Main Menu.
+Type 'b', 'back' or '0' at any prompt to cancel an operation and return to the previous menu.
 
-[bold]Workflow Summary:[/bold]
-1. Use [bold]Option 1[/bold] for quick live vulnerability auditing.
-2. Use [bold]Option 2[/bold] for full in-depth assessments and report generation.
-3. Use [bold]Options 5-9[/bold] for granular testing of specific service layers.
-4. Use [bold]Option 12[/bold] to export Word, Markdown and Text documentation.
-5. Use [bold]Option 17[/bold] to compare repeater security postures.
-6. Use [bold]Option 20[/bold] to query live MITRE CWE taxonomy and threat intelligence.
+================================================================================
+[bold cyan]OPTION-BY-OPTION DETAILED SPECIFICATION & PARAMETER PURPOSES[/bold cyan]
+================================================================================
+
+[bold]Option 1: Quick Vulnerability Check[/bold]
+• [bold]Purpose:[/bold] Rapid, non-destructive live network check of the connected gateway without creating database records.
+• [bold]Parameters Asked & Why:[/bold]
+  - [bold]Target Gateway IP (e.g. 192.168.11.1):[/bold]
+    [dim]Why it is asked:[/dim] Directs socket probes to the exact network IP address of the repeater to audit listening ports (21, 22, 23, 53, 80, 443), DNS resolution and web interface availability.
+
+--------------------------------------------------------------------------------
+
+[bold]Option 2: Full In-Depth Assessment[/bold]
+• [bold]Purpose:[/bold] Comprehensive multi-layer evaluation pipeline with scoring, PSR calculation and automated report generation.
+• [bold]Parameters Asked & Why:[/bold]
+  - [bold]Target Gateway IP (e.g. 192.168.11.1):[/bold]
+    [dim]Why it is asked:[/dim] Defines the target host for all network, DNS and web audit modules.
+  - [bold]Device ID (e.g. WR-001, Target-Device):[/bold]
+    [dim]Why it is asked:[/dim] Assigns a unique tracking identifier to this physical test device in the research database. Allows findings, scorecards and reports to be mapped to a specific hardware unit for comparative analysis.
+  - [bold]Purchase Price in LKR (e.g. 2500):[/bold]
+    [dim]Why it is asked:[/dim] Used in the Price-to-Security Ratio formula: PSR = (Security Score / 100) / (Price / 15,000) to evaluate economic security quality against a premium baseline benchmark (LKR 15,000).
+  - [bold]Setup Domain (Optional, e.g. wifi.repeater):[/bold]
+    [dim]Why it is asked:[/dim] Tests whether the device correctly intercepts and resolves its advertised setup domain name versus leaking unresolved queries upstream or facilitating DNS hijacking.
+  - [bold]Brand / Model / Firmware Clues (Optional):[/bold]
+    [dim]Why it is asked:[/dim] Powers the automated online firmware discovery engine to search vendor mirrors and open-source repositories for firmware update transparency.
+  - [bold]Firmware Binary File Path (Optional):[/bold]
+    [dim]Why it is asked:[/dim] If a firmware image (.bin, .img, .trx) is provided, static binary analysis inspects embedded credentials, services and cryptographic hashes.
+
+--------------------------------------------------------------------------------
+
+[bold]Option 3: Standalone Assessment Modules[/bold]
+• [bold]Purpose:[/bold] Modular testing suite to run individual evaluation layers or manually initialize custom assessment records.
+• [bold]Sub-Options & Parameters Asked:[/bold]
+  - [bold]1. Create Assessment Session:[/bold] Prompts for Device ID, Target IP, Price and Notes to register a session prior to testing.
+  - [bold]2. Network Discovery:[/bold] Prompts for Target IP and optional raw Nmap text to scan 13 management TCP ports and capture service banners.
+  - [bold]3. DNS Behavior Checks:[/bold] Prompts for Target IP and setup domain clue to measure whether lookups are resolved locally or leaked upstream.
+  - [bold]4. Web Interface Checks:[/bold] Prompts for Target IP to audit HTML DOM for hidden credentials, unencrypted cookies and missing CSRF tokens.
+  - [bold]5. Online Firmware Discovery:[/bold] Prompts for Brand/Model clues to search vendor repositories for firmware updates.
+  - [bold]6. Firmware Static Analysis:[/bold] Prompts for firmware file path to calculate SHA-256 hashes and extract hardcoded secrets.
+
+--------------------------------------------------------------------------------
+
+[bold]Option 4: View & Manage Assessments[/bold]
+• [bold]Purpose:[/bold] Categorized assessment session browser, in-place report generator and database management interface.
+• [bold]Sub-Options & Parameters Asked:[/bold]
+  - [bold]1. All Assessments / 2. Quick Scans / 3. Full Audits / 4. Created Sessions:[/bold] Displays filtered tables.
+  - [bold]Select an Assessment ID (e.g. ASM-001):[/bold]
+    [dim]Why it is asked:[/dim] Allows you to view session details, export a single report (Word DOCX, Markdown, Text), explore findings or update metadata.
+  - [bold]5. Export Research Test Dataset & Audit Log:[/bold]
+    [dim]Why it is asked:[/dim] Prompts for format (.txt, .log, .json, or all) to compile supervisor research datasets with summary stats, device comparison matrices and raw evidence logs.
+  - [bold]6. Clear / Delete Assessments:[/bold] Prompts for confirmation to permanently remove sessions, findings and evidence files globally.
+
+--------------------------------------------------------------------------------
+
+[bold]Option 5: Security Scorecard & Findings[/bold]
+• [bold]Purpose:[/bold] Vulnerability matrix exploration and mathematical scoring engine.
+• [bold]Sub-Options & Parameters Asked:[/bold]
+  - [bold]1. Show Discovered Findings:[/bold] Prompts for Device ID or Assessment ID to display confirmed vulnerabilities in a structured Knowledge Grid Matrix.
+  - [bold]2. Calculate Security Score & PSR:[/bold] Prompts for Device ID/Assessment ID and Price in LKR to calculate the 100-point security deduction score, risk tier and PSR value.
+
+--------------------------------------------------------------------------------
+
+[bold]Option 6: Device Catalog & Benchmarking[/bold]
+• [bold]Purpose:[/bold] Hardware catalog management, side-by-side comparative analysis and budget recommendations.
+• [bold]Sub-Options & Parameters Asked:[/bold]
+  - [bold]1. List Devices:[/bold] Displays all repeaters in the research catalog.
+  - [bold]2. Search Device:[/bold] Prompts for brand/model keyword to search the catalog.
+  - [bold]3. Show Device Details:[/bold] Prompts for Device ID to view hardware specifications and recorded vulnerabilities.
+  - [bold]4. Compare Two Repeaters:[/bold] Prompts for Device ID 1 and Device ID 2 to render a side-by-side comparison matrix.
+  - [bold]5. Recommend by Budget:[/bold] Prompts for Maximum Budget in LKR (e.g. 3000) to filter and rank repeaters by highest security score.
+
+--------------------------------------------------------------------------------
+
+[bold]Option 7: MITRE CWE Threat Intelligence[/bold]
+• [bold]Purpose:[/bold] Official vulnerability taxonomy lookups, keyword searching and live internet threat synchronization.
+• [bold]Sub-Options & Parameters Asked:[/bold]
+  - [bold]1. Query CWE by ID:[/bold] Prompts for CWE ID number (e.g. 319, 798) to display official MITRE taxonomy definitions, attack scenarios and mitigations.
+  - [bold]2. Search CWEs by Keyword:[/bold] Prompts for search term to query taxonomy.
+  - [bold]3. Sync MITRE Definitions:[/bold] Synchronizes local catalog with live cwe.mitre.org data.
+
+--------------------------------------------------------------------------------
+
+[bold]Option 8: Network Tools & Interface Inspector[/bold]
+• [bold]Purpose:[/bold] Inspects active network adapters, identifies local IP subnets and verifies default gateway routing.
+• [bold]Parameters Asked:[/bold] None required (auto-probes OS routing table).
+
+--------------------------------------------------------------------------------
+
+[bold]Option 9: How to Use & System Guidance[/bold]
+• [bold]Purpose:[/bold] In-system user guide, quick-start workflow instructions, scoring formulas and troubleshooting manual.
 """
-            console.print(Panel(full_manual.strip(), title="Complete User Manual", border_style="cyan"))
+            console.print(Panel(full_manual.strip(), title="Complete User Manual: All Options & Parameters Reference", border_style="cyan"))
 
         Prompt.ask("\n[bold cyan]Press Enter to return to Guide Topics[/bold cyan]", default="")
 
