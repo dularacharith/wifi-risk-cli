@@ -140,7 +140,7 @@ python -m wifi_risk
 
 ## Interactive Menu Reference
 
-WiFiRisk features a streamlined, categorized interactive console with 8 intuitive top-level modules:
+WiFiRisk features a streamlined, categorized interactive console with 9 intuitive top-level modules:
 
 | Option # | Main Menu Category | Sub-Actions & Capabilities Included |
 | :---: | :--- | :--- |
@@ -151,7 +151,8 @@ WiFiRisk features a streamlined, categorized interactive console with 8 intuitiv
 | **5** | **Security Scorecard & Findings** | Discovered Findings Knowledge Grid Matrix grouped by device and 100-point PSR Security Score Calculator. |
 | **6** | **Device Catalog & Benchmarking** | List Catalog, Search Models, Device Details, Side-by-Side Comparison Matrix and Budget Recommendations. |
 | **7** | **MITRE CWE Threat Intelligence** | Live online MITRE / NVD threat definition lookups, taxonomy search and local catalog synchronization. |
-| **8** | **Network Tools & Documentation** | Network adapter interface selection, Gateway IP auto-detection and Help / Methodology Reference Guide. |
+| **8** | **Network Tools & Interface Inspector** | Inspect network adapters, detect gateway IP and analyze interface subnet bindings. |
+| **9** | **How to Use & System Guidance** | Interactive step-by-step guidance, testing workflows, scoring formulas and troubleshooting. |
 | **0** | **Exit** | Terminate the application cleanly. |
 
 ---
@@ -161,6 +162,9 @@ WiFiRisk features a streamlined, categorized interactive console with 8 intuitiv
 WiFiRisk can also be executed directly via command line arguments:
 
 ```powershell
+# Display interactive user guidance & workflow manual
+python -m wifi_risk guide
+
 # Run full assessment headless
 python -m wifi_risk run --target-ip 192.168.11.1 --device-id WR-001 --price 2500
 

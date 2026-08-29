@@ -62,7 +62,31 @@ from wifi_risk.utils.network_detector import (
 )
 
 app = typer.Typer(
-    help="WiFiRisk - Low-Cost Wi-Fi Repeater Security Assessment CLI Framework",
+    help=(
+        "WiFiRisk - Security Assessment & Risk Benchmarking CLI Framework\n\n"
+        "HOW TO USE & SYSTEM GUIDANCE:\n\n"
+        "1. PHYSICAL & NETWORK SETUP:\n"
+        "   - Connect your testing computer to the Wi-Fi repeater via Wi-Fi or Ethernet cable.\n"
+        "   - The tool auto-detects your active network interface and default gateway (e.g. 192.168.11.1).\n\n"
+        "2. INTERACTIVE CONSOLE MODE:\n"
+        "   - Launch interactive menu:  python -m wifi_risk\n"
+        "   - Option 1: Quick Vulnerability Check (Rapid non-destructive live network check)\n"
+        "   - Option 2: Full In-Depth Assessment (Complete multi-layer audit, scoring and PSR)\n"
+        "   - Option 3: Standalone Assessment Modules (Create session, port scan, DNS, web, firmware)\n"
+        "   - Option 4: View & Manage Assessments (Categorized history, report export and global clear)\n"
+        "   - Option 5: Security Scorecard & Findings (Knowledge Grid matrix and PSR calculations)\n"
+        "   - Option 6: Device Catalog & Benchmarking (Search, compare and budget recommendations)\n"
+        "   - Option 7: MITRE CWE Threat Intelligence (Live online MITRE taxonomy lookup)\n"
+        "   - Option 8: Network Tools & Interface Inspector (Inspect network adapters and gateway IP)\n"
+        "   - Option 9: How to Use & System Guidance (Step-by-step interactive reference manual)\n\n"
+        "3. HEADLESS COMMAND-LINE EXAMPLES:\n"
+        "   - Full Assessment:   python -m wifi_risk run --target-ip 192.168.11.1 --device-id WR-001 --price 2500\n"
+        "   - Export Report:     python -m wifi_risk export --assessment-id ASM-001 --format all\n"
+        "   - Export Dataset:    python -m wifi_risk export-dataset --format all\n"
+        "   - Query MITRE CWE:   python -m wifi_risk cwe 319 --online\n"
+        "   - Interactive Guide: python -m wifi_risk guide\n"
+    ),
+    epilog="Final Year Research Project (COM4901, KIU) - W.M.D.C.D.S Weerakoon (ID: 11161)",
     no_args_is_help=False,
     invoke_without_command=True,
 )
@@ -182,7 +206,8 @@ def show_main_menu() -> None:
     table.add_row("5", "Security Scorecard & Findings (Knowledge Grid & PSR Calculations)")
     table.add_row("6", "Device Catalog & Benchmarking (Catalog, Search, Compare & Recommendations)")
     table.add_row("7", "MITRE CWE Threat Intelligence (Live Online Knowledge & Taxonomy)")
-    table.add_row("8", "Network Tools & Documentation (Interfaces, Gateway Detector & Guide)")
+    table.add_row("8", "Network Tools & Interface Inspector (Detect Gateway, IP & Adapters)")
+    table.add_row("9", "How to Use & System Guidance (Step-by-Step Instructions & Workflows)")
     table.add_row("0", "Exit")
 
     console.print(table)
@@ -3485,6 +3510,16 @@ def cli_query_cwe(
         console.print(f"[red]No MITRE definition found for '{cwe_id}'.[/red]")
 
 
+@app.command(name="guide")
+@app.command(name="how-to-use")
+def cli_show_guide() -> None:
+    """
+    Display comprehensive step-by-step How-to-Use guidance and scanning workflows.
+    """
+    show_banner()
+    help_screen()
+
+
 def run_standalone_modules_screen() -> None:
     """
     Submenu for individual modular security checks and manual session initialization.
@@ -3590,34 +3625,6 @@ def run_device_catalog_screen() -> None:
             recommend_device_screen()
 
 
-def run_network_utilities_screen() -> None:
-    """
-    Submenu for network interface detection and system reference guide.
-    """
-    while True:
-        clear_screen()
-        show_banner()
-        console.print("[bold cyan]--- Network Tools & Documentation ---[/bold cyan]\n")
-        console.print("1. Select & View Network Interfaces (Auto-detect Gateway IP & Subnet)")
-        console.print("2. Help, Research Methodology & Technical Reference")
-        console.print("0. Back to Main Menu")
-
-        choice = Prompt.ask(
-            "\n[bold green]Select an option[/bold green]",
-            choices=["0", "1", "2", "b", "B", ""],
-            default="0",
-            show_default=False,
-            show_choices=False,
-        ).strip()
-
-        if choice in ["0", "b", "B", ""]:
-            return
-        elif choice == "1":
-            detect_network_screen()
-        elif choice == "2":
-            help_screen()
-
-
 @app.callback(invoke_without_command=True)
 def main(ctx: typer.Context) -> None:
     """
@@ -3634,7 +3641,7 @@ def main(ctx: typer.Context) -> None:
 
             choice = Prompt.ask(
                 "\n[bold green]wifi-risk >[/bold green]",
-                choices=["1", "2", "3", "4", "5", "6", "7", "8", "0"],
+                choices=["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
                 show_choices=False,
             )
 
@@ -3653,7 +3660,9 @@ def main(ctx: typer.Context) -> None:
             elif choice == "7":
                 run_cwe_intelligence_screen()
             elif choice == "8":
-                run_network_utilities_screen()
+                detect_network_screen()
+            elif choice == "9":
+                help_screen()
             elif choice == "0":
                 console.print("[bold green]Exiting WiFiRisk. Goodbye![/bold green]")
                 raise typer.Exit()
