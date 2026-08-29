@@ -28,4 +28,5 @@ Thumbs.db
 # Generated reports and exports
 reports/
 *.docx
+.~lock.*
 COM4901_Final_Dissertation_11161.docx
