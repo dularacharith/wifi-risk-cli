@@ -38,6 +38,7 @@ from wifi_risk.services.finding_service import (
     get_findings_by_device_id,
 )
 from wifi_risk.services.firmware_service import (
+    perform_firmware_discovery,
     perform_firmware_static_analysis,
     perform_online_firmware_discovery,
 )
@@ -1669,7 +1670,7 @@ def run_firmware_discovery_screen() -> None:
         ) as progress:
             task = progress.add_task("[bold cyan]Searching online firmware repositories...", total=100)
             progress.update(task, completed=40, description="[bold cyan]Querying search indexes and open-source firmware mirrors...")
-            results = perform_firmware_discovery(
+            results = perform_online_firmware_discovery(
                 device_id=device_id,
                 assessment_id=assessment_id,
                 brand=brand,

@@ -207,5 +207,33 @@
         "evidence_file": "data/evidence/ASM-008_web.json"
       }
     ]
+  },
+  {
+    "id": "ASM-009",
+    "device_id": "WR-002",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2,
+    "status": "Created",
+    "created_at": "2026-08-29T13:09:41",
+    "updated_at": "2026-08-29T13:09:41",
+    "notes": "Direct CLI safe assessment execution",
+    "metadata": {
+      "setup_domain": ""
+    },
+    "checks": []
+  },
+  {
+    "id": "ASM-010",
+    "device_id": "Target-Device",
+    "target_ip": "10.11.159.7",
+    "price_lkr": 0,
+    "status": "Created",
+    "created_at": "2026-08-29T13:10:30",
+    "updated_at": "2026-08-29T13:10:30",
+    "notes": "Direct CLI safe assessment execution",
+    "metadata": {
+      "setup_domain": ""
+    },
+    "checks": []
   }
 ]

@@ -253,6 +253,11 @@ def perform_online_firmware_discovery(
     }
 
 
+# Backward-compatible alias
+perform_firmware_discovery = perform_online_firmware_discovery
+
+
+
 # ==========================================
 # PATH B: USER-UPLOADED FIRMWARE STATIC ANALYSIS
 # ==========================================
