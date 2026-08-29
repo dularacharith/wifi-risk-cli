@@ -110,7 +110,8 @@ def show_banner() -> None:
     console.print(
         Panel(
             "[bold white]WiFiRisk - Security Assessment & Risk Benchmarking CLI Framework[/bold white]\n"
-            "[dim]A research toolkit for evaluating low-cost Wi-Fi repeaters[/dim]",
+            "[dim]A research toolkit for evaluating low-cost Wi-Fi repeaters[/dim]\n"
+            "[bold cyan]Developed by Charith D.[/bold cyan]",
             border_style="cyan",
         )
     )
