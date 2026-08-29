@@ -127,34 +127,32 @@ def classify_assessment_type(asm: dict[str, Any]) -> str:
     """
     Classify an assessment session into one of three categories:
     - 'quick_scan': Standalone / quick scan session
-    - 'full_assessment': Full in-depth multi-layer assessment session
-    - 'created': Created / pending session without executed tests
+    - 'full_assessment': Completed full in-depth multi-layer assessment session (went through Option 2)
+    - 'created': Created / pending / in-progress session without full completion
     """
     meta = asm.get("metadata", {})
     scan_type = meta.get("scan_type", "").lower()
     asm_type = meta.get("assessment_type", "").lower()
-
-    if scan_type == "quick_scan" or asm_type == "quick_scan":
-        return "quick_scan"
-    if scan_type == "full_assessment" or asm_type == "full_assessment":
-        return "full_assessment"
-
-    notes = asm.get("notes", "").lower()
-    if "quick scan" in notes:
-        return "quick_scan"
-
+    status = str(asm.get("status", "Created")).strip()
     checks = asm.get("checks", [])
-    status = asm.get("status", "Created")
+    notes = asm.get("notes", "").lower()
 
-    if status == "Completed" or len(checks) >= 2 or "direct cli" in notes or "live security assessment" in notes:
+    # 1. Quick Scans
+    if scan_type == "quick_scan" or asm_type == "quick_scan" or "quick scan" in notes:
+        return "quick_scan"
+
+    # 2. Full In-Depth Assessments (MUST be Completed sessions that went through Option 2 / full pipeline)
+    if status == "Completed" and (
+        scan_type == "full_assessment"
+        or asm_type == "full_assessment"
+        or len(checks) >= 2
+        or "live security assessment" in notes
+        or "session via" in notes
+        or "direct cli" in notes
+    ):
         return "full_assessment"
 
-    if status == "Created" and len(checks) == 0:
-        return "created"
-
-    if len(checks) > 0:
-        return "full_assessment"
-
+    # 3. Everything else is created / pending / in-progress
     return "created"
 
 
