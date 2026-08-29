@@ -199,15 +199,15 @@ def show_main_menu() -> None:
     table.add_column("Option", justify="center", style="cyan", no_wrap=True)
     table.add_column("Action")
 
-    table.add_row("1", "Quick Vulnerability Check (Live Target / Minimal Prompts)")
-    table.add_row("2", "Full In-Depth Assessment (Multi-Layer Automated Pipeline)")
-    table.add_row("3", "Standalone Assessment Modules (Create Session, Ports, DNS, Web, Firmware)")
-    table.add_row("4", "View & Manage Assessments (All / Quick / Full / Created / Export & Clear)")
-    table.add_row("5", "Security Scorecard & Findings (Knowledge Grid & PSR Calculations)")
-    table.add_row("6", "Device Catalog & Benchmarking (Catalog, Search, Compare & Recommendations)")
-    table.add_row("7", "MITRE CWE Threat Intelligence (Live Online Knowledge & Taxonomy)")
-    table.add_row("8", "Network Tools & Interface Inspector (Detect Gateway, IP & Adapters)")
-    table.add_row("9", "How to Use & System Guidance (Step-by-Step Instructions & Workflows)")
+    table.add_row("1", "Quick Vulnerability Check")
+    table.add_row("2", "Full In-Depth Assessment")
+    table.add_row("3", "Standalone Assessment Modules")
+    table.add_row("4", "View & Manage Assessments")
+    table.add_row("5", "Security Scorecard & Findings")
+    table.add_row("6", "Device Catalog & Benchmarking")
+    table.add_row("7", "MITRE CWE Threat Intelligence")
+    table.add_row("8", "Network Tools & Interface Inspector")
+    table.add_row("9", "How to Use & System Guidance")
     table.add_row("0", "Exit")
 
     console.print(table)
@@ -415,8 +415,8 @@ def run_quick_vulnerability_check_screen() -> None:
     while True:
         clear_screen()
         show_banner()
-        console.print("[bold cyan]--- Quick Live Vulnerability Check ---[/bold cyan]\n")
-        console.print("Direct network scan for open ports, unencrypted services and live security exposures.\n")
+        console.print("[bold cyan]--- Quick Vulnerability Check ---[/bold cyan]")
+        console.print("[dim]Rapid, non-destructive network check to detect open ports, DNS behavior and web exposure on the live gateway.[/dim]\n")
 
         target_ip, iface_name = prompt_select_target_ip(default_fallback="192.168.11.1")
         if target_ip is None:
@@ -556,7 +556,8 @@ def run_full_assessment_screen() -> None:
     while True:
         clear_screen()
         show_banner()
-        console.print("[bold cyan]--- In-Depth Comprehensive Security Assessment ---[/bold cyan]\n")
+        console.print("[bold cyan]--- Full In-Depth Assessment ---[/bold cyan]")
+        console.print("[dim]End-to-end multi-layer evaluation pipeline with scoring, PSR calculation and automated report export.[/dim]\n")
 
         target_ip, iface_name = prompt_select_target_ip(default_fallback="192.168.11.1")
         if target_ip is None:
@@ -829,7 +830,8 @@ def list_assessments_screen() -> None:
     while True:
         clear_screen()
         show_banner()
-        console.print("[bold cyan]--- View & Manage Assessments ---[/bold cyan]\n")
+        console.print("[bold cyan]--- View & Manage Assessments ---[/bold cyan]")
+        console.print("[dim]Filter recorded assessment sessions, inspect details, export reports or clear database records.[/dim]\n")
 
         all_asms = get_all_assessments()
         quick_asms = get_assessments_by_category("quick_scan")
@@ -2176,7 +2178,8 @@ def export_report_screen() -> None:
 def detect_network_screen() -> None:
     clear_screen()
     show_banner()
-    console.print("[bold cyan]--- Select & View Network Interfaces ---[/bold cyan]\n")
+    console.print("[bold cyan]--- Network Tools & Interface Inspector ---[/bold cyan]")
+    console.print("[dim]Inspect active network adapters, identify IP subnets and verify default gateway routing.[/dim]\n")
 
     interfaces = list_all_interfaces()
 
@@ -2724,7 +2727,8 @@ def help_screen() -> None:
     while True:
         clear_screen()
         show_banner()
-        console.print("[bold cyan]--- WiFiRisk In-System User Guide & Reference Manual ---[/bold cyan]\n")
+        console.print("[bold cyan]--- How to Use & System Guidance ---[/bold cyan]")
+        console.print("[dim]Step-by-step testing workflows, methodology guide, mathematical formulas and troubleshooting reference.[/dim]\n")
         console.print("Select a topic to explore comprehensive instructions, workflows and formulas:\n")
 
         console.print("  [bold cyan]1.[/bold cyan] Quick Start Guide (Assess your repeater in 2 minutes)")
@@ -3150,8 +3154,8 @@ def run_cwe_intelligence_screen() -> None:
     while True:
         clear_screen()
         show_banner()
-        console.print("[bold cyan]--- Online MITRE CWE & Threat Intelligence Lookup ---[/bold cyan]\n")
-        console.print("Query official MITRE taxonomy definitions, attack scenarios and vulnerability mitigations.\n")
+        console.print("[bold cyan]--- MITRE CWE Threat Intelligence ---[/bold cyan]")
+        console.print("[dim]Query official MITRE taxonomy definitions, search weakness catalogs and synchronize threat intelligence.[/dim]\n")
 
         console.print("1. Query CWE by ID")
         console.print("2. Search Online & Local CWEs by Keyword")
@@ -3527,7 +3531,8 @@ def run_standalone_modules_screen() -> None:
     while True:
         clear_screen()
         show_banner()
-        console.print("[bold cyan]--- Standalone Assessment Modules ---[/bold cyan]\n")
+        console.print("[bold cyan]--- Standalone Assessment Modules ---[/bold cyan]")
+        console.print("[dim]Execute individual modular checks or manually initialize custom assessment sessions.[/dim]\n")
         console.print("1. Create New Assessment Session")
         console.print("2. Run Network Discovery (TCP Port & Service Probing)")
         console.print("3. Run DNS Behavior Checks (Setup Domain & Query Analysis)")
@@ -3567,7 +3572,8 @@ def run_scorecard_and_findings_screen() -> None:
     while True:
         clear_screen()
         show_banner()
-        console.print("[bold cyan]--- Security Scorecard & Findings ---[/bold cyan]\n")
+        console.print("[bold cyan]--- Security Scorecard & Findings ---[/bold cyan]")
+        console.print("[dim]Review discovered vulnerability matrix by device and calculate 100-point security deduction scores.[/dim]\n")
         console.print("1. Show Discovered Findings (Knowledge Grid Matrix Grouped by Device)")
         console.print("2. Calculate Security Score & Price-to-Security Ratio (PSR)")
         console.print("0. Back to Main Menu")
@@ -3595,7 +3601,8 @@ def run_device_catalog_screen() -> None:
     while True:
         clear_screen()
         show_banner()
-        console.print("[bold cyan]--- Device Catalog & Benchmarking ---[/bold cyan]\n")
+        console.print("[bold cyan]--- Device Catalog & Benchmarking ---[/bold cyan]")
+        console.print("[dim]Explore cataloged repeaters, compare device security side-by-side and get budget recommendations.[/dim]\n")
         console.print("1. List All Devices in Catalog")
         console.print("2. Search Device Catalog (by Brand, Model, Vendor)")
         console.print("3. Show Device Details & Recorded Vulnerabilities")
