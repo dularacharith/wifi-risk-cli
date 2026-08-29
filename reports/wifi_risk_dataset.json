@@ -1,0 +1,623 @@
+{
+  "metadata": {
+    "project": "COM4901 Final Year Research Project",
+    "student": "W.M.D.C.D.S Weerakoon (ID: 11161)",
+    "faculty": "Faculty of Computer Science and Engineering, KIU",
+    "exported_at": "2026-08-29T13:08:47"
+  },
+  "devices": [
+    {
+      "id": "WR-001",
+      "display_name": "Generic/Urant Wi-Fi Repeater",
+      "brand": "Unknown / Urant clue",
+      "model": "Generic N300 Repeater",
+      "firmware_version": "1.0.1.2-urant-p1R-auto",
+      "mac_vendor": "C&S Technology",
+      "price_lkr": 2500,
+      "purchase_source": "Local Market / Daraz Sri Lanka",
+      "security_score": 39,
+      "risk_level": "Critical",
+      "recommendation": "Avoid for sensitive networks",
+      "summary": "Low-cost white-label Wi-Fi repeater with exposed Telnet, passwordless web login, hardcoded credentials in HTML, Base64 auth cookie and unmaintained vendor firmware."
+    },
+    {
+      "id": "WR-002",
+      "display_name": "TP-Link TL-WA850RE Range Extender",
+      "brand": "TP-Link",
+      "model": "TL-WA850RE",
+      "firmware_version": "1.0.0 Build 20230510",
+      "mac_vendor": "TP-Link Corporation",
+      "price_lkr": 12500,
+      "purchase_source": "Authorized Retailer",
+      "security_score": 85,
+      "risk_level": "Low",
+      "recommendation": "Recommended",
+      "summary": "Commercial brand range extender with mandatory password setup on first boot, HTTPS support, encrypted session tokens and regular vendor firmware updates."
+    },
+    {
+      "id": "WR-003",
+      "display_name": "D-Link DAP-1325 N300 Extender",
+      "brand": "D-Link",
+      "model": "DAP-1325",
+      "firmware_version": "1.10B01",
+      "mac_vendor": "D-Link International",
+      "price_lkr": 7800,
+      "purchase_source": "Local IT Store",
+      "security_score": 72,
+      "risk_level": "Medium",
+      "recommendation": "Acceptable with precautions",
+      "summary": "Mid-tier consumer Wi-Fi extender with decent default credentials handling, isolated guest mode and signed firmware update capabilities."
+    }
+  ],
+  "assessments": [
+    {
+      "id": "ASM-001",
+      "device_id": "Target-10.11.159.7",
+      "target_ip": "10.11.159.7",
+      "price_lkr": 20000,
+      "status": "Created",
+      "created_at": "2026-08-28T19:08:23",
+      "updated_at": "2026-08-28T19:08:23",
+      "notes": "Session via wlp0s20f3",
+      "metadata": {
+        "setup_domain": "",
+        "interface": "wlp0s20f3"
+      },
+      "checks": []
+    },
+    {
+      "id": "ASM-002",
+      "device_id": "Target-192.168.26.1",
+      "target_ip": "192.168.26.1",
+      "price_lkr": 2500,
+      "status": "In Progress",
+      "created_at": "2026-08-28T19:32:52",
+      "updated_at": "2026-08-28T20:41:56",
+      "notes": "Session via vmnet1",
+      "metadata": {
+        "setup_domain": "",
+        "interface": "vmnet1"
+      },
+      "checks": [
+        {
+          "module": "Network Discovery",
+          "timestamp": "2026-08-28T20:41:56",
+          "scan_method": "nmap_live",
+          "open_ports_count": 0,
+          "open_ports": [],
+          "findings_count": 0,
+          "evidence_file": "data/evidence/ASM-002_network.json"
+        }
+      ]
+    },
+    {
+      "id": "ASM-003",
+      "device_id": "Target-10.11.159.7",
+      "target_ip": "10.11.159.7",
+      "price_lkr": 0,
+      "status": "Created",
+      "created_at": "2026-08-28T20:43:19",
+      "updated_at": "2026-08-28T20:43:19",
+      "notes": "Session via wlp0s20f3",
+      "metadata": {
+        "setup_domain": "",
+        "interface": "wlp0s20f3"
+      },
+      "checks": []
+    },
+    {
+      "id": "ASM-004",
+      "device_id": "Target-10.11.159.7",
+      "target_ip": "10.11.159.7",
+      "price_lkr": 0,
+      "status": "Created",
+      "created_at": "2026-08-28T20:54:27",
+      "updated_at": "2026-08-28T20:54:27",
+      "notes": "Session via wlp0s20f3",
+      "metadata": {
+        "setup_domain": "",
+        "interface": "wlp0s20f3"
+      },
+      "checks": []
+    },
+    {
+      "id": "ASM-005",
+      "device_id": "Target-10.11.159.7",
+      "target_ip": "10.11.159.7",
+      "price_lkr": 0,
+      "status": "Created",
+      "created_at": "2026-08-28T21:19:54",
+      "updated_at": "2026-08-28T21:19:54",
+      "notes": "Session via wlp0s20f3",
+      "metadata": {
+        "setup_domain": "",
+        "interface": "wlp0s20f3"
+      },
+      "checks": []
+    },
+    {
+      "id": "ASM-006",
+      "device_id": "Target-192.168.11.1",
+      "target_ip": "192.168.11.1",
+      "price_lkr": 2500,
+      "status": "Completed",
+      "created_at": "2026-08-29T02:06:33",
+      "updated_at": "2026-08-29T02:08:05",
+      "notes": "Session via wlp0s20f3",
+      "metadata": {
+        "setup_domain": ""
+      },
+      "checks": [
+        {
+          "module": "Network Discovery",
+          "timestamp": "2026-08-29T02:07:04",
+          "scan_method": "socket_fallback",
+          "open_ports_count": 2,
+          "open_ports": [
+            23,
+            80
+          ],
+          "findings_count": 2,
+          "evidence_file": "data/evidence/ASM-006_network.json"
+        },
+        {
+          "module": "Web Interface Checks",
+          "timestamp": "2026-08-29T02:07:05",
+          "target_url": "http://192.168.11.1/",
+          "is_reachable": true,
+          "check_method": "live_fetch",
+          "findings_count": 3,
+          "evidence_file": "data/evidence/ASM-006_web.json"
+        },
+        {
+          "module": "Firmware Discovery",
+          "timestamp": "2026-08-29T02:08:05",
+          "firmware_found": false,
+          "sources_count": 0,
+          "findings_count": 1,
+          "evidence_file": "data/evidence/ASM-006_firmware_discovery.json"
+        }
+      ]
+    },
+    {
+      "id": "ASM-007",
+      "device_id": "Target-192.168.11.1",
+      "target_ip": "192.168.11.1",
+      "price_lkr": 2500,
+      "status": "Completed",
+      "created_at": "2026-08-29T02:23:07",
+      "updated_at": "2026-08-29T02:23:59",
+      "notes": "Session via wlp0s20f3",
+      "metadata": {
+        "setup_domain": ""
+      },
+      "checks": [
+        {
+          "module": "Network Discovery",
+          "timestamp": "2026-08-29T02:23:39",
+          "scan_method": "socket_fallback",
+          "open_ports_count": 2,
+          "open_ports": [
+            23,
+            80
+          ],
+          "findings_count": 2,
+          "evidence_file": "data/evidence/ASM-007_network.json"
+        },
+        {
+          "module": "Web Interface Checks",
+          "timestamp": "2026-08-29T02:23:39",
+          "target_url": "http://192.168.11.1/",
+          "is_reachable": true,
+          "check_method": "live_fetch",
+          "findings_count": 3,
+          "evidence_file": "data/evidence/ASM-007_web.json"
+        },
+        {
+          "module": "Firmware Discovery",
+          "timestamp": "2026-08-29T02:23:59",
+          "firmware_found": false,
+          "sources_count": 0,
+          "findings_count": 1,
+          "evidence_file": "data/evidence/ASM-007_firmware_discovery.json"
+        }
+      ]
+    },
+    {
+      "id": "ASM-008",
+      "device_id": "WR-002",
+      "target_ip": "192.168.11.1",
+      "price_lkr": 2500,
+      "status": "Completed",
+      "created_at": "2026-08-29T12:52:59",
+      "updated_at": "2026-08-29T12:53:31",
+      "notes": "Direct CLI safe assessment execution",
+      "metadata": {
+        "setup_domain": ""
+      },
+      "checks": [
+        {
+          "module": "Network Discovery",
+          "timestamp": "2026-08-29T12:53:31",
+          "scan_method": "socket_fallback",
+          "open_ports_count": 2,
+          "open_ports": [
+            23,
+            80
+          ],
+          "findings_count": 2,
+          "evidence_file": "data/evidence/ASM-008_network.json"
+        },
+        {
+          "module": "Web Interface Checks",
+          "timestamp": "2026-08-29T12:53:31",
+          "target_url": "http://192.168.11.1/",
+          "is_reachable": true,
+          "check_method": "live_fetch",
+          "findings_count": 3,
+          "evidence_file": "data/evidence/ASM-008_web.json"
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "id": "WR-001-F01",
+      "device_id": "WR-001",
+      "assessment_id": "BASE-WR-001",
+      "title": "Telnet service exposed on local and upstream interfaces",
+      "category": "Network-Level Exposure / Insecure Defaults",
+      "severity": "High",
+      "status": "Confirmed",
+      "evidence": "Nmap showed 23/tcp open on 192.168.11.1 and also on upstream hotspot-side IPs such as 10.79.151.53 and 10.79.151.163. The service returned Login as:.",
+      "impact": "A local network attacker may reach the Telnet-like login service. If weak or hardcoded credentials exist, this may allow remote administrative or shell access.",
+      "recommendation": "Disable Telnet by default and replace it with SSH only if remote administration is required.",
+      "module": "Network Discovery",
+      "date_observed": "2026-08-19T16:00:00",
+      "cwe": "CWE-319 (Cleartext Transmission) / CWE-259 (Hardcoded Password)",
+      "threat_scenario": "In a threat environment, an attacker connected to the Wi-Fi or upstream network can perform automated dictionary attacks (such as Mirai-style brute force) or sniff cleartext administrative commands and root credentials transmitted across the network.",
+      "hardening_coverage": "1. Remove the telnetd daemon from the device startup scripts (e.g. /etc/init.d/rcS).\n2. Block inbound TCP port 23 across all network interfaces using iptables firewall rules.\n3. Enforce cryptographic authentication (SSH) and disable default root accounts."
+    },
+    {
+      "id": "WR-001-F02",
+      "device_id": "WR-001",
+      "title": "Web interface allows login without user-supplied credentials",
+      "category": "Authentication Security",
+      "severity": "High",
+      "status": "Confirmed",
+      "assessment_id": "BASE-WR-001",
+      "evidence": "",
+      "impact": "The login page does not require the user to input credentials, allowing anyone on the network to click LOGIN and access the admin dashboard.",
+      "recommendation": "Require users to configure and enter a unique administrator password during initial setup.",
+      "module": "Web Interface Checks",
+      "date_observed": "2026-08-24T18:01:07",
+      "cwe": "CWE-306 (Missing Authentication for Critical Function) / CWE-287 (Improper Authentication)",
+      "threat_scenario": "Any unauthenticated attacker on the local Wi-Fi network can bypass authentication and access the router management portal by simply submitting an empty form or clicking login.",
+      "hardening_coverage": "1. Require a mandatory user-defined administrator password during initial device onboarding.\n2. Reject empty password authentication attempts on the backend.\n3. Disable bypass authentication routes in web server CGI handlers."
+    },
+    {
+      "id": "WR-001-F03",
+      "device_id": "WR-001",
+      "assessment_id": "BASE-WR-001",
+      "title": "Default admin credentials exposed in login page HTML",
+      "category": "Authentication Security / Insecure Defaults",
+      "severity": "High",
+      "status": "Confirmed",
+      "evidence": "index.html contains hidden username value admin and hidden password value admin.",
+      "impact": "The login page reveals hidden username and default password values to anyone inspecting the client source.",
+      "recommendation": "Remove hardcoded credentials from client-side HTML.",
+      "module": "Web Interface Checks",
+      "date_observed": "2026-08-19T16:00:00",
+      "cwe": "CWE-798 (Use of Hardcoded Credentials) / CWE-200 (Exposure of Sensitive Information)",
+      "threat_scenario": "An attacker inspecting client-side HTML or automated crawlers can immediately harvest default administrative credentials without guessing or brute-forcing.",
+      "hardening_coverage": "1. Remove all hardcoded default credentials from client-side HTML, JavaScript, and hidden form fields.\n2. Authenticate credentials strictly on the server side.\n3. Enforce a mandatory setup wizard requiring unique password configuration."
+    },
+    {
+      "id": "WR-001-F04",
+      "device_id": "WR-001",
+      "assessment_id": "BASE-WR-001",
+      "title": "Admin credentials stored in Base64 Authorization cookie",
+      "category": "Session Management",
+      "severity": "High",
+      "status": "Confirmed",
+      "evidence": "Browser storage shows a cookie named Authorization. The cookie value starts with Basic. HttpOnly is false. Secure is false. SameSite is blank or not set. JavaScript creates the cookie using Base64-encoded admin:<password>.",
+      "impact": "The cookie can expose admin credentials because Base64 is not encryption and the cookie is not HttpOnly or Secure.",
+      "recommendation": "Use secure server-side session tokens with HttpOnly, Secure and SameSite attributes.",
+      "module": "Web Interface Checks",
+      "date_observed": "2026-08-19T16:00:00",
+      "cwe": "CWE-312 (Cleartext Storage of Sensitive Information) / CWE-1004 (Sensitive Cookie Without 'HttpOnly' Flag)",
+      "threat_scenario": "Because Base64 is trivially reversible and the cookie lacks HttpOnly/Secure flags, any client-side script (XSS) or local network eavesdropper can decode the plaintext admin credentials directly from the cookie header.",
+      "hardening_coverage": "1. Implement cryptographically random session tokens (e.g. 128-bit tokens) stored in server memory.\n2. Set 'HttpOnly', 'Secure', and 'SameSite=Strict' flags on all session cookies.\n3. Never store credentials or reversible encodings in client cookies."
+    },
+    {
+      "id": "WR-001-F05",
+      "device_id": "WR-001",
+      "title": "DNS resolver exposed on management interface",
+      "category": "Network-Level Exposure / DNS Behavior",
+      "severity": "Low-Medium",
+      "status": "Confirmed",
+      "assessment_id": "BASE-WR-001",
+      "evidence": "",
+      "impact": "The device runs an active DNS resolver which may redirect setup queries or expose internal DNS resolution.",
+      "recommendation": "Restrict DNS exposure to required client interfaces only and validate redirect behavior.",
+      "module": "Network Discovery",
+      "date_observed": "2026-08-24T18:01:07",
+      "cwe": "CWE-345 (Insufficient Verification of Data Authenticity) / CWE-400 (Resource Amplification)",
+      "threat_scenario": "In a threat environment, an outdated or misconfigured DNS daemon (such as legacy dnsmasq versions) can be targeted for DNS Cache Poisoning (DNSpooq series) or DNS Spoofing attacks. An attacker can forge DNS responses to poison the repeater's cache, redirecting all connected users from legitimate domains (such as banking or social media) to malicious phishing servers.",
+      "hardening_coverage": "1. Upgrade dnsmasq to version 2.83 or later to mitigate DNSpooq vulnerability advisories (CVE-2020-25681 through CVE-2020-25687).\n2. Configure the DNS server to listen exclusively on the internal LAN interface (bind-interfaces).\n3. Enable source port randomization and DNSSEC query verification in dnsmasq configuration."
+    },
+    {
+      "id": "WR-001-F06",
+      "device_id": "WR-001",
+      "assessment_id": "BASE-WR-001",
+      "title": "No logout option to terminate admin session",
+      "category": "Session Management",
+      "severity": "Medium",
+      "status": "Confirmed",
+      "evidence": "After login, status.html shows setup options but there is no visible logout option.",
+      "impact": "Users cannot explicitly terminate the admin session from the interface, leaving administrative access open indefinitely on shared clients.",
+      "recommendation": "Add a logout function that clears and invalidates the session.",
+      "module": "Web Interface Checks",
+      "date_observed": "2026-08-19T16:00:00",
+      "cwe": "CWE-613 (Insufficient Session Expiration)",
+      "threat_scenario": "Without an explicit logout mechanism, administrative sessions remain valid on shared client workstations and mobile browsers, allowing subsequent users to access the router dashboard.",
+      "hardening_coverage": "1. Provide a visible 'Logout' button on all dashboard navigation menus.\n2. Invalidate server-side session tokens upon logout request.\n3. Instruct client browsers to clear authentication cookies on session termination."
+    },
+    {
+      "id": "WR-001-F07",
+      "device_id": "WR-001",
+      "assessment_id": "BASE-WR-001",
+      "title": "Admin credentials exposed in URL query parameters during login",
+      "category": "Sensitive Data Exposure",
+      "severity": "High",
+      "status": "Confirmed",
+      "evidence": "Browser address bar showed a login request like http://192.168.11.1/login.htm?CMD=USERLOGIN&username=admin&pcPassword=admin&lang=auto#",
+      "impact": "Credentials may be stored in browser history, logs, screenshots and network captures.",
+      "recommendation": "Submit credentials using POST over HTTPS and never place passwords in URLs.",
+      "module": "Web Interface Checks",
+      "date_observed": "2026-08-19T16:00:00",
+      "cwe": "CWE-598 (Use of GET Request Method with Sensitive Query Strings) / CWE-319 (Cleartext Transmission)",
+      "threat_scenario": "Credentials transmitted in GET query strings are permanently retained in browser history, proxy logs, server access logs, and referrer headers, facilitating passive credential compromise.",
+      "hardening_coverage": "1. Transmit authentication credentials strictly via HTTP POST requests in the request body over HTTPS.\n2. Strip query string parameters on the server side.\n3. Prevent GET-based authentication in CGI binaries."
+    },
+    {
+      "id": "WR-001-F_HTTP_ADMIN",
+      "device_id": "WR-001",
+      "title": "Web management interface served over unencrypted HTTP",
+      "category": "Sensitive Data Exposure / Transport Security",
+      "severity": "Medium",
+      "status": "Confirmed",
+      "assessment_id": "BASE-WR-001",
+      "evidence": "",
+      "impact": "All web interactions, login attempts, and configurations are sent in plaintext and vulnerable to local eavesdropping.",
+      "recommendation": "Configure HTTPS encryption for the web management portal.",
+      "module": "Web Interface Checks",
+      "date_observed": "2026-08-24T18:01:07",
+      "cwe": "CWE-319 (Cleartext Transmission of Sensitive Information) / CWE-352 (Cross-Site Request Forgery)",
+      "threat_scenario": "An attacker on the same local Wi-Fi or upstream network can capture cleartext HTTP authentication traffic and session tokens via Wi-Fi sniffing or ARP spoofing. Without transport encryption or CSRF tokens, attackers can also forge router reconfiguration requests.",
+      "hardening_coverage": "1. Embed lightweight TLS support (e.g. mbedTLS / WolfSSL) into the embedded web server.\n2. Enable automatic redirection from HTTP port 80 to HTTPS port 443 with HSTS headers.\n3. Implement unique cryptographic certificates per device."
+    },
+    {
+      "id": "WR-001-F_FW_UNAVAILABLE",
+      "device_id": "WR-001",
+      "title": "Public firmware updates and vendor support unavailable",
+      "category": "Firmware Weaknesses / Lack of Vendor Transparency",
+      "severity": "Medium",
+      "status": "Confirmed",
+      "assessment_id": "BASE-WR-001",
+      "evidence": "Online discovery using queries: \"Urant 1.0.1.2-urant-p1R-auto firmware\", \"1.0.1.2-urant-p1R-auto\" firmware, \"1.0.1.2-urant-p1R-auto\" returned no official vendor firmware repositories or support portals.",
+      "impact": "The device manufacturer does not provide an official firmware update repository or public security patches, leaving known vulnerabilities unpatchable.",
+      "recommendation": "Avoid using generic networking hardware that lacks transparent vendor support and ongoing security patch cycles.",
+      "module": "Firmware Analysis",
+      "date_observed": "2026-08-24T18:01:11",
+      "cwe": "CWE-1277 (Firmware Not Updateable) / CWE-1059 (Incomplete Documentation and Support)",
+      "threat_scenario": "In a threat environment, when zero-day vulnerabilities or public CVEs (e.g. DNSpooq or Mirai exploits) affect embedded daemons, device owners cannot patch or update their repeaters, leaving them permanently vulnerable to automated botnets.",
+      "hardening_coverage": "1. Establish a public, verifiable vendor security advisory portal.\n2. Provide cryptographically signed Over-the-Air (OTA) or manual firmware upgrade images.\n3. Publish transparent release notes and security vulnerability fixes."
+    },
+    {
+      "id": "WR-001-FW_HARDCODED_CREDS",
+      "device_id": "WR-001",
+      "title": "Hardcoded default administrator credentials in firmware image",
+      "category": "Firmware Static Analysis / Hardcoded Credentials",
+      "severity": "High",
+      "status": "Confirmed",
+      "assessment_id": "BASE-WR-001",
+      "evidence": "Found credential strings in firmware binary wr001_sample_firmware.bin: Default configuration: username=admin password=admin pcPassword=admin",
+      "impact": "Static strings embedded inside firmware binaries expose default credentials, facilitating unauthorized administrative access across all identical devices.",
+      "recommendation": "Remove all embedded plaintext default credentials and enforce unique per-device initialization keys.",
+      "module": "Firmware Static Analysis",
+      "date_observed": "2026-08-24T18:01:11",
+      "cwe": "CWE-798 (Use of Hardcoded Credentials) / CWE-259 (Use of Hardcoded Password)",
+      "threat_scenario": "An attacker extracting binary strings from the firmware image can identify global default passwords and user accounts, allowing automated unauthorized logins across any deployment of this repeater model.",
+      "hardening_coverage": "1. Strip all plaintext passwords and default usernames from embedded binaries and /etc/shadow templates.\n2. Generate a cryptographically random, unique device key printed on physical device labels.\n3. Enforce a mandatory password reset on initial device bootstrap."
+    },
+    {
+      "id": "WR-001-FW_TELNETD",
+      "device_id": "WR-001",
+      "title": "Embedded Telnet daemon (telnetd) present in firmware",
+      "category": "Firmware Static Analysis / Insecure Services",
+      "severity": "High",
+      "status": "Confirmed",
+      "assessment_id": "BASE-WR-001",
+      "evidence": "Found telnetd references and binaries embedded inside firmware wr001_sample_firmware.bin.",
+      "impact": "The inclusion of telnetd enables unencrypted command-line management on exposed network ports.",
+      "recommendation": "Remove telnetd from production firmware builds or disable its daemon startup by default.",
+      "module": "Firmware Static Analysis",
+      "date_observed": "2026-08-24T18:01:11",
+      "cwe": "CWE-319 (Cleartext Transmission of Sensitive Information) / CWE-250 (Execution with Unnecessary Privileges)",
+      "threat_scenario": "Embedded telnetd binary with startup scripts creates an unencrypted remote root shell. Attackers scanning local Wi-Fi or IoT subnets can brute-force Telnet or sniff root commands in cleartext.",
+      "hardening_coverage": "1. Exclude the telnetd package from the busybox/OpenWrt build configuration.\n2. Remove telnetd invocations from /etc/init.d/rcS startup scripts.\n3. Implement secure SSH (Dropbear) with key-based authentication for diagnostic builds."
+    },
+    {
+      "id": "WR-001-FW_UNSIGNED",
+      "device_id": "WR-001",
+      "title": "Firmware package lacks cryptographic signature verification",
+      "category": "Firmware Static Analysis / Integrity Validation",
+      "severity": "Medium",
+      "status": "Confirmed",
+      "assessment_id": "BASE-WR-001",
+      "evidence": "Firmware image wr001_sample_firmware.bin lacks cryptographic signature headers or verification manifests.",
+      "impact": "Without cryptographic signatures, devices cannot verify the authenticity of firmware updates, leaving them susceptible to malicious firmware modification.",
+      "recommendation": "Implement cryptographic signing (e.g. RSA-PSS or Ed25519) on all firmware upgrade packages and verify signatures before flashing.",
+      "module": "Firmware Static Analysis",
+      "date_observed": "2026-08-24T18:01:11",
+      "cwe": "CWE-347 (Improper Verification of Cryptographic Signature) / CWE-494 (Download of Code Without Integrity Check)",
+      "threat_scenario": "In a man-in-the-middle or physical attack scenario, an attacker can flash a modified firmware image containing persistent backdoors, rootkits, or malicious DNS redirectors because the bootloader and web flasher perform no cryptographic signature verification.",
+      "hardening_coverage": "1. Implement cryptographic digital signature checking (e.g. Ed25519 / RSA-PSS) in the bootloader (U-Boot) and firmware upgrade CGI scripts.\n2. Reject any firmware package that fails signature validation prior to writing to flash memory.\n3. Embed the vendor public verification key in immutable bootloader memory."
+    },
+    {
+      "id": "Target-192.168.11.1-F01",
+      "device_id": "Target-192.168.11.1",
+      "title": "Telnet service exposed on local and upstream interfaces",
+      "category": "Network-Level Exposure / Insecure Defaults",
+      "severity": "High",
+      "status": "Confirmed",
+      "assessment_id": "ASM-007",
+      "evidence": "",
+      "impact": "Unauthenticated or weak password access allows remote root shell execution, enabling an attacker to compromise the repeater, modify routing tables, install persistent backdoors, or recruit the device into a botnet.",
+      "recommendation": "Disable the Telnet daemon in firmware by default. Use SSH with key-based authentication if remote shell access is necessary.",
+      "module": "Network Discovery",
+      "date_observed": "2026-08-29T02:23:39"
+    },
+    {
+      "id": "Target-192.168.11.1-F_HTTP",
+      "device_id": "Target-192.168.11.1",
+      "title": "Unencrypted HTTP management interface exposed",
+      "category": "Network-Level Exposure / Insecure Defaults",
+      "severity": "Medium",
+      "status": "Confirmed",
+      "assessment_id": "ASM-007",
+      "evidence": "",
+      "impact": "Cleartext transmission of Wi-Fi passphrases and admin credentials allows passive eavesdropping, session hijacking and unauthorized router reconfiguration via Cross-Site Request Forgery.",
+      "recommendation": "Enforce HTTPS (TLS 1.2/1.3) encryption for all web management communications and implement anti-CSRF token verification.",
+      "module": "Network Discovery",
+      "date_observed": "2026-08-29T02:23:39"
+    },
+    {
+      "id": "Target-192.168.11.1-F_HTTP_ADMIN",
+      "device_id": "Target-192.168.11.1",
+      "title": "Web management interface served over unencrypted HTTP",
+      "category": "Sensitive Data Exposure / Transport Security",
+      "severity": "Medium",
+      "status": "Confirmed",
+      "assessment_id": "ASM-007",
+      "evidence": "Web interface responded on http://192.168.11.1/ without TLS encryption.",
+      "impact": "All web interactions, login attempts, and configurations are sent in plaintext and vulnerable to local eavesdropping.",
+      "recommendation": "Configure HTTPS encryption for the web management portal.",
+      "module": "Web Interface Checks",
+      "date_observed": "2026-08-29T02:23:39"
+    },
+    {
+      "id": "Target-192.168.11.1-F03",
+      "device_id": "Target-192.168.11.1",
+      "title": "Default admin credentials exposed in login page HTML",
+      "category": "Authentication Security / Insecure Defaults",
+      "severity": "High",
+      "status": "Confirmed",
+      "assessment_id": "ASM-007",
+      "evidence": "Login page HTML contains hidden username or password values (e.g. 'admin').",
+      "impact": "The login page HTML reveals default credentials to anyone viewing the source code.",
+      "recommendation": "Remove hardcoded credentials from client-side HTML.",
+      "module": "Web Interface Checks",
+      "date_observed": "2026-08-29T02:23:39"
+    },
+    {
+      "id": "Target-192.168.11.1-F04",
+      "device_id": "Target-192.168.11.1",
+      "title": "Admin credentials stored in Base64 Authorization cookie",
+      "category": "Session Management",
+      "severity": "High",
+      "status": "Confirmed",
+      "assessment_id": "ASM-007",
+      "evidence": "Authorization cookie or script stores Base64 encoded credentials without HttpOnly/Secure flags.",
+      "impact": "The cookie can expose admin credentials because Base64 is reversible and the cookie lacks HttpOnly/Secure flags.",
+      "recommendation": "Use secure server-side session tokens with HttpOnly, Secure and SameSite attributes.",
+      "module": "Web Interface Checks",
+      "date_observed": "2026-08-29T02:23:39"
+    },
+    {
+      "id": "Target-192.168.11.1-F_FW_UNAVAILABLE",
+      "device_id": "Target-192.168.11.1",
+      "title": "Public firmware updates and vendor support unavailable",
+      "category": "Firmware Weaknesses / Lack of Vendor Transparency",
+      "severity": "Medium",
+      "status": "Confirmed",
+      "assessment_id": "ASM-007",
+      "evidence": "Online discovery using queries: \"B300\" firmware download returned no official vendor firmware repositories or support portals.",
+      "impact": "The device manufacturer does not provide an official firmware update repository or public security patches, leaving known vulnerabilities unpatchable.",
+      "recommendation": "Avoid using generic networking hardware that lacks transparent vendor support and ongoing security patch cycles.",
+      "module": "Firmware Analysis",
+      "date_observed": "2026-08-29T02:23:59"
+    },
+    {
+      "id": "WR-002-F01",
+      "device_id": "WR-002",
+      "title": "Telnet service exposed on local and upstream interfaces",
+      "category": "Network-Level Exposure / Insecure Defaults",
+      "severity": "High",
+      "status": "Confirmed",
+      "assessment_id": "ASM-008",
+      "evidence": "",
+      "impact": "Unauthenticated or weak password access allows remote root shell execution, enabling an attacker to compromise the repeater, modify routing tables, install persistent backdoors, or recruit the device into a botnet.",
+      "recommendation": "Disable the Telnet daemon in firmware by default. Use SSH with key-based authentication if remote shell access is necessary.",
+      "module": "Network Discovery",
+      "date_observed": "2026-08-29T12:53:31"
+    },
+    {
+      "id": "WR-002-F_HTTP",
+      "device_id": "WR-002",
+      "title": "Unencrypted HTTP management interface exposed",
+      "category": "Network-Level Exposure / Insecure Defaults",
+      "severity": "Medium",
+      "status": "Confirmed",
+      "assessment_id": "ASM-008",
+      "evidence": "",
+      "impact": "Cleartext transmission of Wi-Fi passphrases and admin credentials allows passive eavesdropping, session hijacking and unauthorized router reconfiguration via Cross-Site Request Forgery.",
+      "recommendation": "Enforce HTTPS (TLS 1.2/1.3) encryption for all web management communications and implement anti-CSRF token verification.",
+      "module": "Network Discovery",
+      "date_observed": "2026-08-29T12:53:31"
+    },
+    {
+      "id": "WR-002-F_HTTP_ADMIN",
+      "device_id": "WR-002",
+      "title": "Web management interface served over unencrypted HTTP",
+      "category": "Sensitive Data Exposure / Transport Security",
+      "severity": "Medium",
+      "status": "Confirmed",
+      "assessment_id": "ASM-008",
+      "evidence": "Web interface responded on http://192.168.11.1/ without TLS encryption.",
+      "impact": "All web interactions, login attempts, and configurations are sent in plaintext and vulnerable to local eavesdropping.",
+      "recommendation": "Configure HTTPS encryption for the web management portal.",
+      "module": "Web Interface Checks",
+      "date_observed": "2026-08-29T12:53:31"
+    },
+    {
+      "id": "WR-002-F03",
+      "device_id": "WR-002",
+      "title": "Default admin credentials exposed in login page HTML",
+      "category": "Authentication Security / Insecure Defaults",
+      "severity": "High",
+      "status": "Confirmed",
+      "assessment_id": "ASM-008",
+      "evidence": "Login page HTML contains hidden username or password values (e.g. 'admin').",
+      "impact": "The login page HTML reveals default credentials to anyone viewing the source code.",
+      "recommendation": "Remove hardcoded credentials from client-side HTML.",
+      "module": "Web Interface Checks",
+      "date_observed": "2026-08-29T12:53:31"
+    },
+    {
+      "id": "WR-002-F04",
+      "device_id": "WR-002",
+      "title": "Admin credentials stored in Base64 Authorization cookie",
+      "category": "Session Management",
+      "severity": "High",
+      "status": "Confirmed",
+      "assessment_id": "ASM-008",
+      "evidence": "Authorization cookie or script stores Base64 encoded credentials without HttpOnly/Secure flags.",
+      "impact": "The cookie can expose admin credentials because Base64 is reversible and the cookie lacks HttpOnly/Secure flags.",
+      "recommendation": "Use secure server-side session tokens with HttpOnly, Secure and SameSite attributes.",
+      "module": "Web Interface Checks",
+      "date_observed": "2026-08-29T12:53:31"
+    }
+  ]
+}

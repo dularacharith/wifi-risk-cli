@@ -43,7 +43,12 @@ from wifi_risk.services.firmware_service import (
 )
 from wifi_risk.services.network_service import perform_network_discovery
 from wifi_risk.services.quick_scan_service import run_standalone_quick_scan
-from wifi_risk.services.report_service import export_assessment_report
+from wifi_risk.services.report_service import (
+    export_assessment_report,
+    export_research_test_dataset,
+    generate_research_audit_log,
+    generate_research_dataset_txt,
+)
 from wifi_risk.services.runner_service import run_full_safe_assessment
 from wifi_risk.services.scoring_service import evaluate_device_security
 from wifi_risk.services.web_service import perform_web_checks
@@ -1874,7 +1879,44 @@ def export_report_screen() -> None:
     while True:
         clear_screen()
         show_banner()
-        console.print("[bold cyan]--- Export Assessment Security Report ---[/bold cyan]\n")
+        console.print("[bold cyan]--- Export Assessment Reports & Research Dataset ---[/bold cyan]\n")
+        console.print("1. Export Specific Assessment Report (Markdown, Plain Text, Word DOCX)")
+        console.print("2. Export Complete Research Test Dataset & Audit Log (.txt / .log / .json)")
+        console.print("0. Back to Main Menu")
+
+        mode_choice = Prompt.ask("\n[bold green]Select an option[/bold green]", choices=["0", "1", "2", "b", "B"], default="1", show_default=False, show_choices=False)
+        if is_back(mode_choice) or mode_choice == "0":
+            return
+
+        if mode_choice == "2":
+            clear_screen()
+            show_banner()
+            console.print("[bold cyan]--- Export Complete Research Test Dataset & Audit Log ---[/bold cyan]\n")
+            console.print("This feature compiles all tested repeaters, assessment sessions, confirmed vulnerabilities,")
+            console.print("scores and raw technical evidence logs into a master research dataset for supervisors.\n")
+            console.print("Select Export Format:")
+            console.print("1. All Formats (Master Plain Text Dataset .txt, Audit Log .log, Machine JSON .json)")
+            console.print("2. Plain Text Dataset (.txt) only (Supervisor Summary Table & Session Logs)")
+            console.print("3. Audit Log (.log) only (Timestamped Syslog-Style Audit Trail)")
+            console.print("4. JSON Dataset (.json) only (Structured Dataset for Statistical Analysis)")
+            console.print("0. Back")
+
+            ds_fmt_choice = Prompt.ask("\n[bold green]Select an option[/bold green]", choices=["0", "1", "2", "3", "4", "b", "B"], default="1", show_default=False, show_choices=False)
+            if is_back(ds_fmt_choice) or ds_fmt_choice == "0":
+                continue
+
+            ds_map = {"1": "all", "2": "txt", "3": "log", "4": "json"}
+            chosen_ds_fmt = ds_map[ds_fmt_choice]
+
+            console.print(f"\n[bold cyan]Generating research test dataset in format: {chosen_ds_fmt}...[/bold cyan]")
+            generated = export_research_test_dataset(format_type=chosen_ds_fmt)
+
+            console.print("\n[bold green]Research dataset export complete![/bold green]\n")
+            for fmt_name, fpath in generated.items():
+                console.print(f"  - [bold cyan]{fmt_name.upper()}:[/bold cyan] {fpath}")
+
+            pause()
+            continue
 
         assessment_id, asm = prompt_select_assessment_id("Select Assessment to Export Report", allow_manual_input=False)
         if not assessment_id:
@@ -1895,8 +1937,8 @@ def export_report_screen() -> None:
         console.print("0. Back to Main Menu")
 
         fmt_choice = Prompt.ask("[bold green]Select an option[/bold green]", choices=["0", "1", "2", "3", "4", "b", "B"], default="1", show_default=False, show_choices=False)
-        if is_back(fmt_choice):
-            return
+        if is_back(fmt_choice) or fmt_choice == "0":
+            continue
 
         fmt_map = {"1": "all", "2": "md", "3": "txt", "4": "docx"}
         chosen_fmt = fmt_map[fmt_choice]
@@ -1909,7 +1951,7 @@ def export_report_screen() -> None:
             console.print(f"  - [bold cyan]{fmt.upper()}:[/bold cyan] {fpath}")
 
         console.print("\n[bold cyan]Post-Export Actions:[/bold cyan]")
-        console.print("1. Export Another Report")
+        console.print("1. Export Another Report / Dataset")
         console.print("0. Return to Main Menu")
 
         next_act = Prompt.ask("\n[bold green]Select an option[/bold green]", choices=["0", "1", "b", "B", ""], default="0", show_default=False, show_choices=False).strip()
@@ -3153,6 +3195,26 @@ def cli_export_report(
             console.print(f"  - [bold cyan]{fmt.upper()}:[/bold cyan] {p}")
     except Exception as err:
         console.print(f"[bold red]Export Error:[/bold red] {err}")
+
+
+@app.command(name="export-dataset")
+def cli_export_dataset(
+    format_type: str = typer.Option("all", "--format", "-f", help="Output format: all, txt, log, json"),
+    output_dir: str = typer.Option("reports", "--output-dir", "-o", help="Output directory path"),
+) -> None:
+    """
+    Export complete research test dataset and audit logs from tested devices and results.
+    """
+    show_banner()
+    console.print(f"[bold cyan]Exporting complete research test dataset in format: {format_type}...[/bold cyan]\n")
+
+    try:
+        files = export_research_test_dataset(output_dir=output_dir, format_type=format_type)
+        console.print("[bold green]Generated Research Dataset Files:[/bold green]")
+        for fmt, p in files.items():
+            console.print(f"  - [bold cyan]{fmt.upper()}:[/bold cyan] {p}")
+    except Exception as err:
+        console.print(f"[bold red]Dataset Export Error:[/bold red] {err}")
 
 
 @app.command(name="score")

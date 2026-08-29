@@ -177,6 +177,9 @@ python -m wifi_risk run --target-ip 192.168.11.1 --device-id WR-001 --price 2500
 # Export assessment reports
 python -m wifi_risk export --assessment-id ASM-001 --format all --output-dir reports
 
+# Export complete research test dataset & audit log (for supervisors/reviewers)
+python -m wifi_risk export-dataset --format all --output-dir reports
+
 # Calculate security score & PSR
 python -m wifi_risk score --device-id WR-001 --price 2500
 
