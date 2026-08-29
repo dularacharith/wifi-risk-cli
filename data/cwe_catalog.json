@@ -73,10 +73,10 @@
   },
   "CWE-798": {
     "id": "CWE-798",
-    "name": "Use of Hardcoded Credentials",
-    "abstraction": "Base Weakness",
-    "status": "Active (MITRE Standard)",
-    "description": "The product contains hardcoded credentials, such as a default username and password, embedded in source code, client-side scripts, or compiled firmware binaries for inbound authentication.",
+    "name": "Use of Hard-coded Credentials",
+    "abstraction": "Class Weakness",
+    "status": "Active (Live MITRE Feed)",
+    "description": "Official description available at MITRE.",
     "threat_scenarios": [
       "Automated Mirai-style dictionary botnet attacks harvesting factory-default credentials.",
       "Extraction of static credentials from client HTML source code or strings in firmware images.",
@@ -92,7 +92,8 @@
       "CVE-2016-10372",
       "CVE-2017-17215"
     ],
-    "mitre_url": "https://cwe.mitre.org/data/definitions/798.html"
+    "mitre_url": "https://cwe.mitre.org/data/definitions/798.html",
+    "fetched_at": "2026-08-29T12:51:25"
   },
   "CWE-259": {
     "id": "CWE-259",

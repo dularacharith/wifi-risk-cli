@@ -3042,34 +3042,66 @@ def cli_run_assessment(
         notes=notes,
     )
 
-    eval_data = results["evaluation"]
-    score = eval_data["final_score"]
-    risk = eval_data["risk_level"]
-    psr = eval_data["psr"]
-    rec = eval_data["recommendation"]
+    eval_data = results.get("evaluation", {})
+    score = eval_data.get("final_score", 100)
+    risk = eval_data.get("risk_level", "Low")
+    psr = eval_data.get("psr", 0.0)
+    rec = eval_data.get("recommendation", {})
+    findings = results.get("findings") or results.get("all_findings") or []
+    deductions_detail = eval_data.get("deductions_detail", [])
 
     risk_color = "red" if risk in ["Critical", "High"] else "yellow" if risk == "Medium" else "green"
 
     summary_text = f"""
-[bold]Assessment ID:[/bold]       {results['assessment_id']}
-[bold]Target IP / Device:[/bold]  {results['target_ip']} ({device_id})
+[bold]Assessment ID:[/bold]       {results.get('assessment_id', '')}
+[bold]Target IP / Device:[/bold]  {results.get('target_ip', target_ip)} ({device_id})
 [bold]Device Price:[/bold]        LKR {price}
+[bold]Total Findings:[/bold]      {len(findings)} discovered
 
 [bold]Base Security Score:[/bold] 100/100
-[bold]Deductions:[/bold]          -{eval_data['total_deductions']} points
+[bold]Deductions Applied:[/bold]  -{eval_data.get('total_deductions', 0)} points
 [bold]Final Score:[/bold]         [{risk_color}]{score}/100[/{risk_color}]
 [bold]Risk Level:[/bold]          [{risk_color}]{risk}[/{risk_color}]
+[bold]Price-to-Security (PSR):[/bold] {psr} (Baseline: LKR 15,000)
 
 [bold]Recommendation Category:[/bold]
-[bold {risk_color}]{rec['category']}[/bold {risk_color}]
+[bold {risk_color}]{rec.get('category', 'N/A')}[/bold {risk_color}]
 
 [bold]Summary Guidance:[/bold]
-{rec['guidance']}
+{rec.get('guidance', '')}
 
-[bold]Unified Evidence:[/bold]
-{results['full_evidence_file']}
+[bold]Unified Evidence File:[/bold]
+{results.get('full_evidence_file', '')}
 """
     console.print(Panel(summary_text.strip(), title=f"Full Assessment Completed: {device_id}", border_style=risk_color))
+
+    if findings:
+        table = Table(title=f"Discovered Vulnerabilities for {device_id} ({len(findings)} finding(s))", show_header=True, header_style="bold cyan")
+        table.add_column("Finding ID", style="cyan", no_wrap=True)
+        table.add_column("Severity Tier", justify="center")
+        table.add_column("Layer / Module")
+        table.add_column("Vulnerability Title")
+        table.add_column("Deduction", justify="center", style="bold red")
+
+        ded_map = {d.get("finding_id"): d.get("deduction", 0) for d in deductions_detail}
+
+        for f in findings:
+            f_id = f.get("id", "")
+            f_sev = f.get("severity", "")
+            sev_style = "bold red" if f_sev.lower() in ["high", "critical"] else "bold yellow" if "medium" in f_sev.lower() else "bold green"
+            ded_val = ded_map.get(f_id, "")
+            ded_display = f"-{ded_val} pts" if ded_val else ""
+
+            table.add_row(
+                f_id,
+                f"[{sev_style}]{f_sev}[/{sev_style}]",
+                f.get("module", "General"),
+                f.get("title", ""),
+                ded_display,
+            )
+        console.print(table)
+    else:
+        console.print(f"\n[bold green]✓ No security vulnerabilities discovered on {target_ip}. Device is clean.[/bold green]")
 
 
 @app.command(name="interfaces")
