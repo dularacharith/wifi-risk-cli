@@ -176,24 +176,13 @@ def show_main_menu() -> None:
     table.add_column("Action")
 
     table.add_row("1", "Quick Vulnerability Check (Live Target / Minimal Prompts)")
-    table.add_row("2", "Full In-Depth Assessment (Custom Firmware & Price Analysis)")
-    table.add_row("3", "Create New Assessment Session")
-    table.add_row("4", "View & Manage Assessments (All / Quick Scans / Full / Created / Export & Clear)")
-    table.add_row("5", "Run Network Discovery (Port Scan)")
-    table.add_row("6", "Run DNS Checks")
-    table.add_row("7", "Run Web Interface Checks")
-    table.add_row("8", "Online Firmware Discovery (Path A)")
-    table.add_row("9", "Firmware Static Analysis (Path B)")
-    table.add_row("10", "Show Findings")
-    table.add_row("11", "Calculate Score & Recommendation")
-    table.add_row("12", "Select & View Network Interfaces")
-    table.add_row("13", "List Devices")
-    table.add_row("14", "Search Device")
-    table.add_row("15", "Show Device Details")
-    table.add_row("16", "Compare Devices")
-    table.add_row("17", "Recommend Device by Budget")
-    table.add_row("18", "Help & Reference")
-    table.add_row("19", "Query Online CWE & Threat Intelligence (Live MITRE / NVD Internet Lookup)")
+    table.add_row("2", "Full In-Depth Assessment (Multi-Layer Automated Pipeline)")
+    table.add_row("3", "Standalone Assessment Modules (Create Session, Ports, DNS, Web, Firmware)")
+    table.add_row("4", "View & Manage Assessments (All / Quick / Full / Created / Export & Clear)")
+    table.add_row("5", "Security Scorecard & Findings (Knowledge Grid & PSR Calculations)")
+    table.add_row("6", "Device Catalog & Benchmarking (Catalog, Search, Compare & Recommendations)")
+    table.add_row("7", "MITRE CWE Threat Intelligence (Live Online Knowledge & Taxonomy)")
+    table.add_row("8", "Network Tools & Documentation (Interfaces, Gateway Detector & Guide)")
     table.add_row("0", "Exit")
 
     console.print(table)
@@ -3496,6 +3485,139 @@ def cli_query_cwe(
         console.print(f"[red]No MITRE definition found for '{cwe_id}'.[/red]")
 
 
+def run_standalone_modules_screen() -> None:
+    """
+    Submenu for individual modular security checks and manual session initialization.
+    """
+    while True:
+        clear_screen()
+        show_banner()
+        console.print("[bold cyan]--- Standalone Assessment Modules ---[/bold cyan]\n")
+        console.print("1. Create New Assessment Session")
+        console.print("2. Run Network Discovery (TCP Port & Service Probing)")
+        console.print("3. Run DNS Behavior Checks (Setup Domain & Query Analysis)")
+        console.print("4. Run Web Interface Checks (HTML Inspection & Hidden Credentials)")
+        console.print("5. Online Firmware Discovery (Path A - Search Indexes & Mirrors)")
+        console.print("6. Firmware Static Analysis (Path B - User-Uploaded Binary Inspection)")
+        console.print("0. Back to Main Menu")
+
+        choice = Prompt.ask(
+            "\n[bold green]Select a module[/bold green]",
+            choices=["0", "1", "2", "3", "4", "5", "6", "b", "B", ""],
+            default="0",
+            show_default=False,
+            show_choices=False,
+        ).strip()
+
+        if choice in ["0", "b", "B", ""]:
+            return
+        elif choice == "1":
+            create_assessment_screen()
+        elif choice == "2":
+            run_network_discovery_screen()
+        elif choice == "3":
+            run_dns_checks_screen()
+        elif choice == "4":
+            run_web_checks_screen()
+        elif choice == "5":
+            run_firmware_discovery_screen()
+        elif choice == "6":
+            run_firmware_static_analysis_screen()
+
+
+def run_scorecard_and_findings_screen() -> None:
+    """
+    Submenu for vulnerability matrix exploration and PSR scoring.
+    """
+    while True:
+        clear_screen()
+        show_banner()
+        console.print("[bold cyan]--- Security Scorecard & Findings ---[/bold cyan]\n")
+        console.print("1. Show Discovered Findings (Knowledge Grid Matrix Grouped by Device)")
+        console.print("2. Calculate Security Score & Price-to-Security Ratio (PSR)")
+        console.print("0. Back to Main Menu")
+
+        choice = Prompt.ask(
+            "\n[bold green]Select an option[/bold green]",
+            choices=["0", "1", "2", "b", "B", ""],
+            default="0",
+            show_default=False,
+            show_choices=False,
+        ).strip()
+
+        if choice in ["0", "b", "B", ""]:
+            return
+        elif choice == "1":
+            show_findings_screen()
+        elif choice == "2":
+            calculate_score_screen()
+
+
+def run_device_catalog_screen() -> None:
+    """
+    Submenu for repeater device catalog, benchmarking and budget recommendations.
+    """
+    while True:
+        clear_screen()
+        show_banner()
+        console.print("[bold cyan]--- Device Catalog & Benchmarking ---[/bold cyan]\n")
+        console.print("1. List All Devices in Catalog")
+        console.print("2. Search Device Catalog (by Brand, Model, Vendor)")
+        console.print("3. Show Device Details & Recorded Vulnerabilities")
+        console.print("4. Compare Two Repeaters (Side-by-Side Comparison Matrix)")
+        console.print("5. Recommend Repeater by Budget (LKR)")
+        console.print("0. Back to Main Menu")
+
+        choice = Prompt.ask(
+            "\n[bold green]Select an option[/bold green]",
+            choices=["0", "1", "2", "3", "4", "5", "b", "B", ""],
+            default="0",
+            show_default=False,
+            show_choices=False,
+        ).strip()
+
+        if choice in ["0", "b", "B", ""]:
+            return
+        elif choice == "1":
+            list_devices_screen()
+        elif choice == "2":
+            search_device_screen()
+        elif choice == "3":
+            show_device_details_screen()
+        elif choice == "4":
+            compare_devices_screen()
+        elif choice == "5":
+            recommend_device_screen()
+
+
+def run_network_utilities_screen() -> None:
+    """
+    Submenu for network interface detection and system reference guide.
+    """
+    while True:
+        clear_screen()
+        show_banner()
+        console.print("[bold cyan]--- Network Tools & Documentation ---[/bold cyan]\n")
+        console.print("1. Select & View Network Interfaces (Auto-detect Gateway IP & Subnet)")
+        console.print("2. Help, Research Methodology & Technical Reference")
+        console.print("0. Back to Main Menu")
+
+        choice = Prompt.ask(
+            "\n[bold green]Select an option[/bold green]",
+            choices=["0", "1", "2", "b", "B", ""],
+            default="0",
+            show_default=False,
+            show_choices=False,
+        ).strip()
+
+        if choice in ["0", "b", "B", ""]:
+            return
+        elif choice == "1":
+            detect_network_screen()
+        elif choice == "2":
+            help_screen()
+
+
 @app.callback(invoke_without_command=True)
 def main(ctx: typer.Context) -> None:
     """
@@ -3512,7 +3634,7 @@ def main(ctx: typer.Context) -> None:
 
             choice = Prompt.ask(
                 "\n[bold green]wifi-risk >[/bold green]",
-                choices=["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "0"],
+                choices=["1", "2", "3", "4", "5", "6", "7", "8", "0"],
                 show_choices=False,
             )
 
@@ -3521,39 +3643,17 @@ def main(ctx: typer.Context) -> None:
             elif choice == "2":
                 run_full_assessment_screen()
             elif choice == "3":
-                create_assessment_screen()
+                run_standalone_modules_screen()
             elif choice == "4":
                 list_assessments_screen()
             elif choice == "5":
-                run_network_discovery_screen()
+                run_scorecard_and_findings_screen()
             elif choice == "6":
-                run_dns_checks_screen()
+                run_device_catalog_screen()
             elif choice == "7":
-                run_web_checks_screen()
-            elif choice == "8":
-                run_firmware_discovery_screen()
-            elif choice == "9":
-                run_firmware_static_analysis_screen()
-            elif choice == "10":
-                show_findings_screen()
-            elif choice == "11":
-                calculate_score_screen()
-            elif choice == "12":
-                detect_network_screen()
-            elif choice == "13":
-                list_devices_screen()
-            elif choice == "14":
-                search_device_screen()
-            elif choice == "15":
-                show_device_details_screen()
-            elif choice == "16":
-                compare_devices_screen()
-            elif choice == "17":
-                recommend_device_screen()
-            elif choice == "18":
-                help_screen()
-            elif choice == "19":
                 run_cwe_intelligence_screen()
+            elif choice == "8":
+                run_network_utilities_screen()
             elif choice == "0":
                 console.print("[bold green]Exiting WiFiRisk. Goodbye![/bold green]")
                 raise typer.Exit()

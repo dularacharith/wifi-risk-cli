@@ -140,27 +140,18 @@ python -m wifi_risk
 
 ## Interactive Menu Reference
 
-| Option # | Feature Name | Purpose |
+WiFiRisk features a streamlined, categorized interactive console with 8 intuitive top-level modules:
+
+| Option # | Main Menu Category | Sub-Actions & Capabilities Included |
 | :---: | :--- | :--- |
 | **1** | **Quick Vulnerability Check** | Fast standalone network scan of gateway IP with real-time progress and vulnerability exploration. |
-| **2** | **Full In-Depth Assessment** | Comprehensive multi-layer evaluation, 100-point scoring, PSR calculation and report generation. |
-| **3** | **Create Assessment Session** | Manually initialize an assessment record with custom Device ID, price and target IP. |
+| **2** | **Full In-Depth Assessment** | Complete multi-layer automated evaluation pipeline, 100-point scoring, PSR calculation and report generation. |
+| **3** | **Standalone Assessment Modules** | Modular testing suite: Create Session, Port Scan, DNS Checks, Web Checks, Firmware Discovery & Static Analysis. |
 | **4** | **View & Manage Assessments** | Categorized assessment viewer (All, Quick Scans, Full Audits, Created), in-place report exporting and synchronized clearing. |
-| **5** | **Run Network Discovery** | Standalone TCP port probe (Ports 21, 22, 23, 53, 80, 443, 554, 1900, 5000, 5555, 8080, 8443, 49152). |
-| **6** | **Run DNS Checks** | Test setup-domain resolution, evaluate DNS resolver responses and check for query leakage. |
-| **7** | **Run Web Interface Checks** | Inspect HTML DOM for hidden credentials, analyze cookie security flags and test login behavior. |
-| **8** | **Online Firmware Discovery** | Scrape search indexes and vendor repositories to assess firmware availability and update transparency. |
-| **9** | **Firmware Static Analysis** | Inspect binary firmware files for cryptographic hashes, embedded daemons and hardcoded keys. |
-| **10** | **Show Findings** | Display all confirmed vulnerabilities in a structured Knowledge Grid Matrix grouped by device. |
-| **11** | **Calculate Score & PSR** | Compute 100-point security deduction score, risk tier and Price-to-Security Ratio (PSR). |
-| **12** | **Network Interfaces** | List active network adapters, IP subnets and auto-detected default gateways. |
-| **13** | **List Devices** | View cataloged repeater models and baseline comparison devices in the database. |
-| **14** | **Search Device** | Search the device catalog by brand, model, MAC vendor or keyword. |
-| **15** | **Show Device Details** | View technical specifications, purchase price and recorded vulnerabilities for a device. |
-| **16** | **Compare Devices** | Side-by-side comparative analysis of two repeaters across price, score and vulnerabilities. |
-| **17** | **Recommend by Budget** | Filter and rank repeaters based on maximum budget (LKR) sorted by security score. |
-| **18** | **Help & Reference** | In-system user guide explaining testing workflows, formulas and troubleshooting. |
-| **19** | **MITRE CWE Intelligence** | Query official MITRE taxonomy definitions, search vulnerabilities by keyword and sync live updates. |
+| **5** | **Security Scorecard & Findings** | Discovered Findings Knowledge Grid Matrix grouped by device and 100-point PSR Security Score Calculator. |
+| **6** | **Device Catalog & Benchmarking** | List Catalog, Search Models, Device Details, Side-by-Side Comparison Matrix and Budget Recommendations. |
+| **7** | **MITRE CWE Threat Intelligence** | Live online MITRE / NVD threat definition lookups, taxonomy search and local catalog synchronization. |
+| **8** | **Network Tools & Documentation** | Network adapter interface selection, Gateway IP auto-detection and Help / Methodology Reference Guide. |
 | **0** | **Exit** | Terminate the application cleanly. |
 
 ---
