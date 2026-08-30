@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-060",
-  "device_id": "WA-60",
-  "timestamp": "2026-08-19T05:12:45",
-  "brand_clue": "Netcore",
-  "model_clue": "300M Signal Amplifier",
-  "firmware_version": "v1.0.1.2-netcore",
+  "device_id": "PL-10",
+  "timestamp": "2026-08-18T10:57:18",
+  "brand_clue": "Pix-Link",
+  "model_clue": "LV-WR02B",
+  "firmware_version": "v1.1.0-pixlink",
   "firmware_found": false,
   "findings": [
-    "WA-60-F08"
+    "PL-10-F08"
   ]
 }

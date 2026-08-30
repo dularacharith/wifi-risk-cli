@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-054",
-  "device_id": "WA-54",
-  "timestamp": "2026-08-18T08:21:45",
-  "brand_clue": "Wavlink",
-  "model_clue": "Aerial N300 Range Extender",
-  "firmware_version": "WN578HR2-v1.0.8",
+  "device_id": "PL-04",
+  "timestamp": "2026-08-17T01:26:01",
+  "brand_clue": "Pix-Link",
+  "model_clue": "LV-WR02B",
+  "firmware_version": "v1.1.0-pixlink",
   "firmware_found": false,
   "findings": [
-    "WA-54-F08"
+    "PL-04-F08"
   ]
 }

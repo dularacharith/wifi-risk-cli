@@ -1,11 +1,15 @@
 {
   "assessment_id": "ASM-041",
-  "device_id": "WA-41",
-  "target_url": "http://192.168.11.1/",
-  "timestamp": "2026-08-16T10:15:23",
+  "device_id": "UR-01",
+  "target_url": "http://192.168.10.1/",
+  "timestamp": "2026-08-14T05:50:16",
   "http_status": 200,
-  "title": "CF-WR302S High Power Extender Web Management",
+  "title": "U-N300 Management",
   "findings": [
-    "WA-41-F06"
+    "UR-01-F02",
+    "UR-01-F03",
+    "UR-01-F04",
+    "UR-01-F06",
+    "UR-01-F07"
   ]
 }

@@ -1,9 +1,9 @@
 {
   "assessment_id": "ASM-018",
-  "device_id": "WA-18",
+  "device_id": "MT02-18",
   "target_ip": "192.168.11.1",
-  "price_lkr": 3250,
-  "timestamp": "2026-08-13T01:43:26",
+  "price_lkr": 2500,
+  "timestamp": "2026-08-09T08:06:58",
   "modules_run": [
     "Network Discovery",
     "DNS Behavior Checks",
@@ -11,8 +11,8 @@
     "Firmware Discovery"
   ],
   "network_summary": {
-    "open_ports": 1,
-    "findings_count": 2,
+    "open_ports": 3,
+    "findings_count": 3,
     "evidence_file": "data/evidence/ASM-018_network.json"
   },
   "dns_summary": {
@@ -26,7 +26,7 @@
   },
   "web_summary": {
     "target_url": "http://192.168.11.1/",
-    "findings_count": 1,
+    "findings_count": 5,
     "evidence_file": "data/evidence/ASM-018_web.json"
   },
   "firmware_discovery_summary": {
@@ -35,9 +35,9 @@
     "findings_count": 1
   },
   "evaluation": {
-    "final_score": 71,
-    "risk_level": "Medium Risk",
-    "psr": 3.28,
-    "recommendation": "Acceptable with precautions"
+    "final_score": 11,
+    "risk_level": "Critical Risk",
+    "psr": 0.66,
+    "recommendation": "Avoid for sensitive networks; high risk of local compromise"
   }
 }

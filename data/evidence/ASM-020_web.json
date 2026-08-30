@@ -1,9 +1,15 @@
 {
   "assessment_id": "ASM-020",
-  "device_id": "WA-20",
+  "device_id": "MT02-20",
   "target_url": "http://192.168.11.1/",
-  "timestamp": "2026-08-13T08:04:21",
+  "timestamp": "2026-08-09T16:47:17",
   "http_status": 200,
-  "title": "MW300RE 3-Antenna Range Extender Web Management",
-  "findings": []
+  "title": "MT02 300M Management",
+  "findings": [
+    "MT02-20-F02",
+    "MT02-20-F03",
+    "MT02-20-F04",
+    "MT02-20-F06",
+    "MT02-20-F07"
+  ]
 }

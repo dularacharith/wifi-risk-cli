@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-066",
-  "device_id": "WA-66",
-  "timestamp": "2026-08-20T00:46:13",
-  "brand_clue": "Wavlink",
-  "model_clue": "Aerial N300 Range Extender",
-  "firmware_version": "WN578HR2-v1.0.8",
+  "device_id": "CF-06",
+  "timestamp": "2026-08-19T17:57:59",
+  "brand_clue": "Comfast",
+  "model_clue": "CF-WR302S",
+  "firmware_version": "CF-WR302S-v2.1",
   "firmware_found": false,
   "findings": [
-    "WA-66-F08"
+    "CF-06-F08"
   ]
 }

@@ -1,9 +1,9 @@
 {
   "assessment_id": "ASM-065",
-  "device_id": "WA-65",
-  "target_ip": "192.168.11.1",
-  "price_lkr": 3350,
-  "timestamp": "2026-08-19T21:12:52",
+  "device_id": "CF-05",
+  "target_ip": "192.168.10.1",
+  "price_lkr": 3450,
+  "timestamp": "2026-08-19T10:39:33",
   "modules_run": [
     "Network Discovery",
     "DNS Behavior Checks",
@@ -17,7 +17,7 @@
   },
   "dns_summary": {
     "setup_domain_ips": [
-      "192.168.11.1"
+      "192.168.10.1"
     ],
     "control_domain_ips": [
       "142.250.185.206"
@@ -25,7 +25,7 @@
     "findings_count": 1
   },
   "web_summary": {
-    "target_url": "http://192.168.11.1/",
+    "target_url": "http://192.168.10.1/",
     "findings_count": 1,
     "evidence_file": "data/evidence/ASM-065_web.json"
   },
@@ -37,7 +37,7 @@
   "evaluation": {
     "final_score": 71,
     "risk_level": "Medium Risk",
-    "psr": 3.18,
+    "psr": 3.09,
     "recommendation": "Acceptable with precautions"
   }
 }

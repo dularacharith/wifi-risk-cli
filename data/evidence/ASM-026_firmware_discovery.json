@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-026",
-  "device_id": "WA-26",
-  "timestamp": "2026-08-14T05:56:22",
-  "brand_clue": "Urant",
-  "model_clue": "Urant N300 Signal Booster",
-  "firmware_version": "1.0.1.0-urant-auto",
+  "device_id": "MT02-26",
+  "timestamp": "2026-08-11T01:09:36",
+  "brand_clue": "Generic / MT02 OEM",
+  "model_clue": "MT02 300M",
+  "firmware_version": "1.0.1.2-urant-p1R-auto",
   "firmware_found": false,
   "findings": [
-    "WA-26-F08"
+    "MT02-26-F08"
   ]
 }

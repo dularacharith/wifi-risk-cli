@@ -1,9 +1,9 @@
 {
   "assessment_id": "ASM-007",
-  "device_id": "WA-07",
+  "device_id": "MT02-07",
   "target_ip": "192.168.11.1",
-  "price_lkr": 4250,
-  "timestamp": "2026-08-11T11:19:02",
+  "price_lkr": 2550,
+  "timestamp": "2026-08-06T22:39:26",
   "modules_run": [
     "Network Discovery",
     "DNS Behavior Checks",
@@ -11,8 +11,8 @@
     "Firmware Discovery"
   ],
   "network_summary": {
-    "open_ports": 1,
-    "findings_count": 0,
+    "open_ports": 3,
+    "findings_count": 3,
     "evidence_file": "data/evidence/ASM-007_network.json"
   },
   "dns_summary": {
@@ -22,11 +22,11 @@
     "control_domain_ips": [
       "142.250.185.206"
     ],
-    "findings_count": 0
+    "findings_count": 1
   },
   "web_summary": {
     "target_url": "http://192.168.11.1/",
-    "findings_count": 1,
+    "findings_count": 5,
     "evidence_file": "data/evidence/ASM-007_web.json"
   },
   "firmware_discovery_summary": {
@@ -35,9 +35,9 @@
     "findings_count": 1
   },
   "evaluation": {
-    "final_score": 84,
-    "risk_level": "Medium Risk",
-    "psr": 2.96,
-    "recommendation": "Acceptable with precautions"
+    "final_score": 11,
+    "risk_level": "Critical Risk",
+    "psr": 0.65,
+    "recommendation": "Avoid for sensitive networks; high risk of local compromise"
   }
 }

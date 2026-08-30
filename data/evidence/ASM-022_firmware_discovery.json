@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-022",
-  "device_id": "WA-22",
-  "timestamp": "2026-08-13T15:05:13",
-  "brand_clue": "LB-Link",
-  "model_clue": "BL-WN300 Wireless Extender",
-  "firmware_version": "BL-WN300-v1.2.0",
+  "device_id": "MT02-22",
+  "timestamp": "2026-08-10T04:48:42",
+  "brand_clue": "Generic / MT02 OEM",
+  "model_clue": "MT02 300M",
+  "firmware_version": "1.0.1.2-urant-p1R-auto",
   "firmware_found": false,
   "findings": [
-    "WA-22-F08"
+    "MT02-22-F08"
   ]
 }

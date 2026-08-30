@@ -1,8 +1,8 @@
 {
   "assessment_id": "ASM-028",
-  "device_id": "WA-28",
+  "device_id": "MT02-28",
   "target_ip": "192.168.11.1",
-  "timestamp": "2026-08-14T12:03:18",
+  "timestamp": "2026-08-11T12:26:32",
   "open_ports": [
     23,
     53,
@@ -26,8 +26,8 @@
     }
   ],
   "findings": [
-    "WA-28-F01",
-    "WA-28-F05",
-    "WA-28-F09"
+    "MT02-28-F01",
+    "MT02-28-F05",
+    "MT02-28-F09"
   ]
 }

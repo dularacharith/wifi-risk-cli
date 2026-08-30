@@ -1,11 +1,15 @@
 {
   "assessment_id": "ASM-030",
-  "device_id": "WA-30",
+  "device_id": "MT02-30",
   "target_url": "http://192.168.11.1/",
-  "timestamp": "2026-08-14T19:42:51",
+  "timestamp": "2026-08-11T22:51:47",
   "http_status": 200,
-  "title": "Aerial N300 Range Extender Web Management",
+  "title": "MT02 300M Management",
   "findings": [
-    "WA-30-F06"
+    "MT02-30-F02",
+    "MT02-30-F03",
+    "MT02-30-F04",
+    "MT02-30-F06",
+    "MT02-30-F07"
   ]
 }

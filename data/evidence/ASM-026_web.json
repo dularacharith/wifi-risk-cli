@@ -1,15 +1,15 @@
 {
   "assessment_id": "ASM-026",
-  "device_id": "WA-26",
+  "device_id": "MT02-26",
   "target_url": "http://192.168.11.1/",
-  "timestamp": "2026-08-14T05:54:22",
+  "timestamp": "2026-08-11T01:07:36",
   "http_status": 200,
-  "title": "Urant N300 Signal Booster Web Management",
+  "title": "MT02 300M Management",
   "findings": [
-    "WA-26-F02",
-    "WA-26-F03",
-    "WA-26-F04",
-    "WA-26-F06",
-    "WA-26-F07"
+    "MT02-26-F02",
+    "MT02-26-F03",
+    "MT02-26-F04",
+    "MT02-26-F06",
+    "MT02-26-F07"
   ]
 }

@@ -1,9 +1,9 @@
 {
   "assessment_id": "ASM-022",
-  "device_id": "WA-22",
+  "device_id": "MT02-22",
   "target_ip": "192.168.11.1",
-  "price_lkr": 2750,
-  "timestamp": "2026-08-13T15:03:13",
+  "price_lkr": 2350,
+  "timestamp": "2026-08-10T04:46:42",
   "modules_run": [
     "Network Discovery",
     "DNS Behavior Checks",
@@ -11,7 +11,7 @@
     "Firmware Discovery"
   ],
   "network_summary": {
-    "open_ports": 2,
+    "open_ports": 3,
     "findings_count": 3,
     "evidence_file": "data/evidence/ASM-022_network.json"
   },
@@ -26,7 +26,7 @@
   },
   "web_summary": {
     "target_url": "http://192.168.11.1/",
-    "findings_count": 3,
+    "findings_count": 5,
     "evidence_file": "data/evidence/ASM-022_web.json"
   },
   "firmware_discovery_summary": {
@@ -35,9 +35,9 @@
     "findings_count": 1
   },
   "evaluation": {
-    "final_score": 35,
+    "final_score": 11,
     "risk_level": "Critical Risk",
-    "psr": 1.91,
+    "psr": 0.7,
     "recommendation": "Avoid for sensitive networks; high risk of local compromise"
   }
 }

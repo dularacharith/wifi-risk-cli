@@ -1,11 +1,15 @@
 {
   "assessment_id": "ASM-007",
-  "device_id": "WA-07",
+  "device_id": "MT02-07",
   "target_url": "http://192.168.11.1/",
-  "timestamp": "2026-08-11T11:19:02",
+  "timestamp": "2026-08-06T22:39:26",
   "http_status": 200,
-  "title": "A9 Wireless N300 Universal Extender Web Management",
+  "title": "MT02 300M Management",
   "findings": [
-    "WA-07-F06"
+    "MT02-07-F02",
+    "MT02-07-F03",
+    "MT02-07-F04",
+    "MT02-07-F06",
+    "MT02-07-F07"
   ]
 }

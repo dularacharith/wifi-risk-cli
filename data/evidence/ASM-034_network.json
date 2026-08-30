@@ -1,10 +1,11 @@
 {
   "assessment_id": "ASM-034",
-  "device_id": "WA-34",
+  "device_id": "MT02-34",
   "target_ip": "192.168.11.1",
-  "timestamp": "2026-08-15T10:07:34",
+  "timestamp": "2026-08-12T18:30:21",
   "open_ports": [
     23,
+    53,
     80
   ],
   "services": [
@@ -14,14 +15,19 @@
       "service": "telnet"
     },
     {
+      "port": 53,
+      "state": "open",
+      "service": "dns"
+    },
+    {
       "port": 80,
       "state": "open",
       "service": "http"
     }
   ],
   "findings": [
-    "WA-34-F01",
-    "WA-34-F05",
-    "WA-34-F09"
+    "MT02-34-F01",
+    "MT02-34-F05",
+    "MT02-34-F09"
   ]
 }

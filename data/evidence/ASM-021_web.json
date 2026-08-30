@@ -1,11 +1,15 @@
 {
   "assessment_id": "ASM-021",
-  "device_id": "WA-21",
+  "device_id": "MT02-21",
   "target_url": "http://192.168.11.1/",
-  "timestamp": "2026-08-13T11:43:45",
+  "timestamp": "2026-08-09T22:09:35",
   "http_status": 200,
-  "title": "EX200 300Mbps Wireless Extender Web Management",
+  "title": "MT02 300M Management",
   "findings": [
-    "WA-21-F06"
+    "MT02-21-F02",
+    "MT02-21-F03",
+    "MT02-21-F04",
+    "MT02-21-F06",
+    "MT02-21-F07"
   ]
 }

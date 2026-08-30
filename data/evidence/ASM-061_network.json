@@ -1,24 +1,12 @@
 {
   "assessment_id": "ASM-061",
-  "device_id": "WA-61",
-  "target_ip": "192.168.11.1",
-  "timestamp": "2026-08-19T07:31:17",
+  "device_id": "CF-01",
+  "target_ip": "192.168.10.1",
+  "timestamp": "2026-08-18T14:15:13",
   "open_ports": [
-    23,
-    53,
     80
   ],
   "services": [
-    {
-      "port": 23,
-      "state": "open",
-      "service": "telnet"
-    },
-    {
-      "port": 53,
-      "state": "open",
-      "service": "dns"
-    },
     {
       "port": 80,
       "state": "open",
@@ -26,8 +14,7 @@
     }
   ],
   "findings": [
-    "WA-61-F01",
-    "WA-61-F05",
-    "WA-61-F09"
+    "CF-01-F05",
+    "CF-01-F09"
   ]
 }

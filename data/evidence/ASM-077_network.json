@@ -1,8 +1,8 @@
 {
   "assessment_id": "ASM-077",
-  "device_id": "WA-77",
-  "target_ip": "192.168.11.1",
-  "timestamp": "2026-08-21T15:31:28",
+  "device_id": "TE-01",
+  "target_ip": "192.168.0.254",
+  "timestamp": "2026-08-22T01:34:09",
   "open_ports": [
     80
   ],
@@ -13,8 +13,5 @@
       "service": "http"
     }
   ],
-  "findings": [
-    "WA-77-F05",
-    "WA-77-F09"
-  ]
+  "findings": []
 }

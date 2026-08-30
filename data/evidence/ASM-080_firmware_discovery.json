@@ -1,0 +1,12 @@
+{
+  "assessment_id": "ASM-080",
+  "device_id": "TE-04",
+  "timestamp": "2026-08-22T18:37:52",
+  "brand_clue": "Tenda",
+  "model_clue": "A9",
+  "firmware_version": "V12.01.01.30_multi",
+  "firmware_found": false,
+  "findings": [
+    "TE-04-F08"
+  ]
+}

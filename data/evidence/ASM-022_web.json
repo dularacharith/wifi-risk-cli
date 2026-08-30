@@ -1,13 +1,15 @@
 {
   "assessment_id": "ASM-022",
-  "device_id": "WA-22",
+  "device_id": "MT02-22",
   "target_url": "http://192.168.11.1/",
-  "timestamp": "2026-08-13T15:03:13",
+  "timestamp": "2026-08-10T04:46:42",
   "http_status": 200,
-  "title": "BL-WN300 Wireless Extender Web Management",
+  "title": "MT02 300M Management",
   "findings": [
-    "WA-22-F03",
-    "WA-22-F06",
-    "WA-22-F07"
+    "MT02-22-F02",
+    "MT02-22-F03",
+    "MT02-22-F04",
+    "MT02-22-F06",
+    "MT02-22-F07"
   ]
 }

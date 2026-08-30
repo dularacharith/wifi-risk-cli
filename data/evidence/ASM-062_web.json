@@ -1,15 +1,11 @@
 {
   "assessment_id": "ASM-062",
-  "device_id": "WA-62",
-  "target_url": "http://192.168.11.1/",
-  "timestamp": "2026-08-19T10:38:08",
+  "device_id": "CF-02",
+  "target_url": "http://192.168.10.1/",
+  "timestamp": "2026-08-18T21:07:26",
   "http_status": 200,
-  "title": "Urant N300 Signal Booster Web Management",
+  "title": "CF-WR302S Management",
   "findings": [
-    "WA-62-F02",
-    "WA-62-F03",
-    "WA-62-F04",
-    "WA-62-F06",
-    "WA-62-F07"
+    "CF-02-F06"
   ]
 }

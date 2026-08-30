@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-020",
-  "device_id": "WA-20",
-  "timestamp": "2026-08-13T08:08:21",
-  "brand_clue": "Mercusys",
-  "model_clue": "MW300RE 3-Antenna Range Extender",
-  "firmware_version": "v1.0.4-official",
-  "firmware_found": true,
+  "device_id": "MT02-20",
+  "timestamp": "2026-08-09T16:51:17",
+  "brand_clue": "Generic / MT02 OEM",
+  "model_clue": "MT02 300M",
+  "firmware_version": "1.0.1.2-urant-p1R-auto",
+  "firmware_found": false,
   "findings": [
-    "WA-20-F08"
+    "MT02-20-F08"
   ]
 }

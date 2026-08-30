@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-055",
-  "device_id": "WA-55",
-  "timestamp": "2026-08-18T10:24:05",
-  "brand_clue": "Tenda",
-  "model_clue": "A9 Wireless N300 Universal Extender",
-  "firmware_version": "V12.01.01.30_multi",
+  "device_id": "PL-05",
+  "timestamp": "2026-08-17T08:59:10",
+  "brand_clue": "Pix-Link",
+  "model_clue": "LV-WR02B",
+  "firmware_version": "v1.1.0-pixlink",
   "firmware_found": false,
   "findings": [
-    "WA-55-F08"
+    "PL-05-F08"
   ]
 }

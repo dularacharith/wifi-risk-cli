@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-044",
-  "device_id": "WA-44",
-  "timestamp": "2026-08-16T19:54:07",
-  "brand_clue": "Mercusys",
-  "model_clue": "MW300RE 3-Antenna Range Extender",
-  "firmware_version": "v1.0.4-official",
-  "firmware_found": true,
+  "device_id": "UR-04",
+  "timestamp": "2026-08-14T23:13:15",
+  "brand_clue": "Urant",
+  "model_clue": "U-N300",
+  "firmware_version": "1.0.1.0-urant-auto",
+  "firmware_found": false,
   "findings": [
-    "WA-44-F08"
+    "UR-04-F08"
   ]
 }

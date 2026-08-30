@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-062",
-  "device_id": "WA-62",
-  "timestamp": "2026-08-19T10:44:08",
-  "brand_clue": "Urant",
-  "model_clue": "Urant N300 Signal Booster",
-  "firmware_version": "1.0.1.0-urant-auto",
+  "device_id": "CF-02",
+  "timestamp": "2026-08-18T21:08:26",
+  "brand_clue": "Comfast",
+  "model_clue": "CF-WR302S",
+  "firmware_version": "CF-WR302S-v2.1",
   "firmware_found": false,
   "findings": [
-    "WA-62-F08"
+    "CF-02-F08"
   ]
 }

@@ -1,11 +1,15 @@
 {
   "assessment_id": "ASM-017",
-  "device_id": "WA-17",
+  "device_id": "MT02-17",
   "target_url": "http://192.168.11.1/",
-  "timestamp": "2026-08-12T22:04:53",
+  "timestamp": "2026-08-09T02:15:12",
   "http_status": 200,
-  "title": "CF-WR302S High Power Extender Web Management",
+  "title": "MT02 300M Management",
   "findings": [
-    "WA-17-F06"
+    "MT02-17-F02",
+    "MT02-17-F03",
+    "MT02-17-F04",
+    "MT02-17-F06",
+    "MT02-17-F07"
   ]
 }

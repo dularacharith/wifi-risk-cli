@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-012",
-  "device_id": "WA-12",
-  "timestamp": "2026-08-12T04:12:19",
-  "brand_clue": "Netcore",
-  "model_clue": "300M Signal Amplifier",
-  "firmware_version": "v1.0.1.2-netcore",
+  "device_id": "MT02-12",
+  "timestamp": "2026-08-08T00:10:08",
+  "brand_clue": "Generic / MT02 OEM",
+  "model_clue": "MT02 300M",
+  "firmware_version": "1.0.1.2-urant-p1R-auto",
   "firmware_found": false,
   "findings": [
-    "WA-12-F08"
+    "MT02-12-F08"
   ]
 }

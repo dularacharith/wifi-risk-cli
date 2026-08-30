@@ -1,11 +1,11 @@
 {
   "assessment_id": "ASM-066",
-  "device_id": "WA-66",
-  "target_url": "http://192.168.11.1/",
-  "timestamp": "2026-08-20T00:43:13",
+  "device_id": "CF-06",
+  "target_url": "http://192.168.10.1/",
+  "timestamp": "2026-08-19T17:56:59",
   "http_status": 200,
-  "title": "Aerial N300 Range Extender Web Management",
+  "title": "CF-WR302S Management",
   "findings": [
-    "WA-66-F06"
+    "CF-06-F06"
   ]
 }

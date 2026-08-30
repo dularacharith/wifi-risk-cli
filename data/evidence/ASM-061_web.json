@@ -1,15 +1,11 @@
 {
   "assessment_id": "ASM-061",
-  "device_id": "WA-61",
-  "target_url": "http://192.168.11.1/",
-  "timestamp": "2026-08-19T07:31:17",
+  "device_id": "CF-01",
+  "target_url": "http://192.168.10.1/",
+  "timestamp": "2026-08-18T14:15:13",
   "http_status": 200,
-  "title": "300M Wi-Fi Repeater MT02 Web Management",
+  "title": "CF-WR302S Management",
   "findings": [
-    "WA-61-F02",
-    "WA-61-F03",
-    "WA-61-F04",
-    "WA-61-F06",
-    "WA-61-F07"
+    "CF-01-F06"
   ]
 }

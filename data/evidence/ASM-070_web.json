@@ -1,13 +1,11 @@
 {
   "assessment_id": "ASM-070",
-  "device_id": "WA-70",
-  "target_url": "http://192.168.11.1/",
-  "timestamp": "2026-08-20T15:17:31",
+  "device_id": "WL-02",
+  "target_url": "http://192.168.10.1/",
+  "timestamp": "2026-08-20T13:42:09",
   "http_status": 200,
-  "title": "BL-WN300 Wireless Extender Web Management",
+  "title": "WN578HR2 Management",
   "findings": [
-    "WA-70-F03",
-    "WA-70-F06",
-    "WA-70-F07"
+    "WL-02-F06"
   ]
 }

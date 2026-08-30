@@ -1,15 +1,13 @@
 {
   "assessment_id": "ASM-052",
-  "device_id": "WA-52",
-  "target_url": "http://192.168.11.1/",
-  "timestamp": "2026-08-17T23:41:54",
+  "device_id": "PL-02",
+  "target_url": "http://192.168.1.254/",
+  "timestamp": "2026-08-16T16:47:13",
   "http_status": 200,
-  "title": "Mini Router MT02 Multi-Mode Web Management",
+  "title": "LV-WR02B Management",
   "findings": [
-    "WA-52-F02",
-    "WA-52-F03",
-    "WA-52-F04",
-    "WA-52-F06",
-    "WA-52-F07"
+    "PL-02-F03",
+    "PL-02-F06",
+    "PL-02-F07"
   ]
 }

@@ -1,0 +1,12 @@
+{
+  "assessment_id": "ASM-076",
+  "device_id": "WL-08",
+  "timestamp": "2026-08-21T21:30:41",
+  "brand_clue": "Wavlink",
+  "model_clue": "WN578HR2",
+  "firmware_version": "WN578HR2-v1.0.8",
+  "firmware_found": false,
+  "findings": [
+    "WL-08-F08"
+  ]
+}

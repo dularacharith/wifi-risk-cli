@@ -1,13 +1,15 @@
 {
   "assessment_id": "ASM-046",
-  "device_id": "WA-46",
-  "target_url": "http://192.168.11.1/",
-  "timestamp": "2026-08-17T04:09:05",
+  "device_id": "UR-06",
+  "target_url": "http://192.168.10.1/",
+  "timestamp": "2026-08-15T08:33:02",
   "http_status": 200,
-  "title": "BL-WN300 Wireless Extender Web Management",
+  "title": "U-N300 Management",
   "findings": [
-    "WA-46-F03",
-    "WA-46-F06",
-    "WA-46-F07"
+    "UR-06-F02",
+    "UR-06-F03",
+    "UR-06-F04",
+    "UR-06-F06",
+    "UR-06-F07"
   ]
 }

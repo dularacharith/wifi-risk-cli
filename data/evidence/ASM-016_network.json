@@ -1,8 +1,8 @@
 {
   "assessment_id": "ASM-016",
-  "device_id": "WA-16",
+  "device_id": "MT02-16",
   "target_ip": "192.168.11.1",
-  "timestamp": "2026-08-12T18:32:18",
+  "timestamp": "2026-08-08T21:35:28",
   "open_ports": [
     23,
     53,
@@ -26,8 +26,8 @@
     }
   ],
   "findings": [
-    "WA-16-F01",
-    "WA-16-F05",
-    "WA-16-F09"
+    "MT02-16-F01",
+    "MT02-16-F05",
+    "MT02-16-F09"
   ]
 }

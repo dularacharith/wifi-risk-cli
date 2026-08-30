@@ -1,11 +1,11 @@
 {
   "assessment_id": "ASM-069",
-  "device_id": "WA-69",
-  "target_url": "http://192.168.11.1/",
-  "timestamp": "2026-08-20T11:54:12",
+  "device_id": "WL-01",
+  "target_url": "http://192.168.10.1/",
+  "timestamp": "2026-08-20T09:46:51",
   "http_status": 200,
-  "title": "EX200 300Mbps Wireless Extender Web Management",
+  "title": "WN578HR2 Management",
   "findings": [
-    "WA-69-F06"
+    "WL-01-F06"
   ]
 }

@@ -1,8 +1,8 @@
 {
   "assessment_id": "ASM-090",
-  "device_id": "WA-90",
-  "target_ip": "192.168.11.1",
-  "timestamp": "2026-08-23T13:27:17",
+  "device_id": "MC-06",
+  "target_ip": "192.168.1.253",
+  "timestamp": "2026-08-24T21:13:39",
   "open_ports": [
     80
   ],
@@ -13,8 +13,5 @@
       "service": "http"
     }
   ],
-  "findings": [
-    "WA-90-F05",
-    "WA-90-F09"
-  ]
+  "findings": []
 }

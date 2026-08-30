@@ -1,8 +1,8 @@
 {
   "assessment_id": "ASM-014",
-  "device_id": "WA-14",
+  "device_id": "MT02-14",
   "target_ip": "192.168.11.1",
-  "timestamp": "2026-08-12T11:02:58",
+  "timestamp": "2026-08-08T09:56:56",
   "open_ports": [
     23,
     53,
@@ -26,8 +26,8 @@
     }
   ],
   "findings": [
-    "WA-14-F01",
-    "WA-14-F05",
-    "WA-14-F09"
+    "MT02-14-F01",
+    "MT02-14-F05",
+    "MT02-14-F09"
   ]
 }

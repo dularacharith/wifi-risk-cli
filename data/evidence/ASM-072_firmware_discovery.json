@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-072",
-  "device_id": "WA-72",
-  "timestamp": "2026-08-20T22:19:55",
-  "brand_clue": "Netcore",
-  "model_clue": "300M Signal Amplifier",
-  "firmware_version": "v1.0.1.2-netcore",
+  "device_id": "WL-04",
+  "timestamp": "2026-08-20T23:22:33",
+  "brand_clue": "Wavlink",
+  "model_clue": "WN578HR2",
+  "firmware_version": "WN578HR2-v1.0.8",
   "firmware_found": false,
   "findings": [
-    "WA-72-F08"
+    "WL-04-F08"
   ]
 }

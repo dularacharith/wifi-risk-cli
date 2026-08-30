@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-011",
-  "device_id": "WA-11",
-  "timestamp": "2026-08-12T00:37:20",
-  "brand_clue": "EDUP",
-  "model_clue": "EP-2911 Wireless AP Extender",
-  "firmware_version": "EP-2911-v1.0.4",
+  "device_id": "MT02-11",
+  "timestamp": "2026-08-07T19:21:26",
+  "brand_clue": "Generic / MT02 OEM",
+  "model_clue": "MT02 300M",
+  "firmware_version": "1.0.1.2-urant-p1R-auto",
   "firmware_found": false,
   "findings": [
-    "WA-11-F08"
+    "MT02-11-F08"
   ]
 }

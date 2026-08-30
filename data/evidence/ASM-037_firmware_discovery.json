@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-037",
-  "device_id": "WA-37",
-  "timestamp": "2026-08-15T19:24:35",
+  "device_id": "MT02-37",
+  "timestamp": "2026-08-13T10:05:58",
   "brand_clue": "Generic / MT02 OEM",
-  "model_clue": "300M Wi-Fi Repeater MT02",
+  "model_clue": "MT02 300M",
   "firmware_version": "1.0.1.2-urant-p1R-auto",
   "firmware_found": false,
   "findings": [
-    "WA-37-F08"
+    "MT02-37-F08"
   ]
 }

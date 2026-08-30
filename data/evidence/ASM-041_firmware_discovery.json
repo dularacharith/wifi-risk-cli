@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-041",
-  "device_id": "WA-41",
-  "timestamp": "2026-08-16T10:17:23",
-  "brand_clue": "Comfast",
-  "model_clue": "CF-WR302S High Power Extender",
-  "firmware_version": "CF-WR302S-v2.1",
+  "device_id": "UR-01",
+  "timestamp": "2026-08-14T05:52:16",
+  "brand_clue": "Urant",
+  "model_clue": "U-N300",
+  "firmware_version": "1.0.1.0-urant-auto",
   "firmware_found": false,
   "findings": [
-    "WA-41-F08"
+    "UR-01-F08"
   ]
 }

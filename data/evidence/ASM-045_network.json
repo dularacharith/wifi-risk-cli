@@ -1,12 +1,24 @@
 {
   "assessment_id": "ASM-045",
-  "device_id": "WA-45",
-  "target_ip": "192.168.11.1",
-  "timestamp": "2026-08-17T00:45:07",
+  "device_id": "UR-05",
+  "target_ip": "192.168.10.1",
+  "timestamp": "2026-08-15T04:18:36",
   "open_ports": [
+    23,
+    53,
     80
   ],
   "services": [
+    {
+      "port": 23,
+      "state": "open",
+      "service": "telnet"
+    },
+    {
+      "port": 53,
+      "state": "open",
+      "service": "dns"
+    },
     {
       "port": 80,
       "state": "open",
@@ -14,7 +26,8 @@
     }
   ],
   "findings": [
-    "WA-45-F05",
-    "WA-45-F09"
+    "UR-05-F01",
+    "UR-05-F05",
+    "UR-05-F09"
   ]
 }

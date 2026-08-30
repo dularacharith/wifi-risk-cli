@@ -1,13 +1,13 @@
 {
   "assessment_id": "ASM-058",
-  "device_id": "WA-58",
-  "target_url": "http://192.168.11.1/",
-  "timestamp": "2026-08-18T21:50:27",
+  "device_id": "PL-08",
+  "target_url": "http://192.168.1.254/",
+  "timestamp": "2026-08-18T00:01:21",
   "http_status": 200,
-  "title": "BL-WN300 Wireless Extender Web Management",
+  "title": "LV-WR02B Management",
   "findings": [
-    "WA-58-F03",
-    "WA-58-F06",
-    "WA-58-F07"
+    "PL-08-F03",
+    "PL-08-F06",
+    "PL-08-F07"
   ]
 }

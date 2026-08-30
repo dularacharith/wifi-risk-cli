@@ -1,8 +1,8 @@
 {
   "assessment_id": "ASM-099",
-  "device_id": "WA-99",
-  "target_ip": "192.168.11.1",
-  "timestamp": "2026-08-24T20:33:05",
+  "device_id": "ED-03",
+  "target_ip": "192.168.10.254",
+  "timestamp": "2026-08-26T21:06:21",
   "open_ports": [
     23,
     80
@@ -20,8 +20,8 @@
     }
   ],
   "findings": [
-    "WA-99-F01",
-    "WA-99-F05",
-    "WA-99-F09"
+    "ED-03-F01",
+    "ED-03-F05",
+    "ED-03-F09"
   ]
 }

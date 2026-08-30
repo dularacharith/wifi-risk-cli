@@ -1,11 +1,10 @@
 {
   "assessment_id": "ASM-060",
-  "device_id": "WA-60",
-  "target_ip": "192.168.11.1",
-  "timestamp": "2026-08-19T05:07:45",
+  "device_id": "PL-10",
+  "target_ip": "192.168.1.254",
+  "timestamp": "2026-08-18T10:55:18",
   "open_ports": [
     23,
-    53,
     80
   ],
   "services": [
@@ -15,19 +14,14 @@
       "service": "telnet"
     },
     {
-      "port": 53,
-      "state": "open",
-      "service": "dns"
-    },
-    {
       "port": 80,
       "state": "open",
       "service": "http"
     }
   ],
   "findings": [
-    "WA-60-F01",
-    "WA-60-F05",
-    "WA-60-F09"
+    "PL-10-F01",
+    "PL-10-F05",
+    "PL-10-F09"
   ]
 }

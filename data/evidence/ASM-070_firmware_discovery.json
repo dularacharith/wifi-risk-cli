@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-070",
-  "device_id": "WA-70",
-  "timestamp": "2026-08-20T15:19:31",
-  "brand_clue": "LB-Link",
-  "model_clue": "BL-WN300 Wireless Extender",
-  "firmware_version": "BL-WN300-v1.2.0",
+  "device_id": "WL-02",
+  "timestamp": "2026-08-20T13:47:09",
+  "brand_clue": "Wavlink",
+  "model_clue": "WN578HR2",
+  "firmware_version": "WN578HR2-v1.0.8",
   "firmware_found": false,
   "findings": [
-    "WA-70-F08"
+    "WL-02-F08"
   ]
 }

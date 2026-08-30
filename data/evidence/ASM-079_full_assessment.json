@@ -1,0 +1,43 @@
+{
+  "assessment_id": "ASM-079",
+  "device_id": "TE-03",
+  "target_ip": "192.168.0.254",
+  "price_lkr": 4550,
+  "timestamp": "2026-08-22T13:41:14",
+  "modules_run": [
+    "Network Discovery",
+    "DNS Behavior Checks",
+    "Web Interface Checks",
+    "Firmware Discovery"
+  ],
+  "network_summary": {
+    "open_ports": 1,
+    "findings_count": 0,
+    "evidence_file": "data/evidence/ASM-079_network.json"
+  },
+  "dns_summary": {
+    "setup_domain_ips": [
+      "192.168.0.254"
+    ],
+    "control_domain_ips": [
+      "142.250.185.206"
+    ],
+    "findings_count": 0
+  },
+  "web_summary": {
+    "target_url": "http://192.168.0.254/",
+    "findings_count": 1,
+    "evidence_file": "data/evidence/ASM-079_web.json"
+  },
+  "firmware_discovery_summary": {
+    "performed": true,
+    "found": false,
+    "findings_count": 1
+  },
+  "evaluation": {
+    "final_score": 84,
+    "risk_level": "Medium Risk",
+    "psr": 2.77,
+    "recommendation": "Acceptable with precautions"
+  }
+}

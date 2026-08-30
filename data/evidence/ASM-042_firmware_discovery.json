@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-042",
-  "device_id": "WA-42",
-  "timestamp": "2026-08-16T14:10:14",
-  "brand_clue": "Wavlink",
-  "model_clue": "Aerial N300 Range Extender",
-  "firmware_version": "WN578HR2-v1.0.8",
+  "device_id": "UR-02",
+  "timestamp": "2026-08-14T13:10:44",
+  "brand_clue": "Urant",
+  "model_clue": "U-N300",
+  "firmware_version": "1.0.1.0-urant-auto",
   "firmware_found": false,
   "findings": [
-    "WA-42-F08"
+    "UR-02-F08"
   ]
 }

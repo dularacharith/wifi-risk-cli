@@ -1,8 +1,8 @@
 {
   "assessment_id": "ASM-051",
-  "device_id": "WA-51",
-  "target_ip": "192.168.11.1",
-  "timestamp": "2026-08-17T21:35:37",
+  "device_id": "PL-01",
+  "target_ip": "192.168.1.254",
+  "timestamp": "2026-08-16T11:41:29",
   "open_ports": [
     23,
     80
@@ -20,8 +20,8 @@
     }
   ],
   "findings": [
-    "WA-51-F01",
-    "WA-51-F05",
-    "WA-51-F09"
+    "PL-01-F01",
+    "PL-01-F05",
+    "PL-01-F09"
   ]
 }

@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-064",
-  "device_id": "WA-64",
-  "timestamp": "2026-08-19T18:50:11",
-  "brand_clue": "Wireless-N",
-  "model_clue": "Mini Router MT02 Multi-Mode",
-  "firmware_version": "v2.3.4-build2023",
+  "device_id": "CF-04",
+  "timestamp": "2026-08-19T06:11:16",
+  "brand_clue": "Comfast",
+  "model_clue": "CF-WR302S",
+  "firmware_version": "CF-WR302S-v2.1",
   "firmware_found": false,
   "findings": [
-    "WA-64-F08"
+    "CF-04-F08"
   ]
 }

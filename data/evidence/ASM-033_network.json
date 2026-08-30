@@ -1,12 +1,24 @@
 {
   "assessment_id": "ASM-033",
-  "device_id": "WA-33",
+  "device_id": "MT02-33",
   "target_ip": "192.168.11.1",
-  "timestamp": "2026-08-15T05:32:47",
+  "timestamp": "2026-08-12T12:51:41",
   "open_ports": [
+    23,
+    53,
     80
   ],
   "services": [
+    {
+      "port": 23,
+      "state": "open",
+      "service": "telnet"
+    },
+    {
+      "port": 53,
+      "state": "open",
+      "service": "dns"
+    },
     {
       "port": 80,
       "state": "open",
@@ -14,7 +26,8 @@
     }
   ],
   "findings": [
-    "WA-33-F05",
-    "WA-33-F09"
+    "MT02-33-F01",
+    "MT02-33-F05",
+    "MT02-33-F09"
   ]
 }

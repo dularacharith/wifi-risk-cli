@@ -1,9 +1,9 @@
 {
   "assessment_id": "ASM-028",
-  "device_id": "WA-28",
+  "device_id": "MT02-28",
   "target_ip": "192.168.11.1",
-  "price_lkr": 2300,
-  "timestamp": "2026-08-14T12:03:18",
+  "price_lkr": 2400,
+  "timestamp": "2026-08-11T12:26:32",
   "modules_run": [
     "Network Discovery",
     "DNS Behavior Checks",
@@ -37,7 +37,7 @@
   "evaluation": {
     "final_score": 11,
     "risk_level": "Critical Risk",
-    "psr": 0.72,
+    "psr": 0.69,
     "recommendation": "Avoid for sensitive networks; high risk of local compromise"
   }
 }

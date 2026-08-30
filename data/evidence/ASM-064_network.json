@@ -1,24 +1,12 @@
 {
   "assessment_id": "ASM-064",
-  "device_id": "WA-64",
-  "target_ip": "192.168.11.1",
-  "timestamp": "2026-08-19T18:48:11",
+  "device_id": "CF-04",
+  "target_ip": "192.168.10.1",
+  "timestamp": "2026-08-19T06:10:16",
   "open_ports": [
-    23,
-    53,
     80
   ],
   "services": [
-    {
-      "port": 23,
-      "state": "open",
-      "service": "telnet"
-    },
-    {
-      "port": 53,
-      "state": "open",
-      "service": "dns"
-    },
     {
       "port": 80,
       "state": "open",
@@ -26,8 +14,7 @@
     }
   ],
   "findings": [
-    "WA-64-F01",
-    "WA-64-F05",
-    "WA-64-F09"
+    "CF-04-F05",
+    "CF-04-F09"
   ]
 }

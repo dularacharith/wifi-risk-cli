@@ -1,0 +1,27 @@
+{
+  "assessment_id": "ASM-101",
+  "device_id": "ED-05",
+  "target_ip": "192.168.10.254",
+  "timestamp": "2026-08-27T06:48:57",
+  "open_ports": [
+    23,
+    80
+  ],
+  "services": [
+    {
+      "port": 23,
+      "state": "open",
+      "service": "telnet"
+    },
+    {
+      "port": 80,
+      "state": "open",
+      "service": "http"
+    }
+  ],
+  "findings": [
+    "ED-05-F01",
+    "ED-05-F05",
+    "ED-05-F09"
+  ]
+}

@@ -1,8 +1,8 @@
 {
   "assessment_id": "ASM-068",
-  "device_id": "WA-68",
-  "target_ip": "192.168.11.1",
-  "timestamp": "2026-08-20T07:49:29",
+  "device_id": "CF-08",
+  "target_ip": "192.168.10.1",
+  "timestamp": "2026-08-20T02:17:53",
   "open_ports": [
     80
   ],
@@ -13,5 +13,8 @@
       "service": "http"
     }
   ],
-  "findings": []
+  "findings": [
+    "CF-08-F05",
+    "CF-08-F09"
+  ]
 }

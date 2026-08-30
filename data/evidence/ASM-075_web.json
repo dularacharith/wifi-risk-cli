@@ -1,13 +1,11 @@
 {
   "assessment_id": "ASM-075",
-  "device_id": "WA-75",
-  "target_url": "http://192.168.11.1/",
-  "timestamp": "2026-08-21T08:25:24",
+  "device_id": "WL-07",
+  "target_url": "http://192.168.10.1/",
+  "timestamp": "2026-08-21T15:12:57",
   "http_status": 200,
-  "title": "LV-WR02B 300Mbps Extender Web Management",
+  "title": "WN578HR2 Management",
   "findings": [
-    "WA-75-F03",
-    "WA-75-F06",
-    "WA-75-F07"
+    "WL-07-F06"
   ]
 }

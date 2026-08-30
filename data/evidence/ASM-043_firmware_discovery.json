@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-043",
-  "device_id": "WA-43",
-  "timestamp": "2026-08-16T16:44:41",
-  "brand_clue": "Tenda",
-  "model_clue": "A9 Wireless N300 Universal Extender",
-  "firmware_version": "V12.01.01.30_multi",
+  "device_id": "UR-03",
+  "timestamp": "2026-08-14T17:57:55",
+  "brand_clue": "Urant",
+  "model_clue": "U-N300",
+  "firmware_version": "1.0.1.0-urant-auto",
   "firmware_found": false,
   "findings": [
-    "WA-43-F08"
+    "UR-03-F08"
   ]
 }

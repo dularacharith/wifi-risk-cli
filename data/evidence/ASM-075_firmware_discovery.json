@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-075",
-  "device_id": "WA-75",
-  "timestamp": "2026-08-21T08:30:24",
-  "brand_clue": "Pix-Link",
-  "model_clue": "LV-WR02B 300Mbps Extender",
-  "firmware_version": "v1.1.0-pixlink",
+  "device_id": "WL-07",
+  "timestamp": "2026-08-21T15:13:57",
+  "brand_clue": "Wavlink",
+  "model_clue": "WN578HR2",
+  "firmware_version": "WN578HR2-v1.0.8",
   "firmware_found": false,
   "findings": [
-    "WA-75-F08"
+    "WL-07-F08"
   ]
 }

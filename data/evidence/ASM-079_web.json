@@ -1,0 +1,11 @@
+{
+  "assessment_id": "ASM-079",
+  "device_id": "TE-03",
+  "target_url": "http://192.168.0.254/",
+  "timestamp": "2026-08-22T13:41:14",
+  "http_status": 200,
+  "title": "A9 Management",
+  "findings": [
+    "TE-03-F06"
+  ]
+}

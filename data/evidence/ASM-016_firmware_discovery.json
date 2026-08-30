@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-016",
-  "device_id": "WA-16",
-  "timestamp": "2026-08-12T18:38:18",
-  "brand_clue": "Wireless-N",
-  "model_clue": "Mini Router MT02 Multi-Mode",
-  "firmware_version": "v2.3.4-build2023",
+  "device_id": "MT02-16",
+  "timestamp": "2026-08-08T21:40:28",
+  "brand_clue": "Generic / MT02 OEM",
+  "model_clue": "MT02 300M",
+  "firmware_version": "1.0.1.2-urant-p1R-auto",
   "firmware_found": false,
   "findings": [
-    "WA-16-F08"
+    "MT02-16-F08"
   ]
 }

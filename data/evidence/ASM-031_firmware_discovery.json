@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-031",
-  "device_id": "WA-31",
-  "timestamp": "2026-08-14T22:56:48",
-  "brand_clue": "Tenda",
-  "model_clue": "A9 Wireless N300 Universal Extender",
-  "firmware_version": "V12.01.01.30_multi",
+  "device_id": "MT02-31",
+  "timestamp": "2026-08-12T02:42:39",
+  "brand_clue": "Generic / MT02 OEM",
+  "model_clue": "MT02 300M",
+  "firmware_version": "1.0.1.2-urant-p1R-auto",
   "firmware_found": false,
   "findings": [
-    "WA-31-F08"
+    "MT02-31-F08"
   ]
 }

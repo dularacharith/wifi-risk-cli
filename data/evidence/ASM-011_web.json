@@ -1,13 +1,15 @@
 {
   "assessment_id": "ASM-011",
-  "device_id": "WA-11",
+  "device_id": "MT02-11",
   "target_url": "http://192.168.11.1/",
-  "timestamp": "2026-08-12T00:34:20",
+  "timestamp": "2026-08-07T19:19:26",
   "http_status": 200,
-  "title": "EP-2911 Wireless AP Extender Web Management",
+  "title": "MT02 300M Management",
   "findings": [
-    "WA-11-F03",
-    "WA-11-F06",
-    "WA-11-F07"
+    "MT02-11-F02",
+    "MT02-11-F03",
+    "MT02-11-F04",
+    "MT02-11-F06",
+    "MT02-11-F07"
   ]
 }

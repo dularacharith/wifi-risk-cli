@@ -1,13 +1,15 @@
 {
   "assessment_id": "ASM-047",
-  "device_id": "WA-47",
-  "target_url": "http://192.168.11.1/",
-  "timestamp": "2026-08-17T07:08:06",
+  "device_id": "UR-07",
+  "target_url": "http://192.168.10.1/",
+  "timestamp": "2026-08-15T13:24:27",
   "http_status": 200,
-  "title": "EP-2911 Wireless AP Extender Web Management",
+  "title": "U-N300 Management",
   "findings": [
-    "WA-47-F03",
-    "WA-47-F06",
-    "WA-47-F07"
+    "UR-07-F02",
+    "UR-07-F03",
+    "UR-07-F04",
+    "UR-07-F06",
+    "UR-07-F07"
   ]
 }

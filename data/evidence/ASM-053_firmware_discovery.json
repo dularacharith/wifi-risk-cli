@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-053",
-  "device_id": "WA-53",
-  "timestamp": "2026-08-18T03:19:44",
-  "brand_clue": "Comfast",
-  "model_clue": "CF-WR302S High Power Extender",
-  "firmware_version": "CF-WR302S-v2.1",
+  "device_id": "PL-03",
+  "timestamp": "2026-08-16T21:50:14",
+  "brand_clue": "Pix-Link",
+  "model_clue": "LV-WR02B",
+  "firmware_version": "v1.1.0-pixlink",
   "firmware_found": false,
   "findings": [
-    "WA-53-F08"
+    "PL-03-F08"
   ]
 }

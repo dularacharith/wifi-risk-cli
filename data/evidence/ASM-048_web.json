@@ -1,15 +1,15 @@
 {
   "assessment_id": "ASM-048",
-  "device_id": "WA-48",
-  "target_url": "http://192.168.11.1/",
-  "timestamp": "2026-08-17T10:53:46",
+  "device_id": "UR-08",
+  "target_url": "http://192.168.10.1/",
+  "timestamp": "2026-08-15T19:50:31",
   "http_status": 200,
-  "title": "300M Signal Amplifier Web Management",
+  "title": "U-N300 Management",
   "findings": [
-    "WA-48-F02",
-    "WA-48-F03",
-    "WA-48-F04",
-    "WA-48-F06",
-    "WA-48-F07"
+    "UR-08-F02",
+    "UR-08-F03",
+    "UR-08-F04",
+    "UR-08-F06",
+    "UR-08-F07"
   ]
 }

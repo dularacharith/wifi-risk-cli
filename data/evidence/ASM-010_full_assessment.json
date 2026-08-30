@@ -1,9 +1,9 @@
 {
   "assessment_id": "ASM-010",
-  "device_id": "WA-10",
+  "device_id": "MT02-10",
   "target_ip": "192.168.11.1",
-  "price_lkr": 2800,
-  "timestamp": "2026-08-11T21:58:11",
+  "price_lkr": 2400,
+  "timestamp": "2026-08-07T14:54:36",
   "modules_run": [
     "Network Discovery",
     "DNS Behavior Checks",
@@ -11,7 +11,7 @@
     "Firmware Discovery"
   ],
   "network_summary": {
-    "open_ports": 2,
+    "open_ports": 3,
     "findings_count": 3,
     "evidence_file": "data/evidence/ASM-010_network.json"
   },
@@ -26,7 +26,7 @@
   },
   "web_summary": {
     "target_url": "http://192.168.11.1/",
-    "findings_count": 3,
+    "findings_count": 5,
     "evidence_file": "data/evidence/ASM-010_web.json"
   },
   "firmware_discovery_summary": {
@@ -35,9 +35,9 @@
     "findings_count": 1
   },
   "evaluation": {
-    "final_score": 35,
+    "final_score": 11,
     "risk_level": "Critical Risk",
-    "psr": 1.87,
+    "psr": 0.69,
     "recommendation": "Avoid for sensitive networks; high risk of local compromise"
   }
 }

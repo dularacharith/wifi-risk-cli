@@ -1,33 +1,17 @@
 {
   "assessment_id": "ASM-088",
-  "device_id": "WA-88",
-  "target_ip": "192.168.11.1",
-  "timestamp": "2026-08-23T06:51:02",
+  "device_id": "MC-04",
+  "target_ip": "192.168.1.253",
+  "timestamp": "2026-08-24T12:06:22",
   "open_ports": [
-    23,
-    53,
     80
   ],
   "services": [
-    {
-      "port": 23,
-      "state": "open",
-      "service": "telnet"
-    },
-    {
-      "port": 53,
-      "state": "open",
-      "service": "dns"
-    },
     {
       "port": 80,
       "state": "open",
       "service": "http"
     }
   ],
-  "findings": [
-    "WA-88-F01",
-    "WA-88-F05",
-    "WA-88-F09"
-  ]
+  "findings": []
 }

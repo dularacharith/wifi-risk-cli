@@ -1,24 +1,12 @@
 {
   "assessment_id": "ASM-074",
-  "device_id": "WA-74",
-  "target_ip": "192.168.11.1",
-  "timestamp": "2026-08-21T06:03:53",
+  "device_id": "WL-06",
+  "target_ip": "192.168.10.1",
+  "timestamp": "2026-08-21T11:30:24",
   "open_ports": [
-    23,
-    53,
     80
   ],
   "services": [
-    {
-      "port": 23,
-      "state": "open",
-      "service": "telnet"
-    },
-    {
-      "port": 53,
-      "state": "open",
-      "service": "dns"
-    },
     {
       "port": 80,
       "state": "open",
@@ -26,8 +14,7 @@
     }
   ],
   "findings": [
-    "WA-74-F01",
-    "WA-74-F05",
-    "WA-74-F09"
+    "WL-06-F05",
+    "WL-06-F09"
   ]
 }

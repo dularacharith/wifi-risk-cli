@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-024",
-  "device_id": "WA-24",
-  "timestamp": "2026-08-13T22:27:09",
-  "brand_clue": "Netcore",
-  "model_clue": "300M Signal Amplifier",
-  "firmware_version": "v1.0.1.2-netcore",
+  "device_id": "MT02-24",
+  "timestamp": "2026-08-10T15:06:28",
+  "brand_clue": "Generic / MT02 OEM",
+  "model_clue": "MT02 300M",
+  "firmware_version": "1.0.1.2-urant-p1R-auto",
   "firmware_found": false,
   "findings": [
-    "WA-24-F08"
+    "MT02-24-F08"
   ]
 }

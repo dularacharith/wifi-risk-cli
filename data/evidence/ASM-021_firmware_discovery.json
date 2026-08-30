@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-021",
-  "device_id": "WA-21",
-  "timestamp": "2026-08-13T11:46:45",
-  "brand_clue": "Totolink",
-  "model_clue": "EX200 300Mbps Wireless Extender",
-  "firmware_version": "EX200_V4.0.3c.7646_B20201211",
+  "device_id": "MT02-21",
+  "timestamp": "2026-08-09T22:12:35",
+  "brand_clue": "Generic / MT02 OEM",
+  "model_clue": "MT02 300M",
+  "firmware_version": "1.0.1.2-urant-p1R-auto",
   "firmware_found": false,
   "findings": [
-    "WA-21-F08"
+    "MT02-21-F08"
   ]
 }

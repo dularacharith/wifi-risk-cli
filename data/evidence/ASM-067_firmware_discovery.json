@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-067",
-  "device_id": "WA-67",
-  "timestamp": "2026-08-20T05:17:14",
-  "brand_clue": "Tenda",
-  "model_clue": "A9 Wireless N300 Universal Extender",
-  "firmware_version": "V12.01.01.30_multi",
+  "device_id": "CF-07",
+  "timestamp": "2026-08-19T21:58:21",
+  "brand_clue": "Comfast",
+  "model_clue": "CF-WR302S",
+  "firmware_version": "CF-WR302S-v2.1",
   "firmware_found": false,
   "findings": [
-    "WA-67-F08"
+    "CF-07-F08"
   ]
 }

@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-018",
-  "device_id": "WA-18",
-  "timestamp": "2026-08-13T01:47:26",
-  "brand_clue": "Wavlink",
-  "model_clue": "Aerial N300 Range Extender",
-  "firmware_version": "WN578HR2-v1.0.8",
+  "device_id": "MT02-18",
+  "timestamp": "2026-08-09T08:09:58",
+  "brand_clue": "Generic / MT02 OEM",
+  "model_clue": "MT02 300M",
+  "firmware_version": "1.0.1.2-urant-p1R-auto",
   "firmware_found": false,
   "findings": [
-    "WA-18-F08"
+    "MT02-18-F08"
   ]
 }

@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-003",
-  "device_id": "WA-03",
-  "timestamp": "2026-08-10T21:27:32",
-  "brand_clue": "Pix-Link",
-  "model_clue": "LV-WR02B 300Mbps Extender",
-  "firmware_version": "v1.1.0-pixlink",
+  "device_id": "MT02-03",
+  "timestamp": "2026-08-06T00:44:30",
+  "brand_clue": "Generic / MT02 OEM",
+  "model_clue": "MT02 300M",
+  "firmware_version": "1.0.1.2-urant-p1R-auto",
   "firmware_found": false,
   "findings": [
-    "WA-03-F08"
+    "MT02-03-F08"
   ]
 }

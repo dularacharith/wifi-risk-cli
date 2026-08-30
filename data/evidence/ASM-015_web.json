@@ -1,13 +1,15 @@
 {
   "assessment_id": "ASM-015",
-  "device_id": "WA-15",
+  "device_id": "MT02-15",
   "target_url": "http://192.168.11.1/",
-  "timestamp": "2026-08-12T15:00:41",
+  "timestamp": "2026-08-08T16:56:19",
   "http_status": 200,
-  "title": "LV-WR02B 300Mbps Extender Web Management",
+  "title": "MT02 300M Management",
   "findings": [
-    "WA-15-F03",
-    "WA-15-F06",
-    "WA-15-F07"
+    "MT02-15-F02",
+    "MT02-15-F03",
+    "MT02-15-F04",
+    "MT02-15-F06",
+    "MT02-15-F07"
   ]
 }

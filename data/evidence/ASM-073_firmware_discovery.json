@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-073",
-  "device_id": "WA-73",
-  "timestamp": "2026-08-21T01:16:10",
-  "brand_clue": "Generic / MT02 OEM",
-  "model_clue": "300M Wi-Fi Repeater MT02",
-  "firmware_version": "1.0.1.2-urant-p1R-auto",
+  "device_id": "WL-05",
+  "timestamp": "2026-08-21T04:27:05",
+  "brand_clue": "Wavlink",
+  "model_clue": "WN578HR2",
+  "firmware_version": "WN578HR2-v1.0.8",
   "firmware_found": false,
   "findings": [
-    "WA-73-F08"
+    "WL-05-F08"
   ]
 }

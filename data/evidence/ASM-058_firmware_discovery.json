@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-058",
-  "device_id": "WA-58",
-  "timestamp": "2026-08-18T21:53:27",
-  "brand_clue": "LB-Link",
-  "model_clue": "BL-WN300 Wireless Extender",
-  "firmware_version": "BL-WN300-v1.2.0",
+  "device_id": "PL-08",
+  "timestamp": "2026-08-18T00:02:21",
+  "brand_clue": "Pix-Link",
+  "model_clue": "LV-WR02B",
+  "firmware_version": "v1.1.0-pixlink",
   "firmware_found": false,
   "findings": [
-    "WA-58-F08"
+    "PL-08-F08"
   ]
 }

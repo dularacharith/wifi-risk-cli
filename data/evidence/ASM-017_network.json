@@ -1,12 +1,24 @@
 {
   "assessment_id": "ASM-017",
-  "device_id": "WA-17",
+  "device_id": "MT02-17",
   "target_ip": "192.168.11.1",
-  "timestamp": "2026-08-12T22:04:53",
+  "timestamp": "2026-08-09T02:15:12",
   "open_ports": [
+    23,
+    53,
     80
   ],
   "services": [
+    {
+      "port": 23,
+      "state": "open",
+      "service": "telnet"
+    },
+    {
+      "port": 53,
+      "state": "open",
+      "service": "dns"
+    },
     {
       "port": 80,
       "state": "open",
@@ -14,7 +26,8 @@
     }
   ],
   "findings": [
-    "WA-17-F05",
-    "WA-17-F09"
+    "MT02-17-F01",
+    "MT02-17-F05",
+    "MT02-17-F09"
   ]
 }

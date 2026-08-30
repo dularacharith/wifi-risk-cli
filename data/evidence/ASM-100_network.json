@@ -1,11 +1,10 @@
 {
   "assessment_id": "ASM-100",
-  "device_id": "WA-100",
-  "target_ip": "192.168.11.1",
-  "timestamp": "2026-08-25T00:41:50",
+  "device_id": "ED-04",
+  "target_ip": "192.168.10.254",
+  "timestamp": "2026-08-27T02:18:52",
   "open_ports": [
     23,
-    53,
     80
   ],
   "services": [
@@ -15,19 +14,14 @@
       "service": "telnet"
     },
     {
-      "port": 53,
-      "state": "open",
-      "service": "dns"
-    },
-    {
       "port": 80,
       "state": "open",
       "service": "http"
     }
   ],
   "findings": [
-    "WA-100-F01",
-    "WA-100-F05",
-    "WA-100-F09"
+    "ED-04-F01",
+    "ED-04-F05",
+    "ED-04-F09"
   ]
 }

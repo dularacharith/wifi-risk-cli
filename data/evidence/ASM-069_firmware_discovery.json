@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-069",
-  "device_id": "WA-69",
-  "timestamp": "2026-08-20T11:59:12",
-  "brand_clue": "Totolink",
-  "model_clue": "EX200 300Mbps Wireless Extender",
-  "firmware_version": "EX200_V4.0.3c.7646_B20201211",
+  "device_id": "WL-01",
+  "timestamp": "2026-08-20T09:51:51",
+  "brand_clue": "Wavlink",
+  "model_clue": "WN578HR2",
+  "firmware_version": "WN578HR2-v1.0.8",
   "firmware_found": false,
   "findings": [
-    "WA-69-F08"
+    "WL-01-F08"
   ]
 }

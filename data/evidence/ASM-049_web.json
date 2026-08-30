@@ -1,15 +1,15 @@
 {
   "assessment_id": "ASM-049",
-  "device_id": "WA-49",
-  "target_url": "http://192.168.11.1/",
-  "timestamp": "2026-08-17T14:39:41",
+  "device_id": "UR-09",
+  "target_url": "http://192.168.10.1/",
+  "timestamp": "2026-08-16T00:56:31",
   "http_status": 200,
-  "title": "300M Wi-Fi Repeater MT02 Web Management",
+  "title": "U-N300 Management",
   "findings": [
-    "WA-49-F02",
-    "WA-49-F03",
-    "WA-49-F04",
-    "WA-49-F06",
-    "WA-49-F07"
+    "UR-09-F02",
+    "UR-09-F03",
+    "UR-09-F04",
+    "UR-09-F06",
+    "UR-09-F07"
   ]
 }
