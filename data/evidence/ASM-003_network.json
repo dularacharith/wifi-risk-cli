@@ -2,7 +2,7 @@
   "assessment_id": "ASM-003",
   "device_id": "MT02-03",
   "target_ip": "192.168.11.1",
-  "timestamp": "2026-08-09T13:36:31",
+  "timestamp": "2026-08-09T12:59:20",
   "open_ports": [
     23,
     53,

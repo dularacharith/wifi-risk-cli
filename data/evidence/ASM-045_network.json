@@ -2,7 +2,7 @@
   "assessment_id": "ASM-045",
   "device_id": "XM-01",
   "target_ip": "255.255.255.255",
-  "timestamp": "2026-08-26T06:21:56",
+  "timestamp": "2026-08-25T17:32:23",
   "open_ports": [],
   "services": [],
   "findings": []

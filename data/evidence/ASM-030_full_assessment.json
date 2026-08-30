@@ -1,9 +1,9 @@
 {
   "assessment_id": "ASM-030",
-  "device_id": "UR-04",
+  "device_id": "RB-04",
   "target_ip": "192.168.10.1",
-  "price_lkr": 2300,
-  "timestamp": "2026-08-20T07:31:13",
+  "price_lkr": 2990,
+  "timestamp": "2026-08-19T21:23:10",
   "modules_run": [
     "Network Discovery",
     "DNS Behavior Checks",
@@ -37,7 +37,7 @@
   "evaluation": {
     "final_score": 11,
     "risk_level": "Critical Risk",
-    "psr": 0.72,
+    "psr": 0.55,
     "recommendation": "Avoid for sensitive networks; high risk of local compromise"
   }
 }

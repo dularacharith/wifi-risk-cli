@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-031",
-  "device_id": "UR-05",
-  "timestamp": "2026-08-20T17:02:03",
-  "brand_clue": "Urant",
-  "model_clue": "U-N300",
-  "firmware_version": "1.0.1.0-urant-auto",
+  "device_id": "RB-05",
+  "timestamp": "2026-08-20T08:37:26",
+  "brand_clue": "Generic / White-Label",
+  "model_clue": "WR01-300M",
+  "firmware_version": "1.0.1.0-oem-auto",
   "firmware_found": false,
   "findings": [
-    "UR-05-F08"
+    "RB-05-F08"
   ]
 }

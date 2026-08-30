@@ -1,13 +1,15 @@
 {
   "assessment_id": "ASM-034",
-  "device_id": "PL-02",
-  "target_url": "http://192.168.1.254/",
-  "timestamp": "2026-08-21T21:43:06",
+  "device_id": "WB-02",
+  "target_url": "http://192.168.188.1/",
+  "timestamp": "2026-08-21T09:55:22",
   "http_status": 200,
-  "title": "LV-WR02B Management",
+  "title": "WiFi-Blast-N300 Management",
   "findings": [
-    "PL-02-F03",
-    "PL-02-F06",
-    "PL-02-F07"
+    "WB-02-F02",
+    "WB-02-F03",
+    "WB-02-F04",
+    "WB-02-F06",
+    "WB-02-F07"
   ]
 }

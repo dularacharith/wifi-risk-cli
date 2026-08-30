@@ -1,8 +1,8 @@
 {
   "assessment_id": "ASM-028",
-  "device_id": "UR-02",
+  "device_id": "RB-02",
   "target_ip": "192.168.10.1",
-  "timestamp": "2026-08-19T13:32:58",
+  "timestamp": "2026-08-19T04:39:12",
   "open_ports": [
     23,
     53,
@@ -26,8 +26,8 @@
     }
   ],
   "findings": [
-    "UR-02-F01",
-    "UR-02-F05",
-    "UR-02-F09"
+    "RB-02-F01",
+    "RB-02-F05",
+    "RB-02-F09"
   ]
 }

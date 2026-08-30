@@ -1,15 +1,15 @@
 {
   "assessment_id": "ASM-028",
-  "device_id": "UR-02",
+  "device_id": "RB-02",
   "target_url": "http://192.168.10.1/",
-  "timestamp": "2026-08-19T13:32:58",
+  "timestamp": "2026-08-19T04:39:12",
   "http_status": 200,
-  "title": "U-N300 Management",
+  "title": "WR01-300M Management",
   "findings": [
-    "UR-02-F02",
-    "UR-02-F03",
-    "UR-02-F04",
-    "UR-02-F06",
-    "UR-02-F07"
+    "RB-02-F02",
+    "RB-02-F03",
+    "RB-02-F04",
+    "RB-02-F06",
+    "RB-02-F07"
   ]
 }

@@ -1,9 +1,9 @@
 {
   "assessment_id": "ASM-035",
-  "device_id": "PL-03",
-  "target_ip": "192.168.1.254",
-  "price_lkr": 2800,
-  "timestamp": "2026-08-22T07:17:30",
+  "device_id": "WB-03",
+  "target_ip": "192.168.188.1",
+  "price_lkr": 3450,
+  "timestamp": "2026-08-21T20:17:35",
   "modules_run": [
     "Network Discovery",
     "DNS Behavior Checks",
@@ -11,13 +11,13 @@
     "Firmware Discovery"
   ],
   "network_summary": {
-    "open_ports": 2,
+    "open_ports": 3,
     "findings_count": 3,
     "evidence_file": "data/evidence/ASM-035_network.json"
   },
   "dns_summary": {
     "setup_domain_ips": [
-      "192.168.1.254"
+      "192.168.188.1"
     ],
     "control_domain_ips": [
       "142.250.185.206"
@@ -25,8 +25,8 @@
     "findings_count": 1
   },
   "web_summary": {
-    "target_url": "http://192.168.1.254/",
-    "findings_count": 3,
+    "target_url": "http://192.168.188.1/",
+    "findings_count": 5,
     "evidence_file": "data/evidence/ASM-035_web.json"
   },
   "firmware_discovery_summary": {
@@ -35,9 +35,9 @@
     "findings_count": 1
   },
   "evaluation": {
-    "final_score": 35,
+    "final_score": 11,
     "risk_level": "Critical Risk",
-    "psr": 1.87,
+    "psr": 0.48,
     "recommendation": "Avoid for sensitive networks; high risk of local compromise"
   }
 }

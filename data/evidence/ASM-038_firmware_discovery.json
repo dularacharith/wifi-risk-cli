@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-038",
-  "device_id": "PL-06",
-  "timestamp": "2026-08-23T10:47:52",
-  "brand_clue": "Pix-Link",
-  "model_clue": "LV-WR02B",
-  "firmware_version": "v1.1.0-pixlink",
+  "device_id": "WB-06",
+  "timestamp": "2026-08-23T00:26:58",
+  "brand_clue": "WiFi Blast",
+  "model_clue": "WiFi-Blast-N300",
+  "firmware_version": "v1.0.8-wifiblast",
   "firmware_found": false,
   "findings": [
-    "PL-06-F08"
+    "WB-06-F08"
   ]
 }

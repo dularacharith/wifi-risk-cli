@@ -1,10 +1,11 @@
 {
   "assessment_id": "ASM-033",
-  "device_id": "PL-01",
-  "target_ip": "192.168.1.254",
-  "timestamp": "2026-08-21T13:26:05",
+  "device_id": "WB-01",
+  "target_ip": "192.168.188.1",
+  "timestamp": "2026-08-21T01:31:24",
   "open_ports": [
     23,
+    53,
     80
   ],
   "services": [
@@ -14,14 +15,19 @@
       "service": "telnet"
     },
     {
+      "port": 53,
+      "state": "open",
+      "service": "dns"
+    },
+    {
       "port": 80,
       "state": "open",
       "service": "http"
     }
   ],
   "findings": [
-    "PL-01-F01",
-    "PL-01-F05",
-    "PL-01-F09"
+    "WB-01-F01",
+    "WB-01-F05",
+    "WB-01-F09"
   ]
 }
