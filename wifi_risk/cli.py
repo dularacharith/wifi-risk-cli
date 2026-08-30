@@ -932,7 +932,8 @@ def render_assessment_category_view(category_key: str, category_title: str) -> N
         table = Table(title=f"{category_title} ({len(asms)} recorded)", show_header=True, header_style="bold cyan")
         table.add_column("#", justify="center", style="cyan", no_wrap=True)
         table.add_column("Assessment ID", style="bold cyan", no_wrap=True)
-        table.add_column("Device ID")
+        table.add_column("Device ID", style="cyan")
+        table.add_column("Device Name & Model")
         table.add_column("Target IP")
         table.add_column("Price (LKR)", justify="right")
         table.add_column("Status", justify="center")
@@ -943,6 +944,8 @@ def render_assessment_category_view(category_key: str, category_title: str) -> N
         for idx, asm in enumerate(asms, start=1):
             asm_id = asm.get("id", "")
             asm_dev = asm.get("device_id", "")
+            dev_obj = get_device_by_id(asm_dev) if asm_dev else None
+            dev_name = dev_obj.get("display_name", dev_obj.get("model", "Generic Repeater")) if dev_obj else asm.get("metadata", {}).get("model", "Generic Repeater")
             asm_findings = get_findings_by_assessment_id(asm_id)
             if not asm_findings and asm_dev:
                 asm_findings = get_findings_by_device_id(asm_dev)
@@ -956,6 +959,7 @@ def render_assessment_category_view(category_key: str, category_title: str) -> N
                 str(idx),
                 asm_id,
                 asm_dev,
+                dev_name,
                 asm.get("target_ip", ""),
                 str(asm.get("price_lkr", 0)),
                 f"[{status_style}]{asm.get('status', 'Created')}[/{status_style}]",
@@ -1082,6 +1086,12 @@ def manage_single_assessment_session(assessment_id: str) -> None:
         created_at = asm.get("created_at", "")
         checks = asm.get("checks", [])
 
+        dev = get_device_by_id(device_id) if device_id else None
+        dev_name = dev.get("display_name", dev.get("model", "Generic Wi-Fi Repeater")) if dev else asm.get("metadata", {}).get("model", "Generic Wi-Fi Repeater")
+        brand = dev.get("brand", asm.get("metadata", {}).get("brand", "Unknown / Generic")) if dev else asm.get("metadata", {}).get("brand", "Unknown / Generic")
+        model = dev.get("model", "Wi-Fi Repeater") if dev else asm.get("metadata", {}).get("model", "Wi-Fi Repeater")
+        firmware_ver = dev.get("firmware_version", "Unknown / Unspecified") if dev else "Unknown / Unspecified"
+
         eval_res = evaluate_device_security(
             device_id=device_id if not assessment_id else None,
             assessment_id=assessment_id,
@@ -1096,13 +1106,18 @@ def manage_single_assessment_session(assessment_id: str) -> None:
         psr = eval_res.get("psr", 0.0)
         rec = eval_res.get("recommendation", {})
         status_color = "red" if risk in ["Critical", "High"] else "yellow" if risk == "Medium" else "green"
+        status_badge = f"[bold green]{status}[/bold green]" if status.lower() == "completed" else f"[bold yellow]{status}[/bold yellow]"
 
         summary_box = f"""
 [bold]Assessment ID:[/bold]       {asm.get('id')}
+[bold]Assessment Status:[/bold]   {status_badge}
 [bold]Device Identifier:[/bold]   {device_id}
+[bold]Device Name:[/bold]         {dev_name}
+[bold]Brand / Vendor:[/bold]      {brand}
+[bold]Model:[/bold]               {model}
+[bold]Firmware Version:[/bold]   {firmware_ver}
 [bold]Target Gateway IP:[/bold]   {target_ip}
 [bold]Purchase Price:[/bold]       LKR {price_lkr}
-[bold]Status:[/bold]               {status}
 [bold]Created At:[/bold]           {created_at}
 [bold]Executed Checks:[/bold]      {len(checks)} module(s) executed
 [bold]Confirmed Findings:[/bold]   {len(findings)} discovered
@@ -1328,7 +1343,8 @@ def prompt_select_assessment_id(
     table = Table(title=f"Available Assessment Sessions ({len(assessments)} recorded)", show_header=True, header_style="bold cyan")
     table.add_column("#", justify="center", style="cyan", no_wrap=True)
     table.add_column("Assessment ID", style="bold cyan")
-    table.add_column("Device ID")
+    table.add_column("Device ID", style="cyan")
+    table.add_column("Device Name & Model")
     table.add_column("Target Gateway")
     table.add_column("Price (LKR)", justify="right")
     table.add_column("Status", justify="center")
@@ -1337,10 +1353,14 @@ def prompt_select_assessment_id(
     for idx, asm in enumerate(assessments, start=1):
         stat = asm.get("status", "Created")
         stat_color = "green" if stat == "Completed" else "yellow"
+        dev_id = asm.get("device_id", "Target-Device")
+        d_obj = get_device_by_id(dev_id) if dev_id else None
+        dev_name = d_obj.get("display_name", d_obj.get("model", "Generic Repeater")) if d_obj else asm.get("metadata", {}).get("model", "Generic Repeater")
         table.add_row(
             str(idx),
             asm.get("id", ""),
-            asm.get("device_id", "Target-Device"),
+            dev_id,
+            dev_name,
             asm.get("target_ip", "N/A"),
             str(asm.get("price_lkr", 0)),
             f"[{stat_color}]{stat}[/{stat_color}]",
@@ -1374,13 +1394,24 @@ def prompt_select_assessment_id(
             console.print("[bold cyan]--- All Assessment Sessions Detailed Breakdown ---[/bold cyan]\n")
             for idx, asm in enumerate(assessments, start=1):
                 checks_count = len(asm.get("checks", []))
+                d_id = asm.get('device_id', 'Target-Device')
+                d_obj = get_device_by_id(d_id) if d_id else None
+                d_name = d_obj.get("display_name", d_obj.get("model", "Generic Wi-Fi Repeater")) if d_obj else asm.get("metadata", {}).get("model", "Generic Wi-Fi Repeater")
+                d_brand = d_obj.get("brand", asm.get("metadata", {}).get("brand", "Unknown / Generic")) if d_obj else asm.get("metadata", {}).get("brand", "Unknown / Generic")
+                d_model = d_obj.get("model", "Wi-Fi Repeater") if d_obj else asm.get("metadata", {}).get("model", "Wi-Fi Repeater")
+                d_fw = d_obj.get("firmware_version", "Unknown") if d_obj else "Unknown"
+                st = asm.get('status', 'Created')
+                st_badge = f"[bold green]{st}[/bold green]" if st.lower() == "completed" else f"[bold yellow]{st}[/bold yellow]"
                 card = f"""
 [bold]Session Number:[/bold]    #{idx}
 [bold]Assessment ID:[/bold]     {asm.get('id')}
-[bold]Device Identifier:[/bold] {asm.get('device_id')}
+[bold]Assessment Status:[/bold] {st_badge}
+[bold]Device Identifier:[/bold] {d_id}
+[bold]Device Name:[/bold]       {d_name}
+[bold]Brand / Model:[/bold]     {d_brand} {d_model}
+[bold]Firmware Version:[/bold]  {d_fw}
 [bold]Target Gateway:[/bold]    {asm.get('target_ip')}
 [bold]Device Price:[/bold]      LKR {asm.get('price_lkr', 0)}
-[bold]Status:[/bold]            {asm.get('status', 'Created')}
 [bold]Created At:[/bold]        {asm.get('created_at')}
 [bold]Executed Checks:[/bold]   {checks_count} check(s) recorded
 [bold]Setup Domain:[/bold]      {asm.get('metadata', {}).get('setup_domain', 'None')}
@@ -3414,10 +3445,22 @@ def cli_run_assessment(
 
     risk_color = "red" if risk in ["Critical", "High"] else "yellow" if risk == "Medium" else "green"
 
+    dev_obj = get_device_by_id(device_id) if device_id else None
+    dev_name = dev_obj.get("display_name", dev_obj.get("model", model or "Generic Wi-Fi Repeater")) if dev_obj else (model or "Generic Wi-Fi Repeater")
+    dev_brand = dev_obj.get("brand", brand or "Generic") if dev_obj else (brand or "Generic")
+    dev_model = dev_obj.get("model", model or "Wi-Fi Repeater") if dev_obj else (model or "Wi-Fi Repeater")
+    dev_fw = dev_obj.get("firmware_version", firmware_version or "Unknown") if dev_obj else (firmware_version or "Unknown")
+
     summary_text = f"""
 [bold]Assessment ID:[/bold]       {results.get('assessment_id', '')}
-[bold]Target IP / Device:[/bold]  {results.get('target_ip', target_ip)} ({device_id})
-[bold]Device Price:[/bold]        LKR {price}
+[bold]Assessment Status:[/bold]   [bold green]Completed[/bold green]
+[bold]Device Identifier:[/bold]   {device_id}
+[bold]Device Name:[/bold]         {dev_name}
+[bold]Brand / Vendor:[/bold]      {dev_brand}
+[bold]Model:[/bold]               {dev_model}
+[bold]Firmware Version:[/bold]   {dev_fw}
+[bold]Target Gateway IP:[/bold]   {results.get('target_ip', target_ip)}
+[bold]Purchase Price:[/bold]       LKR {price}
 [bold]Total Findings:[/bold]      {len(findings)} discovered
 
 [bold]Base Security Score:[/bold] 100/100
@@ -3435,7 +3478,7 @@ def cli_run_assessment(
 [bold]Unified Evidence File:[/bold]
 {results.get('full_evidence_file', '')}
 """
-    console.print(Panel(summary_text.strip(), title=f"Full Assessment Completed: {device_id}", border_style=risk_color))
+    console.print(Panel(summary_text.strip(), title=f"Full Assessment Completed: {device_id} ({dev_name})", border_style=risk_color))
 
     if findings:
         table = Table(title=f"Discovered Vulnerabilities for {device_id} ({len(findings)} finding(s))", show_header=True, header_style="bold cyan")
