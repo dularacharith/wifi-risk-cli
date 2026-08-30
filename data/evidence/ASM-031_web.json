@@ -1,15 +1,15 @@
 {
   "assessment_id": "ASM-031",
-  "device_id": "MT02-31",
-  "target_url": "http://192.168.11.1/",
-  "timestamp": "2026-08-12T02:39:39",
+  "device_id": "UR-05",
+  "target_url": "http://192.168.10.1/",
+  "timestamp": "2026-08-20T17:00:03",
   "http_status": 200,
-  "title": "MT02 300M Management",
+  "title": "U-N300 Management",
   "findings": [
-    "MT02-31-F02",
-    "MT02-31-F03",
-    "MT02-31-F04",
-    "MT02-31-F06",
-    "MT02-31-F07"
+    "UR-05-F02",
+    "UR-05-F03",
+    "UR-05-F04",
+    "UR-05-F06",
+    "UR-05-F07"
   ]
 }

@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-034",
-  "device_id": "MT02-34",
-  "timestamp": "2026-08-12T18:31:21",
-  "brand_clue": "Generic / MT02 OEM",
-  "model_clue": "MT02 300M",
-  "firmware_version": "1.0.1.2-urant-p1R-auto",
+  "device_id": "PL-02",
+  "timestamp": "2026-08-21T21:46:06",
+  "brand_clue": "Pix-Link",
+  "model_clue": "LV-WR02B",
+  "firmware_version": "v1.1.0-pixlink",
   "firmware_found": false,
   "findings": [
-    "MT02-34-F08"
+    "PL-02-F08"
   ]
 }

@@ -1,15 +1,13 @@
 {
   "assessment_id": "ASM-038",
-  "device_id": "MT02-38",
-  "target_url": "http://192.168.11.1/",
-  "timestamp": "2026-08-13T16:05:52",
+  "device_id": "PL-06",
+  "target_url": "http://192.168.1.254/",
+  "timestamp": "2026-08-23T10:45:52",
   "http_status": 200,
-  "title": "MT02 300M Management",
+  "title": "LV-WR02B Management",
   "findings": [
-    "MT02-38-F02",
-    "MT02-38-F03",
-    "MT02-38-F04",
-    "MT02-38-F06",
-    "MT02-38-F07"
+    "PL-06-F03",
+    "PL-06-F06",
+    "PL-06-F07"
   ]
 }

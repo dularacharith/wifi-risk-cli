@@ -1,9 +1,0 @@
-{
-  "assessment_id": "ASM-103",
-  "device_id": "XM-01",
-  "target_ip": "255.255.255.255",
-  "timestamp": "2026-08-27T18:00:07",
-  "open_ports": [],
-  "services": [],
-  "findings": []
-}

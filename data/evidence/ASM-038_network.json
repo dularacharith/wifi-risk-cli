@@ -1,11 +1,10 @@
 {
   "assessment_id": "ASM-038",
-  "device_id": "MT02-38",
-  "target_ip": "192.168.11.1",
-  "timestamp": "2026-08-13T16:05:52",
+  "device_id": "PL-06",
+  "target_ip": "192.168.1.254",
+  "timestamp": "2026-08-23T10:45:52",
   "open_ports": [
     23,
-    53,
     80
   ],
   "services": [
@@ -15,19 +14,14 @@
       "service": "telnet"
     },
     {
-      "port": 53,
-      "state": "open",
-      "service": "dns"
-    },
-    {
       "port": 80,
       "state": "open",
       "service": "http"
     }
   ],
   "findings": [
-    "MT02-38-F01",
-    "MT02-38-F05",
-    "MT02-38-F09"
+    "PL-06-F01",
+    "PL-06-F05",
+    "PL-06-F09"
   ]
 }

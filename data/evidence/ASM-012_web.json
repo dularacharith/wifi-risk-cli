@@ -2,7 +2,7 @@
   "assessment_id": "ASM-012",
   "device_id": "MT02-12",
   "target_url": "http://192.168.11.1/",
-  "timestamp": "2026-08-08T00:05:08",
+  "timestamp": "2026-08-13T03:51:48",
   "http_status": 200,
   "title": "MT02 300M Management",
   "findings": [

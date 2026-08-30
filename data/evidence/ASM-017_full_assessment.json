@@ -2,8 +2,8 @@
   "assessment_id": "ASM-017",
   "device_id": "MT02-17",
   "target_ip": "192.168.11.1",
-  "price_lkr": 2600,
-  "timestamp": "2026-08-09T02:15:12",
+  "price_lkr": 2450,
+  "timestamp": "2026-08-15T03:17:18",
   "modules_run": [
     "Network Discovery",
     "DNS Behavior Checks",
@@ -37,7 +37,7 @@
   "evaluation": {
     "final_score": 11,
     "risk_level": "Critical Risk",
-    "psr": 0.63,
+    "psr": 0.67,
     "recommendation": "Avoid for sensitive networks; high risk of local compromise"
   }
 }

@@ -1,12 +1,12 @@
 {
   "assessment_id": "ASM-029",
-  "device_id": "MT02-29",
-  "timestamp": "2026-08-11T16:43:45",
-  "brand_clue": "Generic / MT02 OEM",
-  "model_clue": "MT02 300M",
-  "firmware_version": "1.0.1.2-urant-p1R-auto",
+  "device_id": "UR-03",
+  "timestamp": "2026-08-19T22:40:56",
+  "brand_clue": "Urant",
+  "model_clue": "U-N300",
+  "firmware_version": "1.0.1.0-urant-auto",
   "firmware_found": false,
   "findings": [
-    "MT02-29-F08"
+    "UR-03-F08"
   ]
 }
