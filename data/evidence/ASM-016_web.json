@@ -1,0 +1,15 @@
+{
+  "assessment_id": "ASM-016",
+  "device_id": "WA-16",
+  "target_url": "http://192.168.11.1/",
+  "timestamp": "2026-08-12T18:32:18",
+  "http_status": 200,
+  "title": "Mini Router MT02 Multi-Mode Web Management",
+  "findings": [
+    "WA-16-F02",
+    "WA-16-F03",
+    "WA-16-F04",
+    "WA-16-F06",
+    "WA-16-F07"
+  ]
+}

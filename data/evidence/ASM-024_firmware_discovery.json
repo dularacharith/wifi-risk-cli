@@ -1,0 +1,12 @@
+{
+  "assessment_id": "ASM-024",
+  "device_id": "WA-24",
+  "timestamp": "2026-08-13T22:27:09",
+  "brand_clue": "Netcore",
+  "model_clue": "300M Signal Amplifier",
+  "firmware_version": "v1.0.1.2-netcore",
+  "firmware_found": false,
+  "findings": [
+    "WA-24-F08"
+  ]
+}

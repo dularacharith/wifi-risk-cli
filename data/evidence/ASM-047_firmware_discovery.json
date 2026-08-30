@@ -1,0 +1,12 @@
+{
+  "assessment_id": "ASM-047",
+  "device_id": "WA-47",
+  "timestamp": "2026-08-17T07:11:06",
+  "brand_clue": "EDUP",
+  "model_clue": "EP-2911 Wireless AP Extender",
+  "firmware_version": "EP-2911-v1.0.4",
+  "firmware_found": false,
+  "findings": [
+    "WA-47-F08"
+  ]
+}

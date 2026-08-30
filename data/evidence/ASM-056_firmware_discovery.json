@@ -1,0 +1,12 @@
+{
+  "assessment_id": "ASM-056",
+  "device_id": "WA-56",
+  "timestamp": "2026-08-18T13:58:50",
+  "brand_clue": "Mercusys",
+  "model_clue": "MW300RE 3-Antenna Range Extender",
+  "firmware_version": "v1.0.4-official",
+  "firmware_found": true,
+  "findings": [
+    "WA-56-F08"
+  ]
+}

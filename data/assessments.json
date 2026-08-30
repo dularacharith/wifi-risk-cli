@@ -1,126 +1,352 @@
 [
   {
     "id": "ASM-001",
-    "device_id": "Target-10.11.159.7",
-    "target_ip": "10.11.159.7",
-    "price_lkr": 20000,
-    "status": "Created",
-    "created_at": "2026-08-28T19:08:23",
-    "updated_at": "2026-08-28T19:08:23",
-    "notes": "Session via wlp0s20f3",
+    "device_id": "WA-01",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2300,
+    "status": "Completed",
+    "created_at": "2026-08-10T13:08:33",
+    "updated_at": "2026-08-10T13:12:33",
+    "notes": "Automated risk evaluation session for Generic MT02 Wi-Fi Repeater (Unit 1)",
     "metadata": {
-      "setup_domain": "",
-      "interface": "wlp0s20f3"
-    },
-    "checks": []
-  },
-  {
-    "id": "ASM-002",
-    "device_id": "Target-192.168.26.1",
-    "target_ip": "192.168.26.1",
-    "price_lkr": 2500,
-    "status": "In Progress",
-    "created_at": "2026-08-28T19:32:52",
-    "updated_at": "2026-08-28T20:41:56",
-    "notes": "Session via vmnet1",
-    "metadata": {
-      "setup_domain": "",
-      "interface": "vmnet1"
+      "setup_domain": "zrlogin.cn",
+      "brand": "Generic / MT02 OEM",
+      "model": "300M Wi-Fi Repeater MT02"
     },
     "checks": [
       {
         "module": "Network Discovery",
-        "timestamp": "2026-08-28T20:41:56",
-        "scan_method": "nmap_live",
-        "open_ports_count": 0,
-        "open_ports": [],
-        "findings_count": 0,
+        "timestamp": "2026-08-10T13:08:33",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-001_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-10T13:08:33",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-001_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-10T13:08:33",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 5,
+        "evidence_file": "data/evidence/ASM-001_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-10T13:12:33",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-001_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-002",
+    "device_id": "WA-02",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2300,
+    "status": "Completed",
+    "created_at": "2026-08-10T16:58:46",
+    "updated_at": "2026-08-10T17:00:46",
+    "notes": "Automated risk evaluation session for Urant N300 Wireless Range Booster (Unit 2)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Urant",
+      "model": "Urant N300 Signal Booster"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-10T16:58:46",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
         "evidence_file": "data/evidence/ASM-002_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-10T16:58:46",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-002_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-10T16:58:46",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 5,
+        "evidence_file": "data/evidence/ASM-002_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-10T17:00:46",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-002_firmware_discovery.json"
       }
     ]
   },
   {
     "id": "ASM-003",
-    "device_id": "Target-10.11.159.7",
-    "target_ip": "10.11.159.7",
-    "price_lkr": 0,
-    "status": "Created",
-    "created_at": "2026-08-28T20:43:19",
-    "updated_at": "2026-08-28T20:43:19",
-    "notes": "Session via wlp0s20f3",
-    "metadata": {
-      "setup_domain": "",
-      "interface": "wlp0s20f3"
-    },
-    "checks": []
-  },
-  {
-    "id": "ASM-004",
-    "device_id": "Target-10.11.159.7",
-    "target_ip": "10.11.159.7",
-    "price_lkr": 0,
-    "status": "Created",
-    "created_at": "2026-08-28T20:54:27",
-    "updated_at": "2026-08-28T20:54:27",
-    "notes": "Session via wlp0s20f3",
-    "metadata": {
-      "setup_domain": "",
-      "interface": "wlp0s20f3"
-    },
-    "checks": []
-  },
-  {
-    "id": "ASM-005",
-    "device_id": "Target-10.11.159.7",
-    "target_ip": "10.11.159.7",
-    "price_lkr": 0,
-    "status": "Created",
-    "created_at": "2026-08-28T21:19:54",
-    "updated_at": "2026-08-28T21:19:54",
-    "notes": "Session via wlp0s20f3",
-    "metadata": {
-      "setup_domain": "",
-      "interface": "wlp0s20f3"
-    },
-    "checks": []
-  },
-  {
-    "id": "ASM-006",
-    "device_id": "Target-192.168.11.1",
+    "device_id": "WA-03",
     "target_ip": "192.168.11.1",
-    "price_lkr": 2500,
+    "price_lkr": 3150,
     "status": "Completed",
-    "created_at": "2026-08-29T02:06:33",
-    "updated_at": "2026-08-29T02:08:05",
-    "notes": "Session via wlp0s20f3",
+    "created_at": "2026-08-10T21:21:32",
+    "updated_at": "2026-08-10T21:27:32",
+    "notes": "Automated risk evaluation session for Pix-Link LV-WR02B Repeater (Unit 3)",
     "metadata": {
-      "setup_domain": ""
+      "setup_domain": "zrlogin.cn",
+      "brand": "Pix-Link",
+      "model": "LV-WR02B 300Mbps Extender"
     },
     "checks": [
       {
         "module": "Network Discovery",
-        "timestamp": "2026-08-29T02:07:04",
+        "timestamp": "2026-08-10T21:21:32",
         "scan_method": "socket_fallback",
         "open_ports_count": 2,
         "open_ports": [
           23,
           80
         ],
-        "findings_count": 2,
-        "evidence_file": "data/evidence/ASM-006_network.json"
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-003_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-10T21:21:32",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-003_dns.json"
       },
       {
         "module": "Web Interface Checks",
-        "timestamp": "2026-08-29T02:07:05",
+        "timestamp": "2026-08-10T21:21:32",
         "target_url": "http://192.168.11.1/",
         "is_reachable": true,
         "check_method": "live_fetch",
         "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-003_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-10T21:27:32",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-003_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-004",
+    "device_id": "WA-04",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2150,
+    "status": "Completed",
+    "created_at": "2026-08-11T00:36:13",
+    "updated_at": "2026-08-11T00:38:13",
+    "notes": "Automated risk evaluation session for Wireless-N Mini Router MT02 (Unit 4)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Wireless-N",
+      "model": "Mini Router MT02 Multi-Mode"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-11T00:36:13",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-004_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-11T00:36:13",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-004_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-11T00:36:13",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 5,
+        "evidence_file": "data/evidence/ASM-004_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-11T00:38:13",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-004_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-005",
+    "device_id": "WA-05",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 3150,
+    "status": "Completed",
+    "created_at": "2026-08-11T03:15:33",
+    "updated_at": "2026-08-11T03:18:33",
+    "notes": "Automated risk evaluation session for Comfast CF-WR302S Signal Booster (Unit 5)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Comfast",
+      "model": "CF-WR302S High Power Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-11T03:15:33",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 2,
+        "evidence_file": "data/evidence/ASM-005_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-11T03:15:33",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-005_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-11T03:15:33",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-005_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-11T03:18:33",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-005_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-006",
+    "device_id": "WA-06",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 3700,
+    "status": "Completed",
+    "created_at": "2026-08-11T07:37:24",
+    "updated_at": "2026-08-11T07:43:24",
+    "notes": "Automated risk evaluation session for Wavlink Aerial N300 AP/Repeater (Unit 6)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Wavlink",
+      "model": "Aerial N300 Range Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-11T07:37:24",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 2,
+        "evidence_file": "data/evidence/ASM-006_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-11T07:37:24",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-006_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-11T07:37:24",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 1,
         "evidence_file": "data/evidence/ASM-006_web.json"
       },
       {
         "module": "Firmware Discovery",
-        "timestamp": "2026-08-29T02:08:05",
+        "timestamp": "2026-08-11T07:43:24",
         "firmware_found": false,
         "sources_count": 0,
         "findings_count": 1,
@@ -130,41 +356,55 @@
   },
   {
     "id": "ASM-007",
-    "device_id": "Target-192.168.11.1",
+    "device_id": "WA-07",
     "target_ip": "192.168.11.1",
-    "price_lkr": 2500,
+    "price_lkr": 4250,
     "status": "Completed",
-    "created_at": "2026-08-29T02:23:07",
-    "updated_at": "2026-08-29T02:23:59",
-    "notes": "Session via wlp0s20f3",
+    "created_at": "2026-08-11T11:19:02",
+    "updated_at": "2026-08-11T11:25:02",
+    "notes": "Automated risk evaluation session for Tenda A9 N300 Range Extender (Unit 7)",
     "metadata": {
-      "setup_domain": ""
+      "setup_domain": "",
+      "brand": "Tenda",
+      "model": "A9 Wireless N300 Universal Extender"
     },
     "checks": [
       {
         "module": "Network Discovery",
-        "timestamp": "2026-08-29T02:23:39",
+        "timestamp": "2026-08-11T11:19:02",
         "scan_method": "socket_fallback",
-        "open_ports_count": 2,
+        "open_ports_count": 1,
         "open_ports": [
-          23,
           80
         ],
-        "findings_count": 2,
+        "findings_count": 0,
         "evidence_file": "data/evidence/ASM-007_network.json"
       },
       {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-11T11:19:02",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-007_dns.json"
+      },
+      {
         "module": "Web Interface Checks",
-        "timestamp": "2026-08-29T02:23:39",
+        "timestamp": "2026-08-11T11:19:02",
         "target_url": "http://192.168.11.1/",
         "is_reachable": true,
         "check_method": "live_fetch",
-        "findings_count": 3,
+        "findings_count": 1,
         "evidence_file": "data/evidence/ASM-007_web.json"
       },
       {
         "module": "Firmware Discovery",
-        "timestamp": "2026-08-29T02:23:59",
+        "timestamp": "2026-08-11T11:25:02",
         "firmware_found": false,
         "sources_count": 0,
         "findings_count": 1,
@@ -174,65 +414,4813 @@
   },
   {
     "id": "ASM-008",
-    "device_id": "WR-002",
+    "device_id": "WA-08",
     "target_ip": "192.168.11.1",
-    "price_lkr": 2500,
+    "price_lkr": 4800,
     "status": "Completed",
-    "created_at": "2026-08-29T12:52:59",
-    "updated_at": "2026-08-29T12:53:31",
-    "notes": "Direct CLI safe assessment execution",
+    "created_at": "2026-08-11T13:58:29",
+    "updated_at": "2026-08-11T14:04:29",
+    "notes": "Automated risk evaluation session for Mercusys MW300RE Wi-Fi Repeater (Unit 8)",
     "metadata": {
-      "setup_domain": ""
+      "setup_domain": "",
+      "brand": "Mercusys",
+      "model": "MW300RE 3-Antenna Range Extender"
     },
     "checks": [
       {
         "module": "Network Discovery",
-        "timestamp": "2026-08-29T12:53:31",
+        "timestamp": "2026-08-11T13:58:29",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-008_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-11T13:58:29",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-008_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-11T13:58:29",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-008_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-11T14:04:29",
+        "firmware_found": true,
+        "sources_count": 1,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-008_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-009",
+    "device_id": "WA-09",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 3900,
+    "status": "Completed",
+    "created_at": "2026-08-11T18:28:33",
+    "updated_at": "2026-08-11T18:30:33",
+    "notes": "Automated risk evaluation session for Totolink EX200 Range Extender (Unit 9)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Totolink",
+      "model": "EX200 300Mbps Wireless Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-11T18:28:33",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 2,
+        "evidence_file": "data/evidence/ASM-009_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-11T18:28:33",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-009_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-11T18:28:33",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-009_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-11T18:30:33",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-009_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-010",
+    "device_id": "WA-10",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2800,
+    "status": "Completed",
+    "created_at": "2026-08-11T21:58:11",
+    "updated_at": "2026-08-11T22:03:11",
+    "notes": "Automated risk evaluation session for LB-Link BL-WN300 Signal Booster (Unit 10)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "LB-Link",
+      "model": "BL-WN300 Wireless Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-11T21:58:11",
         "scan_method": "socket_fallback",
         "open_ports_count": 2,
         "open_ports": [
           23,
           80
         ],
-        "findings_count": 2,
-        "evidence_file": "data/evidence/ASM-008_network.json"
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-010_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-11T21:58:11",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-010_dns.json"
       },
       {
         "module": "Web Interface Checks",
-        "timestamp": "2026-08-29T12:53:31",
+        "timestamp": "2026-08-11T21:58:11",
         "target_url": "http://192.168.11.1/",
         "is_reachable": true,
         "check_method": "live_fetch",
         "findings_count": 3,
-        "evidence_file": "data/evidence/ASM-008_web.json"
+        "evidence_file": "data/evidence/ASM-010_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-11T22:03:11",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-010_firmware_discovery.json"
       }
     ]
   },
   {
-    "id": "ASM-009",
-    "device_id": "WR-002",
+    "id": "ASM-011",
+    "device_id": "WA-11",
     "target_ip": "192.168.11.1",
-    "price_lkr": 2,
-    "status": "Created",
-    "created_at": "2026-08-29T13:09:41",
-    "updated_at": "2026-08-29T13:09:41",
-    "notes": "Direct CLI safe assessment execution",
+    "price_lkr": 2900,
+    "status": "Completed",
+    "created_at": "2026-08-12T00:34:20",
+    "updated_at": "2026-08-12T00:37:20",
+    "notes": "Automated risk evaluation session for EDUP EP-2911 Range Extender (Unit 11)",
     "metadata": {
-      "setup_domain": ""
+      "setup_domain": "zrlogin.cn",
+      "brand": "EDUP",
+      "model": "EP-2911 Wireless AP Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-12T00:34:20",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 2,
+        "open_ports": [
+          23,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-011_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-12T00:34:20",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-011_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-12T00:34:20",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-011_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-12T00:37:20",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-011_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-012",
+    "device_id": "WA-12",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2650,
+    "status": "Completed",
+    "created_at": "2026-08-12T04:10:19",
+    "updated_at": "2026-08-12T04:12:19",
+    "notes": "Automated risk evaluation session for Netcore 300M Wi-Fi Repeater (Unit 12)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Netcore",
+      "model": "300M Signal Amplifier"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-12T04:10:19",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-012_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-12T04:10:19",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-012_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-12T04:10:19",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 5,
+        "evidence_file": "data/evidence/ASM-012_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-12T04:12:19",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-012_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-013",
+    "device_id": "WA-13",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2600,
+    "status": "Completed",
+    "created_at": "2026-08-12T07:15:51",
+    "updated_at": "2026-08-12T07:19:51",
+    "notes": "Automated risk evaluation session for Generic MT02 Wi-Fi Repeater (Unit 13)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Generic / MT02 OEM",
+      "model": "300M Wi-Fi Repeater MT02"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-12T07:15:51",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-013_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-12T07:15:51",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-013_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-12T07:15:51",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 5,
+        "evidence_file": "data/evidence/ASM-013_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-12T07:19:51",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-013_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-014",
+    "device_id": "WA-14",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2450,
+    "status": "Completed",
+    "created_at": "2026-08-12T11:02:58",
+    "updated_at": "2026-08-12T11:04:58",
+    "notes": "Automated risk evaluation session for Urant N300 Wireless Range Booster (Unit 14)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Urant",
+      "model": "Urant N300 Signal Booster"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-12T11:02:58",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-014_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-12T11:02:58",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-014_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-12T11:02:58",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 5,
+        "evidence_file": "data/evidence/ASM-014_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-12T11:04:58",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-014_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-015",
+    "device_id": "WA-15",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2900,
+    "status": "Completed",
+    "created_at": "2026-08-12T15:00:41",
+    "updated_at": "2026-08-12T15:05:41",
+    "notes": "Automated risk evaluation session for Pix-Link LV-WR02B Repeater (Unit 15)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Pix-Link",
+      "model": "LV-WR02B 300Mbps Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-12T15:00:41",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 2,
+        "open_ports": [
+          23,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-015_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-12T15:00:41",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-015_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-12T15:00:41",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-015_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-12T15:05:41",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-015_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-016",
+    "device_id": "WA-16",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2150,
+    "status": "Completed",
+    "created_at": "2026-08-12T18:32:18",
+    "updated_at": "2026-08-12T18:38:18",
+    "notes": "Automated risk evaluation session for Wireless-N Mini Router MT02 (Unit 16)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Wireless-N",
+      "model": "Mini Router MT02 Multi-Mode"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-12T18:32:18",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-016_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-12T18:32:18",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-016_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-12T18:32:18",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 5,
+        "evidence_file": "data/evidence/ASM-016_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-12T18:38:18",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-016_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-017",
+    "device_id": "WA-17",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 3450,
+    "status": "Completed",
+    "created_at": "2026-08-12T22:04:53",
+    "updated_at": "2026-08-12T22:06:53",
+    "notes": "Automated risk evaluation session for Comfast CF-WR302S Signal Booster (Unit 17)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Comfast",
+      "model": "CF-WR302S High Power Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-12T22:04:53",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 2,
+        "evidence_file": "data/evidence/ASM-017_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-12T22:04:53",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-017_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-12T22:04:53",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-017_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-12T22:06:53",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-017_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-018",
+    "device_id": "WA-18",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 3250,
+    "status": "Completed",
+    "created_at": "2026-08-13T01:43:26",
+    "updated_at": "2026-08-13T01:47:26",
+    "notes": "Automated risk evaluation session for Wavlink Aerial N300 AP/Repeater (Unit 18)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Wavlink",
+      "model": "Aerial N300 Range Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-13T01:43:26",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 2,
+        "evidence_file": "data/evidence/ASM-018_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-13T01:43:26",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-018_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-13T01:43:26",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-018_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-13T01:47:26",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-018_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-019",
+    "device_id": "WA-19",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 4150,
+    "status": "Completed",
+    "created_at": "2026-08-13T05:33:14",
+    "updated_at": "2026-08-13T05:35:14",
+    "notes": "Automated risk evaluation session for Tenda A9 N300 Range Extender (Unit 19)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Tenda",
+      "model": "A9 Wireless N300 Universal Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-13T05:33:14",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-019_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-13T05:33:14",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-019_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-13T05:33:14",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-019_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-13T05:35:14",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-019_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-020",
+    "device_id": "WA-20",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 4750,
+    "status": "Completed",
+    "created_at": "2026-08-13T08:04:21",
+    "updated_at": "2026-08-13T08:08:21",
+    "notes": "Automated risk evaluation session for Mercusys MW300RE Wi-Fi Repeater (Unit 20)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Mercusys",
+      "model": "MW300RE 3-Antenna Range Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-13T08:04:21",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-020_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-13T08:04:21",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-020_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-13T08:04:21",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-020_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-13T08:08:21",
+        "firmware_found": true,
+        "sources_count": 1,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-020_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-021",
+    "device_id": "WA-21",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 3750,
+    "status": "Completed",
+    "created_at": "2026-08-13T11:43:45",
+    "updated_at": "2026-08-13T11:46:45",
+    "notes": "Automated risk evaluation session for Totolink EX200 Range Extender (Unit 21)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Totolink",
+      "model": "EX200 300Mbps Wireless Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-13T11:43:45",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 2,
+        "evidence_file": "data/evidence/ASM-021_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-13T11:43:45",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-021_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-13T11:43:45",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-021_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-13T11:46:45",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-021_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-022",
+    "device_id": "WA-22",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2750,
+    "status": "Completed",
+    "created_at": "2026-08-13T15:03:13",
+    "updated_at": "2026-08-13T15:05:13",
+    "notes": "Automated risk evaluation session for LB-Link BL-WN300 Signal Booster (Unit 22)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "LB-Link",
+      "model": "BL-WN300 Wireless Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-13T15:03:13",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 2,
+        "open_ports": [
+          23,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-022_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-13T15:03:13",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-022_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-13T15:03:13",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-022_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-13T15:05:13",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-022_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-023",
+    "device_id": "WA-23",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2700,
+    "status": "Completed",
+    "created_at": "2026-08-13T19:00:28",
+    "updated_at": "2026-08-13T19:03:28",
+    "notes": "Automated risk evaluation session for EDUP EP-2911 Range Extender (Unit 23)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "EDUP",
+      "model": "EP-2911 Wireless AP Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-13T19:00:28",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 2,
+        "open_ports": [
+          23,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-023_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-13T19:00:28",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-023_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-13T19:00:28",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-023_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-13T19:03:28",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-023_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-024",
+    "device_id": "WA-24",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2350,
+    "status": "Completed",
+    "created_at": "2026-08-13T22:23:09",
+    "updated_at": "2026-08-13T22:27:09",
+    "notes": "Automated risk evaluation session for Netcore 300M Wi-Fi Repeater (Unit 24)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Netcore",
+      "model": "300M Signal Amplifier"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-13T22:23:09",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-024_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-13T22:23:09",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-024_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-13T22:23:09",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 5,
+        "evidence_file": "data/evidence/ASM-024_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-13T22:27:09",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-024_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-025",
+    "device_id": "WA-25",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2750,
+    "status": "Completed",
+    "created_at": "2026-08-14T01:28:24",
+    "updated_at": "2026-08-14T01:32:24",
+    "notes": "Automated risk evaluation session for Generic MT02 Wi-Fi Repeater (Unit 25)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Generic / MT02 OEM",
+      "model": "300M Wi-Fi Repeater MT02"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-14T01:28:24",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-025_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-14T01:28:24",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-025_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-14T01:28:24",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 5,
+        "evidence_file": "data/evidence/ASM-025_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-14T01:32:24",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-025_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-026",
+    "device_id": "WA-26",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2600,
+    "status": "Completed",
+    "created_at": "2026-08-14T05:54:22",
+    "updated_at": "2026-08-14T05:56:22",
+    "notes": "Automated risk evaluation session for Urant N300 Wireless Range Booster (Unit 26)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Urant",
+      "model": "Urant N300 Signal Booster"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-14T05:54:22",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-026_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-14T05:54:22",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-026_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-14T05:54:22",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 5,
+        "evidence_file": "data/evidence/ASM-026_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-14T05:56:22",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-026_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-027",
+    "device_id": "WA-27",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2700,
+    "status": "Completed",
+    "created_at": "2026-08-14T09:29:49",
+    "updated_at": "2026-08-14T09:33:49",
+    "notes": "Automated risk evaluation session for Pix-Link LV-WR02B Repeater (Unit 27)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Pix-Link",
+      "model": "LV-WR02B 300Mbps Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-14T09:29:49",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 2,
+        "open_ports": [
+          23,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-027_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-14T09:29:49",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-027_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-14T09:29:49",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-027_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-14T09:33:49",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-027_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-028",
+    "device_id": "WA-28",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2300,
+    "status": "Completed",
+    "created_at": "2026-08-14T12:03:18",
+    "updated_at": "2026-08-14T12:06:18",
+    "notes": "Automated risk evaluation session for Wireless-N Mini Router MT02 (Unit 28)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Wireless-N",
+      "model": "Mini Router MT02 Multi-Mode"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-14T12:03:18",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-028_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-14T12:03:18",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-028_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-14T12:03:18",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 5,
+        "evidence_file": "data/evidence/ASM-028_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-14T12:06:18",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-028_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-029",
+    "device_id": "WA-29",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 3700,
+    "status": "Completed",
+    "created_at": "2026-08-14T16:35:23",
+    "updated_at": "2026-08-14T16:39:23",
+    "notes": "Automated risk evaluation session for Comfast CF-WR302S Signal Booster (Unit 29)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Comfast",
+      "model": "CF-WR302S High Power Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-14T16:35:23",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 2,
+        "evidence_file": "data/evidence/ASM-029_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-14T16:35:23",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-029_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-14T16:35:23",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-029_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-14T16:39:23",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-029_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-030",
+    "device_id": "WA-30",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 3400,
+    "status": "Completed",
+    "created_at": "2026-08-14T19:42:51",
+    "updated_at": "2026-08-14T19:47:51",
+    "notes": "Automated risk evaluation session for Wavlink Aerial N300 AP/Repeater (Unit 30)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Wavlink",
+      "model": "Aerial N300 Range Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-14T19:42:51",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 2,
+        "evidence_file": "data/evidence/ASM-030_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-14T19:42:51",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-030_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-14T19:42:51",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-030_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-14T19:47:51",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-030_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-031",
+    "device_id": "WA-31",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 4700,
+    "status": "Completed",
+    "created_at": "2026-08-14T22:52:48",
+    "updated_at": "2026-08-14T22:56:48",
+    "notes": "Automated risk evaluation session for Tenda A9 N300 Range Extender (Unit 31)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Tenda",
+      "model": "A9 Wireless N300 Universal Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-14T22:52:48",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-031_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-14T22:52:48",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-031_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-14T22:52:48",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-031_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-14T22:56:48",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-031_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-032",
+    "device_id": "WA-32",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 4500,
+    "status": "Completed",
+    "created_at": "2026-08-15T02:01:09",
+    "updated_at": "2026-08-15T02:07:09",
+    "notes": "Automated risk evaluation session for Mercusys MW300RE Wi-Fi Repeater (Unit 32)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Mercusys",
+      "model": "MW300RE 3-Antenna Range Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-15T02:01:09",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-032_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-15T02:01:09",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-032_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-15T02:01:09",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-032_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-15T02:07:09",
+        "firmware_found": true,
+        "sources_count": 1,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-032_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-033",
+    "device_id": "WA-33",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 4150,
+    "status": "Completed",
+    "created_at": "2026-08-15T05:32:47",
+    "updated_at": "2026-08-15T05:38:47",
+    "notes": "Automated risk evaluation session for Totolink EX200 Range Extender (Unit 33)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Totolink",
+      "model": "EX200 300Mbps Wireless Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-15T05:32:47",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 2,
+        "evidence_file": "data/evidence/ASM-033_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-15T05:32:47",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-033_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-15T05:32:47",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-033_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-15T05:38:47",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-033_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-034",
+    "device_id": "WA-34",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2600,
+    "status": "Completed",
+    "created_at": "2026-08-15T10:07:34",
+    "updated_at": "2026-08-15T10:12:34",
+    "notes": "Automated risk evaluation session for LB-Link BL-WN300 Signal Booster (Unit 34)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "LB-Link",
+      "model": "BL-WN300 Wireless Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-15T10:07:34",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 2,
+        "open_ports": [
+          23,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-034_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-15T10:07:34",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-034_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-15T10:07:34",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-034_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-15T10:12:34",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-034_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-035",
+    "device_id": "WA-35",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2900,
+    "status": "Completed",
+    "created_at": "2026-08-15T12:28:22",
+    "updated_at": "2026-08-15T12:31:22",
+    "notes": "Automated risk evaluation session for EDUP EP-2911 Range Extender (Unit 35)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "EDUP",
+      "model": "EP-2911 Wireless AP Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-15T12:28:22",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 2,
+        "open_ports": [
+          23,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-035_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-15T12:28:22",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-035_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-15T12:28:22",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-035_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-15T12:31:22",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-035_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-036",
+    "device_id": "WA-36",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2500,
+    "status": "Completed",
+    "created_at": "2026-08-15T16:26:20",
+    "updated_at": "2026-08-15T16:28:20",
+    "notes": "Automated risk evaluation session for Netcore 300M Wi-Fi Repeater (Unit 36)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Netcore",
+      "model": "300M Signal Amplifier"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-15T16:26:20",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-036_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-15T16:26:20",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-036_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-15T16:26:20",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 5,
+        "evidence_file": "data/evidence/ASM-036_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-15T16:28:20",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-036_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-037",
+    "device_id": "WA-37",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2300,
+    "status": "Completed",
+    "created_at": "2026-08-15T19:21:35",
+    "updated_at": "2026-08-15T19:24:35",
+    "notes": "Automated risk evaluation session for Generic MT02 Wi-Fi Repeater (Unit 37)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Generic / MT02 OEM",
+      "model": "300M Wi-Fi Repeater MT02"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-15T19:21:35",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-037_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-15T19:21:35",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-037_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-15T19:21:35",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 5,
+        "evidence_file": "data/evidence/ASM-037_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-15T19:24:35",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-037_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-038",
+    "device_id": "WA-38",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2550,
+    "status": "Completed",
+    "created_at": "2026-08-15T23:45:24",
+    "updated_at": "2026-08-15T23:51:24",
+    "notes": "Automated risk evaluation session for Urant N300 Wireless Range Booster (Unit 38)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Urant",
+      "model": "Urant N300 Signal Booster"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-15T23:45:24",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-038_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-15T23:45:24",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-038_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-15T23:45:24",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 5,
+        "evidence_file": "data/evidence/ASM-038_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-15T23:51:24",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-038_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-039",
+    "device_id": "WA-39",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2500,
+    "status": "Completed",
+    "created_at": "2026-08-16T02:45:14",
+    "updated_at": "2026-08-16T02:51:14",
+    "notes": "Automated risk evaluation session for Pix-Link LV-WR02B Repeater (Unit 39)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Pix-Link",
+      "model": "LV-WR02B 300Mbps Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-16T02:45:14",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 2,
+        "open_ports": [
+          23,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-039_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-16T02:45:14",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-039_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-16T02:45:14",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-039_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-16T02:51:14",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-039_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-040",
+    "device_id": "WA-40",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2350,
+    "status": "Completed",
+    "created_at": "2026-08-16T06:29:58",
+    "updated_at": "2026-08-16T06:35:58",
+    "notes": "Automated risk evaluation session for Wireless-N Mini Router MT02 (Unit 40)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Wireless-N",
+      "model": "Mini Router MT02 Multi-Mode"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-16T06:29:58",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-040_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-16T06:29:58",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-040_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-16T06:29:58",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 5,
+        "evidence_file": "data/evidence/ASM-040_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-16T06:35:58",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-040_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-041",
+    "device_id": "WA-41",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 3100,
+    "status": "Completed",
+    "created_at": "2026-08-16T10:15:23",
+    "updated_at": "2026-08-16T10:17:23",
+    "notes": "Automated risk evaluation session for Comfast CF-WR302S Signal Booster (Unit 41)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Comfast",
+      "model": "CF-WR302S High Power Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-16T10:15:23",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 2,
+        "evidence_file": "data/evidence/ASM-041_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-16T10:15:23",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-041_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-16T10:15:23",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-041_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-16T10:17:23",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-041_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-042",
+    "device_id": "WA-42",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 3900,
+    "status": "Completed",
+    "created_at": "2026-08-16T14:06:14",
+    "updated_at": "2026-08-16T14:10:14",
+    "notes": "Automated risk evaluation session for Wavlink Aerial N300 AP/Repeater (Unit 42)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Wavlink",
+      "model": "Aerial N300 Range Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-16T14:06:14",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 2,
+        "evidence_file": "data/evidence/ASM-042_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-16T14:06:14",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-042_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-16T14:06:14",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-042_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-16T14:10:14",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-042_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-043",
+    "device_id": "WA-43",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 4700,
+    "status": "Completed",
+    "created_at": "2026-08-16T16:40:41",
+    "updated_at": "2026-08-16T16:44:41",
+    "notes": "Automated risk evaluation session for Tenda A9 N300 Range Extender (Unit 43)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Tenda",
+      "model": "A9 Wireless N300 Universal Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-16T16:40:41",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-043_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-16T16:40:41",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-043_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-16T16:40:41",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-043_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-16T16:44:41",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-043_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-044",
+    "device_id": "WA-44",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 4800,
+    "status": "Completed",
+    "created_at": "2026-08-16T19:52:07",
+    "updated_at": "2026-08-16T19:54:07",
+    "notes": "Automated risk evaluation session for Mercusys MW300RE Wi-Fi Repeater (Unit 44)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Mercusys",
+      "model": "MW300RE 3-Antenna Range Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-16T19:52:07",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-044_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-16T19:52:07",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-044_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-16T19:52:07",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-044_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-16T19:54:07",
+        "firmware_found": true,
+        "sources_count": 1,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-044_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-045",
+    "device_id": "WA-45",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 3850,
+    "status": "Completed",
+    "created_at": "2026-08-17T00:45:07",
+    "updated_at": "2026-08-17T00:48:07",
+    "notes": "Automated risk evaluation session for Totolink EX200 Range Extender (Unit 45)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Totolink",
+      "model": "EX200 300Mbps Wireless Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-17T00:45:07",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 2,
+        "evidence_file": "data/evidence/ASM-045_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-17T00:45:07",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-045_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-17T00:45:07",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-045_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-17T00:48:07",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-045_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-046",
+    "device_id": "WA-46",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2650,
+    "status": "Completed",
+    "created_at": "2026-08-17T04:09:05",
+    "updated_at": "2026-08-17T04:13:05",
+    "notes": "Automated risk evaluation session for LB-Link BL-WN300 Signal Booster (Unit 46)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "LB-Link",
+      "model": "BL-WN300 Wireless Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-17T04:09:05",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 2,
+        "open_ports": [
+          23,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-046_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-17T04:09:05",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-046_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-17T04:09:05",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-046_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-17T04:13:05",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-046_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-047",
+    "device_id": "WA-47",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 3050,
+    "status": "Completed",
+    "created_at": "2026-08-17T07:08:06",
+    "updated_at": "2026-08-17T07:11:06",
+    "notes": "Automated risk evaluation session for EDUP EP-2911 Range Extender (Unit 47)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "EDUP",
+      "model": "EP-2911 Wireless AP Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-17T07:08:06",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 2,
+        "open_ports": [
+          23,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-047_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-17T07:08:06",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-047_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-17T07:08:06",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-047_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-17T07:11:06",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-047_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-048",
+    "device_id": "WA-48",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2450,
+    "status": "Completed",
+    "created_at": "2026-08-17T10:53:46",
+    "updated_at": "2026-08-17T10:59:46",
+    "notes": "Automated risk evaluation session for Netcore 300M Wi-Fi Repeater (Unit 48)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Netcore",
+      "model": "300M Signal Amplifier"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-17T10:53:46",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-048_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-17T10:53:46",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-048_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-17T10:53:46",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 5,
+        "evidence_file": "data/evidence/ASM-048_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-17T10:59:46",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-048_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-049",
+    "device_id": "WA-49",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2750,
+    "status": "Completed",
+    "created_at": "2026-08-17T14:39:41",
+    "updated_at": "2026-08-17T14:45:41",
+    "notes": "Automated risk evaluation session for Generic MT02 Wi-Fi Repeater (Unit 49)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Generic / MT02 OEM",
+      "model": "300M Wi-Fi Repeater MT02"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-17T14:39:41",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-049_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-17T14:39:41",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-049_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-17T14:39:41",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 5,
+        "evidence_file": "data/evidence/ASM-049_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-17T14:45:41",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-049_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-050",
+    "device_id": "WA-50",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2300,
+    "status": "Completed",
+    "created_at": "2026-08-17T17:25:50",
+    "updated_at": "2026-08-17T17:27:50",
+    "notes": "Automated risk evaluation session for Urant N300 Wireless Range Booster (Unit 50)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Urant",
+      "model": "Urant N300 Signal Booster"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-17T17:25:50",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-050_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-17T17:25:50",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-050_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-17T17:25:50",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 5,
+        "evidence_file": "data/evidence/ASM-050_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-17T17:27:50",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-050_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-051",
+    "device_id": "WA-51",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2800,
+    "status": "Completed",
+    "created_at": "2026-08-17T21:35:37",
+    "updated_at": "2026-08-17T21:39:37",
+    "notes": "Automated risk evaluation session for Pix-Link LV-WR02B Repeater (Unit 51)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Pix-Link",
+      "model": "LV-WR02B 300Mbps Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-17T21:35:37",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 2,
+        "open_ports": [
+          23,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-051_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-17T21:35:37",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-051_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-17T21:35:37",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-051_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-17T21:39:37",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-051_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-052",
+    "device_id": "WA-52",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2200,
+    "status": "Completed",
+    "created_at": "2026-08-17T23:41:54",
+    "updated_at": "2026-08-17T23:47:54",
+    "notes": "Automated risk evaluation session for Wireless-N Mini Router MT02 (Unit 52)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Wireless-N",
+      "model": "Mini Router MT02 Multi-Mode"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-17T23:41:54",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-052_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-17T23:41:54",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-052_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-17T23:41:54",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 5,
+        "evidence_file": "data/evidence/ASM-052_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-17T23:47:54",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-052_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-053",
+    "device_id": "WA-53",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 3200,
+    "status": "Completed",
+    "created_at": "2026-08-18T03:14:44",
+    "updated_at": "2026-08-18T03:19:44",
+    "notes": "Automated risk evaluation session for Comfast CF-WR302S Signal Booster (Unit 53)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Comfast",
+      "model": "CF-WR302S High Power Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-18T03:14:44",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 2,
+        "evidence_file": "data/evidence/ASM-053_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-18T03:14:44",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-053_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-18T03:14:44",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-053_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-18T03:19:44",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-053_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-054",
+    "device_id": "WA-54",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 3250,
+    "status": "Completed",
+    "created_at": "2026-08-18T08:15:45",
+    "updated_at": "2026-08-18T08:21:45",
+    "notes": "Automated risk evaluation session for Wavlink Aerial N300 AP/Repeater (Unit 54)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Wavlink",
+      "model": "Aerial N300 Range Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-18T08:15:45",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 2,
+        "evidence_file": "data/evidence/ASM-054_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-18T08:15:45",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-054_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-18T08:15:45",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-054_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-18T08:21:45",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-054_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-055",
+    "device_id": "WA-55",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 4200,
+    "status": "Completed",
+    "created_at": "2026-08-18T10:19:05",
+    "updated_at": "2026-08-18T10:24:05",
+    "notes": "Automated risk evaluation session for Tenda A9 N300 Range Extender (Unit 55)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Tenda",
+      "model": "A9 Wireless N300 Universal Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-18T10:19:05",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-055_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-18T10:19:05",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-055_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-18T10:19:05",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-055_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-18T10:24:05",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-055_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-056",
+    "device_id": "WA-56",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 4900,
+    "status": "Completed",
+    "created_at": "2026-08-18T13:52:50",
+    "updated_at": "2026-08-18T13:58:50",
+    "notes": "Automated risk evaluation session for Mercusys MW300RE Wi-Fi Repeater (Unit 56)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Mercusys",
+      "model": "MW300RE 3-Antenna Range Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-18T13:52:50",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-056_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-18T13:52:50",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-056_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-18T13:52:50",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-056_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-18T13:58:50",
+        "firmware_found": true,
+        "sources_count": 1,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-056_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-057",
+    "device_id": "WA-57",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 4050,
+    "status": "Completed",
+    "created_at": "2026-08-18T18:44:21",
+    "updated_at": "2026-08-18T18:50:21",
+    "notes": "Automated risk evaluation session for Totolink EX200 Range Extender (Unit 57)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Totolink",
+      "model": "EX200 300Mbps Wireless Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-18T18:44:21",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 2,
+        "evidence_file": "data/evidence/ASM-057_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-18T18:44:21",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-057_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-18T18:44:21",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-057_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-18T18:50:21",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-057_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-058",
+    "device_id": "WA-58",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2800,
+    "status": "Completed",
+    "created_at": "2026-08-18T21:50:27",
+    "updated_at": "2026-08-18T21:53:27",
+    "notes": "Automated risk evaluation session for LB-Link BL-WN300 Signal Booster (Unit 58)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "LB-Link",
+      "model": "BL-WN300 Wireless Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-18T21:50:27",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 2,
+        "open_ports": [
+          23,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-058_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-18T21:50:27",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-058_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-18T21:50:27",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-058_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-18T21:53:27",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-058_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-059",
+    "device_id": "WA-59",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2850,
+    "status": "Completed",
+    "created_at": "2026-08-19T00:46:41",
+    "updated_at": "2026-08-19T00:50:41",
+    "notes": "Automated risk evaluation session for EDUP EP-2911 Range Extender (Unit 59)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "EDUP",
+      "model": "EP-2911 Wireless AP Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-19T00:46:41",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 2,
+        "open_ports": [
+          23,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-059_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-19T00:46:41",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-059_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-19T00:46:41",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-059_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-19T00:50:41",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-059_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-060",
+    "device_id": "WA-60",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2450,
+    "status": "Completed",
+    "created_at": "2026-08-19T05:07:45",
+    "updated_at": "2026-08-19T05:12:45",
+    "notes": "Automated risk evaluation session for Netcore 300M Wi-Fi Repeater (Unit 60)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Netcore",
+      "model": "300M Signal Amplifier"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-19T05:07:45",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-060_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-19T05:07:45",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-060_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-19T05:07:45",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 5,
+        "evidence_file": "data/evidence/ASM-060_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-19T05:12:45",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-060_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-061",
+    "device_id": "WA-61",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2300,
+    "status": "Completed",
+    "created_at": "2026-08-19T07:31:17",
+    "updated_at": "2026-08-19T07:33:17",
+    "notes": "Automated risk evaluation session for Generic MT02 Wi-Fi Repeater (Unit 61)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Generic / MT02 OEM",
+      "model": "300M Wi-Fi Repeater MT02"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-19T07:31:17",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-061_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-19T07:31:17",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-061_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-19T07:31:17",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 5,
+        "evidence_file": "data/evidence/ASM-061_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-19T07:33:17",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-061_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-062",
+    "device_id": "WA-62",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2300,
+    "status": "Completed",
+    "created_at": "2026-08-19T10:38:08",
+    "updated_at": "2026-08-19T10:44:08",
+    "notes": "Automated risk evaluation session for Urant N300 Wireless Range Booster (Unit 62)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Urant",
+      "model": "Urant N300 Signal Booster"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-19T10:38:08",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-062_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-19T10:38:08",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-062_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-19T10:38:08",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 5,
+        "evidence_file": "data/evidence/ASM-062_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-19T10:44:08",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-062_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-063",
+    "device_id": "WA-63",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2700,
+    "status": "Completed",
+    "created_at": "2026-08-19T15:06:01",
+    "updated_at": "2026-08-19T15:08:01",
+    "notes": "Automated risk evaluation session for Pix-Link LV-WR02B Repeater (Unit 63)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Pix-Link",
+      "model": "LV-WR02B 300Mbps Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-19T15:06:01",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 2,
+        "open_ports": [
+          23,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-063_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-19T15:06:01",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-063_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-19T15:06:01",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-063_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-19T15:08:01",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-063_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-064",
+    "device_id": "WA-64",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2150,
+    "status": "Completed",
+    "created_at": "2026-08-19T18:48:11",
+    "updated_at": "2026-08-19T18:50:11",
+    "notes": "Automated risk evaluation session for Wireless-N Mini Router MT02 (Unit 64)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Wireless-N",
+      "model": "Mini Router MT02 Multi-Mode"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-19T18:48:11",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-064_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-19T18:48:11",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-064_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-19T18:48:11",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 5,
+        "evidence_file": "data/evidence/ASM-064_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-19T18:50:11",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-064_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-065",
+    "device_id": "WA-65",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 3350,
+    "status": "Completed",
+    "created_at": "2026-08-19T21:12:52",
+    "updated_at": "2026-08-19T21:14:52",
+    "notes": "Automated risk evaluation session for Comfast CF-WR302S Signal Booster (Unit 65)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Comfast",
+      "model": "CF-WR302S High Power Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-19T21:12:52",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 2,
+        "evidence_file": "data/evidence/ASM-065_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-19T21:12:52",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-065_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-19T21:12:52",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-065_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-19T21:14:52",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-065_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-066",
+    "device_id": "WA-66",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 3550,
+    "status": "Completed",
+    "created_at": "2026-08-20T00:43:13",
+    "updated_at": "2026-08-20T00:46:13",
+    "notes": "Automated risk evaluation session for Wavlink Aerial N300 AP/Repeater (Unit 66)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Wavlink",
+      "model": "Aerial N300 Range Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-20T00:43:13",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 2,
+        "evidence_file": "data/evidence/ASM-066_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-20T00:43:13",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-066_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-20T00:43:13",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-066_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-20T00:46:13",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-066_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-067",
+    "device_id": "WA-67",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 4350,
+    "status": "Completed",
+    "created_at": "2026-08-20T05:14:14",
+    "updated_at": "2026-08-20T05:17:14",
+    "notes": "Automated risk evaluation session for Tenda A9 N300 Range Extender (Unit 67)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Tenda",
+      "model": "A9 Wireless N300 Universal Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-20T05:14:14",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-067_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-20T05:14:14",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-067_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-20T05:14:14",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-067_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-20T05:17:14",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-067_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-068",
+    "device_id": "WA-68",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 4900,
+    "status": "Completed",
+    "created_at": "2026-08-20T07:49:29",
+    "updated_at": "2026-08-20T07:55:29",
+    "notes": "Automated risk evaluation session for Mercusys MW300RE Wi-Fi Repeater (Unit 68)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Mercusys",
+      "model": "MW300RE 3-Antenna Range Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-20T07:49:29",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-068_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-20T07:49:29",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-068_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-20T07:49:29",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-068_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-20T07:55:29",
+        "firmware_found": true,
+        "sources_count": 1,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-068_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-069",
+    "device_id": "WA-69",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 4200,
+    "status": "Completed",
+    "created_at": "2026-08-20T11:54:12",
+    "updated_at": "2026-08-20T11:59:12",
+    "notes": "Automated risk evaluation session for Totolink EX200 Range Extender (Unit 69)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Totolink",
+      "model": "EX200 300Mbps Wireless Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-20T11:54:12",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 2,
+        "evidence_file": "data/evidence/ASM-069_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-20T11:54:12",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-069_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-20T11:54:12",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-069_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-20T11:59:12",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-069_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-070",
+    "device_id": "WA-70",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2800,
+    "status": "Completed",
+    "created_at": "2026-08-20T15:17:31",
+    "updated_at": "2026-08-20T15:19:31",
+    "notes": "Automated risk evaluation session for LB-Link BL-WN300 Signal Booster (Unit 70)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "LB-Link",
+      "model": "BL-WN300 Wireless Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-20T15:17:31",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 2,
+        "open_ports": [
+          23,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-070_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-20T15:17:31",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-070_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-20T15:17:31",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-070_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-20T15:19:31",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-070_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-071",
+    "device_id": "WA-71",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2650,
+    "status": "Completed",
+    "created_at": "2026-08-20T19:13:12",
+    "updated_at": "2026-08-20T19:17:12",
+    "notes": "Automated risk evaluation session for EDUP EP-2911 Range Extender (Unit 71)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "EDUP",
+      "model": "EP-2911 Wireless AP Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-20T19:13:12",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 2,
+        "open_ports": [
+          23,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-071_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-20T19:13:12",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-071_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-20T19:13:12",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-071_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-20T19:17:12",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-071_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-072",
+    "device_id": "WA-72",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2450,
+    "status": "Completed",
+    "created_at": "2026-08-20T22:17:55",
+    "updated_at": "2026-08-20T22:19:55",
+    "notes": "Automated risk evaluation session for Netcore 300M Wi-Fi Repeater (Unit 72)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Netcore",
+      "model": "300M Signal Amplifier"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-20T22:17:55",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-072_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-20T22:17:55",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-072_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-20T22:17:55",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 5,
+        "evidence_file": "data/evidence/ASM-072_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-20T22:19:55",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-072_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-073",
+    "device_id": "WA-73",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2300,
+    "status": "Completed",
+    "created_at": "2026-08-21T01:12:10",
+    "updated_at": "2026-08-21T01:16:10",
+    "notes": "Automated risk evaluation session for Generic MT02 Wi-Fi Repeater (Unit 73)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Generic / MT02 OEM",
+      "model": "300M Wi-Fi Repeater MT02"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-21T01:12:10",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-073_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-21T01:12:10",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-073_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-21T01:12:10",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 5,
+        "evidence_file": "data/evidence/ASM-073_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-21T01:16:10",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-073_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-074",
+    "device_id": "WA-74",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2550,
+    "status": "Completed",
+    "created_at": "2026-08-21T06:03:53",
+    "updated_at": "2026-08-21T06:06:53",
+    "notes": "Automated risk evaluation session for Urant N300 Wireless Range Booster (Unit 74)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Urant",
+      "model": "Urant N300 Signal Booster"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-21T06:03:53",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-074_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-21T06:03:53",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-074_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-21T06:03:53",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 5,
+        "evidence_file": "data/evidence/ASM-074_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-21T06:06:53",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-074_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-075",
+    "device_id": "WA-75",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2650,
+    "status": "Completed",
+    "created_at": "2026-08-21T08:25:24",
+    "updated_at": "2026-08-21T08:30:24",
+    "notes": "Automated risk evaluation session for Pix-Link LV-WR02B Repeater (Unit 75)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Pix-Link",
+      "model": "LV-WR02B 300Mbps Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-21T08:25:24",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 2,
+        "open_ports": [
+          23,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-075_network.json"
+      },
+      {
+        "module": "DNS Behavior Checks",
+        "timestamp": "2026-08-21T08:25:24",
+        "setup_domain": "zrlogin.cn",
+        "setup_domain_ips": [
+          "192.168.11.1"
+        ],
+        "control_domain_ips": [
+          "142.250.185.206"
+        ],
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-075_dns.json"
+      },
+      {
+        "module": "Web Interface Checks",
+        "timestamp": "2026-08-21T08:25:24",
+        "target_url": "http://192.168.11.1/",
+        "is_reachable": true,
+        "check_method": "live_fetch",
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-075_web.json"
+      },
+      {
+        "module": "Firmware Discovery",
+        "timestamp": "2026-08-21T08:30:24",
+        "firmware_found": false,
+        "sources_count": 0,
+        "findings_count": 1,
+        "evidence_file": "data/evidence/ASM-075_firmware_discovery.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-076",
+    "device_id": "WA-76",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2150,
+    "status": "Completed",
+    "created_at": "2026-08-21T12:19:01",
+    "updated_at": "2026-08-21T12:23:01",
+    "notes": "Automated risk evaluation session for Wireless-N Mini Router MT02 (Unit 76)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Wireless-N",
+      "model": "Mini Router MT02 Multi-Mode"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-21T12:19:01",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-076_network.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-077",
+    "device_id": "WA-77",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 3550,
+    "status": "Completed",
+    "created_at": "2026-08-21T15:31:28",
+    "updated_at": "2026-08-21T15:33:28",
+    "notes": "Automated risk evaluation session for Comfast CF-WR302S Signal Booster (Unit 77)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Comfast",
+      "model": "CF-WR302S High Power Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-21T15:31:28",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 2,
+        "evidence_file": "data/evidence/ASM-077_network.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-078",
+    "device_id": "WA-78",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 3650,
+    "status": "Completed",
+    "created_at": "2026-08-21T19:58:25",
+    "updated_at": "2026-08-21T20:04:25",
+    "notes": "Automated risk evaluation session for Wavlink Aerial N300 AP/Repeater (Unit 78)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Wavlink",
+      "model": "Aerial N300 Range Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-21T19:58:25",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 2,
+        "evidence_file": "data/evidence/ASM-078_network.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-079",
+    "device_id": "WA-79",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 4150,
+    "status": "Completed",
+    "created_at": "2026-08-21T22:11:09",
+    "updated_at": "2026-08-21T22:17:09",
+    "notes": "Automated risk evaluation session for Tenda A9 N300 Range Extender (Unit 79)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Tenda",
+      "model": "A9 Wireless N300 Universal Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-21T22:11:09",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-079_network.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-080",
+    "device_id": "WA-80",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 4350,
+    "status": "Completed",
+    "created_at": "2026-08-22T03:14:50",
+    "updated_at": "2026-08-22T03:17:50",
+    "notes": "Automated risk evaluation session for Mercusys MW300RE Wi-Fi Repeater (Unit 80)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Mercusys",
+      "model": "MW300RE 3-Antenna Range Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-22T03:14:50",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-080_network.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-081",
+    "device_id": "WA-81",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 3750,
+    "status": "Completed",
+    "created_at": "2026-08-22T05:47:27",
+    "updated_at": "2026-08-22T05:52:27",
+    "notes": "Automated risk evaluation session for Totolink EX200 Range Extender (Unit 81)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Totolink",
+      "model": "EX200 300Mbps Wireless Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-22T05:47:27",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 2,
+        "evidence_file": "data/evidence/ASM-081_network.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-082",
+    "device_id": "WA-82",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2500,
+    "status": "Completed",
+    "created_at": "2026-08-22T10:04:11",
+    "updated_at": "2026-08-22T10:06:11",
+    "notes": "Automated risk evaluation session for LB-Link BL-WN300 Signal Booster (Unit 82)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "LB-Link",
+      "model": "BL-WN300 Wireless Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-22T10:04:11",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 2,
+        "open_ports": [
+          23,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-082_network.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-083",
+    "device_id": "WA-83",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2700,
+    "status": "Completed",
+    "created_at": "2026-08-22T12:44:39",
+    "updated_at": "2026-08-22T12:49:39",
+    "notes": "Automated risk evaluation session for EDUP EP-2911 Range Extender (Unit 83)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "EDUP",
+      "model": "EP-2911 Wireless AP Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-22T12:44:39",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 2,
+        "open_ports": [
+          23,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-083_network.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-084",
+    "device_id": "WA-84",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2400,
+    "status": "Completed",
+    "created_at": "2026-08-22T17:10:30",
+    "updated_at": "2026-08-22T17:15:30",
+    "notes": "Automated risk evaluation session for Netcore 300M Wi-Fi Repeater (Unit 84)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Netcore",
+      "model": "300M Signal Amplifier"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-22T17:10:30",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-084_network.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-085",
+    "device_id": "WA-85",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2500,
+    "status": "Completed",
+    "created_at": "2026-08-22T19:49:08",
+    "updated_at": "2026-08-22T19:55:08",
+    "notes": "Automated risk evaluation session for Generic MT02 Wi-Fi Repeater (Unit 85)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Generic / MT02 OEM",
+      "model": "300M Wi-Fi Repeater MT02"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-22T19:49:08",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-085_network.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-086",
+    "device_id": "WA-86",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2500,
+    "status": "Completed",
+    "created_at": "2026-08-22T23:49:16",
+    "updated_at": "2026-08-22T23:52:16",
+    "notes": "Automated risk evaluation session for Urant N300 Wireless Range Booster (Unit 86)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Urant",
+      "model": "Urant N300 Signal Booster"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-22T23:49:16",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-086_network.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-087",
+    "device_id": "WA-87",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2650,
+    "status": "Completed",
+    "created_at": "2026-08-23T02:36:15",
+    "updated_at": "2026-08-23T02:38:15",
+    "notes": "Automated risk evaluation session for Pix-Link LV-WR02B Repeater (Unit 87)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Pix-Link",
+      "model": "LV-WR02B 300Mbps Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-23T02:36:15",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 2,
+        "open_ports": [
+          23,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-087_network.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-088",
+    "device_id": "WA-88",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2400,
+    "status": "Completed",
+    "created_at": "2026-08-23T06:51:02",
+    "updated_at": "2026-08-23T06:53:02",
+    "notes": "Automated risk evaluation session for Wireless-N Mini Router MT02 (Unit 88)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Wireless-N",
+      "model": "Mini Router MT02 Multi-Mode"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-23T06:51:02",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-088_network.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-089",
+    "device_id": "WA-89",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 3400,
+    "status": "Completed",
+    "created_at": "2026-08-23T09:11:49",
+    "updated_at": "2026-08-23T09:17:49",
+    "notes": "Automated risk evaluation session for Comfast CF-WR302S Signal Booster (Unit 89)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Comfast",
+      "model": "CF-WR302S High Power Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-23T09:11:49",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 2,
+        "evidence_file": "data/evidence/ASM-089_network.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-090",
+    "device_id": "WA-90",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 3700,
+    "status": "Completed",
+    "created_at": "2026-08-23T13:27:17",
+    "updated_at": "2026-08-23T13:33:17",
+    "notes": "Automated risk evaluation session for Wavlink Aerial N300 AP/Repeater (Unit 90)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Wavlink",
+      "model": "Aerial N300 Range Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-23T13:27:17",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 2,
+        "evidence_file": "data/evidence/ASM-090_network.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-091",
+    "device_id": "WA-91",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 4200,
+    "status": "Completed",
+    "created_at": "2026-08-23T16:11:48",
+    "updated_at": "2026-08-23T16:17:48",
+    "notes": "Automated risk evaluation session for Tenda A9 N300 Range Extender (Unit 91)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Tenda",
+      "model": "A9 Wireless N300 Universal Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-23T16:11:48",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-091_network.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-092",
+    "device_id": "WA-92",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 4450,
+    "status": "Completed",
+    "created_at": "2026-08-23T21:02:50",
+    "updated_at": "2026-08-23T21:04:50",
+    "notes": "Automated risk evaluation session for Mercusys MW300RE Wi-Fi Repeater (Unit 92)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Mercusys",
+      "model": "MW300RE 3-Antenna Range Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-23T21:02:50",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-092_network.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-093",
+    "device_id": "WA-93",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 3650,
+    "status": "Completed",
+    "created_at": "2026-08-24T00:14:52",
+    "updated_at": "2026-08-24T00:17:52",
+    "notes": "Automated risk evaluation session for Totolink EX200 Range Extender (Unit 93)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Totolink",
+      "model": "EX200 300Mbps Wireless Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-24T00:14:52",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 1,
+        "open_ports": [
+          80
+        ],
+        "findings_count": 2,
+        "evidence_file": "data/evidence/ASM-093_network.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-094",
+    "device_id": "WA-94",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2600,
+    "status": "Completed",
+    "created_at": "2026-08-24T02:48:13",
+    "updated_at": "2026-08-24T02:54:13",
+    "notes": "Automated risk evaluation session for LB-Link BL-WN300 Signal Booster (Unit 94)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "LB-Link",
+      "model": "BL-WN300 Wireless Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-24T02:48:13",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 2,
+        "open_ports": [
+          23,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-094_network.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-095",
+    "device_id": "WA-95",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2800,
+    "status": "Completed",
+    "created_at": "2026-08-24T07:05:02",
+    "updated_at": "2026-08-24T07:07:02",
+    "notes": "Automated risk evaluation session for EDUP EP-2911 Range Extender (Unit 95)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "EDUP",
+      "model": "EP-2911 Wireless AP Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-24T07:05:02",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 2,
+        "open_ports": [
+          23,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-095_network.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-096",
+    "device_id": "WA-96",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2550,
+    "status": "Completed",
+    "created_at": "2026-08-24T09:44:21",
+    "updated_at": "2026-08-24T09:50:21",
+    "notes": "Automated risk evaluation session for Netcore 300M Wi-Fi Repeater (Unit 96)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Netcore",
+      "model": "300M Signal Amplifier"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-24T09:44:21",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-096_network.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-097",
+    "device_id": "WA-97",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2800,
+    "status": "Completed",
+    "created_at": "2026-08-24T13:59:19",
+    "updated_at": "2026-08-24T14:03:19",
+    "notes": "Automated risk evaluation session for Generic MT02 Wi-Fi Repeater (Unit 97)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Generic / MT02 OEM",
+      "model": "300M Wi-Fi Repeater MT02"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-24T13:59:19",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-097_network.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-098",
+    "device_id": "WA-98",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2250,
+    "status": "Completed",
+    "created_at": "2026-08-24T17:44:18",
+    "updated_at": "2026-08-24T17:48:18",
+    "notes": "Automated risk evaluation session for Urant N300 Wireless Range Booster (Unit 98)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Urant",
+      "model": "Urant N300 Signal Booster"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-24T17:44:18",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-098_network.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-099",
+    "device_id": "WA-99",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2700,
+    "status": "Completed",
+    "created_at": "2026-08-24T20:33:05",
+    "updated_at": "2026-08-24T20:36:05",
+    "notes": "Automated risk evaluation session for Pix-Link LV-WR02B Repeater (Unit 99)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Pix-Link",
+      "model": "LV-WR02B 300Mbps Extender"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-24T20:33:05",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 2,
+        "open_ports": [
+          23,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-099_network.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-100",
+    "device_id": "WA-100",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 2450,
+    "status": "Completed",
+    "created_at": "2026-08-25T00:41:50",
+    "updated_at": "2026-08-25T00:46:50",
+    "notes": "Automated risk evaluation session for Wireless-N Mini Router MT02 (Unit 100)",
+    "metadata": {
+      "setup_domain": "zrlogin.cn",
+      "brand": "Wireless-N",
+      "model": "Mini Router MT02 Multi-Mode"
+    },
+    "checks": [
+      {
+        "module": "Network Discovery",
+        "timestamp": "2026-08-25T00:41:50",
+        "scan_method": "socket_fallback",
+        "open_ports_count": 3,
+        "open_ports": [
+          23,
+          53,
+          80
+        ],
+        "findings_count": 3,
+        "evidence_file": "data/evidence/ASM-100_network.json"
+      }
+    ]
+  },
+  {
+    "id": "ASM-101",
+    "device_id": "WA-101",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 3400,
+    "status": "Created",
+    "created_at": "2026-08-25T04:40:45",
+    "updated_at": "2026-08-25T04:42:45",
+    "notes": "Automated risk evaluation session for Comfast CF-WR302S Signal Booster (Unit 101)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Comfast",
+      "model": "CF-WR302S High Power Extender"
     },
     "checks": []
   },
   {
-    "id": "ASM-010",
-    "device_id": "Target-Device",
-    "target_ip": "10.11.159.7",
-    "price_lkr": 0,
+    "id": "ASM-102",
+    "device_id": "WA-102",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 3200,
     "status": "Created",
-    "created_at": "2026-08-29T13:10:30",
-    "updated_at": "2026-08-29T13:10:30",
-    "notes": "Direct CLI safe assessment execution",
+    "created_at": "2026-08-25T07:22:44",
+    "updated_at": "2026-08-25T07:28:44",
+    "notes": "Automated risk evaluation session for Wavlink Aerial N300 AP/Repeater (Unit 102)",
     "metadata": {
-      "setup_domain": ""
+      "setup_domain": "",
+      "brand": "Wavlink",
+      "model": "Aerial N300 Range Extender"
+    },
+    "checks": []
+  },
+  {
+    "id": "ASM-103",
+    "device_id": "WA-103",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 4150,
+    "status": "Created",
+    "created_at": "2026-08-25T10:13:28",
+    "updated_at": "2026-08-25T10:16:28",
+    "notes": "Automated risk evaluation session for Tenda A9 N300 Range Extender (Unit 103)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Tenda",
+      "model": "A9 Wireless N300 Universal Extender"
+    },
+    "checks": []
+  },
+  {
+    "id": "ASM-104",
+    "device_id": "WA-104",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 4850,
+    "status": "Created",
+    "created_at": "2026-08-25T14:03:03",
+    "updated_at": "2026-08-25T14:07:03",
+    "notes": "Automated risk evaluation session for Mercusys MW300RE Wi-Fi Repeater (Unit 104)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Mercusys",
+      "model": "MW300RE 3-Antenna Range Extender"
+    },
+    "checks": []
+  },
+  {
+    "id": "ASM-105",
+    "device_id": "WA-105",
+    "target_ip": "192.168.11.1",
+    "price_lkr": 3650,
+    "status": "Created",
+    "created_at": "2026-08-25T18:35:41",
+    "updated_at": "2026-08-25T18:39:41",
+    "notes": "Automated risk evaluation session for Totolink EX200 Range Extender (Unit 105)",
+    "metadata": {
+      "setup_domain": "",
+      "brand": "Totolink",
+      "model": "EX200 300Mbps Wireless Extender"
     },
     "checks": []
   }

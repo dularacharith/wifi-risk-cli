@@ -1,10 +1,27 @@
 {
   "assessment_id": "ASM-003",
-  "device_id": "TestDev",
-  "target_ip": "127.0.0.1",
-  "scan_method": "nmap_live",
-  "timestamp": "2026-08-28T12:34:59",
-  "open_ports": [],
-  "raw_output": "Starting Nmap 7.99 ( https://nmap.org ) at 2026-08-28 12:34 +0530\nNmap scan report for localhost (127.0.0.1)\nHost is up (0.000044s latency).\n\nPORT     STATE  SERVICE    VERSION\n21/tcp   closed ftp\n22/tcp   closed ssh\n23/tcp   closed telnet\n53/tcp   closed domain\n80/tcp   closed http\n443/tcp  closed https\n8080/tcp closed http-proxy\n8443/tcp closed https-alt\n\nService detection performed. Please report any incorrect results at https://nmap.org/submit/ .\nNmap done: 1 IP address (1 host up) scanned in 0.17 seconds\n",
-  "findings": []
+  "device_id": "WA-03",
+  "target_ip": "192.168.11.1",
+  "timestamp": "2026-08-10T21:21:32",
+  "open_ports": [
+    23,
+    80
+  ],
+  "services": [
+    {
+      "port": 23,
+      "state": "open",
+      "service": "telnet"
+    },
+    {
+      "port": 80,
+      "state": "open",
+      "service": "http"
+    }
+  ],
+  "findings": [
+    "WA-03-F01",
+    "WA-03-F05",
+    "WA-03-F09"
+  ]
 }

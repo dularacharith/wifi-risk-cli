@@ -1,0 +1,27 @@
+{
+  "assessment_id": "ASM-027",
+  "device_id": "WA-27",
+  "target_ip": "192.168.11.1",
+  "timestamp": "2026-08-14T09:29:49",
+  "open_ports": [
+    23,
+    80
+  ],
+  "services": [
+    {
+      "port": 23,
+      "state": "open",
+      "service": "telnet"
+    },
+    {
+      "port": 80,
+      "state": "open",
+      "service": "http"
+    }
+  ],
+  "findings": [
+    "WA-27-F01",
+    "WA-27-F05",
+    "WA-27-F09"
+  ]
+}

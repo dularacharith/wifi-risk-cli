@@ -1,0 +1,15 @@
+{
+  "assessment_id": "ASM-060",
+  "device_id": "WA-60",
+  "target_url": "http://192.168.11.1/",
+  "timestamp": "2026-08-19T05:07:45",
+  "http_status": 200,
+  "title": "300M Signal Amplifier Web Management",
+  "findings": [
+    "WA-60-F02",
+    "WA-60-F03",
+    "WA-60-F04",
+    "WA-60-F06",
+    "WA-60-F07"
+  ]
+}

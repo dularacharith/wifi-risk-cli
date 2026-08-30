@@ -1,0 +1,12 @@
+{
+  "assessment_id": "ASM-036",
+  "device_id": "WA-36",
+  "timestamp": "2026-08-15T16:28:20",
+  "brand_clue": "Netcore",
+  "model_clue": "300M Signal Amplifier",
+  "firmware_version": "v1.0.1.2-netcore",
+  "firmware_found": false,
+  "findings": [
+    "WA-36-F08"
+  ]
+}

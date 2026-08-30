@@ -1,0 +1,11 @@
+{
+  "assessment_id": "ASM-045",
+  "device_id": "WA-45",
+  "target_url": "http://192.168.11.1/",
+  "timestamp": "2026-08-17T00:45:07",
+  "http_status": 200,
+  "title": "EX200 300Mbps Wireless Extender Web Management",
+  "findings": [
+    "WA-45-F06"
+  ]
+}

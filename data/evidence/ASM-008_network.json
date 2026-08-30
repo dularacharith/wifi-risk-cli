@@ -1,58 +1,17 @@
 {
   "assessment_id": "ASM-008",
-  "device_id": "WR-002",
+  "device_id": "WA-08",
   "target_ip": "192.168.11.1",
-  "scan_method": "socket_fallback",
-  "timestamp": "2026-08-29T12:53:31",
+  "timestamp": "2026-08-11T13:58:29",
   "open_ports": [
-    {
-      "port": 23,
-      "protocol": "tcp",
-      "state": "open",
-      "service": "telnet",
-      "banner": "Login as:"
-    },
+    80
+  ],
+  "services": [
     {
       "port": 80,
-      "protocol": "tcp",
       "state": "open",
-      "service": "http",
-      "banner": ""
+      "service": "http"
     }
   ],
-  "raw_output": "",
-  "findings": [
-    {
-      "id": "WR-002-F01",
-      "device_id": "WR-002",
-      "assessment_id": "ASM-008",
-      "title": "Telnet service exposed on local and upstream interfaces",
-      "category": "Network-Level Exposure / Insecure Defaults",
-      "severity": "High",
-      "status": "Confirmed",
-      "cwe": "CWE-319 (Cleartext Transmission) / CWE-259 (Hardcoded Password)",
-      "threat_scenario": "In a lab or local threat environment, an attacker connected to the Wi-Fi or upstream network can perform automated dictionary attacks (such as Mirai-style brute force) or sniff cleartext administrative commands and root credentials transmitted across the network.",
-      "impact": "Unauthenticated or weak password access allows remote root shell execution, enabling an attacker to compromise the repeater, modify routing tables, install persistent backdoors, or recruit the device into a botnet.",
-      "recommendation": "Disable the Telnet daemon in firmware by default. Use SSH with key-based authentication if remote shell access is necessary.",
-      "hardening_coverage": "1. Remove the telnetd daemon from the device startup scripts (e.g. /etc/init.d/rcS).\n2. Block inbound TCP port 23 across all network interfaces using iptables firewall rules.\n3. Enforce cryptographic authentication (SSH) and disable default root accounts.",
-      "module": "Network Discovery",
-      "date_observed": "2026-08-29T12:53:31"
-    },
-    {
-      "id": "WR-002-F_HTTP",
-      "device_id": "WR-002",
-      "assessment_id": "ASM-008",
-      "title": "Unencrypted HTTP management interface exposed",
-      "category": "Network-Level Exposure / Insecure Defaults",
-      "severity": "Medium",
-      "status": "Confirmed",
-      "cwe": "CWE-319 (Cleartext Transmission) / CWE-352 (Cross-Site Request Forgery)",
-      "threat_scenario": "In a threat environment, an attacker on the same Wi-Fi network can intercept administrative sessions via ARP spoofing or Wi-Fi sniffing. Furthermore, without CSRF protections on unencrypted HTTP, an attacker can trick a logged-in user into visiting a malicious webpage that invisibly submits forged configuration requests (e.g. changing DNS servers or Wi-Fi keys) to the repeater.",
-      "impact": "Cleartext transmission of Wi-Fi passphrases and admin credentials allows passive eavesdropping, session hijacking and unauthorized router reconfiguration via Cross-Site Request Forgery.",
-      "recommendation": "Enforce HTTPS (TLS 1.2/1.3) encryption for all web management communications and implement anti-CSRF token verification.",
-      "hardening_coverage": "1. Build and embed lightweight TLS support (e.g. mbedTLS / WolfSSL) into the embedded web server (e.g. uHTTPd / GoAhead / Boa).\n2. Enable automatic redirection from HTTP port 80 to HTTPS port 443 with HSTS headers.\n3. Generate a unique self-signed certificate upon first boot.\n4. Implement CSRF tokens for all state-changing administrative actions.",
-      "module": "Network Discovery",
-      "date_observed": "2026-08-29T12:53:31"
-    }
-  ]
+  "findings": []
 }

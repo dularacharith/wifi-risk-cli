@@ -1,0 +1,15 @@
+{
+  "assessment_id": "ASM-037",
+  "device_id": "WA-37",
+  "target_url": "http://192.168.11.1/",
+  "timestamp": "2026-08-15T19:21:35",
+  "http_status": 200,
+  "title": "300M Wi-Fi Repeater MT02 Web Management",
+  "findings": [
+    "WA-37-F02",
+    "WA-37-F03",
+    "WA-37-F04",
+    "WA-37-F06",
+    "WA-37-F07"
+  ]
+}

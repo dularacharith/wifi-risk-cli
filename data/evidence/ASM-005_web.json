@@ -1,0 +1,11 @@
+{
+  "assessment_id": "ASM-005",
+  "device_id": "WA-05",
+  "target_url": "http://192.168.11.1/",
+  "timestamp": "2026-08-11T03:15:33",
+  "http_status": 200,
+  "title": "CF-WR302S High Power Extender Web Management",
+  "findings": [
+    "WA-05-F06"
+  ]
+}

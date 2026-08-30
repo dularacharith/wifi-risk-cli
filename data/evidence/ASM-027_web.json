@@ -1,0 +1,13 @@
+{
+  "assessment_id": "ASM-027",
+  "device_id": "WA-27",
+  "target_url": "http://192.168.11.1/",
+  "timestamp": "2026-08-14T09:29:49",
+  "http_status": 200,
+  "title": "LV-WR02B 300Mbps Extender Web Management",
+  "findings": [
+    "WA-27-F03",
+    "WA-27-F06",
+    "WA-27-F07"
+  ]
+}

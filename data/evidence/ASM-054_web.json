@@ -1,0 +1,11 @@
+{
+  "assessment_id": "ASM-054",
+  "device_id": "WA-54",
+  "target_url": "http://192.168.11.1/",
+  "timestamp": "2026-08-18T08:15:45",
+  "http_status": 200,
+  "title": "Aerial N300 Range Extender Web Management",
+  "findings": [
+    "WA-54-F06"
+  ]
+}

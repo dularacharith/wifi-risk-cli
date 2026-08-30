@@ -1,35 +1,33 @@
 {
   "assessment_id": "ASM-001",
-  "device_id": "Target-10.11.159.7",
-  "target_ip": "10.11.159.7",
-  "scan_method": "nmap_live",
-  "timestamp": "2026-08-28T18:51:29",
+  "device_id": "WA-01",
+  "target_ip": "192.168.11.1",
+  "timestamp": "2026-08-10T13:08:33",
   "open_ports": [
+    23,
+    53,
+    80
+  ],
+  "services": [
+    {
+      "port": 23,
+      "state": "open",
+      "service": "telnet"
+    },
     {
       "port": 53,
-      "protocol": "tcp",
       "state": "open",
-      "service": "domain",
-      "banner": "dnsmasq 2.51"
+      "service": "dns"
+    },
+    {
+      "port": 80,
+      "state": "open",
+      "service": "http"
     }
   ],
-  "raw_output": "Starting Nmap 7.99 ( https://nmap.org ) at 2026-08-28 18:51 +0530\nNmap scan report for 10.11.159.7\nHost is up (0.0091s latency).\n\nPORT     STATE  SERVICE    VERSION\n21/tcp   closed ftp\n22/tcp   closed ssh\n23/tcp   closed telnet\n53/tcp   open   domain     dnsmasq 2.51\n80/tcp   closed http\n443/tcp  closed https\n8080/tcp closed http-proxy\n8443/tcp closed https-alt\n\nService detection performed. Please report any incorrect results at https://nmap.org/submit/ .\nNmap done: 1 IP address (1 host up) scanned in 6.82 seconds\n",
   "findings": [
-    {
-      "id": "Target-10.11.159.7-F05",
-      "device_id": "Target-10.11.159.7",
-      "assessment_id": "ASM-001",
-      "title": "DNS resolver exposed on management interface",
-      "category": "Network-Level Exposure / DNS Behavior",
-      "severity": "Low-Medium",
-      "status": "Confirmed",
-      "cwe": "CWE-345 (Insufficient Verification of Data Authenticity) / CWE-400 (Resource Amplification)",
-      "threat_scenario": "In a threat environment, an outdated or misconfigured DNS daemon (such as legacy dnsmasq versions) can be targeted for DNS Cache Poisoning (DNSpooq series) or DNS Spoofing attacks. An attacker can forge DNS responses to poison the repeater's cache, redirecting all connected users from legitimate domains (such as banking or social media) to malicious phishing servers.",
-      "impact": "Allows local man-in-the-middle traffic redirection, phishing interception, domain hijacking and potential upstream DNS leakage.",
-      "recommendation": "Update the DNS resolver daemon to the latest patched version, enforce strict query filtering and validate DNS forwarding behavior.",
-      "hardening_coverage": "1. Upgrade dnsmasq to version 2.83 or later to mitigate DNSpooq vulnerability advisories (CVE-2020-25681 through CVE-2020-25687).\n2. Configure the DNS server to listen exclusively on the internal LAN interface (bind-interfaces).\n3. Enable source port randomization and DNSSEC query verification in dnsmasq configuration.",
-      "module": "Network Discovery",
-      "date_observed": "2026-08-28T18:51:29"
-    }
+    "WA-01-F01",
+    "WA-01-F05",
+    "WA-01-F09"
   ]
 }

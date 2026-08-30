@@ -1,0 +1,12 @@
+{
+  "assessment_id": "ASM-040",
+  "device_id": "WA-40",
+  "timestamp": "2026-08-16T06:35:58",
+  "brand_clue": "Wireless-N",
+  "model_clue": "Mini Router MT02 Multi-Mode",
+  "firmware_version": "v2.3.4-build2023",
+  "firmware_found": false,
+  "findings": [
+    "WA-40-F08"
+  ]
+}

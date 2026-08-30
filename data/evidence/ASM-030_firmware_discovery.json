@@ -1,0 +1,12 @@
+{
+  "assessment_id": "ASM-030",
+  "device_id": "WA-30",
+  "timestamp": "2026-08-14T19:47:51",
+  "brand_clue": "Wavlink",
+  "model_clue": "Aerial N300 Range Extender",
+  "firmware_version": "WN578HR2-v1.0.8",
+  "firmware_found": false,
+  "findings": [
+    "WA-30-F08"
+  ]
+}

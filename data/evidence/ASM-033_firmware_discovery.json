@@ -1,0 +1,12 @@
+{
+  "assessment_id": "ASM-033",
+  "device_id": "WA-33",
+  "timestamp": "2026-08-15T05:38:47",
+  "brand_clue": "Totolink",
+  "model_clue": "EX200 300Mbps Wireless Extender",
+  "firmware_version": "EX200_V4.0.3c.7646_B20201211",
+  "firmware_found": false,
+  "findings": [
+    "WA-33-F08"
+  ]
+}

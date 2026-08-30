@@ -1,0 +1,27 @@
+{
+  "assessment_id": "ASM-035",
+  "device_id": "WA-35",
+  "target_ip": "192.168.11.1",
+  "timestamp": "2026-08-15T12:28:22",
+  "open_ports": [
+    23,
+    80
+  ],
+  "services": [
+    {
+      "port": 23,
+      "state": "open",
+      "service": "telnet"
+    },
+    {
+      "port": 80,
+      "state": "open",
+      "service": "http"
+    }
+  ],
+  "findings": [
+    "WA-35-F01",
+    "WA-35-F05",
+    "WA-35-F09"
+  ]
+}

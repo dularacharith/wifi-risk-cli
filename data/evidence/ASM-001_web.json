@@ -1,96 +1,15 @@
 {
   "assessment_id": "ASM-001",
-  "device_id": "D1",
+  "device_id": "WA-01",
   "target_url": "http://192.168.11.1/",
-  "is_reachable": true,
-  "check_method": "live_fetch",
-  "timestamp": "2026-08-24T19:04:30",
-  "headers": {
-    "Server": "HTTPD",
-    "Date": "Thu, 01 Jan 1970 01:24:30 GMT",
-    "Pragma": "no-cache",
-    "Cache-Control": "no-cache",
-    "Content-Type": "text/html; charset=",
-    "Last-Modified": "Mon, 15 Apr 2024 15:12:19 GMT",
-    "Connection": "close"
-  },
-  "cookies_count": 0,
-  "html_analysis": {
-    "title": "",
-    "hidden_fields": [
-      {
-        "type": "hidden",
-        "name": "CMD",
-        "id": "CMD",
-        "value": "USERLOGIN"
-      },
-      {
-        "type": "hidden",
-        "name": "username",
-        "id": "",
-        "value": "admin"
-      }
-    ],
-    "visible_inputs": [
-      {
-        "type": "password",
-        "name": "pcPassword",
-        "id": "pcPassword",
-        "value": "admin"
-      }
-    ],
-    "has_hidden_admin": true,
-    "has_visible_user_field": false,
-    "has_visible_pass_field": true,
-    "has_forms": true,
-    "has_basic_cookie_logic": true,
-    "logout_links_count": 0,
-    "logout_links": [],
-    "firmware_clue": "",
-    "is_dashboard": false
-  },
+  "timestamp": "2026-08-10T13:08:33",
+  "http_status": 200,
+  "title": "300M Wi-Fi Repeater MT02 Web Management",
   "findings": [
-    {
-      "id": "D1-F_HTTP_ADMIN",
-      "device_id": "D1",
-      "assessment_id": "ASM-001",
-      "title": "Web management interface served over unencrypted HTTP",
-      "category": "Sensitive Data Exposure / Transport Security",
-      "severity": "Medium",
-      "status": "Confirmed",
-      "evidence": "Web interface responded on http://192.168.11.1/ without TLS encryption.",
-      "impact": "All web interactions, login attempts, and configurations are sent in plaintext and vulnerable to local eavesdropping.",
-      "recommendation": "Configure HTTPS encryption for the web management portal.",
-      "module": "Web Interface Checks",
-      "date_observed": "2026-08-24T19:04:30"
-    },
-    {
-      "id": "D1-F03",
-      "device_id": "D1",
-      "assessment_id": "ASM-001",
-      "title": "Default admin credentials exposed in login page HTML",
-      "category": "Authentication Security / Insecure Defaults",
-      "severity": "High",
-      "status": "Confirmed",
-      "evidence": "Login page HTML contains hidden username or password values (e.g. 'admin').",
-      "impact": "The login page HTML reveals default credentials to anyone viewing the source code.",
-      "recommendation": "Remove hardcoded credentials from client-side HTML.",
-      "module": "Web Interface Checks",
-      "date_observed": "2026-08-24T19:04:30"
-    },
-    {
-      "id": "D1-F04",
-      "device_id": "D1",
-      "assessment_id": "ASM-001",
-      "title": "Admin credentials stored in Base64 Authorization cookie",
-      "category": "Session Management",
-      "severity": "High",
-      "status": "Confirmed",
-      "evidence": "Authorization cookie or script stores Base64 encoded credentials without HttpOnly/Secure flags.",
-      "impact": "The cookie can expose admin credentials because Base64 is reversible and the cookie lacks HttpOnly/Secure flags.",
-      "recommendation": "Use secure server-side session tokens with HttpOnly, Secure and SameSite attributes.",
-      "module": "Web Interface Checks",
-      "date_observed": "2026-08-24T19:04:30"
-    }
+    "WA-01-F02",
+    "WA-01-F03",
+    "WA-01-F04",
+    "WA-01-F06",
+    "WA-01-F07"
   ]
 }

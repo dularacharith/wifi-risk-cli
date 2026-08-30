@@ -1,0 +1,12 @@
+{
+  "assessment_id": "ASM-025",
+  "device_id": "WA-25",
+  "timestamp": "2026-08-14T01:32:24",
+  "brand_clue": "Generic / MT02 OEM",
+  "model_clue": "300M Wi-Fi Repeater MT02",
+  "firmware_version": "1.0.1.2-urant-p1R-auto",
+  "firmware_found": false,
+  "findings": [
+    "WA-25-F08"
+  ]
+}

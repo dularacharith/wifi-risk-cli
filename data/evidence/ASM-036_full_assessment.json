@@ -1,0 +1,43 @@
+{
+  "assessment_id": "ASM-036",
+  "device_id": "WA-36",
+  "target_ip": "192.168.11.1",
+  "price_lkr": 2500,
+  "timestamp": "2026-08-15T16:26:20",
+  "modules_run": [
+    "Network Discovery",
+    "DNS Behavior Checks",
+    "Web Interface Checks",
+    "Firmware Discovery"
+  ],
+  "network_summary": {
+    "open_ports": 3,
+    "findings_count": 3,
+    "evidence_file": "data/evidence/ASM-036_network.json"
+  },
+  "dns_summary": {
+    "setup_domain_ips": [
+      "192.168.11.1"
+    ],
+    "control_domain_ips": [
+      "142.250.185.206"
+    ],
+    "findings_count": 1
+  },
+  "web_summary": {
+    "target_url": "http://192.168.11.1/",
+    "findings_count": 5,
+    "evidence_file": "data/evidence/ASM-036_web.json"
+  },
+  "firmware_discovery_summary": {
+    "performed": true,
+    "found": false,
+    "findings_count": 1
+  },
+  "evaluation": {
+    "final_score": 11,
+    "risk_level": "Critical Risk",
+    "psr": 0.66,
+    "recommendation": "Avoid for sensitive networks; high risk of local compromise"
+  }
+}

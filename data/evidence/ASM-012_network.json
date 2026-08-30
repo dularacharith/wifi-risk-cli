@@ -1,0 +1,33 @@
+{
+  "assessment_id": "ASM-012",
+  "device_id": "WA-12",
+  "target_ip": "192.168.11.1",
+  "timestamp": "2026-08-12T04:10:19",
+  "open_ports": [
+    23,
+    53,
+    80
+  ],
+  "services": [
+    {
+      "port": 23,
+      "state": "open",
+      "service": "telnet"
+    },
+    {
+      "port": 53,
+      "state": "open",
+      "service": "dns"
+    },
+    {
+      "port": 80,
+      "state": "open",
+      "service": "http"
+    }
+  ],
+  "findings": [
+    "WA-12-F01",
+    "WA-12-F05",
+    "WA-12-F09"
+  ]
+}

@@ -1,18 +1,12 @@
 {
   "assessment_id": "ASM-001",
-  "device_id": "Target-10.11.159.7",
-  "brand": "",
-  "model": "",
-  "firmware_version": "",
-  "hardware_version": "",
-  "vendor_clue": "",
-  "setup_domain": "",
-  "timestamp": "2026-08-28T19:02:06",
-  "discovery_result": {
-    "found": false,
-    "queries_used": [],
-    "discovered_sources": [],
-    "status_message": "No brand or firmware version clues provided for online discovery"
-  },
-  "findings": []
+  "device_id": "WA-01",
+  "timestamp": "2026-08-10T13:12:33",
+  "brand_clue": "Generic / MT02 OEM",
+  "model_clue": "300M Wi-Fi Repeater MT02",
+  "firmware_version": "1.0.1.2-urant-p1R-auto",
+  "firmware_found": false,
+  "findings": [
+    "WA-01-F08"
+  ]
 }

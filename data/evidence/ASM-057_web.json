@@ -1,0 +1,11 @@
+{
+  "assessment_id": "ASM-057",
+  "device_id": "WA-57",
+  "target_url": "http://192.168.11.1/",
+  "timestamp": "2026-08-18T18:44:21",
+  "http_status": 200,
+  "title": "EX200 300Mbps Wireless Extender Web Management",
+  "findings": [
+    "WA-57-F06"
+  ]
+}

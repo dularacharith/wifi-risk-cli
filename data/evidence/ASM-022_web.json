@@ -1,0 +1,13 @@
+{
+  "assessment_id": "ASM-022",
+  "device_id": "WA-22",
+  "target_url": "http://192.168.11.1/",
+  "timestamp": "2026-08-13T15:03:13",
+  "http_status": 200,
+  "title": "BL-WN300 Wireless Extender Web Management",
+  "findings": [
+    "WA-22-F03",
+    "WA-22-F06",
+    "WA-22-F07"
+  ]
+}

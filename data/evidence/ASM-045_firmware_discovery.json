@@ -1,0 +1,12 @@
+{
+  "assessment_id": "ASM-045",
+  "device_id": "WA-45",
+  "timestamp": "2026-08-17T00:48:07",
+  "brand_clue": "Totolink",
+  "model_clue": "EX200 300Mbps Wireless Extender",
+  "firmware_version": "EX200_V4.0.3c.7646_B20201211",
+  "firmware_found": false,
+  "findings": [
+    "WA-45-F08"
+  ]
+}

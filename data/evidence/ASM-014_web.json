@@ -1,0 +1,15 @@
+{
+  "assessment_id": "ASM-014",
+  "device_id": "WA-14",
+  "target_url": "http://192.168.11.1/",
+  "timestamp": "2026-08-12T11:02:58",
+  "http_status": 200,
+  "title": "Urant N300 Signal Booster Web Management",
+  "findings": [
+    "WA-14-F02",
+    "WA-14-F03",
+    "WA-14-F04",
+    "WA-14-F06",
+    "WA-14-F07"
+  ]
+}

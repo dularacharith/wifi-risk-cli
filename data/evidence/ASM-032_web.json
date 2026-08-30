@@ -1,0 +1,9 @@
+{
+  "assessment_id": "ASM-032",
+  "device_id": "WA-32",
+  "target_url": "http://192.168.11.1/",
+  "timestamp": "2026-08-15T02:01:09",
+  "http_status": 200,
+  "title": "MW300RE 3-Antenna Range Extender Web Management",
+  "findings": []
+}

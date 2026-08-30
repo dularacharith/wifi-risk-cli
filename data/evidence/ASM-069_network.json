@@ -1,0 +1,20 @@
+{
+  "assessment_id": "ASM-069",
+  "device_id": "WA-69",
+  "target_ip": "192.168.11.1",
+  "timestamp": "2026-08-20T11:54:12",
+  "open_ports": [
+    80
+  ],
+  "services": [
+    {
+      "port": 80,
+      "state": "open",
+      "service": "http"
+    }
+  ],
+  "findings": [
+    "WA-69-F05",
+    "WA-69-F09"
+  ]
+}

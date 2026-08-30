@@ -1,41 +1,15 @@
 {
   "assessment_id": "ASM-002",
-  "device_id": "WR-001",
-  "target_ip": "192.168.11.1",
+  "device_id": "WA-02",
   "target_url": "http://192.168.11.1/",
-  "check_method": "fetch_failed",
-  "timestamp": "2026-08-22T16:45:35",
-  "headers": {},
-  "cookies": [],
-  "html_analysis": {},
-  "observed_login_url": null,
-  "manual_observations": {},
+  "timestamp": "2026-08-10T16:58:46",
+  "http_status": 200,
+  "title": "Urant N300 Signal Booster Web Management",
   "findings": [
-    {
-      "id": "WR-001-F_HTTP_ADMIN",
-      "device_id": "WR-001",
-      "assessment_id": "ASM-002",
-      "title": "Web management interface served over unencrypted HTTP",
-      "category": "Sensitive Data Exposure / Transport Security",
-      "severity": "Medium",
-      "status": "Confirmed",
-      "impact": "All web interactions, login attempts, and configurations are sent in plaintext and vulnerable to local eavesdropping.",
-      "recommendation": "Configure HTTPS encryption for the web management portal.",
-      "module": "Web Interface Checks",
-      "date_observed": "2026-08-22T16:45:35"
-    },
-    {
-      "id": "WR-001-F02",
-      "device_id": "WR-001",
-      "assessment_id": "ASM-002",
-      "title": "Web interface allows login without user-supplied credentials",
-      "category": "Authentication Security",
-      "severity": "High",
-      "status": "Confirmed",
-      "impact": "The login page does not require the user to input credentials, allowing anyone on the network to click LOGIN and access the admin dashboard.",
-      "recommendation": "Require users to configure and enter a unique administrator password during initial setup.",
-      "module": "Web Interface Checks",
-      "date_observed": "2026-08-22T16:45:35"
-    }
+    "WA-02-F02",
+    "WA-02-F03",
+    "WA-02-F04",
+    "WA-02-F06",
+    "WA-02-F07"
   ]
 }

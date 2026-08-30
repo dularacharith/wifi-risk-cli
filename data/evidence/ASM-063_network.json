@@ -1,0 +1,27 @@
+{
+  "assessment_id": "ASM-063",
+  "device_id": "WA-63",
+  "target_ip": "192.168.11.1",
+  "timestamp": "2026-08-19T15:06:01",
+  "open_ports": [
+    23,
+    80
+  ],
+  "services": [
+    {
+      "port": 23,
+      "state": "open",
+      "service": "telnet"
+    },
+    {
+      "port": 80,
+      "state": "open",
+      "service": "http"
+    }
+  ],
+  "findings": [
+    "WA-63-F01",
+    "WA-63-F05",
+    "WA-63-F09"
+  ]
+}
