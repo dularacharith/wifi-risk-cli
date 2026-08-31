@@ -27,6 +27,18 @@ Thumbs.db
 
 # Generated reports and exports
 reports/
+scratch/
+
+# Documentation, Word files, PDFs, Presentations, and Media
 *.docx
+*.doc
+*.pdf
+*.pptx
+*.ppt
+*.xlsx
+*.xls
 .~lock.*
-COM4901_Final_Dissertation_11161.docx
+*.png
+*.jpg
+*.jpeg
+*.svg
