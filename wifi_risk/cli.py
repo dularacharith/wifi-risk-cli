@@ -1393,15 +1393,32 @@ def prompt_select_assessment_id(
     prompt_message: str = "Select Assessment",
     default_fallback: str | None = None,
     allow_manual_input: bool = True,
+    allowed_statuses: list[str] | None = None,
 ) -> tuple[Optional[str], Optional[dict[str, Any]]]:
     """
     Prompt the user to select an existing assessment session with an interactive list of available assessments,
     supporting numbered selection [1..N], direct ID entry (ASM-001), full details expansion ('l'), and cancellation ('b').
+    If allowed_statuses is provided, filters available sessions strictly to those matching statuses (e.g. ['Created', 'In Progress']).
     Returns (assessment_id, assessment_dict) or (None, None) if cancelled.
     """
-    assessments = get_all_assessments()
+    all_raw = get_all_assessments()
+
+    if allowed_statuses:
+        allowed_set = {s.strip().lower() for s in allowed_statuses}
+        assessments = [a for a in all_raw if a.get("status", "Created").strip().lower() in allowed_set]
+    else:
+        allowed_set = set()
+        assessments = all_raw
 
     if not assessments:
+        if allowed_statuses:
+            status_desc = " or ".join(allowed_statuses)
+            console.print(f"\n[yellow]No assessment sessions found with status '{status_desc}'.[/yellow]")
+            console.print("[dim]Standalone assessment modules can only attach checks to active sessions (Created or In Progress).[/dim]")
+            console.print("[dim]Completed sessions cannot be re-audited via standalone modules. Please create a new session (Option 1).[/dim]\n")
+            pause()
+            return None, None
+
         if not allow_manual_input:
             console.print("[yellow]No assessment sessions found in database.[/yellow]")
             pause()
@@ -1416,7 +1433,8 @@ def prompt_select_assessment_id(
             return None, None
         return entered_id, None
 
-    table = Table(title=f"Available Assessment Sessions ({len(assessments)} recorded)", show_header=True, header_style="bold cyan")
+    status_header = f" [{'/'.join(allowed_statuses)} only]" if allowed_statuses else ""
+    table = Table(title=f"Available Assessment Sessions{status_header} ({len(assessments)} found)", show_header=True, header_style="bold cyan")
     table.add_column("#", justify="center", style="cyan", no_wrap=True)
     table.add_column("Assessment ID", style="bold cyan")
     table.add_column("Device ID", style="cyan")
@@ -1451,7 +1469,7 @@ def prompt_select_assessment_id(
     console.print("\n[bold]Options:[/bold]")
     console.print(f"  [bold cyan]{range_str:<4}[/bold cyan] : Select assessment by number from table")
     console.print(f"  [bold cyan]{'ID':<4}[/bold cyan] : Enter Assessment ID directly (e.g. ASM-001)")
-    console.print(f"  [bold cyan]{'L':<4}[/bold cyan] : View full detailed breakdown of all sessions")
+    console.print(f"  [bold cyan]{'L':<4}[/bold cyan] : View full detailed breakdown of listed sessions")
     console.print(f"  [bold cyan]{'B':<4}[/bold cyan] : Return to previous menu")
 
     while True:
@@ -1467,7 +1485,7 @@ def prompt_select_assessment_id(
         if choice.lower() in ["l", "list", "details"]:
             clear_screen()
             show_banner()
-            console.print("[bold cyan]--- All Assessment Sessions Detailed Breakdown ---[/bold cyan]\n")
+            console.print("[bold cyan]--- Assessment Sessions Detailed Breakdown ---[/bold cyan]\n")
             for idx, asm in enumerate(assessments, start=1):
                 checks_count = len(asm.get("checks", []))
                 d_id = asm.get('device_id', 'Target-Device')
@@ -1505,11 +1523,18 @@ def prompt_select_assessment_id(
         except ValueError:
             pass
 
+        # Check if choice is an assessment with disallowed status
+        if allowed_statuses:
+            excluded = next((a for a in all_raw if a.get("id", "").upper() == choice.upper()), None)
+            if excluded and excluded.get("status", "Created").strip().lower() not in allowed_set:
+                console.print(f"[red]Assessment '{excluded['id']}' has status '{excluded.get('status')}'. Standalone modules only accept sessions in '{' or '.join(allowed_statuses)}' state.[/red]")
+                continue
+
         match_asm = next((a for a in assessments if a.get("id", "").upper() == choice.upper()), None)
         if match_asm:
             return match_asm["id"], match_asm
 
-        if allow_manual_input and choice:
+        if allow_manual_input and choice and not allowed_statuses:
             return choice, None
 
         console.print(f"[red]Invalid selection: '{choice}'. Enter 1 to {len(assessments)}, a valid Assessment ID, or 'b' to go back.[/red]")
@@ -1521,7 +1546,10 @@ def run_network_discovery_screen() -> None:
         show_banner()
         console.print("[bold cyan]--- Run Network Discovery ---[/bold cyan]\n")
 
-        assessment_id, asm = prompt_select_assessment_id("Select Assessment for Network Discovery")
+        assessment_id, asm = prompt_select_assessment_id(
+            "Select Assessment for Network Discovery",
+            allowed_statuses=["Created", "In Progress"],
+        )
         if not assessment_id:
             return
 
@@ -1682,7 +1710,10 @@ def run_dns_checks_screen() -> None:
         show_banner()
         console.print("[bold cyan]--- Run DNS Behavior Checks ---[/bold cyan]\n")
 
-        assessment_id, asm = prompt_select_assessment_id("Select Assessment for DNS Checks")
+        assessment_id, asm = prompt_select_assessment_id(
+            "Select Assessment for DNS Checks",
+            allowed_statuses=["Created", "In Progress"],
+        )
         if not assessment_id:
             return
 
@@ -1844,7 +1875,10 @@ def run_web_checks_screen() -> None:
         show_banner()
         console.print("[bold cyan]--- Run Web Interface Checks ---[/bold cyan]\n")
 
-        assessment_id, asm = prompt_select_assessment_id("Select Assessment for Web Interface Checks")
+        assessment_id, asm = prompt_select_assessment_id(
+            "Select Assessment for Web Interface Checks",
+            allowed_statuses=["Created", "In Progress"],
+        )
         if not assessment_id:
             return
 
@@ -2020,7 +2054,10 @@ def run_firmware_discovery_screen() -> None:
         show_banner()
         console.print("[bold cyan]--- Online Firmware Discovery (Path A) ---[/bold cyan]\n")
 
-        assessment_id, asm = prompt_select_assessment_id("Select Assessment for Online Firmware Discovery")
+        assessment_id, asm = prompt_select_assessment_id(
+            "Select Assessment for Online Firmware Discovery",
+            allowed_statuses=["Created", "In Progress"],
+        )
         if not assessment_id:
             return
 
@@ -2176,7 +2213,10 @@ def run_firmware_static_analysis_screen() -> None:
         show_banner()
         console.print("[bold cyan]--- Firmware Safe Static Analysis (Path B) ---[/bold cyan]\n")
 
-        assessment_id, asm = prompt_select_assessment_id("Select Assessment for Firmware Static Analysis")
+        assessment_id, asm = prompt_select_assessment_id(
+            "Select Assessment for Firmware Static Analysis",
+            allowed_statuses=["Created", "In Progress"],
+        )
         if not assessment_id:
             return
 
