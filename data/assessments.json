@@ -4,9 +4,9 @@
     "device_id": "MT02-01",
     "target_ip": "192.168.11.1",
     "price_lkr": 2500,
-    "status": "Completed",
+    "status": "In Progress",
     "created_at": "2026-08-08T19:28:22",
-    "updated_at": "2026-08-08T19:29:22",
+    "updated_at": "2026-09-02T19:50:03",
     "notes": "Authentication bypass and session cookie inspection",
     "metadata": {
       "setup_domain": "zrlogin.cn",
@@ -56,6 +56,18 @@
         "sources_count": 0,
         "findings_count": 1,
         "evidence_file": "data/evidence/ASM-001_firmware_discovery.json"
+      },
+      {
+        "module": "DNS Checks",
+        "timestamp": "2026-09-02T19:50:03",
+        "check_method": "live_query",
+        "setup_domain": "zrlogin.cn",
+        "setup_ips": [],
+        "control_ips": [],
+        "upstream_ip": null,
+        "upstream_setup_ips": [],
+        "findings_count": 0,
+        "evidence_file": "data/evidence/ASM-001_dns.json"
       }
     ]
   },

@@ -283,3 +283,73 @@ def get_auto_target_ip(fallback: str = "192.168.11.1") -> str:
     """
     result = detect_default_gateway(fallback=fallback)
     return result["gateway_ip"]
+
+
+def is_target_host_responsive(target_ip: str, timeout: float = 0.5) -> bool:
+    """
+    Perform a rapid, non-blocking check to see if target host responds on common ports or ICMP ping.
+    """
+    if not target_ip:
+        return False
+
+    # 1. Quick TCP check on ports 80, 53, 23, 443
+    for port in [80, 53, 23, 443]:
+        try:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.settimeout(timeout)
+            res = sock.connect_ex((target_ip, port))
+            sock.close()
+            if res == 0:
+                return True
+        except Exception:
+            pass
+
+    # 2. Fast single-packet ping check
+    try:
+        sys_name = platform.system().lower()
+        cmd = ["ping", "-c", "1", "-W", "1", target_ip] if "windows" not in sys_name else ["ping", "-n", "1", "-w", "500", target_ip]
+        res = subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=1.2)
+        if res.returncode == 0:
+            return True
+    except Exception:
+        pass
+
+    return False
+
+
+def validate_target_with_all_interfaces(target_ip: str) -> dict[str, Any]:
+    """
+    Validate target IP against all active network interfaces and probe live responsiveness.
+    """
+    interfaces = list_all_interfaces()
+    is_responsive = is_target_host_responsive(target_ip)
+    
+    on_local_subnet = False
+    matched_iface = None
+
+    target_octets = target_ip.split(".") if target_ip else []
+    for iface in interfaces:
+        gw = iface.get("gateway_ip", "")
+        lip = iface.get("local_ip", "")
+        if target_ip == gw:
+            on_local_subnet = True
+            matched_iface = iface
+            break
+        lip_octets = lip.split(".")
+        if len(target_octets) == 4 and len(lip_octets) == 4:
+            if target_octets[:3] == lip_octets[:3]:
+                on_local_subnet = True
+                matched_iface = iface
+                break
+
+    primary_iface = next((i for i in interfaces if i.get("is_default")), interfaces[0] if interfaces else None)
+
+    return {
+        "target_ip": target_ip,
+        "is_reachable": is_responsive,
+        "on_local_subnet": on_local_subnet,
+        "matched_interface": matched_iface,
+        "primary_interface": primary_iface,
+        "active_interfaces": interfaces,
+    }
+

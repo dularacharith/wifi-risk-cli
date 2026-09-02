@@ -1,0 +1,16 @@
+{
+  "assessment_id": "ASM-001",
+  "device_id": "MT02-01",
+  "target_ip": "192.168.11.1",
+  "upstream_ip": null,
+  "setup_domain": "zrlogin.cn",
+  "control_domain": "google.com",
+  "check_method": "live_query",
+  "timestamp": "2026-09-02T19:50:03",
+  "target_dns_results": {
+    "setup_domain_ips": [],
+    "control_domain_ips": []
+  },
+  "upstream_dns_results": {},
+  "findings": []
+}

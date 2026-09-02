@@ -314,17 +314,24 @@ def evaluate_web_rules(
 
 
 def perform_web_checks(
-    target_ip: str,
-    device_id: str,
-    assessment_id: str,
+    target_ip: str | None = None,
+    device_id: str = "Target",
+    assessment_id: str = "ASM-001",
     target_url: str | None = None,
     raw_html: str | None = None,
     observed_login_url: str | None = None,
     manual_observations: dict[str, bool] | None = None,
+    progress_callback: Any = None,
 ) -> dict[str, Any]:
     """
     Perform web interface inspection, evaluate rules, generate findings and store evidence.
     """
+    if not target_url and not target_ip:
+        target_ip = "192.168.11.1"
+    elif target_url and not target_ip:
+        parsed = urlparse(target_url)
+        target_ip = parsed.hostname or "192.168.11.1"
+
     url = target_url or f"http://{target_ip}/"
     headers: dict[str, Any] = {}
     cookies: list[dict[str, Any]] = []
@@ -332,20 +339,31 @@ def perform_web_checks(
     is_reachable = False
     check_method = "live_fetch"
 
+    if progress_callback:
+        progress_callback(10, f"Connecting to web management portal on {url}...")
+
     if raw_html:
         html_content = raw_html
         check_method = "html_import"
         is_reachable = True
+        if progress_callback:
+            progress_callback(40, "Importing and analyzing raw HTML document...")
     elif manual_observations:
         check_method = "manual_observation"
         is_reachable = True
+        if progress_callback:
+            progress_callback(40, "Evaluating manual observation parameters...")
     else:
+        if progress_callback:
+            progress_callback(20, f"Fetching HTTP response from {url}...")
         fetch_res = fetch_web_page(url)
         is_reachable = fetch_res["success"]
         headers = fetch_res["headers"]
         cookies = fetch_res["cookies"]
         html_content = fetch_res["html"]
         if not is_reachable:
+            if progress_callback:
+                progress_callback(40, f"Port 80 unreachable. Checking alternative port 8080...")
             # Try port 8080 fallback
             url_8080 = f"http://{target_ip}:8080/"
             fetch_res_8080 = fetch_web_page(url_8080, timeout=2.0)
@@ -356,7 +374,12 @@ def perform_web_checks(
                 cookies = fetch_res_8080["cookies"]
                 html_content = fetch_res_8080["html"]
 
+    if progress_callback:
+        progress_callback(60, "Parsing HTML DOM tree with BeautifulSoup...")
     html_analysis = analyze_html_content(html_content, base_url=url) if html_content else {}
+
+    if progress_callback:
+        progress_callback(80, "Evaluating web authentication, cookie and session rules...")
 
     findings = evaluate_web_rules(
         device_id=device_id,

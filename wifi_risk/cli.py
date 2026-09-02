@@ -59,6 +59,7 @@ from wifi_risk.services.web_service import perform_web_checks
 from wifi_risk.utils.network_detector import (
     detect_default_gateway,
     list_all_interfaces,
+    validate_target_with_all_interfaces,
 )
 
 app = typer.Typer(
@@ -193,6 +194,62 @@ def get_default_interface_gateway(default_fallback: str = "192.168.11.1") -> tup
     if primary:
         return primary["gateway_ip"], primary["name"]
     return default_fallback, "Default Gateway"
+
+
+def check_and_warn_target_reachability(target_ip: str, context: str = "Scan") -> bool:
+    """
+    Validate target IP against all network interfaces and probe live responsiveness.
+    If target IP appears offline or unreachable, provides clear diagnostics and actionable choices.
+    Returns True if user wishes to proceed, False to cancel.
+    """
+    if not target_ip or target_ip.strip() in ["127.0.0.1", "localhost"]:
+        return True
+
+    validation = validate_target_with_all_interfaces(target_ip)
+    if validation.get("is_reachable"):
+        return True
+
+    console.print(f"\n[bold yellow]⚠️  Target Host Unreachable: [bold white]{target_ip}[/bold white] appears to be Offline[/bold yellow]")
+    console.print("[dim]WiFiRisk validated the target IP against all active network interfaces on your system:[/dim]\n")
+
+    table = Table(show_header=True, header_style="bold cyan", border_style="dim")
+    table.add_column("Interface", style="cyan")
+    table.add_column("Your Local IP")
+    table.add_column("Current Gateway")
+    table.add_column("Subnet Status", justify="center")
+
+    active_ifaces = validation.get("active_interfaces", [])
+    for iface in active_ifaces:
+        is_def = iface.get("is_default", False)
+        status_tag = "[bold green]Active (Default Route)[/bold green]" if is_def else "[white]Active[/white]"
+        table.add_row(
+            iface.get("name", "Unknown"),
+            iface.get("local_ip", "N/A"),
+            iface.get("gateway_ip", "N/A"),
+            status_tag,
+        )
+    console.print(table)
+
+    console.print(f"\n[bold red]Status: Target host {target_ip} did not respond to live network/socket probes.[/bold red]")
+    console.print("[white]Probable Cause: You are currently connected to another Wi-Fi network and not the Wi-Fi repeater.[/white]\n")
+    console.print("[bold]Options:[/bold]")
+    console.print("  [bold cyan]1[/bold cyan] : Proceed anyway (attempt scan or use cached evidence)")
+    console.print("  [bold cyan]2[/bold cyan] : Connect to the Wi-Fi repeater's network now and retry")
+    console.print("  [bold cyan]0[/bold cyan] : Cancel and return to previous menu")
+
+    choice = Prompt.ask("\n[bold green]Select an option[/bold green]", choices=["0", "1", "2", "b", "B"], default="0", show_default=False).strip()
+    if choice in ["0", "b", "B"]:
+        return False
+    elif choice == "2":
+        Prompt.ask("\n[cyan]Please connect your laptop to the Wi-Fi repeater's network now. Press Enter when ready...[/cyan]")
+        recheck = validate_target_with_all_interfaces(target_ip)
+        if not recheck.get("is_reachable"):
+            console.print(f"[yellow]Host {target_ip} is still not responding. Bypassing live {context.lower()}.[/yellow]")
+            Prompt.ask("[dim]Press Enter to return...[/dim]")
+            return False
+        console.print(f"[bold green]Host {target_ip} is now online and reachable![/bold green]\n")
+        return True
+    return True
 
 
 def show_main_menu() -> None:
@@ -424,6 +481,9 @@ def run_quick_vulnerability_check_screen() -> None:
             console.print("[yellow]Returning to main menu...[/yellow]")
             return
 
+        if not check_and_warn_target_reachability(target_ip, context="Quick Scan"):
+            return
+
         console.print(f"\n[bold cyan]Starting Live Quick Scan on target {target_ip} ({iface_name})...[/bold cyan]\n")
 
         with Progress(
@@ -562,6 +622,9 @@ def run_full_assessment_screen() -> None:
 
         target_ip, iface_name = prompt_select_target_ip(default_fallback="192.168.11.1")
         if target_ip is None:
+            return
+
+        if not check_and_warn_target_reachability(target_ip, context="Full Assessment"):
             return
 
         default_device_name = f"Target-{target_ip}"
@@ -1497,6 +1560,10 @@ def run_network_discovery_screen() -> None:
                 pause()
                 return
 
+        if method_choice == "1":
+            if not check_and_warn_target_reachability(target_ip, context="Network Discovery"):
+                return
+
         console.print("\n[bold cyan]Executing network discovery...[/bold cyan]")
         with Progress(
             SpinnerColumn(),
@@ -1658,6 +1725,10 @@ def run_dns_checks_screen() -> None:
             if is_back(control_ips_str):
                 return
             manual_control_ips = [ip.strip() for ip in control_ips_str.split(",") if ip.strip()]
+
+        if method_choice == "1":
+            if not check_and_warn_target_reachability(target_ip, context="DNS Checks"):
+                return
 
         console.print("\n[bold cyan]Executing DNS behavior checks...[/bold cyan]")
         with Progress(
@@ -1822,6 +1893,12 @@ def run_web_checks_screen() -> None:
             manual_observations["insecure_auth_cookie"] = Confirm.ask("Is there an Authorization cookie with Base64 credentials lacking HttpOnly/Secure flags?", default=False)
             manual_observations["credentials_in_url"] = Confirm.ask("Are credentials exposed in the login URL query string?", default=False)
             manual_observations["no_logout_option"] = Confirm.ask("Is there NO visible logout button to terminate the session?", default=False)
+
+        if check_mode == "1":
+            from urllib.parse import urlparse
+            check_ip = urlparse(target_url).hostname or target_ip
+            if not check_and_warn_target_reachability(check_ip, context="Web Interface"):
+                return
 
         console.print("\n[bold cyan]Executing web interface security checks...[/bold cyan]")
         with Progress(
