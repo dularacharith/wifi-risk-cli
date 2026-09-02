@@ -12,7 +12,6 @@ from rich.progress import (
 )
 from rich.prompt import Confirm, Prompt
 from rich.table import Table
-from rich import box
 
 from wifi_risk.services.assessment_service import (
     classify_assessment_type,
@@ -124,16 +123,10 @@ def show_banner() -> None:
         console.print(f"[bold cyan]{w}[/bold cyan][bold bright_red]{r}[/bold bright_red]")
     console.print(
         Panel(
-            "[bold white]SOHO Wi-Fi Repeater Security Assessment & Risk Benchmarking Framework[/bold white]\n"
-            "[dim]Lightweight, non-destructive audit engine for consumer network repeaters[/dim]\n\n"
-            "[dim cyan]CORE[/dim cyan] [cyan]v1.2.0[/cyan]   "
-            "[dim]|[/dim]   [dim cyan]RESEARCH[/dim cyan] [white]KIU COM4901[/white]   "
-            "[dim]|[/dim]   [dim cyan]AUTHOR[/dim cyan] [white]Dulara Weerakoon (11161)[/white]",
-            title="[bold cyan]SYSTEM CONSOLE[/bold cyan]",
-            title_align="left",
+            "[bold white]WiFiRisk - Security Assessment & Risk Benchmarking CLI Framework[/bold white]\n"
+            "[dim]A research toolkit for evaluating low-cost Wi-Fi repeaters[/dim]\n"
+            "[bold cyan]Developed by Charith D.[/bold cyan]",
             border_style="cyan",
-            box=box.ROUNDED,
-            padding=(0, 1),
         )
     )
 
@@ -273,28 +266,20 @@ def check_and_warn_target_reachability(target_ip: str, context: str = "Scan") ->
 
 
 def show_main_menu() -> None:
-    table = Table(
-        title="[bold cyan]SYSTEM NAVIGATION[/bold cyan] [dim]|[/dim] [dim white]MAIN CONTROL PANEL[/dim white]",
-        title_justify="left",
-        box=box.ROUNDED,
-        border_style="dim cyan",
-        header_style="bold bright_white",
-        show_header=True,
-    )
-    table.add_column("Key", justify="center", style="bold cyan", width=4)
-    table.add_column("Module / Function", style="bold white", width=30)
-    table.add_column("Scope & Purpose", style="dim white", width=38)
+    table = Table(title="WiFiRisk Main Menu", show_header=True, header_style="bold cyan")
+    table.add_column("Option", justify="center", style="cyan", no_wrap=True)
+    table.add_column("Action")
 
-    table.add_row("1", "Quick Vulnerability Check", "Rapid port, DNS and HTTP scan")
-    table.add_row("2", "Full In-Depth Assessment", "5-stage audit with 100-pt score & PSR")
-    table.add_row("3", "Standalone Assessment Modules", "Modular socket, DNS, web & FW tests")
-    table.add_row("4", "Manage Stored Assessments", "Browse sessions, evidence & export")
-    table.add_row("5", "Scorecard & Findings Matrix", "Vulnerability grid, CWEs & PSR metrics")
-    table.add_row("6", "Device Catalog & Benchmarks", "Compare Sri Lankan repeater models")
-    table.add_row("7", "MITRE CWE Threat Intelligence", "Interactive CWE weakness catalog")
-    table.add_row("8", "Network Interface Inspector", "Local adapters, routing table & routes")
-    table.add_row("9", "Methodology & Viva Guidance", "Documentation, viva Q&A & speech")
-    table.add_row("0", "Exit Framework", "Cleanly terminate active session")
+    table.add_row("1", "Quick Vulnerability Check")
+    table.add_row("2", "Full In-Depth Assessment")
+    table.add_row("3", "Standalone Assessment Modules")
+    table.add_row("4", "View & Manage Assessments")
+    table.add_row("5", "Security Scorecard & Findings")
+    table.add_row("6", "Device Catalog & Benchmarking")
+    table.add_row("7", "MITRE CWE Threat Intelligence")
+    table.add_row("8", "Network Tools & Interface Inspector")
+    table.add_row("9", "How to Use & System Guidance")
+    table.add_row("0", "Exit")
 
     console.print(table)
 
@@ -3781,27 +3766,15 @@ def run_standalone_modules_screen() -> None:
     while True:
         clear_screen()
         show_banner()
-        table = Table(
-            title="[bold cyan]MODULAR AUDIT SUITE[/bold cyan] [dim]|[/dim] [dim white]STANDALONE CHECKS[/dim white]",
-            title_justify="left",
-            box=box.ROUNDED,
-            border_style="dim cyan",
-            header_style="bold bright_white",
-            show_header=True,
-        )
-        table.add_column("Key", justify="center", style="bold cyan", width=4)
-        table.add_column("Assessment Module", style="bold white", width=30)
-        table.add_column("Audit Layer & Scope", style="dim white", width=38)
-
-        table.add_row("1", "Create Assessment Session", "Initialize tracking container & metadata")
-        table.add_row("2", "Network Port & Banner Probe", "Safe socket discovery on 13 ports")
-        table.add_row("3", "DNS Redirection & Relay Check", "Setup domain redirection & relay check")
-        table.add_row("4", "Web Interface & DOM Analysis", "HTML DOM inspection & password check")
-        table.add_row("5", "Online Firmware Discovery", "Path A: Vendor mirror & CVE indexing")
-        table.add_row("6", "Firmware Static Analysis", "Path B: Offline binary hash & string scan")
-        table.add_row("0", "Back to Main Menu", "Return to main control panel")
-
-        console.print(table)
+        console.print("[bold cyan]--- Standalone Assessment Modules ---[/bold cyan]")
+        console.print("[dim]Execute individual modular checks or manually initialize custom assessment sessions.[/dim]\n")
+        console.print("1. Create New Assessment Session")
+        console.print("2. Run Network Discovery (TCP Port & Service Probing)")
+        console.print("3. Run DNS Behavior Checks (Setup Domain & Query Analysis)")
+        console.print("4. Run Web Interface Checks (HTML Inspection & Hidden Credentials)")
+        console.print("5. Online Firmware Discovery (Path A - Search Indexes & Mirrors)")
+        console.print("6. Firmware Static Analysis (Path B - User-Uploaded Binary Inspection)")
+        console.print("0. Back to Main Menu")
 
         choice = Prompt.ask(
             "\n[bold green]Select a module[/bold green]",
@@ -3834,23 +3807,11 @@ def run_scorecard_and_findings_screen() -> None:
     while True:
         clear_screen()
         show_banner()
-        table = Table(
-            title="[bold cyan]SCORECARD & METRICS[/bold cyan] [dim]|[/dim] [dim white]FINDINGS EXPLORER[/dim white]",
-            title_justify="left",
-            box=box.ROUNDED,
-            border_style="dim cyan",
-            header_style="bold bright_white",
-            show_header=True,
-        )
-        table.add_column("Key", justify="center", style="bold cyan", width=4)
-        table.add_column("Scorecard Action", style="bold white", width=30)
-        table.add_column("Description", style="dim white", width=38)
-
-        table.add_row("1", "Show Discovered Findings", "Knowledge grid matrix grouped by device")
-        table.add_row("2", "Calculate Security Score & PSR", "100-pt deduction scoring & economic PSR")
-        table.add_row("0", "Back to Main Menu", "Return to main control panel")
-
-        console.print(table)
+        console.print("[bold cyan]--- Security Scorecard & Findings ---[/bold cyan]")
+        console.print("[dim]Review discovered vulnerability matrix by device and calculate 100-point security deduction scores.[/dim]\n")
+        console.print("1. Show Discovered Findings (Knowledge Grid Matrix Grouped by Device)")
+        console.print("2. Calculate Security Score & Price-to-Security Ratio (PSR)")
+        console.print("0. Back to Main Menu")
 
         choice = Prompt.ask(
             "\n[bold green]Select an option[/bold green]",
@@ -3875,26 +3836,14 @@ def run_device_catalog_screen() -> None:
     while True:
         clear_screen()
         show_banner()
-        table = Table(
-            title="[bold cyan]DEVICE CATALOG[/bold cyan] [dim]|[/dim] [dim white]MARKET BENCHMARKS[/dim white]",
-            title_justify="left",
-            box=box.ROUNDED,
-            border_style="dim cyan",
-            header_style="bold bright_white",
-            show_header=True,
-        )
-        table.add_column("Key", justify="center", style="bold cyan", width=4)
-        table.add_column("Catalog Operation", style="bold white", width=30)
-        table.add_column("Scope & Function", style="dim white", width=38)
-
-        table.add_row("1", "List All Devices in Catalog", "Overview of tested Sri Lankan repeaters")
-        table.add_row("2", "Search Device Catalog", "Filter by brand, model, or vendor")
-        table.add_row("3", "Show Device Details", "Detailed hardware specs & vulnerabilities")
-        table.add_row("4", "Compare Two Repeaters", "Side-by-side comparative security matrix")
-        table.add_row("5", "Recommend by Budget", "Find best security score within LKR limit")
-        table.add_row("0", "Back to Main Menu", "Return to main control panel")
-
-        console.print(table)
+        console.print("[bold cyan]--- Device Catalog & Benchmarking ---[/bold cyan]")
+        console.print("[dim]Explore cataloged repeaters, compare device security side-by-side and get budget recommendations.[/dim]\n")
+        console.print("1. List All Devices in Catalog")
+        console.print("2. Search Device Catalog (by Brand, Model, Vendor)")
+        console.print("3. Show Device Details & Recorded Vulnerabilities")
+        console.print("4. Compare Two Repeaters (Side-by-Side Comparison Matrix)")
+        console.print("5. Recommend Repeater by Budget (LKR)")
+        console.print("0. Back to Main Menu")
 
         choice = Prompt.ask(
             "\n[bold green]Select an option[/bold green]",
