@@ -1,3 +1,4 @@
+import re
 from typing import Any, Optional
 import typer
 from rich.console import Console
@@ -903,6 +904,222 @@ def create_assessment_screen() -> None:
             break
 
 
+def parse_assessment_selection(input_str: str, available_asms: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """
+    Parse a user input string specifying single, multiple, or ranges of assessments.
+    Supports:
+      - Single number: '4' -> item at index 4 (1-indexed)
+      - Range of numbers: '1-5' or '1..5' -> items from index 1 to 5
+      - Comma-separated: '1, 3, 5' or '1-3, 5, 8-10'
+      - Direct ID: 'ASM-051'
+      - Range of IDs: 'ASM-049..ASM-051' or 'ASM-049-ASM-051'
+      - Multiple IDs: 'ASM-049, ASM-050'
+    Returns a list of matched unique assessment dicts.
+    """
+    if not input_str or not input_str.strip():
+        return []
+
+    input_str = input_str.strip()
+    tokens = [t.strip() for t in re.split(r"[,;]+", input_str) if t.strip()]
+    selected_asms: dict[str, dict[str, Any]] = {}
+    id_to_asm = {a.get("id", "").upper(): a for a in available_asms if a.get("id")}
+    total = len(available_asms)
+
+    for token in tokens:
+        # Check range of IDs: ASM-045..ASM-048 or ASM-045-ASM-048
+        id_range_match = re.match(r"^(ASM[-_]?\d+)\s*(?:\.\.|\s*-\s*|\s+to\s+)\s*(ASM[-_]?\d+)$", token, re.IGNORECASE)
+        if id_range_match:
+            start_num = int(re.search(r"\d+", id_range_match.group(1)).group())
+            end_num = int(re.search(r"\d+", id_range_match.group(2)).group())
+            if start_num > end_num:
+                start_num, end_num = end_num, start_num
+            for n in range(start_num, end_num + 1):
+                target_id = f"ASM-{n:03d}"
+                if target_id in id_to_asm:
+                    selected_asms[target_id] = id_to_asm[target_id]
+            continue
+
+        # Check numeric range: 1-5 or 1..5
+        num_range_match = re.match(r"^(\d+)\s*(?:\.\.|\s*-\s*|\s+to\s+)\s*(\d+)$", token)
+        if num_range_match:
+            start_idx = int(num_range_match.group(1))
+            end_idx = int(num_range_match.group(2))
+            if start_idx > end_idx:
+                start_idx, end_idx = end_idx, start_idx
+            for idx in range(start_idx, end_idx + 1):
+                if 1 <= idx <= total:
+                    a = available_asms[idx - 1]
+                    selected_asms[a["id"]] = a
+            continue
+
+        # Check single number: 4
+        if token.isdigit():
+            idx = int(token)
+            if 1 <= idx <= total:
+                a = available_asms[idx - 1]
+                selected_asms[a["id"]] = a
+            continue
+
+        # Check single ID: ASM-051
+        norm_id = token.upper()
+        if norm_id in id_to_asm:
+            selected_asms[norm_id] = id_to_asm[norm_id]
+        else:
+            match = re.match(r"^ASM[-_]?(\d+)$", norm_id)
+            if match:
+                padded_id = f"ASM-{int(match.group(1)):03d}"
+                if padded_id in id_to_asm:
+                    selected_asms[padded_id] = id_to_asm[padded_id]
+
+    return list(selected_asms.values())
+
+
+def delete_assessments_by_selection_flow(available_asms: list[dict[str, Any]], context_name: str = "Assessments") -> bool:
+    """
+    Allow the user to delete a single assessment, comma-separated list, or numeric/ID range of assessments.
+    Used in 'View & Manage Assessments' (Option 4).
+    """
+    if not available_asms:
+        console.print("\n[yellow]No assessment records available to delete.[/yellow]")
+        pause()
+        return False
+
+    console.print(f"\n[bold cyan]--- Delete Assessment(s) from {context_name} ---[/bold cyan]")
+    console.print("[dim]Select a single assessment, comma-separated list, or numeric/ID range.[/dim]")
+    console.print("Examples: [cyan]4[/cyan], [cyan]1-5[/cyan], [cyan]49-51[/cyan], [cyan]1, 3, 5[/cyan], [cyan]ASM-049..ASM-051[/cyan]\n")
+
+    sel_input = Prompt.ask("[bold green]Enter Assessment #(s), ID(s), or Range(s) to delete (or 'b' to cancel)[/bold green]").strip()
+    if is_back(sel_input) or not sel_input:
+        return False
+
+    selected = parse_assessment_selection(sel_input, available_asms)
+    if not selected:
+        console.print(f"\n[red]No valid assessments matched: '{sel_input}'. Please verify numbers or IDs and try again.[/red]")
+        pause()
+        return False
+
+    # Show confirmation preview table
+    table = Table(title=f"Assessments Selected for Deletion ({len(selected)} selected)", show_header=True, header_style="bold red")
+    table.add_column("#", justify="center", style="cyan")
+    table.add_column("Assessment ID", style="bold red")
+    table.add_column("Device ID", style="cyan")
+    table.add_column("Device Name & Model")
+    table.add_column("Status", justify="center")
+    table.add_column("Price (LKR)", justify="right")
+    table.add_column("Created At")
+
+    for i, a in enumerate(selected, start=1):
+        st = a.get("status", "Created")
+        st_color = "green" if st == "Completed" else "yellow"
+        dev_id = a.get("device_id", "")
+        dev_obj = get_device_by_id(dev_id) if dev_id else None
+        dev_name = dev_obj.get("display_name", dev_obj.get("model", "Generic Repeater")) if dev_obj else a.get("metadata", {}).get("model", "Generic Repeater")
+        table.add_row(
+            str(i),
+            a.get("id", ""),
+            dev_id,
+            dev_name,
+            f"[{st_color}]{st}[/{st_color}]",
+            str(a.get("price_lkr", 0)),
+            a.get("created_at", ""),
+        )
+    console.print(table)
+
+    confirmed = Confirm.ask(
+        f"\n[bold red]Are you sure you want to permanently delete these {len(selected)} assessment(s) and their evidence files?[/bold red]",
+        default=False,
+    )
+    if not confirmed:
+        console.print("\n[yellow]Deletion cancelled.[/yellow]")
+        pause()
+        return False
+
+    del_ids = [a["id"] for a in selected if a.get("id")]
+    deleted_cnt = delete_assessments_by_ids(del_ids)
+    console.print(f"\n[bold green]Successfully deleted {deleted_cnt} assessment session(s) and associated findings.[/bold green]")
+    pause()
+    return True
+
+
+def delete_standalone_assessment_flow() -> bool:
+    """
+    Allow deleting only active (Created or In Progress) assessment sessions.
+    Used in 'Standalone Assessment Modules' (Option 3).
+    """
+    all_asms = get_all_assessments()
+    active_asms = [a for a in all_asms if a.get("status", "Created").strip().lower() in ["created", "in progress"]]
+
+    if not active_asms:
+        console.print("\n[yellow]No active assessment sessions ('Created' or 'In Progress') found to delete.[/yellow]")
+        console.print("[dim]Completed assessment sessions cannot be deleted from Standalone Modules. Use Option 4 ('View & Manage Assessments') for full management.[/dim]\n")
+        pause()
+        return False
+
+    clear_screen()
+    show_banner()
+    console.print("[bold cyan]--- Delete Active Assessment Session (Created / In Progress only) ---[/bold cyan]")
+    console.print("[dim]Only pending or in-progress assessment containers can be deleted here.[/dim]\n")
+
+    table = Table(title=f"Active Assessment Sessions ({len(active_asms)} available)", show_header=True, header_style="bold cyan")
+    table.add_column("#", justify="center", style="cyan")
+    table.add_column("Assessment ID", style="bold cyan")
+    table.add_column("Device ID", style="cyan")
+    table.add_column("Device Name & Model")
+    table.add_column("Target IP")
+    table.add_column("Status", justify="center")
+    table.add_column("Created At")
+
+    for i, a in enumerate(active_asms, start=1):
+        st = a.get("status", "Created")
+        d_id = a.get("device_id", "")
+        d_obj = get_device_by_id(d_id) if d_id else None
+        d_name = d_obj.get("display_name", d_obj.get("model", "Generic Repeater")) if d_obj else a.get("metadata", {}).get("model", "Generic Repeater")
+        table.add_row(
+            str(i),
+            a.get("id", ""),
+            d_id,
+            d_name,
+            a.get("target_ip", ""),
+            f"[yellow]{st}[/yellow]",
+            a.get("created_at", ""),
+        )
+    console.print(table)
+
+    sel_input = Prompt.ask("\n[bold green]Enter Assessment # or ID to delete (or 'b' to cancel)[/bold green]").strip()
+    if is_back(sel_input) or not sel_input:
+        return False
+
+    # Check if user entered an ID that belongs to a completed assessment
+    matched_completed = next((a for a in all_asms if a.get("id", "").upper() == sel_input.upper() and a.get("status", "").strip().lower() == "completed"), None)
+    if matched_completed:
+        console.print(f"\n[red]Assessment '{matched_completed['id']}' is marked as 'Completed'.[/red]")
+        console.print("[yellow]Standalone modules only permit deletion of 'Created' and 'In Progress' sessions.[/yellow]")
+        console.print("[dim]To delete completed assessments, please use Option 4 ('View & Manage Assessments').[/dim]\n")
+        pause()
+        return False
+
+    selected = parse_assessment_selection(sel_input, active_asms)
+    if not selected:
+        console.print(f"\n[red]No active assessment matched: '{sel_input}'.[/red]")
+        pause()
+        return False
+
+    target = selected[0]
+    confirmed = Confirm.ask(
+        f"\n[bold red]Confirm deletion of active session '{target['id']}' ({target.get('device_id')})?[/bold red]",
+        default=False,
+    )
+    if not confirmed:
+        console.print("\n[yellow]Deletion cancelled.[/yellow]")
+        pause()
+        return False
+
+    delete_assessment_by_id(target["id"])
+    console.print(f"\n[bold green]Successfully deleted active assessment session '{target['id']}'.[/bold green]")
+    pause()
+    return True
+
+
 def list_assessments_screen() -> None:
     while True:
         clear_screen()
@@ -921,12 +1138,13 @@ def list_assessments_screen() -> None:
         console.print(f"3. Full In-Depth Assessments ({len(full_asms)} total)")
         console.print(f"4. Created / Pending Assessments ({len(created_asms)} total)")
         console.print("5. Export Complete Research Test Dataset & Audit Log (.txt / .log / .json)")
-        console.print("6. Clear / Delete All Assessments & Findings (Global Reset)")
+        console.print("6. Delete Specific Assessment(s) (Single ID, Number, or Range e.g. 1-5, 49-51)")
+        console.print("7. Clear / Delete All Assessments & Findings (Global Reset)")
         console.print("0. Back to Main Menu")
 
         cat_choice = Prompt.ask(
             "\n[bold green]Select an option[/bold green]",
-            choices=["0", "1", "2", "3", "4", "5", "6", "b", "B", ""],
+            choices=["0", "1", "2", "3", "4", "5", "6", "7", "b", "B", ""],
             default="1",
             show_default=False,
             show_choices=False,
@@ -972,6 +1190,10 @@ def list_assessments_screen() -> None:
             continue
 
         if cat_choice == "6":
+            delete_assessments_by_selection_flow(all_asms, "All Recorded Assessments")
+            continue
+
+        if cat_choice == "7":
             if not all_asms:
                 console.print("\n[yellow]No assessment records to clear.[/yellow]")
                 pause()
@@ -1054,12 +1276,13 @@ def render_assessment_category_view(category_key: str, category_title: str) -> N
         console.print("\n[bold cyan]Category Actions:[/bold cyan]")
         console.print("1. Select an Assessment (View Details, Export Report, Clear / Delete)")
         console.print("2. Export Reports for All Listed Assessments in this Category")
-        console.print("3. Clear / Delete All Listed Assessments in this Category")
+        console.print("3. Delete Specific Assessment(s) (Single ID, Number, or Range e.g. 1-5, 49-51)")
+        console.print("4. Clear / Delete All Listed Assessments in this Category")
         console.print("0. Back to Assessment Categories")
 
         sub_choice = Prompt.ask(
             "\n[bold green]Select an option[/bold green]",
-            choices=["0", "1", "2", "3", "b", "B", ""],
+            choices=["0", "1", "2", "3", "4", "b", "B", ""],
             default="1",
             show_default=False,
             show_choices=False,
@@ -1130,6 +1353,11 @@ def render_assessment_category_view(category_key: str, category_title: str) -> N
             pause()
 
         elif sub_choice == "3":
+            deleted = delete_assessments_by_selection_flow(asms, category_title)
+            if deleted:
+                continue
+
+        elif sub_choice == "4":
             confirmed = Confirm.ask(
                 f"\n[bold red]Are you sure you want to permanently delete ALL {len(asms)} assessment(s) in '{category_title}' and their findings?[/bold red]",
                 default=False,
@@ -1469,6 +1697,8 @@ def prompt_select_assessment_id(
     console.print("\n[bold]Options:[/bold]")
     console.print(f"  [bold cyan]{range_str:<4}[/bold cyan] : Select assessment by number from table")
     console.print(f"  [bold cyan]{'ID':<4}[/bold cyan] : Enter Assessment ID directly (e.g. ASM-001)")
+    if allowed_statuses:
+        console.print(f"  [bold cyan]{'D':<4}[/bold cyan] : Delete an active assessment session (Created / In Progress only)")
     console.print(f"  [bold cyan]{'L':<4}[/bold cyan] : View full detailed breakdown of listed sessions")
     console.print(f"  [bold cyan]{'B':<4}[/bold cyan] : Return to previous menu")
 
@@ -1481,6 +1711,46 @@ def prompt_select_assessment_id(
 
         if is_back(choice):
             return None, None
+
+        if allowed_statuses and choice.lower() in ["d", "del", "delete"]:
+            deleted_any = delete_standalone_assessment_flow()
+            if deleted_any:
+                all_raw = get_all_assessments()
+                assessments = [a for a in all_raw if a.get("status", "Created").strip().lower() in allowed_set]
+                if not assessments:
+                    console.print(f"\n[yellow]No remaining sessions found with status '{' or '.join(allowed_statuses)}'.[/yellow]")
+                    pause()
+                    return None, None
+                clear_screen()
+                show_banner()
+                status_header = f" [{'/'.join(allowed_statuses)} only]" if allowed_statuses else ""
+                table = Table(title=f"Available Assessment Sessions{status_header} ({len(assessments)} found)", show_header=True, header_style="bold cyan")
+                table.add_column("#", justify="center", style="cyan", no_wrap=True)
+                table.add_column("Assessment ID", style="bold cyan")
+                table.add_column("Device ID", style="cyan")
+                table.add_column("Device Name & Model")
+                table.add_column("Target Gateway")
+                table.add_column("Price (LKR)", justify="right")
+                table.add_column("Status", justify="center")
+                table.add_column("Created Date")
+                for idx, asm in enumerate(assessments, start=1):
+                    stat = asm.get("status", "Created")
+                    stat_color = "green" if stat == "Completed" else "yellow"
+                    dev_id = asm.get("device_id", "Target-Device")
+                    d_obj = get_device_by_id(dev_id) if dev_id else None
+                    dev_name = d_obj.get("display_name", d_obj.get("model", "Generic Repeater")) if d_obj else asm.get("metadata", {}).get("model", "Generic Repeater")
+                    table.add_row(
+                        str(idx),
+                        asm.get("id", ""),
+                        dev_id,
+                        dev_name,
+                        asm.get("target_ip", "N/A"),
+                        str(asm.get("price_lkr", 0)),
+                        f"[{stat_color}]{stat}[/{stat_color}]",
+                        asm.get("created_at", ""),
+                    )
+                console.print(table)
+                continue
 
         if choice.lower() in ["l", "list", "details"]:
             clear_screen()
@@ -3814,11 +4084,12 @@ def run_standalone_modules_screen() -> None:
         console.print("4. Run Web Interface Checks (HTML Inspection & Hidden Credentials)")
         console.print("5. Online Firmware Discovery (Path A - Search Indexes & Mirrors)")
         console.print("6. Firmware Static Analysis (Path B - User-Uploaded Binary Inspection)")
+        console.print("7. Delete Active Assessment Session (Created / In Progress only)")
         console.print("0. Back to Main Menu")
 
         choice = Prompt.ask(
             "\n[bold green]Select a module[/bold green]",
-            choices=["0", "1", "2", "3", "4", "5", "6", "b", "B", ""],
+            choices=["0", "1", "2", "3", "4", "5", "6", "7", "b", "B", ""],
             default="0",
             show_default=False,
             show_choices=False,
@@ -3838,6 +4109,8 @@ def run_standalone_modules_screen() -> None:
             run_firmware_discovery_screen()
         elif choice == "6":
             run_firmware_static_analysis_screen()
+        elif choice == "7":
+            delete_standalone_assessment_flow()
 
 
 def run_scorecard_and_findings_screen() -> None:
