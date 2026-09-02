@@ -1720,8 +1720,6 @@ def prompt_select_assessment_id(
     console.print("\n[bold]Options:[/bold]")
     console.print(f"  [bold cyan]{range_str:<4}[/bold cyan] : Select assessment by number from table")
     console.print(f"  [bold cyan]{'ID':<4}[/bold cyan] : Enter Assessment ID directly (e.g. ASM-001)")
-    if allowed_statuses:
-        console.print(f"  [bold cyan]{'D':<4}[/bold cyan] : Delete an active assessment session (Created / In Progress only)")
     console.print(f"  [bold cyan]{'L':<4}[/bold cyan] : View full detailed breakdown of listed sessions")
     console.print(f"  [bold cyan]{'B':<4}[/bold cyan] : Return to previous menu")
 
@@ -1734,46 +1732,6 @@ def prompt_select_assessment_id(
 
         if is_back(choice):
             return None, None
-
-        if allowed_statuses and choice.lower() in ["d", "del", "delete"]:
-            deleted_any = delete_standalone_assessment_flow()
-            if deleted_any:
-                all_raw = get_all_assessments()
-                assessments = [a for a in all_raw if a.get("status", "Created").strip().lower() in allowed_set]
-                if not assessments:
-                    console.print(f"\n[yellow]No remaining sessions found with status '{' or '.join(allowed_statuses)}'.[/yellow]")
-                    pause()
-                    return None, None
-                clear_screen()
-                show_banner()
-                status_header = f" [{'/'.join(allowed_statuses)} only]" if allowed_statuses else ""
-                table = Table(title=f"Available Assessment Sessions{status_header} ({len(assessments)} found)", show_header=True, header_style="bold cyan")
-                table.add_column("#", justify="center", style="cyan", no_wrap=True)
-                table.add_column("Assessment ID", style="bold cyan")
-                table.add_column("Device ID", style="cyan")
-                table.add_column("Device Name & Model")
-                table.add_column("Target Gateway")
-                table.add_column("Price (LKR)", justify="right")
-                table.add_column("Status", justify="center")
-                table.add_column("Created Date")
-                for idx, asm in enumerate(assessments, start=1):
-                    stat = asm.get("status", "Created")
-                    stat_color = "green" if stat == "Completed" else "yellow"
-                    dev_id = asm.get("device_id", "Target-Device")
-                    d_obj = get_device_by_id(dev_id) if dev_id else None
-                    dev_name = (d_obj.get("display_name", d_obj.get("model")) if d_obj else None) or asm.get("metadata", {}).get("device_name") or asm.get("metadata", {}).get("model") or "Generic Wi-Fi Adapter"
-                    table.add_row(
-                        str(idx),
-                        asm.get("id", ""),
-                        dev_id,
-                        dev_name,
-                        asm.get("target_ip", "N/A"),
-                        str(asm.get("price_lkr", 0)),
-                        f"[{stat_color}]{stat}[/{stat_color}]",
-                        asm.get("created_at", ""),
-                    )
-                console.print(table)
-                continue
 
         if choice.lower() in ["l", "list", "details"]:
             clear_screen()
