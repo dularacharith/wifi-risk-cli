@@ -735,7 +735,7 @@ def run_full_assessment_screen() -> None:
 [bold]Assessment Session ID:[/bold]  {results.get('assessment_id', '')}
 [bold]Device Identifier:[/bold]      {device_id}
 [bold]Target Gateway:[/bold]          {target_ip} ({iface_name})
-[bold]Purchase Price:[/bold]          LKR {eval_data.get('price_lkr', price_lkr)}
+[bold]Purchase Price:[/bold]          {format_price_display(eval_data.get('price_lkr', price_lkr), prefix_lkr=True)}
 [bold]Total Findings:[/bold]          {len(findings)} ({severity_counts.get('High', 0)} High, {severity_counts.get('Medium', 0)} Medium, {severity_counts.get('Low-Medium', 0)} Low-Med)
 
 [bold]Base Security Score:[/bold]     {eval_data.get('base_score', 100)}/100
@@ -885,6 +885,7 @@ def create_assessment_screen() -> None:
             metadata=metadata,
         )
 
+        price_disp = format_price_display(new_assessment.get("price_lkr"), prefix_lkr=True)
         confirmation_details = f"""
 [bold green]Assessment Created Successfully![/bold green]
 
@@ -892,7 +893,7 @@ def create_assessment_screen() -> None:
 [bold]Device ID:[/bold]     {new_assessment["device_id"]}
 [bold]Device Name:[/bold]   {device_name}
 [bold]Target IP:[/bold]     {new_assessment["target_ip"]} (Interface: {iface_name})
-[bold]Price:[/bold]         LKR {new_assessment["price_lkr"]}
+[bold]Price:[/bold]         {price_disp}
 [bold]Status:[/bold]        {new_assessment["status"]}
 [bold]Created At:[/bold]    {new_assessment["created_at"]}
 [bold]Notes:[/bold]         {new_assessment["notes"]}
@@ -925,6 +926,19 @@ def create_assessment_screen() -> None:
 
         if not repeat_create:
             break
+
+
+def format_price_display(price_val: Any, prefix_lkr: bool = False) -> str:
+    """
+    Format price in LKR. Returns 'N/A' if price is 0, None, or empty.
+    """
+    try:
+        if price_val is not None and int(price_val) > 0:
+            val_int = int(price_val)
+            return f"LKR {val_int:,}" if prefix_lkr else f"{val_int}"
+    except (ValueError, TypeError):
+        pass
+    return "N/A"
 
 
 def parse_assessment_selection(input_str: str, available_asms: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -1043,7 +1057,7 @@ def delete_assessments_by_selection_flow(available_asms: list[dict[str, Any]], c
             dev_id,
             dev_name,
             f"[{st_color}]{st}[/{st_color}]",
-            str(a.get("price_lkr", 0)),
+            format_price_display(a.get("price_lkr")),
             a.get("created_at", ""),
         )
     console.print(table)
@@ -1282,7 +1296,7 @@ def render_assessment_category_view(category_key: str, category_title: str) -> N
                 asm_dev,
                 dev_name,
                 asm.get("target_ip", ""),
-                str(asm.get("price_lkr", 0)),
+                format_price_display(asm.get("price_lkr")),
                 f"[{status_style}]{asm.get('status', 'Created')}[/{status_style}]",
                 type_label,
                 str(findings_cnt),
@@ -1444,7 +1458,7 @@ def manage_single_assessment_session(assessment_id: str) -> None:
 [bold]Model:[/bold]               {model}
 [bold]Firmware Version:[/bold]   {firmware_ver}
 [bold]Target Gateway IP:[/bold]   {target_ip}
-[bold]Purchase Price:[/bold]       LKR {price_lkr}
+[bold]Purchase Price:[/bold]       {format_price_display(price_lkr, prefix_lkr=True)}
 [bold]Created At:[/bold]           {created_at}
 [bold]Executed Checks:[/bold]      {len(checks)} module(s) executed
 [bold]Confirmed Findings:[/bold]   {len(findings)} discovered
@@ -1707,7 +1721,7 @@ def prompt_select_assessment_id(
             dev_id,
             dev_name,
             asm.get("target_ip", "N/A"),
-            str(asm.get("price_lkr", 0)),
+            format_price_display(asm.get("price_lkr")),
             f"[{stat_color}]{stat}[/{stat_color}]",
             asm.get("created_at", ""),
         )
@@ -1741,7 +1755,7 @@ def prompt_select_assessment_id(
                 checks_count = len(asm.get("checks", []))
                 d_id = asm.get('device_id', 'Target-Device')
                 d_obj = get_device_by_id(d_id) if d_id else None
-                d_name = d_obj.get("display_name", d_obj.get("model", "Generic Wi-Fi Repeater")) if d_obj else asm.get("metadata", {}).get("model", "Generic Wi-Fi Repeater")
+                d_name = (d_obj.get("display_name", d_obj.get("model")) if d_obj else None) or asm.get("metadata", {}).get("device_name") or asm.get("metadata", {}).get("model") or "Generic Wi-Fi Adapter"
                 d_brand = d_obj.get("brand", asm.get("metadata", {}).get("brand", "Unknown / Generic")) if d_obj else asm.get("metadata", {}).get("brand", "Unknown / Generic")
                 d_model = d_obj.get("model", "Wi-Fi Repeater") if d_obj else asm.get("metadata", {}).get("model", "Wi-Fi Repeater")
                 d_fw = d_obj.get("firmware_version", "Unknown") if d_obj else "Unknown"
@@ -1756,7 +1770,7 @@ def prompt_select_assessment_id(
 [bold]Brand / Model:[/bold]     {d_brand} {d_model}
 [bold]Firmware Version:[/bold]  {d_fw}
 [bold]Target Gateway:[/bold]    {asm.get('target_ip')}
-[bold]Device Price:[/bold]      LKR {asm.get('price_lkr', 0)}
+[bold]Device Price:[/bold]      {format_price_display(asm.get('price_lkr'), prefix_lkr=True)}
 [bold]Created At:[/bold]        {asm.get('created_at')}
 [bold]Executed Checks:[/bold]   {checks_count} check(s) recorded
 [bold]Setup Domain:[/bold]      {asm.get('metadata', {}).get('setup_domain', 'None')}
