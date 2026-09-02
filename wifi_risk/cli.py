@@ -93,13 +93,25 @@ app = typer.Typer(
 )
 console = Console()
 
-ASCII_ART = r"""
-__        ___ _____ ___   ____  ___ ____  _  __
-\ \      / (_)  ___|_ _| |  _ \|_ _/ ___|| |/ /
- \ \ /\ / /| | |_   | |  | |_) || |\___ \| ' /
-  \ V  V / | |  _|  | |  |  _ < | | ___) | . \
-   \_/\_/  |_|_|   |___| |_| \_\___|____/|_|\_\
-"""
+WIFI_ART = [
+    " ██╗    ██╗██╗███████╗██╗",
+    " ██║    ██║██║██╔════╝██║",
+    " ██║ █╗ ██║██║█████╗  ██║",
+    " ██║███╗██║██║██╔══╝  ██║",
+    " ╚███╔███╔╝██║██║     ██║",
+    "  ╚══╝╚══╝ ╚═╝╚═╝     ╚═╝",
+]
+
+RISK_ART = [
+    "  ██████╗ ██╗███████╗██╗  ██╗",
+    "  ██╔══██╗██║██╔════╝██║ ██╔╝",
+    "  ██████╔╝██║███████╗█████═╝ ",
+    "  ██╔══██╗██║╚════██║██╔═██╗ ",
+    "  ██║  ██║██║███████║██║  ██╗",
+    "  ╚═╝  ╚═╝╚═╝╚══════╝╚═╝  ╚═╝",
+]
+
+ASCII_ART = "\n".join(f"{w}{r}" for w, r in zip(WIFI_ART, RISK_ART))
 
 
 def clear_screen() -> None:
@@ -107,7 +119,8 @@ def clear_screen() -> None:
 
 
 def show_banner() -> None:
-    console.print(ASCII_ART, style="bold cyan")
+    for w, r in zip(WIFI_ART, RISK_ART):
+        console.print(f"[bold cyan]{w}[/bold cyan][bold bright_red]{r}[/bold bright_red]")
     console.print(
         Panel(
             "[bold white]WiFiRisk - Security Assessment & Risk Benchmarking CLI Framework[/bold white]\n"
