@@ -646,6 +646,16 @@ def run_full_assessment_screen() -> None:
         if is_back(device_id):
             return
 
+        device_name = Prompt.ask(
+            "[bold]Device Name (Optional, press Enter for default, or 'b' to go back)[/bold]",
+            default="Generic Wi-Fi Adapter",
+            show_default=True,
+        ).strip()
+        if is_back(device_name):
+            return
+        if not device_name:
+            device_name = "Generic Wi-Fi Adapter"
+
         price_input = Prompt.ask("[bold]Purchase Price in LKR (Optional, or 'b' to go back)[/bold]", default="").strip()
         if is_back(price_input):
             return
@@ -834,6 +844,16 @@ def create_assessment_screen() -> None:
         if is_back(device_id):
             return
 
+        device_name = Prompt.ask(
+            "[bold]Device Name (Optional, press Enter for default, or 'b' to go back)[/bold]",
+            default="Generic Wi-Fi Adapter",
+            show_default=True,
+        ).strip()
+        if is_back(device_name):
+            return
+        if not device_name:
+            device_name = "Generic Wi-Fi Adapter"
+
         price_input = Prompt.ask("[bold]Purchase Price in LKR (Optional, or 'b' to go back)[/bold]", default="").strip()
         if is_back(price_input):
             return
@@ -851,6 +871,8 @@ def create_assessment_screen() -> None:
             return
 
         metadata = {
+            "device_name": device_name,
+            "model": device_name,
             "setup_domain": setup_domain,
             "interface": iface_name,
         }
@@ -868,6 +890,7 @@ def create_assessment_screen() -> None:
 
 [bold]Assessment ID:[/bold] {new_assessment["id"]}
 [bold]Device ID:[/bold]     {new_assessment["device_id"]}
+[bold]Device Name:[/bold]   {device_name}
 [bold]Target IP:[/bold]     {new_assessment["target_ip"]} (Interface: {iface_name})
 [bold]Price:[/bold]         LKR {new_assessment["price_lkr"]}
 [bold]Status:[/bold]        {new_assessment["status"]}
@@ -1013,7 +1036,7 @@ def delete_assessments_by_selection_flow(available_asms: list[dict[str, Any]], c
         st_color = "green" if st == "Completed" else "yellow"
         dev_id = a.get("device_id", "")
         dev_obj = get_device_by_id(dev_id) if dev_id else None
-        dev_name = dev_obj.get("display_name", dev_obj.get("model", "Generic Repeater")) if dev_obj else a.get("metadata", {}).get("model", "Generic Repeater")
+        dev_name = (dev_obj.get("display_name", dev_obj.get("model")) if dev_obj else None) or a.get("metadata", {}).get("device_name") or a.get("metadata", {}).get("model") or "Generic Wi-Fi Adapter"
         table.add_row(
             str(i),
             a.get("id", ""),
@@ -1073,7 +1096,7 @@ def delete_standalone_assessment_flow() -> bool:
         st = a.get("status", "Created")
         d_id = a.get("device_id", "")
         d_obj = get_device_by_id(d_id) if d_id else None
-        d_name = d_obj.get("display_name", d_obj.get("model", "Generic Repeater")) if d_obj else a.get("metadata", {}).get("model", "Generic Repeater")
+        d_name = (d_obj.get("display_name", d_obj.get("model")) if d_obj else None) or a.get("metadata", {}).get("device_name") or a.get("metadata", {}).get("model") or "Generic Wi-Fi Adapter"
         table.add_row(
             str(i),
             a.get("id", ""),
@@ -1243,7 +1266,7 @@ def render_assessment_category_view(category_key: str, category_title: str) -> N
             asm_id = asm.get("id", "")
             asm_dev = asm.get("device_id", "")
             dev_obj = get_device_by_id(asm_dev) if asm_dev else None
-            dev_name = dev_obj.get("display_name", dev_obj.get("model", "Generic Repeater")) if dev_obj else asm.get("metadata", {}).get("model", "Generic Repeater")
+            dev_name = (dev_obj.get("display_name", dev_obj.get("model")) if dev_obj else None) or asm.get("metadata", {}).get("device_name") or asm.get("metadata", {}).get("model") or "Generic Wi-Fi Adapter"
             asm_findings = get_findings_by_assessment_id(asm_id)
             if not asm_findings and asm_dev:
                 asm_findings = get_findings_by_device_id(asm_dev)
@@ -1677,7 +1700,7 @@ def prompt_select_assessment_id(
         stat_color = "green" if stat == "Completed" else "yellow"
         dev_id = asm.get("device_id", "Target-Device")
         d_obj = get_device_by_id(dev_id) if dev_id else None
-        dev_name = d_obj.get("display_name", d_obj.get("model", "Generic Repeater")) if d_obj else asm.get("metadata", {}).get("model", "Generic Repeater")
+        dev_name = (d_obj.get("display_name", d_obj.get("model")) if d_obj else None) or asm.get("metadata", {}).get("device_name") or asm.get("metadata", {}).get("model") or "Generic Wi-Fi Adapter"
         table.add_row(
             str(idx),
             asm.get("id", ""),
@@ -1738,7 +1761,7 @@ def prompt_select_assessment_id(
                     stat_color = "green" if stat == "Completed" else "yellow"
                     dev_id = asm.get("device_id", "Target-Device")
                     d_obj = get_device_by_id(dev_id) if dev_id else None
-                    dev_name = d_obj.get("display_name", d_obj.get("model", "Generic Repeater")) if d_obj else asm.get("metadata", {}).get("model", "Generic Repeater")
+                    dev_name = (d_obj.get("display_name", d_obj.get("model")) if d_obj else None) or asm.get("metadata", {}).get("device_name") or asm.get("metadata", {}).get("model") or "Generic Wi-Fi Adapter"
                     table.add_row(
                         str(idx),
                         asm.get("id", ""),
