@@ -128,31 +128,25 @@ def classify_assessment_type(asm: dict[str, Any]) -> str:
     Classify an assessment session into one of three categories:
     - 'quick_scan': Standalone / quick scan session
     - 'full_assessment': Completed full in-depth multi-layer assessment session (went through Option 2)
-    - 'created': Created / pending / in-progress session without full completion
+    - 'created': Created / pending / in-progress session without full completion (status != 'Completed')
     """
     meta = asm.get("metadata", {})
     scan_type = meta.get("scan_type", "").lower()
     asm_type = meta.get("assessment_type", "").lower()
     status = str(asm.get("status", "Created")).strip()
-    checks = asm.get("checks", [])
     notes = asm.get("notes", "").lower()
 
-    # 1. Quick Scans
+    # 1. Any session with Completed status is NEVER in Created/Pending category
+    if status.lower() == "completed":
+        if scan_type == "quick_scan" or asm_type == "quick_scan" or "quick scan" in notes:
+            return "quick_scan"
+        return "full_assessment"
+
+    # 2. Non-completed sessions explicitly marked as quick scans
     if scan_type == "quick_scan" or asm_type == "quick_scan" or "quick scan" in notes:
         return "quick_scan"
 
-    # 2. Full In-Depth Assessments (MUST be Completed sessions that went through Option 2 / full pipeline)
-    if status == "Completed" and (
-        scan_type == "full_assessment"
-        or asm_type == "full_assessment"
-        or len(checks) >= 2
-        or "live security assessment" in notes
-        or "session via" in notes
-        or "direct cli" in notes
-    ):
-        return "full_assessment"
-
-    # 3. Everything else is created / pending / in-progress
+    # 3. Everything else is active created / pending / in-progress
     return "created"
 
 
