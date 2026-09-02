@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Any, Callable, Optional
 
-from wifi_risk.services.dns_service import query_dns_server
+from wifi_risk.services.dns_service import auto_discover_setup_domain, query_dns_server
 from wifi_risk.services.network_service import scan_ports_socket
 from wifi_risk.services.web_service import analyze_html_content, fetch_web_page
 from wifi_risk.utils.command_runner import is_tool_available, run_command_safe
@@ -52,9 +52,15 @@ def run_standalone_quick_scan(
     dns_resolved_ips: list[str] = []
     if 53 in port_numbers:
         if progress_callback:
-            progress_callback(60, f"Testing DNS query resolution and forwarding on {target_ip}:53...")
+            progress_callback(60, f"Testing DNS query resolution and captive domain on {target_ip}:53...")
         dns_resolved_ips = query_dns_server("google.com", target_ip)
-        dns_status = "Active & Resolving" if dns_resolved_ips else "Port Open (No DNS response)"
+        discovered_domain, _ = auto_discover_setup_domain(target_ip, timeout=0.6)
+        if discovered_domain:
+            dns_status = f"Active & Captive ({discovered_domain})"
+        elif dns_resolved_ips:
+            dns_status = "Active & Resolving"
+        else:
+            dns_status = "Port Open (No DNS response)"
     else:
         if progress_callback:
             progress_callback(60, "DNS service port 53 is closed. Skipping DNS check.")

@@ -91,6 +91,31 @@ def query_dns_server(domain: str, nameserver: str, timeout: float = 2.5) -> list
     return ips
 
 
+VENDOR_SETUP_DOMAINS = [
+    "zrlogin.cn",         # Generic Chinese OEM (MT02, Pix-Link, LV-WR09)
+    "wifi.repeater",      # Wavlink & Generic Realtek SOHO
+    "myrepeater.net",     # Generic SOHO / Realtek
+    "repeater.setup",     # Generic SOHO
+    "ap.login",           # MediaTek / Realtek AP models
+    "tplinkrepeater.net", # TP-Link
+    "miwifi.com",         # Xiaomi Mi Wi-Fi
+    "mywifiext.net",      # Netgear
+    "re.tenda.cn",        # Tenda
+]
+
+
+def auto_discover_setup_domain(target_ip: str, timeout: float = 0.8) -> tuple[str, list[str]]:
+    """
+    Probe candidate vendor setup domains against the target resolver.
+    Returns (domain, resolved_ips) for the first domain resolving to target_ip.
+    """
+    for candidate in VENDOR_SETUP_DOMAINS:
+        ips = query_dns_server(candidate, target_ip, timeout=timeout)
+        if target_ip in ips:
+            return candidate, ips
+    return "", []
+
+
 def evaluate_dns_behavior(
     device_id: str,
     assessment_id: str,
@@ -177,7 +202,16 @@ def perform_dns_checks(
         check_method = "manual_import"
     else:
         check_method = "live_query"
-        setup_ips = query_dns_server(setup_domain, target_ip) if setup_domain else []
+        if setup_domain:
+            setup_ips = query_dns_server(setup_domain, target_ip)
+        else:
+            # Auto-probe known vendor setup domains against local resolver
+            discovered_domain, discovered_ips = auto_discover_setup_domain(target_ip)
+            if discovered_domain:
+                setup_domain = discovered_domain
+                setup_ips = discovered_ips
+            else:
+                setup_ips = []
         control_ips = query_dns_server(control_domain, target_ip) if control_domain else []
 
     up_setup_ips: list[str] = []
