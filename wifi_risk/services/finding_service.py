@@ -11,7 +11,13 @@ def get_all_findings() -> list[dict[str, Any]]:
     Retrieve all findings from persistent storage.
     """
     try:
-        return load_json(FINDINGS_FILE)
+        findings = load_json(FINDINGS_FILE)
+        for f in findings:
+            if not f.get("level") and f.get("severity"):
+                f["level"] = f["severity"]
+            elif not f.get("severity") and f.get("level"):
+                f["severity"] = f["level"]
+        return findings
     except FileNotFoundError:
         return []
 
@@ -131,7 +137,7 @@ def filter_findings(
             continue
         if assessment_id and f.get("assessment_id", "").lower() != assessment_id.lower():
             continue
-        if severity and f.get("severity", "").lower() != severity.lower():
+        if severity and (f.get("severity") or f.get("level", "")).strip().lower() != severity.strip().lower():
             continue
         if status and f.get("status", "").lower() != status.lower():
             continue
@@ -167,10 +173,24 @@ def count_findings_by_severity(
     }
 
     for finding in findings:
-        severity = finding.get("severity", "Informational")
-        if severity in counts:
-            counts[severity] += 1
-        else:
-            counts[severity] = 1
+        sev = finding.get("severity") or finding.get("level") or "Informational"
+        matched = False
+        for k in counts:
+            if k.lower() == sev.strip().lower():
+                counts[k] += 1
+                matched = True
+                break
+        if not matched:
+            sev_norm = sev.strip().lower()
+            if "low-medium" in sev_norm:
+                counts["Low-Medium"] += 1
+            elif "medium" in sev_norm:
+                counts["Medium"] += 1
+            elif "high" in sev_norm or "critical" in sev_norm:
+                counts["High"] += 1
+            elif "low" in sev_norm:
+                counts["Low"] += 1
+            else:
+                counts["Informational"] += 1
 
     return counts

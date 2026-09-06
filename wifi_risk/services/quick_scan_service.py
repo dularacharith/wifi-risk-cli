@@ -104,6 +104,7 @@ def run_standalone_quick_scan(
         alerts.append(
             {
                 "level": "High",
+                "severity": "High",
                 "title": "Unencrypted Telnet Port Open (23/TCP)",
                 "category": "Network Exposure / Insecure Defaults",
                 "cwe": "CWE-319 (Cleartext Transmission) / CWE-259 (Hardcoded Credentials)",
@@ -120,6 +121,7 @@ def run_standalone_quick_scan(
         alerts.append(
             {
                 "level": "Medium",
+                "severity": "Medium",
                 "title": "FTP Service Exposed (21/TCP)",
                 "category": "Network Exposure / Plaintext Protocol",
                 "cwe": "CWE-319 (Cleartext Transmission of Sensitive Information)",
@@ -136,6 +138,7 @@ def run_standalone_quick_scan(
         alerts.append(
             {
                 "level": "Medium",
+                "severity": "Medium",
                 "title": "Unencrypted HTTP Management Interface (80/TCP)",
                 "category": "Transport Security / Sensitive Data Exposure",
                 "cwe": "CWE-319 (Cleartext Transmission) / CWE-352 (Cross-Site Request Forgery)",
@@ -152,6 +155,7 @@ def run_standalone_quick_scan(
         alerts.append(
             {
                 "level": "High",
+                "severity": "High",
                 "title": "Hardcoded Admin Credentials in Web HTML",
                 "category": "Authentication Security / Insecure Defaults",
                 "cwe": "CWE-798 (Use of Hardcoded Credentials)",
@@ -168,6 +172,7 @@ def run_standalone_quick_scan(
         alerts.append(
             {
                 "level": "Low",
+                "severity": "Low",
                 "title": "Local DNS Resolver Exposed (53/TCP)",
                 "category": "Network Exposure / DNS Behavior",
                 "cwe": "CWE-345 (Insufficient Verification) / CWE-400 (Amplification Abuse)",
@@ -181,8 +186,8 @@ def run_standalone_quick_scan(
         )
 
     # 5. Overall Status Tier
-    has_high = any(a["level"] == "High" for a in alerts)
-    has_med = any(a["level"] == "Medium" for a in alerts)
+    has_high = any((a.get("severity") or a.get("level", "")).lower() in ["critical", "high"] for a in alerts)
+    has_med = any("medium" in (a.get("severity") or a.get("level", "")).lower() for a in alerts)
 
     if has_high:
         overall_status = "High Vulnerability Exposure"

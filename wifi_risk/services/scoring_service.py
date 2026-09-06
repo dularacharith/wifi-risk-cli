@@ -28,9 +28,22 @@ def calculate_security_score(findings: list[dict[str, Any]]) -> dict[str, Any]:
     deductions_detail: list[dict[str, Any]] = []
 
     for f in findings:
-        sev = f.get("severity", "Informational")
+        sev = f.get("severity") or f.get("level") or "Informational"
         # Match standard or normalized severity key
-        deduction = SEVERITY_DEDUCTIONS.get(sev, 1)
+        deduction = SEVERITY_DEDUCTIONS.get(sev)
+        if deduction is None:
+            sev_norm = sev.strip().lower()
+            if sev_norm in ["critical", "high"]:
+                deduction = SEVERITY_DEDUCTIONS["High"]
+            elif "low-medium" in sev_norm:
+                deduction = SEVERITY_DEDUCTIONS["Low-Medium"]
+            elif "medium" in sev_norm:
+                deduction = SEVERITY_DEDUCTIONS["Medium"]
+            elif "low" in sev_norm:
+                deduction = SEVERITY_DEDUCTIONS["Low"]
+            else:
+                deduction = SEVERITY_DEDUCTIONS.get("Informational", 1)
+
         score -= deduction
         deductions_detail.append(
             {
@@ -103,7 +116,10 @@ def generate_recommendation(
     Generate actionable recommendation based on security score, high severity findings and PSR.
     Important rule: Do not let cheap price mask critical findings.
     """
-    high_count = sum(1 for f in findings if f.get("severity", "").lower() == "high")
+    high_count = sum(
+        1 for f in findings
+        if (f.get("severity") or f.get("level", "")).strip().lower() in ["high", "critical"]
+    )
 
     if security_score >= 80 and high_count == 0:
         category = "Recommended"

@@ -289,18 +289,19 @@ def render_finding_detail(finding: dict[str, Any], index: int | None = None) -> 
     """
     Render a comprehensive, structured panel for a single security finding including threat modeling.
     """
-    sev = finding.get("severity", "Medium")
+    sev = finding.get("severity") or finding.get("level") or "Medium"
     sev_lower = sev.lower()
-    b_color = "red" if sev_lower in ["critical", "high"] else "yellow" if "medium" in sev_lower else "green"
+    b_color = "red" if sev_lower in ["critical", "high"] else "yellow" if "medium" in sev_lower else "green" if sev_lower in ["low", "info", "informational"] else "cyan"
 
     idx_prefix = f"#{index} - " if index is not None else ""
-    title_text = f"[{b_color}][bold]{idx_prefix}{finding.get('id', '')}: {finding.get('title', '')}[/bold][/{b_color}]"
+    id_str = f"{finding.get('id')}: " if finding.get("id") else ""
+    title_text = f"[{b_color}][bold]{idx_prefix}{id_str}{finding.get('title', '')}[/bold][/{b_color}]"
 
     cwe_text = finding.get("cwe", "").strip() or "CWE-General / Insecure Device Configuration"
     threat_text = finding.get("threat_scenario", "").strip() or "An attacker on the local or upstream network can exploit this weakness to intercept traffic or attempt unauthorized access."
-    evidence_text = finding.get("evidence", "").strip() or "Observed during live device security assessment."
+    evidence_text = finding.get("evidence", "").strip() or finding.get("technical_details", "").strip() or "Observed during live device security assessment."
     impact_text = finding.get("impact", "").strip() or "May allow unauthorized network access or sensitive data leakage."
-    rec_text = finding.get("recommendation", "").strip() or "Apply security hardening and update device configuration."
+    rec_text = finding.get("recommendation", "").strip() or finding.get("remediation", "").strip() or "Apply security hardening and update device configuration."
     hardening_text = finding.get("hardening_coverage", "").strip()
 
     content = f"""
@@ -336,20 +337,24 @@ def render_quick_alert_detail(alert: dict[str, Any], index: int | None = None) -
     """
     Render a structured, informative panel for a quick scan vulnerability alert including threat modeling.
     """
-    lvl = alert.get("level", "Medium")
+    lvl = alert.get("severity") or alert.get("level") or "Medium"
     lvl_lower = lvl.lower()
-    b_color = "red" if lvl_lower in ["critical", "high"] else "yellow" if "medium" in lvl_lower else "cyan"
+    b_color = "red" if lvl_lower in ["critical", "high"] else "yellow" if "medium" in lvl_lower else "green" if lvl_lower in ["low", "info", "informational"] else "cyan"
 
     idx_prefix = f"#{index} - " if index is not None else ""
-    title_text = f"[{b_color}][bold]{idx_prefix}{alert.get('title', '')}[/bold][/{b_color}]"
+    id_str = f"{alert.get('id')}: " if alert.get("id") else ""
+    title_text = f"[{b_color}][bold]{idx_prefix}{id_str}{alert.get('title', '')}[/bold][/{b_color}]"
 
     cwe_text = alert.get("cwe", "CWE-General Network Weakness")
     threat_text = alert.get("threat_scenario", "An attacker on the shared network can probe this service to attempt eavesdropping or unauthenticated access.")
     hardening_text = alert.get("hardening_coverage", "")
+    evidence_text = alert.get("evidence", alert.get("technical_details", "Observed during live network triage scan."))
+    impact_text = alert.get("impact", "Potential exposure to unauthorized interception or brute-force access.")
+    rec_text = alert.get("recommendation", alert.get("remediation", "Disable this exposed service or enforce cryptographic authentication."))
 
     content = f"""
 [bold]Vulnerability Title:[/bold] {alert.get('title', '')}
-[bold]Severity Tier:[/bold]       [{b_color}]{lvl.upper()}[/{b_color}]
+[bold]Severity Tier:[/bold]       [{b_color}]{lvl}[/{b_color}]
 [bold]Weakness Mapping:[/bold]    {cwe_text}
 [bold]Category:[/bold]            {alert.get('category', 'Network / Service Exposure')}
 [bold]Verification Status:[/bold] {alert.get('status', 'Confirmed Exposure')}
@@ -358,13 +363,13 @@ def render_quick_alert_detail(alert: dict[str, Any], index: int | None = None) -
 {threat_text}
 
 [bold cyan]Technical Evidence & Probed Data:[/bold cyan]
-{alert.get('evidence', 'Observed during live network triage scan.')}
+{evidence_text}
 
 [bold red]Security Impact & Vulnerability Consequences:[/bold red]
-{alert.get('impact', 'Potential exposure to unauthorized interception or brute-force access.')}
+{impact_text}
 
 [bold green]Remediation & Mitigation Guidance:[/bold green]
-{alert.get('recommendation', 'Disable this exposed service or enforce cryptographic authentication.')}
+{rec_text}
 """
     if hardening_text:
         content += f"""
@@ -385,9 +390,11 @@ def explore_quick_scan_alerts(alerts: list[dict[str, Any]]) -> None:
     while True:
         console.print("\n[bold cyan]Discovered Vulnerabilities:[/bold cyan]")
         for idx, a in enumerate(alerts, 1):
-            lvl = a.get("level", "Medium")
-            lvl_color = "red" if lvl.lower() == "high" else "yellow" if lvl.lower() == "medium" else "cyan"
-            console.print(f"  [bold cyan]{idx}.[/bold cyan] [{lvl_color}][{lvl}][/{lvl_color}] {a.get('title', '')}")
+            lvl = a.get("severity") or a.get("level") or "Medium"
+            lvl_lower = lvl.lower()
+            lvl_color = "red" if lvl_lower in ["critical", "high"] else "yellow" if "medium" in lvl_lower else "green" if lvl_lower in ["low", "info", "informational"] else "cyan"
+            id_prefix = f"[bold]{a.get('id')}:[/bold] " if a.get("id") else ""
+            console.print(f"  [bold cyan]{idx}.[/bold cyan] [{lvl_color}][{lvl}][/{lvl_color}] {id_prefix}{a.get('title', '')}")
 
         range_desc = f"1-{len(alerts)}" if len(alerts) > 1 else "1"
         console.print("\n[bold]Options:[/bold]")
@@ -411,7 +418,10 @@ def explore_quick_scan_alerts(alerts: list[dict[str, Any]]) -> None:
             show_banner()
             console.print(f"[bold cyan]--- Complete Vulnerability Detail Breakdown ({len(alerts)} items) ---[/bold cyan]\n")
             for idx, a in enumerate(alerts, 1):
-                render_quick_alert_detail(a, index=idx)
+                if a.get("id") or a.get("module") or "recommendation" in a:
+                    render_finding_detail(a, index=idx)
+                else:
+                    render_quick_alert_detail(a, index=idx)
             Prompt.ask("\n[bold cyan]Press Enter to return to options[/bold cyan]", default="")
         else:
             try:
@@ -419,7 +429,11 @@ def explore_quick_scan_alerts(alerts: list[dict[str, Any]]) -> None:
                 if 0 <= selected_idx < len(alerts):
                     clear_screen()
                     show_banner()
-                    render_quick_alert_detail(alerts[selected_idx], index=selected_idx + 1)
+                    item = alerts[selected_idx]
+                    if item.get("id") or item.get("module") or "recommendation" in item:
+                        render_finding_detail(item, index=selected_idx + 1)
+                    else:
+                        render_quick_alert_detail(item, index=selected_idx + 1)
                     Prompt.ask("\n[bold cyan]Press Enter to return to options[/bold cyan]", default="")
                 else:
                     console.print(f"[red]Invalid choice. Enter 1 to {len(alerts)}, 'A', 'Q' or '0'.[/red]")
@@ -435,11 +449,13 @@ def explore_full_assessment_findings(findings: list[dict[str, Any]]) -> None:
         return
 
     while True:
-        console.print("\n[bold cyan]Discovered Security Findings:[/bold cyan]")
+        console.print("\n[bold cyan]Discovered Vulnerabilities & Security Findings:[/bold cyan]")
         for idx, f in enumerate(findings, 1):
-            sev = f.get("severity", "Medium")
-            sev_color = "red" if sev.lower() in ["critical", "high"] else "yellow" if "medium" in sev.lower() else "green"
-            console.print(f"  [bold cyan]{idx}.[/bold cyan] [{sev_color}][{sev}][/{sev_color}] [bold]{f.get('id', '')}:[/bold] {f.get('title', '')}")
+            sev = f.get("severity") or f.get("level") or "Medium"
+            sev_lower = sev.lower()
+            sev_color = "red" if sev_lower in ["critical", "high"] else "yellow" if "medium" in sev_lower else "green" if sev_lower in ["low", "info", "informational"] else "cyan"
+            id_prefix = f"[bold]{f.get('id')}:[/bold] " if f.get("id") else ""
+            console.print(f"  [bold cyan]{idx}.[/bold cyan] [{sev_color}][{sev}][/{sev_color}] {id_prefix}{f.get('title', '')}")
 
         range_desc = f"1-{len(findings)}" if len(findings) > 1 else "1"
         console.print("\n[bold]Options:[/bold]")
@@ -463,7 +479,10 @@ def explore_full_assessment_findings(findings: list[dict[str, Any]]) -> None:
             show_banner()
             console.print(f"[bold cyan]--- Complete Vulnerability Findings Breakdown ({len(findings)} items) ---[/bold cyan]\n")
             for idx, f in enumerate(findings, 1):
-                render_finding_detail(f, index=idx)
+                if f.get("id") or f.get("module") or "recommendation" in f:
+                    render_finding_detail(f, index=idx)
+                else:
+                    render_quick_alert_detail(f, index=idx)
             Prompt.ask("\n[bold cyan]Press Enter to return to options[/bold cyan]", default="")
         else:
             try:
@@ -471,7 +490,11 @@ def explore_full_assessment_findings(findings: list[dict[str, Any]]) -> None:
                 if 0 <= selected_idx < len(findings):
                     clear_screen()
                     show_banner()
-                    render_finding_detail(findings[selected_idx], index=selected_idx + 1)
+                    item = findings[selected_idx]
+                    if item.get("id") or item.get("module") or "recommendation" in item:
+                        render_finding_detail(item, index=selected_idx + 1)
+                    else:
+                        render_quick_alert_detail(item, index=selected_idx + 1)
                     Prompt.ask("\n[bold cyan]Press Enter to return to options[/bold cyan]", default="")
                 else:
                     console.print(f"[red]Invalid choice. Enter 1 to {len(findings)}, 'A', 'Q' or '0'.[/red]")
@@ -555,12 +578,14 @@ def run_quick_vulnerability_check_screen() -> None:
         if alerts:
             console.print(f"\n[bold red]Security Vulnerabilities & Exposure Alerts ({len(alerts)}):[/bold red]")
             for idx, alert in enumerate(alerts, 1):
-                lvl = alert["level"].lower()
-                b_color = "red" if lvl == "high" else "yellow" if lvl == "medium" else "cyan"
+                raw_lvl = alert.get("severity") or alert.get("level") or "Medium"
+                lvl = raw_lvl.lower()
+                b_color = "red" if lvl in ["critical", "high"] else "yellow" if "medium" in lvl else "green" if lvl in ["low", "info", "informational"] else "cyan"
+                id_prefix = f"{alert.get('id')}: " if alert.get("id") else ""
                 console.print(
                     Panel(
-                        f"[bold]{alert['description']}[/bold]",
-                        title=f"[{b_color}]#{idx} - {alert['level'].upper()}: {alert['title']}[/{b_color}]",
+                        f"[bold]{alert.get('description', alert.get('impact', ''))}[/bold]",
+                        title=f"[{b_color}]#{idx} - {raw_lvl}: {id_prefix}{alert.get('title', '')}[/{b_color}]",
                         border_style=b_color,
                     )
                 )
@@ -760,9 +785,11 @@ def run_full_assessment_screen() -> None:
             table.add_column("Title")
 
             for f in findings:
+                f_sev = f.get("severity") or f.get("level", "Medium")
+                sev_style = "bold red" if f_sev.lower() in ["high", "critical"] else "bold yellow" if "medium" in f_sev.lower() else "bold green" if f_sev.lower() in ["low", "info", "informational"] else "cyan"
                 table.add_row(
                     f.get("id", ""),
-                    f.get("severity", ""),
+                    f"[{sev_style}]{f_sev}[/{sev_style}]",
                     f.get("module", ""),
                     f.get("title", ""),
                 )
@@ -1486,8 +1513,8 @@ def manage_single_assessment_session(assessment_id: str) -> None:
             f_table.add_column("CWE")
 
             for f in findings:
-                f_sev = f.get("severity", "")
-                sev_style = "bold red" if f_sev.lower() in ["high", "critical"] else "bold yellow" if "medium" in f_sev.lower() else "bold green"
+                f_sev = f.get("severity") or f.get("level", "Medium")
+                sev_style = "bold red" if f_sev.lower() in ["high", "critical"] else "bold yellow" if "medium" in f_sev.lower() else "bold green" if f_sev.lower() in ["low", "info", "informational"] else "cyan"
                 f_table.add_row(
                     f.get("id", ""),
                     f"[{sev_style}]{f_sev}[/{sev_style}]",
@@ -1549,7 +1576,7 @@ def manage_single_assessment_session(assessment_id: str) -> None:
                 console.print("\n[yellow]No findings recorded for this assessment.[/yellow]")
                 pause()
                 continue
-            explore_quick_scan_alerts(findings)
+            explore_full_assessment_findings(findings)
 
         elif act == "3":
             update_single_assessment_flow(assessment_id)
@@ -1922,17 +1949,18 @@ def run_network_discovery_screen() -> None:
         if findings:
             console.print(f"\n[bold red]Network Findings Detected ({len(findings)}):[/bold red]")
             for f in findings:
-                sev = f["severity"].lower()
-                b_style = "red" if sev == "high" else "yellow" if "medium" in sev else "green"
+                f_sev = f.get("severity") or f.get("level", "Medium")
+                sev = f_sev.lower()
+                b_style = "red" if sev in ["high", "critical"] else "yellow" if "medium" in sev else "green" if sev in ["low", "info", "informational"] else "cyan"
                 console.print(
                     Panel(
                         f"""
-[bold]Title:[/bold] {f["title"]}
-[bold]Severity:[/bold] {f["severity"]} | [bold]Category:[/bold] {f["category"]}
-[bold]Impact:[/bold] {f["impact"]}
-[bold]Recommendation:[/bold] {f["recommendation"]}
+[bold]Title:[/bold] {f.get("title", "")}
+[bold]Severity:[/bold] [{b_style}]{f_sev}[/{b_style}] | [bold]Category:[/bold] {f.get("category", "")}
+[bold]Impact:[/bold] {f.get("impact", "")}
+[bold]Recommendation:[/bold] {f.get("recommendation", "")}
 """.strip(),
-                        title=f["id"],
+                        title=f.get("id", ""),
                         border_style=b_style,
                     )
                 )
@@ -2087,17 +2115,18 @@ def run_dns_checks_screen() -> None:
         if findings:
             console.print(f"\n[bold red]DNS Findings Detected ({len(findings)}):[/bold red]")
             for f in findings:
-                sev = f["severity"].lower()
-                b_style = "red" if sev == "high" else "yellow" if "medium" in sev else "green"
+                f_sev = f.get("severity") or f.get("level", "Medium")
+                sev = f_sev.lower()
+                b_style = "red" if sev in ["high", "critical"] else "yellow" if "medium" in sev else "green" if sev in ["low", "info", "informational"] else "cyan"
                 console.print(
                     Panel(
                         f"""
-[bold]Title:[/bold] {f["title"]}
-[bold]Severity:[/bold] {f["severity"]} | [bold]Category:[/bold] {f["category"]}
-[bold]Impact:[/bold] {f["impact"]}
-[bold]Recommendation:[/bold] {f["recommendation"]}
+[bold]Title:[/bold] {f.get("title", "")}
+[bold]Severity:[/bold] [{b_style}]{f_sev}[/{b_style}] | [bold]Category:[/bold] {f.get("category", "")}
+[bold]Impact:[/bold] {f.get("impact", "")}
+[bold]Recommendation:[/bold] {f.get("recommendation", "")}
 """.strip(),
-                        title=f["id"],
+                        title=f.get("id", ""),
                         border_style=b_style,
                     )
                 )
@@ -2266,17 +2295,18 @@ def run_web_checks_screen() -> None:
         if findings:
             console.print(f"\n[bold red]Web Interface Findings Detected ({len(findings)}):[/bold red]")
             for f in findings:
-                sev = f["severity"].lower()
-                b_style = "red" if sev == "high" else "yellow" if "medium" in sev else "green"
+                f_sev = f.get("severity") or f.get("level", "Medium")
+                sev = f_sev.lower()
+                b_style = "red" if sev in ["high", "critical"] else "yellow" if "medium" in sev else "green" if sev in ["low", "info", "informational"] else "cyan"
                 console.print(
                     Panel(
                         f"""
-[bold]Title:[/bold] {f["title"]}
-[bold]Severity:[/bold] {f["severity"]} | [bold]Category:[/bold] {f["category"]}
-[bold]Impact:[/bold] {f["impact"]}
-[bold]Recommendation:[/bold] {f["recommendation"]}
+[bold]Title:[/bold] {f.get("title", "")}
+[bold]Severity:[/bold] [{b_style}]{f_sev}[/{b_style}] | [bold]Category:[/bold] {f.get("category", "")}
+[bold]Impact:[/bold] {f.get("impact", "")}
+[bold]Recommendation:[/bold] {f.get("recommendation", "")}
 """.strip(),
-                        title=f["id"],
+                        title=f.get("id", ""),
                         border_style=b_style,
                     )
                 )
@@ -2427,16 +2457,19 @@ def run_firmware_discovery_screen() -> None:
         if findings:
             console.print(f"\n[bold red]Firmware Findings Generated ({len(findings)}):[/bold red]")
             for f in findings:
+                f_sev = f.get("severity") or f.get("level", "Medium")
+                sev = f_sev.lower()
+                b_style = "red" if sev in ["high", "critical"] else "yellow" if "medium" in sev else "green" if sev in ["low", "info", "informational"] else "cyan"
                 console.print(
                     Panel(
                         f"""
-[bold]Title:[/bold] {f["title"]}
-[bold]Severity:[/bold] {f["severity"]} | [bold]Category:[/bold] {f["category"]}
-[bold]Impact:[/bold] {f["impact"]}
-[bold]Recommendation:[/bold] {f["recommendation"]}
+[bold]Title:[/bold] {f.get("title", "")}
+[bold]Severity:[/bold] [{b_style}]{f_sev}[/{b_style}] | [bold]Category:[/bold] {f.get("category", "")}
+[bold]Impact:[/bold] {f.get("impact", "")}
+[bold]Recommendation:[/bold] {f.get("recommendation", "")}
 """.strip(),
-                        title=f["id"],
-                        border_style="yellow",
+                        title=f.get("id", ""),
+                        border_style=b_style,
                     )
                 )
 
@@ -2548,17 +2581,18 @@ def run_firmware_static_analysis_screen() -> None:
         if findings:
             console.print(f"\n[bold red]Static Firmware Findings Detected ({len(findings)}):[/bold red]")
             for f in findings:
-                sev = f["severity"].lower()
-                b_style = "red" if sev == "high" else "yellow" if "medium" in sev else "green"
+                f_sev = f.get("severity") or f.get("level", "Medium")
+                sev = f_sev.lower()
+                b_style = "red" if sev in ["high", "critical"] else "yellow" if "medium" in sev else "green" if sev in ["low", "info", "informational"] else "cyan"
                 console.print(
                     Panel(
                         f"""
-[bold]Title:[/bold] {f["title"]}
-[bold]Severity:[/bold] {f["severity"]} | [bold]Category:[/bold] {f["category"]}
-[bold]Impact:[/bold] {f["impact"]}
-[bold]Recommendation:[/bold] {f["recommendation"]}
+[bold]Title:[/bold] {f.get("title", "")}
+[bold]Severity:[/bold] [{b_style}]{f_sev}[/{b_style}] | [bold]Category:[/bold] {f.get("category", "")}
+[bold]Impact:[/bold] {f.get("impact", "")}
+[bold]Recommendation:[/bold] {f.get("recommendation", "")}
 """.strip(),
-                        title=f["id"],
+                        title=f.get("id", ""),
                         border_style=b_style,
                     )
                 )
@@ -2708,8 +2742,8 @@ def show_findings_screen() -> None:
         for dev_id, dev_findings in devices_map.items():
             dev = get_device_by_id(dev_id)
             display_name = dev.get("display_name", dev_id) if dev else dev_id
-            high_c = sum(1 for f in dev_findings if f.get("severity", "").lower() in ["critical", "high"])
-            med_c = sum(1 for f in dev_findings if "medium" in f.get("severity", "").lower())
+            high_c = sum(1 for f in dev_findings if (f.get("severity") or f.get("level", "")).lower() in ["critical", "high"])
+            med_c = sum(1 for f in dev_findings if "medium" in (f.get("severity") or f.get("level", "")).lower())
             low_c = len(dev_findings) - high_c - med_c
 
             dev_info = (
@@ -2725,15 +2759,16 @@ def show_findings_screen() -> None:
             for f in dev_findings:
                 flat_finding_index.append(f)
                 idx = len(flat_finding_index)
-                sev = f.get("severity", "Medium")
-                sev_color = "red" if sev.lower() in ["critical", "high"] else "yellow" if "medium" in sev.lower() else "green"
+                sev = f.get("severity") or f.get("level") or "Medium"
+                sev_lower = sev.lower()
+                sev_color = "red" if sev_lower in ["critical", "high"] else "yellow" if "medium" in sev_lower else "green" if sev_lower in ["low", "info", "informational"] else "cyan"
                 cwe_str = f.get("cwe", "")
                 cwe_part = f" | [cyan]{cwe_str}[/cyan]" if cwe_str else ""
                 module_part = f.get("module", "General")
                 impact_str = f.get("impact", "")
 
                 line = (
-                    f"[bold cyan]{idx}.[/bold cyan] [{sev_color}][{sev.upper()}][/{sev_color}] [bold]{f.get('id', '')}:[/bold] {f.get('title', '')}\n"
+                    f"[bold cyan]{idx}.[/bold cyan] [{sev_color}][{sev}][/{sev_color}] [bold]{f.get('id', '')}:[/bold] {f.get('title', '')}\n"
                     f"   [dim]Layer: {module_part}{cwe_part}[/dim]\n"
                     f"   [yellow]Threat Impact:[/yellow] {impact_str}"
                 )
@@ -2888,9 +2923,11 @@ def calculate_score_screen() -> None:
             ded_table.add_column("Vulnerability Title")
 
             for d in deductions:
+                d_sev = d.get("severity") or d.get("level", "Medium")
+                d_sev_style = "bold red" if d_sev.lower() in ["high", "critical"] else "bold yellow" if "medium" in d_sev.lower() else "bold green" if d_sev.lower() in ["low", "info", "informational"] else "cyan"
                 ded_table.add_row(
                     d.get("finding_id", ""),
-                    d.get("severity", ""),
+                    f"[{d_sev_style}]{d_sev}[/{d_sev_style}]",
                     f"-{d.get('deduction', 0)}",
                     d.get("title", ""),
                 )
@@ -3040,9 +3077,11 @@ def show_device_details_screen() -> None:
         f_table.add_column("Title")
         f_table.add_column("Status", justify="center")
         for f in findings:
+            f_sev = f.get("severity") or f.get("level", "Medium")
+            sev_style = "bold red" if f_sev.lower() in ["high", "critical"] else "bold yellow" if "medium" in f_sev.lower() else "bold green" if f_sev.lower() in ["low", "info", "informational"] else "cyan"
             f_table.add_row(
                 f.get("id", ""),
-                f.get("severity", ""),
+                f"[{sev_style}]{f_sev}[/{sev_style}]",
                 f.get("module", "General"),
                 f.get("title", ""),
                 f.get("status", "Confirmed"),
@@ -3887,8 +3926,8 @@ def cli_run_assessment(
 
         for f in findings:
             f_id = f.get("id", "")
-            f_sev = f.get("severity", "")
-            sev_style = "bold red" if f_sev.lower() in ["high", "critical"] else "bold yellow" if "medium" in f_sev.lower() else "bold green"
+            f_sev = f.get("severity") or f.get("level", "Medium")
+            sev_style = "bold red" if f_sev.lower() in ["high", "critical"] else "bold yellow" if "medium" in f_sev.lower() else "bold green" if f_sev.lower() in ["low", "info", "informational"] else "cyan"
             ded_val = ded_map.get(f_id, "")
             ded_display = f"-{ded_val} pts" if ded_val else ""
 

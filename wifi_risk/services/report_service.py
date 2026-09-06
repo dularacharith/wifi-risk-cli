@@ -105,7 +105,8 @@ def generate_markdown_report(assessment_id: str, output_path: str | None = None)
     else:
         for idx, f in enumerate(findings, 1):
             lines.append(f"### {idx}. [{f.get('id')}] {f.get('title')}")
-            lines.append(f"- **Severity:** {f.get('severity')}")
+            f_sev = f.get("severity") or f.get("level", "")
+            lines.append(f"- **Severity:** {f_sev}")
             lines.append(f"- **Status:** {f.get('status', 'Confirmed')}")
             lines.append(f"- **Weakness Mapping:** {f.get('cwe', 'CWE-General Insecure Configuration')}")
             lines.append(f"- **Category:** {f.get('category')}")
@@ -118,14 +119,13 @@ def generate_markdown_report(assessment_id: str, output_path: str | None = None)
             lines.append(f"- **Recommended Mitigation:** {f.get('recommendation')}")
             if f.get("hardening_coverage"):
                 lines.append("- **Hardening Action Steps:**")
-                for h_step in f.get("hardening_coverage", "").splitlines():
-                    lines.append(f"  - {h_step}")
+                for step in f.get("hardening_coverage", "").split("\n"):
+                    if step.strip():
+                        lines.append(f"  {step.strip()}")
             lines.append("")
 
-    lines.append("## 4. Comprehensive Device Hardening & Defense Plan")
-    for idx, m in enumerate(rec.get("mitigations", []), 1):
-        lines.append(f"{idx}. {m}")
-    lines.append("")
+    lines.append("## 4. Academic Disclaimer")
+    lines.append("This security assessment report was generated automatically by WiFiRisk for academic research purposes under module COM4901. Findings reflect non-destructive protocol probes and vulnerability checks conducted in an isolated lab environment.")
 
     content = "\n".join(lines)
     with open(out_file, "w", encoding="utf-8") as f:
@@ -136,7 +136,7 @@ def generate_markdown_report(assessment_id: str, output_path: str | None = None)
 
 def generate_text_report(assessment_id: str, output_path: str | None = None) -> str:
     """
-    Generate Plain Text format security assessment report with in-depth threat modeling.
+    Generate clean, monospaced ASCII plain-text (.txt) security report.
     """
     data = get_assessment_report_data(assessment_id)
     asm = data["assessment"]
@@ -150,29 +150,22 @@ def generate_text_report(assessment_id: str, output_path: str | None = None) -> 
 
     lines = []
     lines.append("=" * 80)
-    lines.append("           WIFIRISK SECURITY ASSESSMENT & THREAT MODELING REPORT")
+    lines.append("WIFIRISK SECURITY ASSESSMENT & THREAT MODELING REPORT (ACADEMIC COM4901)")
     lines.append("=" * 80)
-    lines.append("Project: WiFiRisk Framework for Low-Cost Wi-Fi Repeaters")
-    lines.append("Student: W.M.D.C.D.S Weerakoon (ID: 11161)")
-    lines.append("Faculty: Faculty of Computer Science and Engineering, KIU | Module: COM4901")
+    lines.append(f"Assessment ID : {asm.get('id')}")
+    lines.append(f"Target IP     : {asm.get('target_ip')}")
+    lines.append(f"Device Model  : {dev.get('brand', 'Generic') if dev else 'Generic'} {dev.get('model', 'Wi-Fi Repeater') if dev else 'Wi-Fi Repeater'} (ID: {asm.get('device_id')})")
+    lines.append(f"Firmware      : {dev.get('firmware_version', 'Unknown') if dev else 'Unknown'}")
+    lines.append(f"Price (LKR)   : {asm.get('price_lkr', 0)}")
+    lines.append(f"Date Exported : {data['generated_at']}")
     lines.append("-" * 80)
-    lines.append(f"Assessment ID  : {asm.get('id')}")
-    lines.append(f"Status         : {asm.get('status')}")
-    lines.append(f"Generated At   : {data['generated_at']}")
-    lines.append(f"Target Gateway : {asm.get('target_ip')}")
-    lines.append(f"Device ID      : {asm.get('device_id')}")
-    lines.append(f"Brand / Model  : {dev.get('brand', 'Generic') if dev else 'Generic'} {dev.get('model', 'Wi-Fi Repeater') if dev else 'Wi-Fi Repeater'}")
-    lines.append(f"Firmware Ver   : {dev.get('firmware_version', 'Unknown') if dev else 'Unknown'}")
-    lines.append(f"Purchase Price : LKR {asm.get('price_lkr', 0)}")
-    lines.append("-" * 80)
-    lines.append("EXECUTIVE SCORECARD")
-    lines.append(f"  Security Score       : {eval_res['final_score']}/100")
-    lines.append(f"  Risk Level           : {eval_res['risk_level']}")
-    lines.append(f"  Price-to-Security PSR: {eval_res['psr']} (Baseline: LKR 15,000)")
-    lines.append(f"  Final Recommendation : {rec['category']}")
-    lines.append("")
-    lines.append(f"Guidance: {rec['guidance']}")
-    lines.append(f"Verdict : {rec['price_verdict']}")
+    lines.append("EXECUTIVE SECURITY EVALUATION & PSR SCORECARD")
+    lines.append(f"Security Score : {eval_res['final_score']} / 100")
+    lines.append(f"Risk Level     : {eval_res['risk_level']}")
+    lines.append(f"PSR Ratio      : {eval_res['psr']} (Price-to-Security Ratio)")
+    lines.append(f"Recommendation : {rec['category']}")
+    lines.append(f"Guidance       : {rec['guidance']}")
+    lines.append(f"Verdict        : {rec['price_verdict']}")
     lines.append("-" * 80)
     lines.append("SCORE DEDUCTIONS BREAKDOWN")
     for d in eval_res.get("deductions_detail", []):
@@ -182,8 +175,9 @@ def generate_text_report(assessment_id: str, output_path: str | None = None) -> 
     if not findings:
         lines.append("  No security vulnerabilities detected.")
     for idx, f in enumerate(findings, 1):
+        f_sev = f.get("severity") or f.get("level", "")
         lines.append(f"\n{idx}. [{f.get('id')}] {f.get('title')}")
-        lines.append(f"   Severity      : {f.get('severity')} | Status: {f.get('status', 'Confirmed')}")
+        lines.append(f"   Severity      : {f_sev} | Status: {f.get('status', 'Confirmed')}")
         lines.append(f"   Weakness      : {f.get('cwe', 'CWE-General Insecure Configuration')}")
         lines.append(f"   Category      : {f.get('category')}")
         lines.append(f"   Module        : {f.get('module', 'Assessment Engine')}")
@@ -313,8 +307,9 @@ def generate_docx_report(assessment_id: str, output_path: str | None = None) -> 
     for idx, f in enumerate(findings, 1):
         doc.add_heading(f"{idx}. [{f.get('id')}] {f.get('title')}", level=3)
         fp = doc.add_paragraph()
+        f_sev = f.get("severity") or f.get("level", "")
         fp.add_run("Severity: ").bold = True
-        fp.add_run(f"{f.get('severity')}  |  ")
+        fp.add_run(f"{f_sev}  |  ")
         fp.add_run("Status: ").bold = True
         fp.add_run(f"{f.get('status', 'Confirmed')}  |  ")
         fp.add_run("Weakness: ").bold = True
@@ -405,11 +400,11 @@ def generate_research_dataset_txt(output_path: str | None = None) -> str:
     total_assessments = len(assessments)
     total_devices = len(devices)
     total_findings_count = len(all_findings)
-    high_count = sum(1 for f in all_findings if f.get("severity", "").lower() in ["high", "critical"])
-    med_count = sum(1 for f in all_findings if "medium" in f.get("severity", "").lower())
-    low_med_count = sum(1 for f in all_findings if f.get("severity", "").lower() == "low-medium")
-    low_count = sum(1 for f in all_findings if f.get("severity", "").lower() == "low")
-    info_count = sum(1 for f in all_findings if f.get("severity", "").lower() == "informational")
+    high_count = sum(1 for f in all_findings if (f.get("severity") or f.get("level", "")).lower() in ["high", "critical"])
+    med_count = sum(1 for f in all_findings if "medium" in (f.get("severity") or f.get("level", "")).lower())
+    low_med_count = sum(1 for f in all_findings if (f.get("severity") or f.get("level", "")).lower() == "low-medium")
+    low_count = sum(1 for f in all_findings if (f.get("severity") or f.get("level", "")).lower() == "low")
+    info_count = sum(1 for f in all_findings if (f.get("severity") or f.get("level", "")).lower() == "informational")
 
     lines = []
     lines.append("=" * 115)
@@ -453,8 +448,8 @@ def generate_research_dataset_txt(output_path: str | None = None) -> str:
 
         psr_calc = round((score / 100.0) / (price / 15000.0), 2) if price > 0 else 0.0
         dev_findings = get_findings_by_device_id(dev_id)
-        d_high = sum(1 for f in dev_findings if f.get("severity", "").lower() in ["high", "critical"])
-        d_med = sum(1 for f in dev_findings if "medium" in f.get("severity", "").lower())
+        d_high = sum(1 for f in dev_findings if (f.get("severity") or f.get("level", "")).lower() in ["high", "critical"])
+        d_med = sum(1 for f in dev_findings if "medium" in (f.get("severity") or f.get("level", "")).lower())
         d_low = len(dev_findings) - d_high - d_med
         findings_breakdown = f"{len(dev_findings)} ({d_high}H/{d_med}M/{d_low}L)"
 
@@ -509,7 +504,7 @@ def generate_research_dataset_txt(output_path: str | None = None) -> str:
             lines.append(f"\n  Confirmed Vulnerabilities Discovered ({len(asm_findings)} total):")
             for idx, f in enumerate(asm_findings, 1):
                 f_id = f.get("id", "")
-                f_sev = f.get("severity", "")
+                f_sev = f.get("severity") or f.get("level", "")
                 f_title = f.get("title", "")
                 f_module = f.get("module", "General")
                 f_cwe = f.get("cwe", "CWE-General")
@@ -582,7 +577,7 @@ def generate_research_audit_log(output_path: str | None = None) -> str:
         f_id = f.get("id", "")
         f_asm = f.get("assessment_id", "GLOBAL")
         f_dev = f.get("device_id", "DEVICE")
-        f_sev = f.get("severity", "MEDIUM").upper()
+        f_sev = (f.get("severity") or f.get("level", "MEDIUM")).upper()
         f_title = f.get("title", "")
         f_mod = f.get("module", "General")
         f_ts = f.get("date_observed", datetime.now().isoformat(timespec="seconds"))
